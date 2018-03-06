@@ -12,25 +12,40 @@ namespace VictorBuilder
 {
     public partial class frmMain : Form
     {
+        //Globals
+        Tags.WeaponTags weaponTags;
+        int BaseArmor = 0;
+        int BaseArmorPenetration = 0;
+        int BaseCritChance = 0;
+        int BaseCritMulti = 0;
+        int BaseDmgMax = 0;
+        int BaseDmgMin = 0;
+        int BaseHealth = 4000; //TODO - whats base life at max lvl?
+
+        float scaleFactor = 0.5f;
+
         public frmMain()
         {
             InitializeComponent();
 
-            Tags tags = new Tags(Tags.ItemType.Weapon, Tags.RarityType.Legendary);
-            tags.weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Sword);
+            //Scale the app at startup to half its original size
+            //SizeF factor = new SizeF(scaleFactor, scaleFactor);
+            //this.Scale(factor);
 
-            btnInventory1_1.Tag = tags;
+            weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Sword, 44, 75, 0, 35, 100);
+            btnInventory1_1.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Legendary, weaponTags);
+            btnInventory1_1.Image = Image.FromFile("..\\..\\images\\weapons\\icon_sword.png");
 
-            Tags newTags = new Tags(tags.itemType, Tags.RarityType.Rare);
-            newTags.weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Scythe);
-
-            btnInventory1_2.Tag = newTags;
+            weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Scythe, 10, 190, 10, 15, 100);
+            btnInventory1_2.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Rare, weaponTags);
         }
 
         // Used for all Weapon Inventory slot controls to select the weapon clicked by the user
         private void SwapWeapon(object sender, MouseEventArgs e)
         {
+            bool weaponSwapped = false;
             Button slot = (Button)sender;
+            Tags slotTags = (Tags)slot.Tag;
 
             switch (e.Button)
             {
@@ -41,15 +56,28 @@ namespace VictorBuilder
                     {
                         //Copy the selected weapon to weapon slot 2
                         btnWeapon2.Image = slot.Image;
+                        weaponSwapped = true;
                     }
                     else
                     {
                         //Copy the selected weapon to weapon slot 1
                         btnWeapon1.Image = slot.Image;
+                        weaponSwapped = true;
                     }
                     break;
                 default:
                     break;
+            }
+
+            if (weaponSwapped && slotTags != null)
+            { 
+                //Update additional information as a result of the swap (stats, dmg, etc)
+                //lblHealth.Text =                 
+                lblDamage.Text = (BaseDmgMin + slotTags.weaponTags.dmgMin).ToString() + "-" + (BaseDmgMax + slotTags.weaponTags.dmgMax).ToString();
+                //lblArmor.Text = 
+                lblArmorPenetration.Text = (BaseArmorPenetration + slotTags.weaponTags.armorPenetration).ToString();
+                lblCritChance.Text = (BaseCritChance + slotTags.weaponTags.critChance).ToString() + "%";
+                lblCritMulti.Text = (BaseCritMulti + slotTags.weaponTags.critMulti).ToString() + "%";
             }
         }
 
@@ -88,6 +116,7 @@ namespace VictorBuilder
             }
             else
             {
+                //No item in the selected slot, use default highlighting
                 slot.FlatAppearance.BorderSize = 5;
                 slot.FlatAppearance.BorderColor = Color.Gray;
             }
@@ -98,10 +127,11 @@ namespace VictorBuilder
         {
             Button slot = (Button)sender;
             
-            slot.FlatAppearance.BorderSize = 0;
+            slot.FlatAppearance.BorderSize = 1;
+            slot.FlatAppearance.BorderColor = Color.Black;
         }
 
-        private void Inventory_MouseClick(object sender, MouseEventArgs e)
+        private void Inventory_MouseUp(object sender, MouseEventArgs e)
         {
             SwapWeapon(sender, e);
         }
@@ -114,6 +144,54 @@ namespace VictorBuilder
         private void Inventory_MouseLeave(object sender, EventArgs e)
         {
             UnhighlightSlot(sender, e);
+        }
+
+        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType)
+        {
+            return new Tags(aItemType, aRarityType);
+        }
+
+        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType,
+                                  Tags.WeaponTags.WeaponType aWeaponType)
+        {
+            Tags.WeaponTags weaponTags = new Tags.WeaponTags(aWeaponType);
+            return new Tags(aItemType, aRarityType, weaponTags);
+        }
+
+        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType,
+                                  Tags.WeaponTags aWeaponTags)
+        {
+            return new Tags(aItemType, aRarityType, aWeaponTags);
+        }
+
+        private void ResizeFont(Control.ControlCollection coll, float scaleFactor)
+        {
+            foreach (Control c in coll)
+            {
+                if (c.HasChildren)
+                {
+                    ResizeFont(c.Controls, scaleFactor);
+                }
+                else
+                {
+                    //if (c.GetType().ToString() == "System.Windows.Form.Label")
+                    if (true)
+                    {
+                        // scale font
+                        c.Font = new Font(c.Font.FontFamily.Name, c.Font.Size * scaleFactor);
+                    }
+                    //else if (c.GetType().ToString() == "System.Windows.Form.Button")
+                    //{
+                    //    Button tmpButton = (Button)c;
+                    //}
+                }
+            }
+        }
+
+        private void frmMain_Resize(object sender, EventArgs e)
+        {
+            //Update all font sizes if the app was resized
+            //ResizeFont(this.Controls, scaleFactor);
         }
     }
 }

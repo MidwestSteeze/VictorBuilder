@@ -30,6 +30,9 @@ namespace VictorBuilder
         public RarityType rarity;
         public WeaponTags weaponTags;
 
+        /**********************
+        /* Constructors START *
+        /**********************/
         public Tags() { }
 
         public Tags(ItemType aItemType, RarityType aRarityType)
@@ -45,8 +48,13 @@ namespace VictorBuilder
             weaponTags = aWeaponTags;
         }
 
+        /**********************
+        /* Constructors END   *
+        /**********************/
+
         public class WeaponTags : Tags
         {
+
             public enum WeaponType
             {
                 Hammer,
@@ -59,12 +67,34 @@ namespace VictorBuilder
                 Tome
             }
 
+            public int armorPenetration;
+            public int critChance;
+            public int critMulti;
+            public int dmgMax;
+            public int dmgMin;
             public WeaponType weapon;
 
+            /**********************
+            /* Constructors START *
+            /**********************/
             public WeaponTags(WeaponType aWeapon)
             {
                 weapon = aWeapon;
             }
+
+            public WeaponTags(WeaponType aWeapon, int aDmgMin, int aDmgMax, int aArmorPenetration, int aCritChance, int aCritMulti)
+            {
+                armorPenetration = aArmorPenetration;
+                critChance = aCritChance;
+                critMulti = aCritMulti;
+                dmgMax = aDmgMax;
+                dmgMin = aDmgMin;
+                weapon = aWeapon;
+            }
+
+            /**********************
+            /* Constructors END   *
+            /**********************/
         }
     }
 }

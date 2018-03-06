@@ -61,7 +61,7 @@
             this.pnlEquippedCards = new System.Windows.Forms.Panel();
             this.pbEquippedCard2 = new System.Windows.Forms.PictureBox();
             this.pbEquippedCard1 = new System.Windows.Forms.PictureBox();
-            this.lblLife = new System.Windows.Forms.Label();
+            this.lblHealth = new System.Windows.Forms.Label();
             this.lblArmor = new System.Windows.Forms.Label();
             this.lblArmorPenetration = new System.Windows.Forms.Label();
             this.lblDamage = new System.Windows.Forms.Label();
@@ -125,6 +125,8 @@
             // btnInventory5_5
             // 
             this.btnInventory5_5.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory5_5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory5_5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory5_5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory5_5.Location = new System.Drawing.Point(411, 638);
             this.btnInventory5_5.Name = "btnInventory5_5";
@@ -136,6 +138,8 @@
             // btnInventory5_4
             // 
             this.btnInventory5_4.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory5_4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory5_4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory5_4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory5_4.Location = new System.Drawing.Point(309, 638);
             this.btnInventory5_4.Name = "btnInventory5_4";
@@ -147,6 +151,8 @@
             // btnInventory5_3
             // 
             this.btnInventory5_3.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory5_3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory5_3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory5_3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory5_3.Location = new System.Drawing.Point(207, 638);
             this.btnInventory5_3.Name = "btnInventory5_3";
@@ -158,6 +164,8 @@
             // btnInventory5_2
             // 
             this.btnInventory5_2.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory5_2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory5_2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory5_2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory5_2.Location = new System.Drawing.Point(105, 638);
             this.btnInventory5_2.Name = "btnInventory5_2";
@@ -169,6 +177,8 @@
             // btnInventory4_5
             // 
             this.btnInventory4_5.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory4_5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory4_5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory4_5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory4_5.Location = new System.Drawing.Point(411, 479);
             this.btnInventory4_5.Name = "btnInventory4_5";
@@ -180,6 +190,8 @@
             // btnInventory3_3
             // 
             this.btnInventory3_3.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory3_3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory3_3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory3_3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory3_3.Location = new System.Drawing.Point(207, 320);
             this.btnInventory3_3.Name = "btnInventory3_3";
@@ -191,6 +203,8 @@
             // btnInventory4_4
             // 
             this.btnInventory4_4.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory4_4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory4_4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory4_4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory4_4.Location = new System.Drawing.Point(309, 479);
             this.btnInventory4_4.Name = "btnInventory4_4";
@@ -202,6 +216,8 @@
             // btnInventory4_3
             // 
             this.btnInventory4_3.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory4_3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory4_3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory4_3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory4_3.Location = new System.Drawing.Point(207, 479);
             this.btnInventory4_3.Name = "btnInventory4_3";
@@ -213,6 +229,8 @@
             // btnInventory4_2
             // 
             this.btnInventory4_2.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory4_2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory4_2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory4_2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory4_2.Location = new System.Drawing.Point(105, 479);
             this.btnInventory4_2.Name = "btnInventory4_2";
@@ -224,6 +242,8 @@
             // btnInventory3_5
             // 
             this.btnInventory3_5.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory3_5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory3_5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory3_5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory3_5.Location = new System.Drawing.Point(411, 320);
             this.btnInventory3_5.Name = "btnInventory3_5";
@@ -235,6 +255,8 @@
             // btnInventory3_4
             // 
             this.btnInventory3_4.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory3_4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory3_4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory3_4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory3_4.Location = new System.Drawing.Point(309, 320);
             this.btnInventory3_4.Name = "btnInventory3_4";
@@ -246,6 +268,8 @@
             // btnInventory2_5
             // 
             this.btnInventory2_5.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory2_5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory2_5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory2_5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory2_5.Location = new System.Drawing.Point(411, 161);
             this.btnInventory2_5.Name = "btnInventory2_5";
@@ -257,6 +281,8 @@
             // btnInventory2_4
             // 
             this.btnInventory2_4.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory2_4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory2_4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory2_4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory2_4.Location = new System.Drawing.Point(309, 161);
             this.btnInventory2_4.Name = "btnInventory2_4";
@@ -268,6 +294,8 @@
             // btnInventory2_3
             // 
             this.btnInventory2_3.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory2_3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory2_3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory2_3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory2_3.Location = new System.Drawing.Point(207, 161);
             this.btnInventory2_3.Name = "btnInventory2_3";
@@ -279,6 +307,8 @@
             // btnInventory1_5
             // 
             this.btnInventory1_5.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory1_5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory1_5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory1_5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory1_5.Location = new System.Drawing.Point(411, 2);
             this.btnInventory1_5.Name = "btnInventory1_5";
@@ -290,6 +320,8 @@
             // btnInventory1_4
             // 
             this.btnInventory1_4.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory1_4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory1_4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory1_4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory1_4.Location = new System.Drawing.Point(309, 2);
             this.btnInventory1_4.Name = "btnInventory1_4";
@@ -301,6 +333,8 @@
             // btnInventory1_3
             // 
             this.btnInventory1_3.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory1_3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory1_3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory1_3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory1_3.Location = new System.Drawing.Point(207, 2);
             this.btnInventory1_3.Name = "btnInventory1_3";
@@ -312,6 +346,8 @@
             // btnInventory3_2
             // 
             this.btnInventory3_2.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory3_2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory3_2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory3_2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory3_2.Location = new System.Drawing.Point(105, 320);
             this.btnInventory3_2.Name = "btnInventory3_2";
@@ -323,6 +359,8 @@
             // btnInventory2_2
             // 
             this.btnInventory2_2.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory2_2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory2_2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory2_2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory2_2.Location = new System.Drawing.Point(105, 161);
             this.btnInventory2_2.Name = "btnInventory2_2";
@@ -330,18 +368,16 @@
             this.btnInventory2_2.TabIndex = 7;
             this.btnInventory2_2.TabStop = false;
             this.btnInventory2_2.UseVisualStyleBackColor = false;
-            this.btnInventory2_2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseClick);
             this.btnInventory2_2.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
             this.btnInventory2_2.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventory2_2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventory1_2
             // 
             this.btnInventory1_2.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventory1_2.FlatAppearance.BorderSize = 0;
             this.btnInventory1_2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnInventory1_2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory1_2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventory1_2.Image = ((System.Drawing.Image)(resources.GetObject("btnInventory1_2.Image")));
             this.btnInventory1_2.Location = new System.Drawing.Point(105, 2);
             this.btnInventory1_2.Name = "btnInventory1_2";
             this.btnInventory1_2.Size = new System.Drawing.Size(101, 159);
@@ -349,14 +385,15 @@
             this.btnInventory1_2.TabStop = false;
             this.btnInventory1_2.Tag = "Scythe,Rare";
             this.btnInventory1_2.UseVisualStyleBackColor = false;
-            this.btnInventory1_2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseClick);
             this.btnInventory1_2.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
             this.btnInventory1_2.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventory1_2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseClick);
+            this.btnInventory1_2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventory5_1
             // 
             this.btnInventory5_1.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory5_1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory5_1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory5_1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory5_1.Location = new System.Drawing.Point(3, 638);
             this.btnInventory5_1.Name = "btnInventory5_1";
@@ -368,6 +405,8 @@
             // btnInventory4_1
             // 
             this.btnInventory4_1.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory4_1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory4_1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory4_1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory4_1.Location = new System.Drawing.Point(3, 479);
             this.btnInventory4_1.Name = "btnInventory4_1";
@@ -379,6 +418,8 @@
             // btnInventory3_1
             // 
             this.btnInventory3_1.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory3_1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventory3_1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory3_1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory3_1.Location = new System.Drawing.Point(3, 320);
             this.btnInventory3_1.Name = "btnInventory3_1";
@@ -399,19 +440,19 @@
             this.btnInventory2_1.TabIndex = 2;
             this.btnInventory2_1.TabStop = false;
             this.btnInventory2_1.UseVisualStyleBackColor = false;
-            this.btnInventory2_1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseClick);
             this.btnInventory2_1.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
             this.btnInventory2_1.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventory2_1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventory1_1
             // 
             this.btnInventory1_1.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventory1_1.FlatAppearance.BorderSize = 0;
+            this.btnInventory1_1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventory1_1.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnInventory1_1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnInventory1_1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory1_1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory1_1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnInventory1_1.Image = ((System.Drawing.Image)(resources.GetObject("btnInventory1_1.Image")));
             this.btnInventory1_1.Location = new System.Drawing.Point(3, 2);
             this.btnInventory1_1.Name = "btnInventory1_1";
             this.btnInventory1_1.Size = new System.Drawing.Size(101, 159);
@@ -419,10 +460,9 @@
             this.btnInventory1_1.TabStop = false;
             this.btnInventory1_1.Tag = "";
             this.btnInventory1_1.UseVisualStyleBackColor = false;
-            this.btnInventory1_1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseClick);
             this.btnInventory1_1.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
             this.btnInventory1_1.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventory1_1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseClick);
+            this.btnInventory1_1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnWeapon1
             // 
@@ -478,17 +518,17 @@
             this.pbEquippedCard1.TabIndex = 0;
             this.pbEquippedCard1.TabStop = false;
             // 
-            // lblLife
+            // lblHealth
             // 
-            this.lblLife.AutoSize = true;
-            this.lblLife.BackColor = System.Drawing.Color.Transparent;
-            this.lblLife.Font = new System.Drawing.Font("Tunga", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLife.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
-            this.lblLife.Location = new System.Drawing.Point(857, 29);
-            this.lblLife.Name = "lblLife";
-            this.lblLife.Size = new System.Drawing.Size(83, 47);
-            this.lblLife.TabIndex = 5;
-            this.lblLife.Text = "4,000";
+            this.lblHealth.AutoSize = true;
+            this.lblHealth.BackColor = System.Drawing.Color.Transparent;
+            this.lblHealth.Font = new System.Drawing.Font("Tunga", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHealth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
+            this.lblHealth.Location = new System.Drawing.Point(857, 29);
+            this.lblHealth.Name = "lblHealth";
+            this.lblHealth.Size = new System.Drawing.Size(83, 47);
+            this.lblHealth.TabIndex = 5;
+            this.lblHealth.Text = "4,000";
             // 
             // lblArmor
             // 
@@ -558,9 +598,9 @@
             this.lblInventoryHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
             this.lblInventoryHeader.Location = new System.Drawing.Point(1510, 109);
             this.lblInventoryHeader.Name = "lblInventoryHeader";
-            this.lblInventoryHeader.Size = new System.Drawing.Size(133, 27);
+            this.lblInventoryHeader.Size = new System.Drawing.Size(143, 27);
             this.lblInventoryHeader.TabIndex = 11;
-            this.lblInventoryHeader.Text = "WEAPONS";
+            this.lblInventoryHeader.Text = "lblInvHeader";
             // 
             // lblDestinyPoints
             // 
@@ -570,9 +610,9 @@
             this.lblDestinyPoints.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
             this.lblDestinyPoints.Location = new System.Drawing.Point(514, 744);
             this.lblDestinyPoints.Name = "lblDestinyPoints";
-            this.lblDestinyPoints.Size = new System.Drawing.Size(178, 23);
+            this.lblDestinyPoints.Size = new System.Drawing.Size(118, 23);
             this.lblDestinyPoints.TabIndex = 12;
-            this.lblDestinyPoints.Text = "DESTINY POINTS";
+            this.lblDestinyPoints.Text = "(placeholder)";
             // 
             // lblDestinyPointsTotal
             // 
@@ -596,7 +636,7 @@
             this.lblEquippedDestinyPoints.Name = "lblEquippedDestinyPoints";
             this.lblEquippedDestinyPoints.Size = new System.Drawing.Size(39, 52);
             this.lblEquippedDestinyPoints.TabIndex = 14;
-            this.lblEquippedDestinyPoints.Text = "0";
+            this.lblEquippedDestinyPoints.Text = "#";
             // 
             // lblLevel
             // 
@@ -606,16 +646,15 @@
             this.lblLevel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
             this.lblLevel.Location = new System.Drawing.Point(658, 672);
             this.lblLevel.Name = "lblLevel";
-            this.lblLevel.Size = new System.Drawing.Size(55, 60);
+            this.lblLevel.Size = new System.Drawing.Size(87, 60);
             this.lblLevel.TabIndex = 15;
-            this.lblLevel.Text = "55";
+            this.lblLevel.Text = "lblLvl";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1916, 1054);
             this.Controls.Add(this.lblLevel);
             this.Controls.Add(this.lblEquippedDestinyPoints);
@@ -627,13 +666,14 @@
             this.Controls.Add(this.lblDamage);
             this.Controls.Add(this.lblArmorPenetration);
             this.Controls.Add(this.lblArmor);
-            this.Controls.Add(this.lblLife);
+            this.Controls.Add(this.lblHealth);
             this.Controls.Add(this.pnlEquippedCards);
             this.Controls.Add(this.btnWeapon2);
             this.Controls.Add(this.btnWeapon1);
             this.Controls.Add(this.pnlPage);
             this.Name = "frmMain";
             this.Text = "Victor Builder";
+            this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.pnlPage.ResumeLayout(false);
             this.pnlPage.PerformLayout();
             this.pnlEquippedCards.ResumeLayout(false);
@@ -678,7 +718,7 @@
         private System.Windows.Forms.Panel pnlEquippedCards;
         private System.Windows.Forms.PictureBox pbEquippedCard1;
         private System.Windows.Forms.PictureBox pbEquippedCard2;
-        private System.Windows.Forms.Label lblLife;
+        private System.Windows.Forms.Label lblHealth;
         private System.Windows.Forms.Label lblArmor;
         private System.Windows.Forms.Label lblArmorPenetration;
         private System.Windows.Forms.Label lblDamage;
