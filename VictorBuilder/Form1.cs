@@ -15,66 +15,102 @@ namespace VictorBuilder
         public frmMain()
         {
             InitializeComponent();
+
+            Tags tags = new Tags(Tags.ItemType.Weapon, Tags.RarityType.Legendary);
+            tags.weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Sword);
+
+            btnInventory1_1.Tag = tags;
+
+            Tags newTags = new Tags(tags.itemType, Tags.RarityType.Rare);
+            newTags.weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Scythe);
+
+            btnInventory1_2.Tag = newTags;
         }
 
-        // Used for all Weapon Inventory picture box controls to select the weapon clicked by the user
-        private void SwapWeapon(object sender, MouseEventArgs e, PictureBox pb)
+        // Used for all Weapon Inventory slot controls to select the weapon clicked by the user
+        private void SwapWeapon(object sender, MouseEventArgs e)
         {
+            Button slot = (Button)sender;
+
+            //if (Control.ModifierKeys == Keys.Shift ) 
+            //{ 
+            // Then swap to btnWeapon2.Image;
+            //}
+
             switch (e.Button)
             {
                 case MouseButtons.Left:
                     break;
                 case MouseButtons.Right:
                     //Copy the selected weapon to weapon slot 1
-                    pbWeapon1.Image = pb.Image;
+                    btnWeapon1.Image = slot.Image;
                     break;
                 default:
                     break;
             }
         }
 
-        // Used for all Weapon Inventory picture box controls to set a border around the currently hovered weapon to highlight it
-        private void HighlightWeapon(object sender, PaintEventArgs e, PictureBox pb)
+        // Used for all Inventory slots to set a border around the currently hovered slot to highlight it
+        private void HighlightSlot(object sender, EventArgs e)
         {
-            //Highlight the currently hovered weapon
-            ControlPaint.DrawBorder(e.Graphics, pb.ClientRectangle, Color.Gold, ButtonBorderStyle.Solid);
+            Button slot = (Button)sender;
+            Tags slotTags = (Tags)slot.Tag;
+
+            if (slotTags != null)
+            {
+                //Highlight the currently hovered inventory slot
+                slot.FlatAppearance.BorderSize = 3;
+
+                switch (slotTags.rarity)
+                {
+                    case Tags.RarityType.Common:
+                        slot.FlatAppearance.BorderColor = Color.Gray;
+                        break;
+
+                    case Tags.RarityType.Uncommon:
+                        slot.FlatAppearance.BorderColor = Color.Gold;
+                        break;
+
+                    case Tags.RarityType.Rare:
+                        slot.FlatAppearance.BorderColor = Color.Orange;
+                        break;
+
+                    case Tags.RarityType.Legendary:
+                        slot.FlatAppearance.BorderColor = Color.Purple;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                slot.FlatAppearance.BorderSize = 5;
+                slot.FlatAppearance.BorderColor = Color.Gray;
+            }
         }
 
-        // Used for all Weapon Inventory picture box controls to remove a border around the previously hovered weapon to unhighlight it
-        private void UnhighlightWeapon(object sender, EventArgs e, PictureBox pb)
+        // Used for all Inventory slots to remove a border around the previously hovered slot to unhighlight it
+        private void UnhighlightSlot(object sender, EventArgs e)
         {
-            //Remove the border to unhighlight the item
-            pb.BorderStyle = BorderStyle.None;
+            Button slot = (Button)sender;
+            
+            slot.FlatAppearance.BorderSize = 0;
         }
 
-        private void pbInventory1_1_MouseClick(object sender, MouseEventArgs e)
+        private void Inventory_MouseClick(object sender, MouseEventArgs e)
         {
-            SwapWeapon(sender, e, pbInventory1_1);
+            SwapWeapon(sender, e);
         }
 
-        private void pbInventory1_2_MouseClick(object sender, MouseEventArgs e)
+        private void Inventory_MouseHover(object sender, EventArgs e)
         {
-            SwapWeapon(sender, e, pbInventory1_2);
+            HighlightSlot(sender, e);
         }
 
-        private void pbInventory1_1_MouseHover(object sender, EventArgs e)
+        private void Inventory_MouseLeave(object sender, EventArgs e)
         {
-            pbInventory1_1.Refresh();
-        }
-
-        private void pbInventory1_2_MouseHover(object sender, EventArgs e)
-        {
-            pbInventory1_2.Refresh();
-        }
-
-        private void pbInventory1_1_Paint(object sender, PaintEventArgs e)
-        {
-            HighlightWeapon(sender, e, pbInventory1_1);
-        }
-
-        private void pbInventory1_1_MouseLeave(object sender, EventArgs e)
-        {
-            UnhighlightWeapon(sender, e, pbInventory1_1);
+            UnhighlightSlot(sender, e);
         }
     }
 }
