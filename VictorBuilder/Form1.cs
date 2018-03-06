@@ -32,18 +32,21 @@ namespace VictorBuilder
         {
             Button slot = (Button)sender;
 
-            //if (Control.ModifierKeys == Keys.Shift ) 
-            //{ 
-            // Then swap to btnWeapon2.Image;
-            //}
-
             switch (e.Button)
             {
                 case MouseButtons.Left:
                     break;
                 case MouseButtons.Right:
-                    //Copy the selected weapon to weapon slot 1
-                    btnWeapon1.Image = slot.Image;
+                    if (Control.ModifierKeys == Keys.Shift)
+                    {
+                        //Copy the selected weapon to weapon slot 2
+                        btnWeapon2.Image = slot.Image;
+                    }
+                    else
+                    {
+                        //Copy the selected weapon to weapon slot 1
+                        btnWeapon1.Image = slot.Image;
+                    }
                     break;
                 default:
                     break;

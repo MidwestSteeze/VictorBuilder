@@ -333,6 +333,7 @@
             // btnInventory1_2
             // 
             this.btnInventory1_2.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory1_2.FlatAppearance.BorderSize = 0;
             this.btnInventory1_2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnInventory1_2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory1_2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -401,6 +402,7 @@
             // btnInventory1_1
             // 
             this.btnInventory1_1.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventory1_1.FlatAppearance.BorderSize = 0;
             this.btnInventory1_1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnInventory1_1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnInventory1_1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -421,6 +423,9 @@
             // btnWeapon1
             // 
             this.btnWeapon1.BackColor = System.Drawing.Color.Transparent;
+            this.btnWeapon1.FlatAppearance.BorderSize = 0;
+            this.btnWeapon1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnWeapon1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnWeapon1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnWeapon1.Location = new System.Drawing.Point(76, 440);
             this.btnWeapon1.Name = "btnWeapon1";
@@ -432,6 +437,9 @@
             // btnWeapon2
             // 
             this.btnWeapon2.BackColor = System.Drawing.Color.Transparent;
+            this.btnWeapon2.FlatAppearance.BorderSize = 0;
+            this.btnWeapon2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnWeapon2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnWeapon2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnWeapon2.Location = new System.Drawing.Point(1088, 440);
             this.btnWeapon2.Name = "btnWeapon2";
