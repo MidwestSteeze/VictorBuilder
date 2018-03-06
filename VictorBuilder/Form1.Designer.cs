@@ -67,7 +67,11 @@
             this.lblDamage = new System.Windows.Forms.Label();
             this.lblCritChance = new System.Windows.Forms.Label();
             this.lblCritMulti = new System.Windows.Forms.Label();
-            this.lblConsumables = new System.Windows.Forms.Label();
+            this.lblInventoryHeader = new System.Windows.Forms.Label();
+            this.lblDestinyPoints = new System.Windows.Forms.Label();
+            this.lblDestinyPointsTotal = new System.Windows.Forms.Label();
+            this.lblEquippedDestinyPoints = new System.Windows.Forms.Label();
+            this.lblLevel = new System.Windows.Forms.Label();
             this.pnlPage.SuspendLayout();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbEquippedCard2)).BeginInit();
@@ -546,17 +550,65 @@
             this.lblCritMulti.TabIndex = 10;
             this.lblCritMulti.Text = "-";
             // 
-            // lblConsumables
+            // lblInventoryHeader
             // 
-            this.lblConsumables.AutoSize = true;
-            this.lblConsumables.BackColor = System.Drawing.Color.Transparent;
-            this.lblConsumables.Font = new System.Drawing.Font("Tunga", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsumables.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
-            this.lblConsumables.Location = new System.Drawing.Point(1503, 61);
-            this.lblConsumables.Name = "lblConsumables";
-            this.lblConsumables.Size = new System.Drawing.Size(181, 47);
-            this.lblConsumables.TabIndex = 11;
-            this.lblConsumables.Text = "CONSUMABLES";
+            this.lblInventoryHeader.AutoSize = true;
+            this.lblInventoryHeader.BackColor = System.Drawing.Color.Transparent;
+            this.lblInventoryHeader.Font = new System.Drawing.Font("Bell MT", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInventoryHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
+            this.lblInventoryHeader.Location = new System.Drawing.Point(1510, 109);
+            this.lblInventoryHeader.Name = "lblInventoryHeader";
+            this.lblInventoryHeader.Size = new System.Drawing.Size(133, 27);
+            this.lblInventoryHeader.TabIndex = 11;
+            this.lblInventoryHeader.Text = "WEAPONS";
+            // 
+            // lblDestinyPoints
+            // 
+            this.lblDestinyPoints.AutoSize = true;
+            this.lblDestinyPoints.BackColor = System.Drawing.Color.Transparent;
+            this.lblDestinyPoints.Font = new System.Drawing.Font("Bell MT", 15F);
+            this.lblDestinyPoints.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
+            this.lblDestinyPoints.Location = new System.Drawing.Point(514, 744);
+            this.lblDestinyPoints.Name = "lblDestinyPoints";
+            this.lblDestinyPoints.Size = new System.Drawing.Size(178, 23);
+            this.lblDestinyPoints.TabIndex = 12;
+            this.lblDestinyPoints.Text = "DESTINY POINTS";
+            // 
+            // lblDestinyPointsTotal
+            // 
+            this.lblDestinyPointsTotal.AutoSize = true;
+            this.lblDestinyPointsTotal.BackColor = System.Drawing.Color.Transparent;
+            this.lblDestinyPointsTotal.Font = new System.Drawing.Font("Tunga", 22F);
+            this.lblDestinyPointsTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
+            this.lblDestinyPointsTotal.Location = new System.Drawing.Point(705, 731);
+            this.lblDestinyPointsTotal.Name = "lblDestinyPointsTotal";
+            this.lblDestinyPointsTotal.Size = new System.Drawing.Size(60, 52);
+            this.lblDestinyPointsTotal.TabIndex = 13;
+            this.lblDestinyPointsTotal.Text = "/18";
+            // 
+            // lblEquippedDestinyPoints
+            // 
+            this.lblEquippedDestinyPoints.AutoSize = true;
+            this.lblEquippedDestinyPoints.BackColor = System.Drawing.Color.Transparent;
+            this.lblEquippedDestinyPoints.Font = new System.Drawing.Font("Tunga", 22F);
+            this.lblEquippedDestinyPoints.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
+            this.lblEquippedDestinyPoints.Location = new System.Drawing.Point(685, 731);
+            this.lblEquippedDestinyPoints.Name = "lblEquippedDestinyPoints";
+            this.lblEquippedDestinyPoints.Size = new System.Drawing.Size(39, 52);
+            this.lblEquippedDestinyPoints.TabIndex = 14;
+            this.lblEquippedDestinyPoints.Text = "0";
+            // 
+            // lblLevel
+            // 
+            this.lblLevel.AutoSize = true;
+            this.lblLevel.BackColor = System.Drawing.Color.Transparent;
+            this.lblLevel.Font = new System.Drawing.Font("Tunga", 26F);
+            this.lblLevel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
+            this.lblLevel.Location = new System.Drawing.Point(658, 672);
+            this.lblLevel.Name = "lblLevel";
+            this.lblLevel.Size = new System.Drawing.Size(55, 60);
+            this.lblLevel.TabIndex = 15;
+            this.lblLevel.Text = "55";
             // 
             // frmMain
             // 
@@ -565,7 +617,11 @@
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1916, 1054);
-            this.Controls.Add(this.lblConsumables);
+            this.Controls.Add(this.lblLevel);
+            this.Controls.Add(this.lblEquippedDestinyPoints);
+            this.Controls.Add(this.lblDestinyPointsTotal);
+            this.Controls.Add(this.lblDestinyPoints);
+            this.Controls.Add(this.lblInventoryHeader);
             this.Controls.Add(this.lblCritMulti);
             this.Controls.Add(this.lblCritChance);
             this.Controls.Add(this.lblDamage);
@@ -628,7 +684,11 @@
         private System.Windows.Forms.Label lblDamage;
         private System.Windows.Forms.Label lblCritChance;
         private System.Windows.Forms.Label lblCritMulti;
-        private System.Windows.Forms.Label lblConsumables;
+        private System.Windows.Forms.Label lblInventoryHeader;
+        private System.Windows.Forms.Label lblDestinyPoints;
+        private System.Windows.Forms.Label lblDestinyPointsTotal;
+        private System.Windows.Forms.Label lblEquippedDestinyPoints;
+        private System.Windows.Forms.Label lblLevel;
 
     }
 }
