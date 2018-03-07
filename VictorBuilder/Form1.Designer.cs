@@ -72,10 +72,24 @@
             this.lblDestinyPointsTotal = new System.Windows.Forms.Label();
             this.lblEquippedDestinyPoints = new System.Windows.Forms.Label();
             this.lblLevel = new System.Windows.Forms.Label();
+            this.pbIconWeapons = new System.Windows.Forms.PictureBox();
+            this.pbIconConsumables = new System.Windows.Forms.PictureBox();
+            this.pbIconCards = new System.Windows.Forms.PictureBox();
+            this.pbIconWeaponsHighlighted = new System.Windows.Forms.PictureBox();
+            this.pbIconCardsHighlighted = new System.Windows.Forms.PictureBox();
+            this.pbIconOther = new System.Windows.Forms.PictureBox();
+            this.pbIconOtherHighlighted = new System.Windows.Forms.PictureBox();
             this.pnlPage.SuspendLayout();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbEquippedCard2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEquippedCard1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconCards)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconWeaponsHighlighted)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconCardsHighlighted)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconOther)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconOtherHighlighted)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlPage
@@ -650,12 +664,104 @@
             this.lblLevel.TabIndex = 15;
             this.lblLevel.Text = "lblLvl";
             // 
+            // pbIconWeapons
+            // 
+            this.pbIconWeapons.BackColor = System.Drawing.Color.Transparent;
+            this.pbIconWeapons.Image = ((System.Drawing.Image)(resources.GetObject("pbIconWeapons.Image")));
+            this.pbIconWeapons.Location = new System.Drawing.Point(1351, 153);
+            this.pbIconWeapons.Name = "pbIconWeapons";
+            this.pbIconWeapons.Size = new System.Drawing.Size(96, 41);
+            this.pbIconWeapons.TabIndex = 16;
+            this.pbIconWeapons.TabStop = false;
+            this.pbIconWeapons.Tag = "weapons";
+            this.pbIconWeapons.Visible = false;
+            this.pbIconWeapons.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InventoryCategoryChange);
+            // 
+            // pbIconConsumables
+            // 
+            this.pbIconConsumables.BackColor = System.Drawing.Color.Transparent;
+            this.pbIconConsumables.Location = new System.Drawing.Point(1455, 153);
+            this.pbIconConsumables.Name = "pbIconConsumables";
+            this.pbIconConsumables.Size = new System.Drawing.Size(96, 41);
+            this.pbIconConsumables.TabIndex = 17;
+            this.pbIconConsumables.TabStop = false;
+            this.pbIconConsumables.Tag = "consumables";
+            // 
+            // pbIconCards
+            // 
+            this.pbIconCards.BackColor = System.Drawing.Color.Transparent;
+            this.pbIconCards.Image = ((System.Drawing.Image)(resources.GetObject("pbIconCards.Image")));
+            this.pbIconCards.Location = new System.Drawing.Point(1652, 153);
+            this.pbIconCards.Name = "pbIconCards";
+            this.pbIconCards.Size = new System.Drawing.Size(96, 41);
+            this.pbIconCards.TabIndex = 18;
+            this.pbIconCards.TabStop = false;
+            this.pbIconCards.Tag = "cards";
+            this.pbIconCards.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InventoryCategoryChange);
+            // 
+            // pbIconWeaponsHighlighted
+            // 
+            this.pbIconWeaponsHighlighted.BackColor = System.Drawing.Color.Transparent;
+            this.pbIconWeaponsHighlighted.Image = ((System.Drawing.Image)(resources.GetObject("pbIconWeaponsHighlighted.Image")));
+            this.pbIconWeaponsHighlighted.Location = new System.Drawing.Point(1351, 153);
+            this.pbIconWeaponsHighlighted.Name = "pbIconWeaponsHighlighted";
+            this.pbIconWeaponsHighlighted.Size = new System.Drawing.Size(96, 41);
+            this.pbIconWeaponsHighlighted.TabIndex = 19;
+            this.pbIconWeaponsHighlighted.TabStop = false;
+            this.pbIconWeaponsHighlighted.Tag = "weapons";
+            this.pbIconWeaponsHighlighted.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InventoryCategoryChange);
+            // 
+            // pbIconCardsHighlighted
+            // 
+            this.pbIconCardsHighlighted.BackColor = System.Drawing.Color.Transparent;
+            this.pbIconCardsHighlighted.Image = ((System.Drawing.Image)(resources.GetObject("pbIconCardsHighlighted.Image")));
+            this.pbIconCardsHighlighted.Location = new System.Drawing.Point(1652, 153);
+            this.pbIconCardsHighlighted.Name = "pbIconCardsHighlighted";
+            this.pbIconCardsHighlighted.Size = new System.Drawing.Size(96, 41);
+            this.pbIconCardsHighlighted.TabIndex = 20;
+            this.pbIconCardsHighlighted.TabStop = false;
+            this.pbIconCardsHighlighted.Tag = "cards";
+            this.pbIconCardsHighlighted.Visible = false;
+            this.pbIconCardsHighlighted.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InventoryCategoryChange);
+            // 
+            // pbIconOther
+            // 
+            this.pbIconOther.BackColor = System.Drawing.Color.Transparent;
+            this.pbIconOther.Image = ((System.Drawing.Image)(resources.GetObject("pbIconOther.Image")));
+            this.pbIconOther.Location = new System.Drawing.Point(1753, 153);
+            this.pbIconOther.Name = "pbIconOther";
+            this.pbIconOther.Size = new System.Drawing.Size(96, 41);
+            this.pbIconOther.TabIndex = 21;
+            this.pbIconOther.TabStop = false;
+            this.pbIconOther.Tag = "other";
+            this.pbIconOther.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InventoryCategoryChange);
+            // 
+            // pbIconOtherHighlighted
+            // 
+            this.pbIconOtherHighlighted.BackColor = System.Drawing.Color.Transparent;
+            this.pbIconOtherHighlighted.Image = ((System.Drawing.Image)(resources.GetObject("pbIconOtherHighlighted.Image")));
+            this.pbIconOtherHighlighted.Location = new System.Drawing.Point(1753, 153);
+            this.pbIconOtherHighlighted.Name = "pbIconOtherHighlighted";
+            this.pbIconOtherHighlighted.Size = new System.Drawing.Size(96, 41);
+            this.pbIconOtherHighlighted.TabIndex = 22;
+            this.pbIconOtherHighlighted.TabStop = false;
+            this.pbIconOtherHighlighted.Tag = "other";
+            this.pbIconOtherHighlighted.Visible = false;
+            this.pbIconOtherHighlighted.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InventoryCategoryChange);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(1916, 1054);
+            this.Controls.Add(this.pbIconOtherHighlighted);
+            this.Controls.Add(this.pbIconOther);
+            this.Controls.Add(this.pbIconCardsHighlighted);
+            this.Controls.Add(this.pbIconWeaponsHighlighted);
+            this.Controls.Add(this.pbIconCards);
+            this.Controls.Add(this.pbIconConsumables);
+            this.Controls.Add(this.pbIconWeapons);
             this.Controls.Add(this.lblLevel);
             this.Controls.Add(this.lblEquippedDestinyPoints);
             this.Controls.Add(this.lblDestinyPointsTotal);
@@ -679,6 +785,13 @@
             this.pnlEquippedCards.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbEquippedCard2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEquippedCard1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconCards)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconWeaponsHighlighted)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconCardsHighlighted)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconOther)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconOtherHighlighted)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -729,6 +842,13 @@
         private System.Windows.Forms.Label lblDestinyPointsTotal;
         private System.Windows.Forms.Label lblEquippedDestinyPoints;
         private System.Windows.Forms.Label lblLevel;
+        private System.Windows.Forms.PictureBox pbIconWeapons;
+        private System.Windows.Forms.PictureBox pbIconConsumables;
+        private System.Windows.Forms.PictureBox pbIconCards;
+        private System.Windows.Forms.PictureBox pbIconWeaponsHighlighted;
+        private System.Windows.Forms.PictureBox pbIconCardsHighlighted;
+        private System.Windows.Forms.PictureBox pbIconOther;
+        private System.Windows.Forms.PictureBox pbIconOtherHighlighted;
 
     }
 }
