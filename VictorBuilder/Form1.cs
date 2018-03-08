@@ -28,52 +28,39 @@ namespace VictorBuilder
         {
             InitializeComponent();
 
+            //Prevent flicker on button highlight changes
+            this.DoubleBuffered = true;
+
             //Scale the app at startup to half its original size
             //SizeF factor = new SizeF(scaleFactor, scaleFactor);
             //this.Scale(factor);
 
+            //Remove the weird default border that a TabControl keeps around its children tab pages
+            tcInventoryWeapons.Region = new Region(new RectangleF(tbInventoryWeaponsPage1.Left, tbInventoryWeaponsPage1.Top, tbInventoryWeaponsPage1.Width, tbInventoryWeaponsPage1.Height));
+            tcInventoryCards.Region = new Region(new RectangleF(tbInventoryCardsPage1.Left, tbInventoryCardsPage1.Top, tbInventoryCardsPage1.Width, tbInventoryCardsPage1.Height));
+
+            //Default weapon slot to show stats from as Weapon 1
+            cboWeaponSlot.SelectedIndex = 0;
+
             //START Temporary OnLoad logic
             weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Sword, 44, 75, 0, 35, 100);
-            btnInventory1_1.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Legendary, weaponTags);
-            btnInventory1_1.Image = Image.FromFile("..\\..\\images\\weapons\\icon_sword.png");
+            btnInventoryWeapons00.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Legendary, weaponTags);
+            btnInventoryWeapons00.Image = Image.FromFile("..\\..\\images\\weapons\\icon_sword.png");
 
             weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Scythe, 10, 190, 10, 15, 100);
-            btnInventory1_2.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Rare, weaponTags);
+            btnInventoryWeapons10.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Rare, weaponTags);
+            btnInventoryWeapons10.Image = Image.FromFile("..\\..\\images\\weapons\\icon_scythe.png");
+
+            btnInventoryCards00.Image = Image.FromFile("..\\..\\images\\cards\\icon_warrior.png");
             //END Temporary OnLoad logic
         }
 
-        // Used for all Weapon Inventory slot controls to select the weapon clicked by the user
-        private void SwapWeapon(object sender, MouseEventArgs e)
+        //Calculate and update stats along top bar
+        private void CalculateStats(Tags slotTags)
         {
-            bool weaponSwapped = false;
-            Button slot = (Button)sender;
-            Tags slotTags = (Tags)slot.Tag;
-
-            switch (e.Button)
+            if (slotTags != null)
             {
-                case MouseButtons.Left:
-                    break;
-                case MouseButtons.Right:
-                    if (Control.ModifierKeys == Keys.Shift)
-                    {
-                        //Copy the selected weapon to weapon slot 2
-                        btnWeapon2.Image = slot.Image;
-                        weaponSwapped = true;
-                    }
-                    else
-                    {
-                        //Copy the selected weapon to weapon slot 1
-                        btnWeapon1.Image = slot.Image;
-                        weaponSwapped = true;
-                    }
-                    break;
-                default:
-                    break;
-            }
-
-            if (weaponSwapped && slotTags != null)
-            { 
-                //Update additional information as a result of the swap (stats, dmg, etc)
+                //Update additional information as a result of the weapon swap (stats, dmg, etc)
                 //lblHealth.Text =                 
                 lblDamage.Text = (BaseDmgMin + slotTags.weaponTags.dmgMin).ToString() + "-" + (BaseDmgMax + slotTags.weaponTags.dmgMax).ToString();
                 //lblArmor.Text = 
@@ -83,7 +70,63 @@ namespace VictorBuilder
             }
         }
 
-        // Used for all Inventory slots to set a border around the currently hovered slot to highlight it
+        //Used for all Weapon Inventory slot controls to copy the weapon clicked by the user and move it to an equipped slot
+        private void SwapWeapon(object sender, MouseEventArgs e)
+        {
+            bool weaponSwapped = false;
+            Button slot = (Button)sender;
+            Tags slotTags = (Tags)slot.Tag;
+
+            switch (e.Button)
+            {
+                //case MouseButtons.Left:
+                //    break;
+                case MouseButtons.Right:
+                    if (Control.ModifierKeys == Keys.Shift)
+                    {
+                        //Copy the selected weapon to weapon slot 2
+                        btnWeapon2.Image = slot.Image;
+                        btnWeapon2.Tag = slotTags;
+                        weaponSwapped = true;
+                        if (cboWeaponSlot.SelectedIndex == 1)
+                        {
+                            CalculateStats(slotTags);
+                        }
+                    }
+                    else
+                    {
+                        //Copy the selected weapon to weapon slot 1
+                        btnWeapon1.Image = slot.Image;
+                        btnWeapon1.Tag = slotTags;
+                        weaponSwapped = true;
+                        if (cboWeaponSlot.SelectedIndex == 0)
+                        {
+                            CalculateStats(slotTags);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        //Determine which Weapons lot the user selected from the drop-down and call CalculateStats() to recalculate the stats along the top bar
+        private void SelectedWeaponSlotChanged(object sender, EventArgs e)
+        {
+            switch (cboWeaponSlot.SelectedIndex)
+            {
+                case 0:
+                    CalculateStats((Tags)btnWeapon1.Tag);
+                    break;
+                case 1:
+                    CalculateStats((Tags)btnWeapon2.Tag);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        //Subproc called from mouse event for all Inventory slots to set a border around the currently hovered slot to highlight it
         private void HighlightSlot(object sender, EventArgs e)
         {
             Button slot = (Button)sender;
@@ -124,7 +167,7 @@ namespace VictorBuilder
             }
         }
 
-        // Used for all Inventory slots to remove a border around the previously hovered slot to unhighlight it
+        //Subproc called from mouse event for all Inventory slots to remove a border around the previously hovered slot to unhighlight it
         private void UnhighlightSlot(object sender, EventArgs e)
         {
             Button slot = (Button)sender;
@@ -138,11 +181,13 @@ namespace VictorBuilder
             SwapWeapon(sender, e);
         }
 
+        //Will call a subproc to highlight the item being hovered
         private void Inventory_MouseHover(object sender, EventArgs e)
         {
             HighlightSlot(sender, e);
         }
 
+        //Will call a subproc to unhighlight the item that was being hovered
         private void Inventory_MouseLeave(object sender, EventArgs e)
         {
             UnhighlightSlot(sender, e);
@@ -196,9 +241,38 @@ namespace VictorBuilder
             //ResizeFont(this.Controls, scaleFactor);
         }
 
+        //Subproc called from mouse event when user clicks a category header button to swap the inventory display (eg. Weapons --> Cards)
+        private void ChangeInventoryPage(string pageName)
+        { 
+            //Hide all inventory tabs
+            tcInventoryWeapons.Visible = false;
+            //tbInventoryConsumables.Visible = false;
+            //tbInventoryDemonPowers.Visible = false;
+            tcInventoryCards.Visible = false;
+            //tbInventoryOther.Visible = false;
+
+            //create multiple panels and hide/show the selected one
+            switch (pageName)
+            {
+                case "weapons":
+                    tcInventoryWeapons.Visible = true;
+                    break;
+
+                case "cards":
+                    tcInventoryCards.Visible = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        //Event handler for category header button mouse click to adjust the highlight of the selected category header button
         private void InventoryCategoryChange(object sender, MouseEventArgs e)
         {
             PictureBox selected = (PictureBox)sender;
+
+            //Display the inventory page corresponding to the header category button the user just clicked
+            ChangeInventoryPage(selected.Tag.ToString());
 
             //Hide all images showing the selected icon since we'll be resetting it next
             pbIconWeapons.Visible = false;
@@ -212,11 +286,10 @@ namespace VictorBuilder
             pbIconOther.Visible = false;
             pbIconOtherHighlighted.Visible = false;
 
-            //Determine which icon was selected and highlight it
+            //Determine which icon was selected and highlight it while showing the others as normal
             switch (selected.Tag.ToString())
             {
                 case "weapons":
-                    //ChangeInventoryPage(selected.Tag.ToString())
                     pbIconWeaponsHighlighted.Visible = true;
                     pbIconConsumables.Visible = true;
                     //pbIconDemonPowers.Visible = true;
@@ -224,7 +297,6 @@ namespace VictorBuilder
                     pbIconOther.Visible = true;
                     break;
                 case "consumables":
-                    //ChangeInventoryPage(selected.Tag.ToString())
                     //pbIconConsumablesHighlighted.Visible = true;
                     pbIconWeapons.Visible = true;
                     //pbIconDemonPowers.Visible = true;
@@ -232,7 +304,6 @@ namespace VictorBuilder
                     pbIconOther.Visible = true;
                     break;
                 //case "demonPowers":
-                //ChangeInventoryPage(selected.Tag.ToString())
                     //pbIconDemonPowersHighlighted.Visible = true;
                     //pbIconWeapons.Visible = true;
                     //pbIconConsumables.Visible = true;
@@ -240,7 +311,6 @@ namespace VictorBuilder
                     //pbIconOther.Visible = true;
                     //break;
                 case "cards":
-                    //ChangeInventoryPage(selected.Tag.ToString())
                     pbIconCardsHighlighted.Visible = true;
                     pbIconWeapons.Visible = true;
                     pbIconConsumables.Visible = true;
@@ -248,7 +318,6 @@ namespace VictorBuilder
                     pbIconOther.Visible = true;
                     break;
                 case "other":
-                    //ChangeInventoryPage(selected.Tag.ToString())
                     pbIconOtherHighlighted.Visible = true;
                     pbIconWeapons.Visible = true;
                     pbIconConsumables.Visible = true;
