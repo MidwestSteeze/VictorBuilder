@@ -70,24 +70,48 @@ namespace VictorBuilder
             }
         }
 
-        //Used for all Weapon Inventory slot controls to copy the weapon clicked by the user and move it to an equipped slot
-        private void SwapWeapon(object sender, MouseEventArgs e)
+        //Used for all Inventory slot controls to copy the item clicked by the user and move it to an equipped slot
+        private void SelectItem(object sender, MouseEventArgs e)
         {
-            bool weaponSwapped = false;
+            bool itemEquipped;
             Button slot = (Button)sender;
-            Tags slotTags = (Tags)slot.Tag;
 
             switch (e.Button)
             {
                 //case MouseButtons.Left:
                 //    break;
                 case MouseButtons.Right:
-                    if (Control.ModifierKeys == Keys.Shift)
+                    itemEquipped = EquipItem(slot, Control.ModifierKeys == Keys.Shift);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private bool EquipItem(Button slot, bool secondarySlot)
+        {
+            bool itemEquipped = false;
+            Tags slotTags = (Tags)slot.Tag;
+
+            switch (slotTags.itemType)
+            {
+                case Tags.ItemType.Card:
+                    break;
+                case Tags.ItemType.Consumable:
+                    break;
+                case Tags.ItemType.DemonPower:
+                    break;
+                case Tags.ItemType.Empty:
+                    break;
+                case Tags.ItemType.Outfit:
+                    break;
+                case Tags.ItemType.Weapon:
+                    if (secondarySlot)
                     {
-                        //Copy the selected weapon to weapon slot 2
+                        //Copy item to secondary slot
                         btnWeapon2.Image = slot.Image;
                         btnWeapon2.Tag = slotTags;
-                        weaponSwapped = true;
+                        itemEquipped = true;
                         if (cboWeaponSlot.SelectedIndex == 1)
                         {
                             CalculateStats(slotTags);
@@ -95,10 +119,10 @@ namespace VictorBuilder
                     }
                     else
                     {
-                        //Copy the selected weapon to weapon slot 1
+                        //Copy item to primary slot
                         btnWeapon1.Image = slot.Image;
                         btnWeapon1.Tag = slotTags;
-                        weaponSwapped = true;
+                        itemEquipped = true;
                         if (cboWeaponSlot.SelectedIndex == 0)
                         {
                             CalculateStats(slotTags);
@@ -108,6 +132,8 @@ namespace VictorBuilder
                 default:
                     break;
             }
+
+            return itemEquipped;
         }
 
         //Determine which Weapons lot the user selected from the drop-down and call CalculateStats() to recalculate the stats along the top bar
@@ -178,7 +204,10 @@ namespace VictorBuilder
 
         private void Inventory_MouseUp(object sender, MouseEventArgs e)
         {
-            SwapWeapon(sender, e);
+            Button slot = (Button)sender;
+            Tags slotTags = (Tags)slot.Tag;
+
+            SelectItem(sender, e);
         }
 
         //Will call a subproc to highlight the item being hovered
