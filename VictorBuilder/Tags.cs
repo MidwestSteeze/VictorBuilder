@@ -29,6 +29,7 @@ namespace VictorBuilder
         public ItemType itemType;
         public RarityType rarity;
         public WeaponTags weaponTags;
+        public CardTags cardTags;
 
         /**********************
         /* Constructors START *
@@ -46,6 +47,13 @@ namespace VictorBuilder
             itemType = aItemType;
             rarity = aRarityType;
             weaponTags = aWeaponTags;
+        }
+
+        public Tags(ItemType aItemType, RarityType aRarityType, CardTags aCardTags)
+        {
+            itemType = aItemType;
+            rarity = aRarityType;
+            cardTags = aCardTags;
         }
 
         /**********************
@@ -90,6 +98,56 @@ namespace VictorBuilder
                 dmgMax = aDmgMax;
                 dmgMin = aDmgMin;
                 weapon = aWeapon;
+            }
+
+            /**********************
+            /* Constructors END   *
+            /**********************/
+        }
+
+        public class CardTags 
+        {
+            //enums here
+
+            public string name;
+            public string stat;
+            public int points;
+
+            public bool divine;
+            public bool wicked = false;
+            public bool unique = false;
+
+            public int health;
+            public int armor;
+            public int armorPenetration;
+            public int critChance;
+            public int critMulti;
+
+            /**********************
+            /* Constructors START *
+            /**********************/
+            public CardTags(string aName, string aStat, int aPoints)
+            {
+                name = aName;
+                stat = aStat;
+                points = aPoints;
+            }
+
+            public CardTags(string aName, string aStat, int aPoints, bool aDivine, bool aWicked, bool aUnique, int aHealth, int aArmor, int aArmorPenetration, int aCritChance, int aCritMulti)
+            {
+                name = aName;
+                stat = aStat;
+                points = aPoints;
+
+                divine = aDivine;
+                wicked = aWicked;
+                unique = aUnique;
+
+                health = aHealth;
+                armor = aArmor;
+                armorPenetration = aArmorPenetration;
+                critChance = aCritChance;
+                critMulti = aCritMulti;
             }
 
             /**********************

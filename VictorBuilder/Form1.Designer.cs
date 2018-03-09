@@ -54,11 +54,16 @@
             this.btnInventoryWeapons02 = new System.Windows.Forms.Button();
             this.btnInventoryWeapons01 = new System.Windows.Forms.Button();
             this.btnInventoryWeapons00 = new System.Windows.Forms.Button();
-            this.btnWeapon1 = new System.Windows.Forms.Button();
-            this.btnWeapon2 = new System.Windows.Forms.Button();
+            this.btnEquippedWeapon1 = new System.Windows.Forms.Button();
+            this.btnEquippedWeapon2 = new System.Windows.Forms.Button();
             this.pnlEquippedCards = new System.Windows.Forms.Panel();
-            this.pbEquippedCard2 = new System.Windows.Forms.PictureBox();
-            this.pbEquippedCard1 = new System.Windows.Forms.PictureBox();
+            this.btnEquippedCard1 = new System.Windows.Forms.Button();
+            this.btnEquippedCard2 = new System.Windows.Forms.Button();
+            this.btnEquippedCard3 = new System.Windows.Forms.Button();
+            this.btnEquippedCard4 = new System.Windows.Forms.Button();
+            this.btnEquippedCard5 = new System.Windows.Forms.Button();
+            this.btnEquippedCard6 = new System.Windows.Forms.Button();
+            this.btnEquippedCard7 = new System.Windows.Forms.Button();
             this.lblHealth = new System.Windows.Forms.Label();
             this.lblArmor = new System.Windows.Forms.Label();
             this.lblArmorPenetration = new System.Windows.Forms.Label();
@@ -110,8 +115,6 @@
             this.btnInventoryCards41 = new System.Windows.Forms.Button();
             this.btnInventoryCards31 = new System.Windows.Forms.Button();
             this.pnlEquippedCards.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbEquippedCard2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbEquippedCard1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconCards)).BeginInit();
@@ -467,59 +470,134 @@
             this.btnInventoryWeapons00.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
             this.btnInventoryWeapons00.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
-            // btnWeapon1
+            // btnEquippedWeapon1
             // 
-            this.btnWeapon1.BackColor = System.Drawing.Color.Transparent;
-            this.btnWeapon1.FlatAppearance.BorderSize = 0;
-            this.btnWeapon1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnWeapon1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnWeapon1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWeapon1.Location = new System.Drawing.Point(76, 440);
-            this.btnWeapon1.Name = "btnWeapon1";
-            this.btnWeapon1.Size = new System.Drawing.Size(101, 155);
-            this.btnWeapon1.TabIndex = 2;
-            this.btnWeapon1.TabStop = false;
-            this.btnWeapon1.UseVisualStyleBackColor = false;
+            this.btnEquippedWeapon1.BackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedWeapon1.FlatAppearance.BorderSize = 0;
+            this.btnEquippedWeapon1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedWeapon1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedWeapon1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEquippedWeapon1.Location = new System.Drawing.Point(76, 440);
+            this.btnEquippedWeapon1.Name = "btnEquippedWeapon1";
+            this.btnEquippedWeapon1.Size = new System.Drawing.Size(101, 155);
+            this.btnEquippedWeapon1.TabIndex = 2;
+            this.btnEquippedWeapon1.TabStop = false;
+            this.btnEquippedWeapon1.UseVisualStyleBackColor = false;
+            this.btnEquippedWeapon1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
             // 
-            // btnWeapon2
+            // btnEquippedWeapon2
             // 
-            this.btnWeapon2.BackColor = System.Drawing.Color.Transparent;
-            this.btnWeapon2.FlatAppearance.BorderSize = 0;
-            this.btnWeapon2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnWeapon2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnWeapon2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWeapon2.Location = new System.Drawing.Point(1088, 440);
-            this.btnWeapon2.Name = "btnWeapon2";
-            this.btnWeapon2.Size = new System.Drawing.Size(101, 155);
-            this.btnWeapon2.TabIndex = 3;
-            this.btnWeapon2.TabStop = false;
-            this.btnWeapon2.UseVisualStyleBackColor = false;
+            this.btnEquippedWeapon2.BackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedWeapon2.FlatAppearance.BorderSize = 0;
+            this.btnEquippedWeapon2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedWeapon2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedWeapon2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEquippedWeapon2.Location = new System.Drawing.Point(1088, 440);
+            this.btnEquippedWeapon2.Name = "btnEquippedWeapon2";
+            this.btnEquippedWeapon2.Size = new System.Drawing.Size(101, 155);
+            this.btnEquippedWeapon2.TabIndex = 3;
+            this.btnEquippedWeapon2.TabStop = false;
+            this.btnEquippedWeapon2.UseVisualStyleBackColor = false;
+            this.btnEquippedWeapon2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
             // 
             // pnlEquippedCards
             // 
             this.pnlEquippedCards.BackColor = System.Drawing.Color.Transparent;
-            this.pnlEquippedCards.Controls.Add(this.pbEquippedCard2);
-            this.pnlEquippedCards.Controls.Add(this.pbEquippedCard1);
+            this.pnlEquippedCards.Controls.Add(this.btnEquippedCard1);
+            this.pnlEquippedCards.Controls.Add(this.btnEquippedCard2);
+            this.pnlEquippedCards.Controls.Add(this.btnEquippedCard3);
+            this.pnlEquippedCards.Controls.Add(this.btnEquippedCard4);
+            this.pnlEquippedCards.Controls.Add(this.btnEquippedCard5);
+            this.pnlEquippedCards.Controls.Add(this.btnEquippedCard6);
+            this.pnlEquippedCards.Controls.Add(this.btnEquippedCard7);
             this.pnlEquippedCards.Location = new System.Drawing.Point(269, 786);
             this.pnlEquippedCards.Name = "pnlEquippedCards";
             this.pnlEquippedCards.Size = new System.Drawing.Size(712, 173);
             this.pnlEquippedCards.TabIndex = 4;
             // 
-            // pbEquippedCard2
+            // btnEquippedCard1
             // 
-            this.pbEquippedCard2.Location = new System.Drawing.Point(115, 17);
-            this.pbEquippedCard2.Name = "pbEquippedCard2";
-            this.pbEquippedCard2.Size = new System.Drawing.Size(84, 138);
-            this.pbEquippedCard2.TabIndex = 1;
-            this.pbEquippedCard2.TabStop = false;
+            this.btnEquippedCard1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedCard1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedCard1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEquippedCard1.Location = new System.Drawing.Point(17, 17);
+            this.btnEquippedCard1.Name = "btnEquippedCard1";
+            this.btnEquippedCard1.Size = new System.Drawing.Size(84, 138);
+            this.btnEquippedCard1.TabIndex = 4;
+            this.btnEquippedCard1.UseVisualStyleBackColor = true;
+            this.btnEquippedCard1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
             // 
-            // pbEquippedCard1
+            // btnEquippedCard2
             // 
-            this.pbEquippedCard1.Location = new System.Drawing.Point(17, 17);
-            this.pbEquippedCard1.Name = "pbEquippedCard1";
-            this.pbEquippedCard1.Size = new System.Drawing.Size(84, 138);
-            this.pbEquippedCard1.TabIndex = 0;
-            this.pbEquippedCard1.TabStop = false;
+            this.btnEquippedCard2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedCard2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedCard2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEquippedCard2.Location = new System.Drawing.Point(117, 17);
+            this.btnEquippedCard2.Name = "btnEquippedCard2";
+            this.btnEquippedCard2.Size = new System.Drawing.Size(84, 138);
+            this.btnEquippedCard2.TabIndex = 3;
+            this.btnEquippedCard2.UseVisualStyleBackColor = true;
+            this.btnEquippedCard2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
+            // 
+            // btnEquippedCard3
+            // 
+            this.btnEquippedCard3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedCard3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedCard3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEquippedCard3.Location = new System.Drawing.Point(217, 17);
+            this.btnEquippedCard3.Name = "btnEquippedCard3";
+            this.btnEquippedCard3.Size = new System.Drawing.Size(84, 138);
+            this.btnEquippedCard3.TabIndex = 5;
+            this.btnEquippedCard3.UseVisualStyleBackColor = true;
+            this.btnEquippedCard3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
+            // 
+            // btnEquippedCard4
+            // 
+            this.btnEquippedCard4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedCard4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedCard4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEquippedCard4.Location = new System.Drawing.Point(317, 17);
+            this.btnEquippedCard4.Name = "btnEquippedCard4";
+            this.btnEquippedCard4.Size = new System.Drawing.Size(84, 138);
+            this.btnEquippedCard4.TabIndex = 6;
+            this.btnEquippedCard4.UseVisualStyleBackColor = true;
+            this.btnEquippedCard4.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
+            // 
+            // btnEquippedCard5
+            // 
+            this.btnEquippedCard5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedCard5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedCard5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEquippedCard5.Location = new System.Drawing.Point(417, 17);
+            this.btnEquippedCard5.Name = "btnEquippedCard5";
+            this.btnEquippedCard5.Size = new System.Drawing.Size(84, 138);
+            this.btnEquippedCard5.TabIndex = 7;
+            this.btnEquippedCard5.UseVisualStyleBackColor = true;
+            this.btnEquippedCard5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
+            // 
+            // btnEquippedCard6
+            // 
+            this.btnEquippedCard6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedCard6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedCard6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEquippedCard6.Location = new System.Drawing.Point(517, 17);
+            this.btnEquippedCard6.Name = "btnEquippedCard6";
+            this.btnEquippedCard6.Size = new System.Drawing.Size(84, 138);
+            this.btnEquippedCard6.TabIndex = 8;
+            this.btnEquippedCard6.UseVisualStyleBackColor = true;
+            this.btnEquippedCard6.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
+            // 
+            // btnEquippedCard7
+            // 
+            this.btnEquippedCard7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedCard7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedCard7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEquippedCard7.Location = new System.Drawing.Point(617, 17);
+            this.btnEquippedCard7.Name = "btnEquippedCard7";
+            this.btnEquippedCard7.Size = new System.Drawing.Size(84, 138);
+            this.btnEquippedCard7.TabIndex = 9;
+            this.btnEquippedCard7.UseVisualStyleBackColor = true;
+            this.btnEquippedCard7.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
             // 
             // lblHealth
             // 
@@ -1324,16 +1402,14 @@
             this.Controls.Add(this.lblArmor);
             this.Controls.Add(this.lblHealth);
             this.Controls.Add(this.pnlEquippedCards);
-            this.Controls.Add(this.btnWeapon2);
-            this.Controls.Add(this.btnWeapon1);
+            this.Controls.Add(this.btnEquippedWeapon2);
+            this.Controls.Add(this.btnEquippedWeapon1);
             this.Controls.Add(this.tcInventoryWeapons);
             this.Controls.Add(this.tcInventoryCards);
             this.Name = "frmMain";
             this.Text = "Victor Builder";
             this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.pnlEquippedCards.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbEquippedCard2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbEquippedCard1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconCards)).EndInit();
@@ -1379,11 +1455,9 @@
         private System.Windows.Forms.Button btnInventoryWeapons34;
         private System.Windows.Forms.Button btnInventoryWeapons24;
         private System.Windows.Forms.Button btnInventoryWeapons14;
-        private System.Windows.Forms.Button btnWeapon1;
-        private System.Windows.Forms.Button btnWeapon2;
+        private System.Windows.Forms.Button btnEquippedWeapon1;
+        private System.Windows.Forms.Button btnEquippedWeapon2;
         private System.Windows.Forms.Panel pnlEquippedCards;
-        private System.Windows.Forms.PictureBox pbEquippedCard1;
-        private System.Windows.Forms.PictureBox pbEquippedCard2;
         private System.Windows.Forms.Label lblHealth;
         private System.Windows.Forms.Label lblArmor;
         private System.Windows.Forms.Label lblArmorPenetration;
@@ -1434,6 +1508,13 @@
         private System.Windows.Forms.Button btnInventoryCards40;
         private System.Windows.Forms.Button btnInventoryCards41;
         private System.Windows.Forms.Button btnInventoryCards31;
+        private System.Windows.Forms.Button btnEquippedCard2;
+        private System.Windows.Forms.Button btnEquippedCard1;
+        private System.Windows.Forms.Button btnEquippedCard4;
+        private System.Windows.Forms.Button btnEquippedCard3;
+        private System.Windows.Forms.Button btnEquippedCard6;
+        private System.Windows.Forms.Button btnEquippedCard5;
+        private System.Windows.Forms.Button btnEquippedCard7;
 
     }
 }

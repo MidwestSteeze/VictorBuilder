@@ -14,6 +14,7 @@ namespace VictorBuilder
     {
         //Globals
         Tags.WeaponTags weaponTags;
+        Tags.CardTags cardTags;
         int BaseArmor = 0;
         int BaseArmorPenetration = 0;
         int BaseCritChance = 0;
@@ -51,6 +52,8 @@ namespace VictorBuilder
             btnInventoryWeapons10.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Rare, weaponTags);
             btnInventoryWeapons10.Image = Image.FromFile("..\\..\\images\\weapons\\icon_scythe.png");
 
+            cardTags = new Tags.CardTags("Warrior", "+10% Melee Damage", 2);
+            btnInventoryCards00.Tag = FillItemTags(Tags.ItemType.Card, Tags.RarityType.Common, cardTags);
             btnInventoryCards00.Image = Image.FromFile("..\\..\\images\\cards\\icon_warrior.png");
             //END Temporary OnLoad logic
         }
@@ -60,7 +63,7 @@ namespace VictorBuilder
         {
             if (slotTags != null)
             {
-                //Update additional information as a result of the weapon swap (stats, dmg, etc)
+                //Update additional information as a result of the equipped item change (stats, dmg, etc)
                 //lblHealth.Text =                 
                 lblDamage.Text = (BaseDmgMin + slotTags.weaponTags.dmgMin).ToString() + "-" + (BaseDmgMax + slotTags.weaponTags.dmgMax).ToString();
                 //lblArmor.Text = 
@@ -73,7 +76,7 @@ namespace VictorBuilder
         //Used for all Inventory slot controls to copy the item clicked by the user and move it to an equipped slot
         private void SelectItem(object sender, MouseEventArgs e)
         {
-            bool itemEquipped;
+            bool itemEquipped = false;
             Button slot = (Button)sender;
 
             switch (e.Button)
@@ -81,21 +84,26 @@ namespace VictorBuilder
                 //case MouseButtons.Left:
                 //    break;
                 case MouseButtons.Right:
-                    itemEquipped = EquipItem(slot, Control.ModifierKeys == Keys.Shift);
+                    EquipItem(slot, Control.ModifierKeys == Keys.Shift, ref itemEquipped);
                     break;
                 default:
                     break;
             }
         }
 
-        private bool EquipItem(Button slot, bool secondarySlot)
+        /********************************
+         * START Equip item logic *
+         * ******************************/
+        #region Equip item logic
+
+        private void EquipItem(Button slot, bool secondarySlot, ref bool itemEquipped)
         {
-            bool itemEquipped = false;
             Tags slotTags = (Tags)slot.Tag;
 
             switch (slotTags.itemType)
             {
                 case Tags.ItemType.Card:
+                    EquipCard(slot, slotTags, ref itemEquipped);
                     break;
                 case Tags.ItemType.Consumable:
                     break;
@@ -106,46 +114,127 @@ namespace VictorBuilder
                 case Tags.ItemType.Outfit:
                     break;
                 case Tags.ItemType.Weapon:
-                    if (secondarySlot)
-                    {
-                        //Copy item to secondary slot
-                        btnWeapon2.Image = slot.Image;
-                        btnWeapon2.Tag = slotTags;
-                        itemEquipped = true;
-                        if (cboWeaponSlot.SelectedIndex == 1)
-                        {
-                            CalculateStats(slotTags);
-                        }
-                    }
-                    else
-                    {
-                        //Copy item to primary slot
-                        btnWeapon1.Image = slot.Image;
-                        btnWeapon1.Tag = slotTags;
-                        itemEquipped = true;
-                        if (cboWeaponSlot.SelectedIndex == 0)
-                        {
-                            CalculateStats(slotTags);
-                        }
-                    }
+                    EquipWeapon(slot, slotTags, secondarySlot, ref itemEquipped);
                     break;
                 default:
                     break;
             }
-
-            return itemEquipped;
         }
 
-        //Determine which Weapons lot the user selected from the drop-down and call CalculateStats() to recalculate the stats along the top bar
+        private void EquipCard(Button slot, Tags slotTags, ref bool itemEquipped)
+        {
+            //go through all card slots in the group of equippable card slots until you find an empty one
+            foreach (Button equippedCard in pnlEquippedCards.Controls)
+            {
+                //Check if the card slot is empty
+                if ((Tags)equippedCard.Tag == null)
+                {
+                    //Empty card slot found; copy the card into this equippable card slot
+                    equippedCard.Image = slot.Image;
+                    equippedCard.Tag = slotTags;
+                    itemEquipped = true;
+                    //CalculateStats(slotTags);
+                    break;
+                }
+            }
+        }
+
+        private void EquipWeapon(Button slot, Tags slotTags, bool secondarySlot, ref bool itemEquipped)
+        {
+            if (secondarySlot)
+            {
+                //Copy item to secondary slot
+                btnEquippedWeapon2.Image = slot.Image;
+                btnEquippedWeapon2.Tag = slotTags;
+                itemEquipped = true;
+                if (cboWeaponSlot.SelectedIndex == 1)
+                {
+                    CalculateStats(slotTags);
+                }
+            }
+            else
+            {
+                //Copy item to primary slot
+                btnEquippedWeapon1.Image = slot.Image;
+                btnEquippedWeapon1.Tag = slotTags;
+                itemEquipped = true;
+                if (cboWeaponSlot.SelectedIndex == 0)
+                {
+                    CalculateStats(slotTags);
+                }
+            }
+        }
+
+        #endregion
+        /********************************
+         * END Equip item logic *
+         * ******************************/
+
+        /********************************
+         * START Unequip item logic *
+         * ******************************/
+        #region Unequip item logic
+
+        private void UnequipItem(object sender, EventArgs e) //Button slot, bool secondarySlot)
+        {
+            bool itemUnequipped = false;
+            Button slot = (Button)sender;
+            Tags slotTags = (Tags)slot.Tag;
+
+            switch (slotTags.itemType)
+            {
+                case Tags.ItemType.Card:
+                    UnequipCard(slot, slotTags, ref itemUnequipped);
+                    break;
+                case Tags.ItemType.Consumable:
+                    break;
+                case Tags.ItemType.DemonPower:
+                    break;
+                case Tags.ItemType.Empty:
+                    break;
+                case Tags.ItemType.Outfit:
+                    break;
+                case Tags.ItemType.Weapon:
+                    UnequipWeapon(slot, slotTags, ref itemUnequipped); //, secondarySlot);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void UnequipCard(Button slot, Tags slotTags, ref bool itemUnequipped)
+        {
+            //Remove the equipped card from the slot
+            slot.Image = null;
+            slot.Tag = null;
+            itemUnequipped = true;
+            //CalculateStats(slotTags); TODO
+        }
+
+        private void UnequipWeapon(Button slot, Tags slotTags, ref bool itemUnequipped)
+        {
+            //Remove the equipped weapon from the slot
+            slot.Image = null;
+            slot.Tag = null;
+            itemUnequipped = true;
+            //CalculateStats(slotTags); TODO
+        }
+
+        #endregion
+        /********************************
+         * END Unequip item logic *
+         * ******************************/
+
+        //Determine which Weapon slot the user selected from the drop-down and call CalculateStats() to recalculate the stats along the top bar
         private void SelectedWeaponSlotChanged(object sender, EventArgs e)
         {
             switch (cboWeaponSlot.SelectedIndex)
             {
                 case 0:
-                    CalculateStats((Tags)btnWeapon1.Tag);
+                    CalculateStats((Tags)btnEquippedWeapon1.Tag);
                     break;
                 case 1:
-                    CalculateStats((Tags)btnWeapon2.Tag);
+                    CalculateStats((Tags)btnEquippedWeapon2.Tag);
                     break;
                 default:
                     break;
@@ -202,11 +291,13 @@ namespace VictorBuilder
             slot.FlatAppearance.BorderColor = Color.Black;
         }
 
+        private void EquippedItem_MouseUp(object sender, MouseEventArgs e)
+        {
+            UnequipItem(sender, e);
+        }
+
         private void Inventory_MouseUp(object sender, MouseEventArgs e)
         {
-            Button slot = (Button)sender;
-            Tags slotTags = (Tags)slot.Tag;
-
             SelectItem(sender, e);
         }
 
@@ -238,6 +329,12 @@ namespace VictorBuilder
                                   Tags.WeaponTags aWeaponTags)
         {
             return new Tags(aItemType, aRarityType, aWeaponTags);
+        }
+
+        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType,
+                                  Tags.CardTags aCardTags)
+        {
+            return new Tags(aItemType, aRarityType, aCardTags);
         }
 
         private void ResizeFont(Control.ControlCollection coll, float scaleFactor)
