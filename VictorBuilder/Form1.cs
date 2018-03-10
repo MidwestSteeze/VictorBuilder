@@ -41,14 +41,14 @@ namespace VictorBuilder
             tcInventoryCards.Region = new Region(new RectangleF(tbInventoryCardsPage1.Left, tbInventoryCardsPage1.Top, tbInventoryCardsPage1.Width, tbInventoryCardsPage1.Height));
 
             //Default weapon slot to show stats from as Weapon 1
-            cboWeaponSlot.SelectedIndex = 0;
+            //cboWeaponSlot.SelectedIndex = 0;
 
             //START Temporary OnLoad logic
-            weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Sword, 44, 75, 0, 35, 100);
+            weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Sword, Tags.WeaponTags.WeaponDistance.Melee, 44, 75, 0, 35, 100);
             btnInventoryWeapons00.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Legendary, weaponTags);
             btnInventoryWeapons00.Image = Image.FromFile("..\\..\\images\\weapons\\icon_sword.png");
 
-            weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Scythe, 10, 190, 10, 15, 100);
+            weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Scythe, Tags.WeaponTags.WeaponDistance.Melee, 10, 190, 10, 15, 100);
             btnInventoryWeapons10.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Rare, weaponTags);
             btnInventoryWeapons10.Image = Image.FromFile("..\\..\\images\\weapons\\icon_scythe.png");
 
@@ -61,15 +61,54 @@ namespace VictorBuilder
         //Calculate and update stats along top bar
         private void CalculateStats(Tags slotTags)
         {
-            if (slotTags != null)
+            //Determine what type of item was changed that prompted a recalc of stats (ie. weapon, card, etc)
+            if (slotTags.weaponTags != null)
             {
-                //Update additional information as a result of the equipped item change (stats, dmg, etc)
-                //lblHealth.Text =                 
-                lblDamage.Text = (BaseDmgMin + slotTags.weaponTags.dmgMin).ToString() + "-" + (BaseDmgMax + slotTags.weaponTags.dmgMax).ToString();
-                //lblArmor.Text = 
-                lblArmorPenetration.Text = (BaseArmorPenetration + slotTags.weaponTags.armorPenetration).ToString();
-                lblCritChance.Text = (BaseCritChance + slotTags.weaponTags.critChance).ToString() + "%";
-                lblCritMulti.Text = (BaseCritMulti + slotTags.weaponTags.critMulti).ToString() + "%";
+                CalculateStatsFromNewWeapon(slotTags);
+
+                //With the new weapon in place, add on the card mods
+                CalculateStatsFromEquippedCards();
+            }
+            else if (slotTags.cardTags != null && (btnEquippedWeapon1.Tag != null || btnEquippedWeapon2.Tag != null))
+            {
+                CalculateStatsFromNewCard(slotTags);
+            }
+
+            //CalculateSkills(slotTags);
+        }
+
+        private void CalculateStatsFromNewWeapon(Tags slotTags)
+        {
+            //A weapon was changed, calculate stats based on the weapon and use the base values to start
+            //lblHealth.Text = //not affected by weapons
+            lblDamage.Text = (BaseDmgMin + slotTags.weaponTags.dmgMin).ToString() + "-" + (BaseDmgMax + slotTags.weaponTags.dmgMax).ToString();
+            //lblArmor.Text = //not affected by weapons
+            lblArmorPenetration.Text = (BaseArmorPenetration + slotTags.weaponTags.armorPenetration).ToString();
+            lblCritChance.Text = (BaseCritChance + slotTags.weaponTags.critChance).ToString() + "%";
+            lblCritMulti.Text = (BaseCritMulti + slotTags.weaponTags.critMulti).ToString() + "%";
+        }
+
+       private void CalculateStatsFromNewCard(Tags slotTags)
+        {
+            //A card was changed, and we have a weapon equipped, calculate stats based on the card and use the existing stats calc'd from having a weapon
+            lblHealth.Text = string.Format("{0:n0}", HealthAsNumber() + slotTags.cardTags.health);
+            //lblDamage.Text = //not affected by cards
+            lblArmor.Text = string.Format("{0:n0}", ArmorAsNumber() + slotTags.cardTags.armor);
+            lblArmorPenetration.Text = (ArmorPenetrationAsNumber() + slotTags.cardTags.armorPenetration).ToString();
+            lblCritChance.Text = (CritChanceAsNumber() + slotTags.cardTags.critChance).ToString() + "%";
+            lblCritMulti.Text = (CritMultiAsNumber() + slotTags.cardTags.critMulti).ToString() + "%";        
+        }
+
+        private void CalculateStatsFromEquippedCards()
+        { 
+            //Loop through all cards
+            foreach (Button equippedCard in pnlEquippedCards.Controls)
+            {
+                //Ensure this slot has a card in it
+                if ((Tags)equippedCard.Tag != null)
+                {
+                    //Take the mod from the card and update the stats or skills if it affects it
+                }
             }
         }
 
@@ -455,5 +494,49 @@ namespace VictorBuilder
             }
             
         }
+
+        /***************************
+         *  START Stats as numbers *
+         *  ************************/
+        #region Stats as numbers
+        private int HealthAsNumber()
+        {
+            return Convert.ToInt32(lblHealth.Text.Replace(",", ""));
+        }
+
+        private int DmgMinAsNumber()
+        {
+            return Convert.ToInt32(lblDamage.Text.Substring(0, lblDamage.Text.IndexOf("-")));
+        }
+
+        private int DmgMaxAsNumber()
+        {
+            return Convert.ToInt32(lblDamage.Text.Substring(lblDamage.Text.IndexOf("-") + 1));
+        }
+
+        private int ArmorAsNumber()
+        {
+            return Convert.ToInt32(lblArmor.Text);
+        }
+
+        private int ArmorPenetrationAsNumber()
+        {
+            return Convert.ToInt32(lblArmorPenetration.Text);
+        }
+
+        private int CritChanceAsNumber()
+        {
+            return Convert.ToInt32(lblCritChance.Text.Substring(0, lblCritChance.Text.Length - 1));
+        }
+
+        private int CritMultiAsNumber()
+        {
+            return Convert.ToInt32(lblCritMulti.Text.Substring(0, lblCritMulti.Text.Length - 1));
+        }
+
+        #endregion
+        /***************************
+         *  END Stats as numbers *
+         *  ************************/     
     }
 }

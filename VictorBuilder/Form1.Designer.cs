@@ -522,7 +522,7 @@
             this.btnEquippedCard1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEquippedCard1.Location = new System.Drawing.Point(17, 17);
             this.btnEquippedCard1.Name = "btnEquippedCard1";
-            this.btnEquippedCard1.Size = new System.Drawing.Size(84, 138);
+            this.btnEquippedCard1.Size = new System.Drawing.Size(83, 138);
             this.btnEquippedCard1.TabIndex = 4;
             this.btnEquippedCard1.UseVisualStyleBackColor = true;
             this.btnEquippedCard1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
@@ -532,9 +532,9 @@
             this.btnEquippedCard2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnEquippedCard2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnEquippedCard2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEquippedCard2.Location = new System.Drawing.Point(117, 17);
+            this.btnEquippedCard2.Location = new System.Drawing.Point(115, 17);
             this.btnEquippedCard2.Name = "btnEquippedCard2";
-            this.btnEquippedCard2.Size = new System.Drawing.Size(84, 138);
+            this.btnEquippedCard2.Size = new System.Drawing.Size(83, 138);
             this.btnEquippedCard2.TabIndex = 3;
             this.btnEquippedCard2.UseVisualStyleBackColor = true;
             this.btnEquippedCard2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
@@ -544,9 +544,9 @@
             this.btnEquippedCard3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnEquippedCard3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnEquippedCard3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEquippedCard3.Location = new System.Drawing.Point(217, 17);
+            this.btnEquippedCard3.Location = new System.Drawing.Point(213, 17);
             this.btnEquippedCard3.Name = "btnEquippedCard3";
-            this.btnEquippedCard3.Size = new System.Drawing.Size(84, 138);
+            this.btnEquippedCard3.Size = new System.Drawing.Size(83, 138);
             this.btnEquippedCard3.TabIndex = 5;
             this.btnEquippedCard3.UseVisualStyleBackColor = true;
             this.btnEquippedCard3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
@@ -556,9 +556,9 @@
             this.btnEquippedCard4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnEquippedCard4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnEquippedCard4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEquippedCard4.Location = new System.Drawing.Point(317, 17);
+            this.btnEquippedCard4.Location = new System.Drawing.Point(311, 17);
             this.btnEquippedCard4.Name = "btnEquippedCard4";
-            this.btnEquippedCard4.Size = new System.Drawing.Size(84, 138);
+            this.btnEquippedCard4.Size = new System.Drawing.Size(83, 138);
             this.btnEquippedCard4.TabIndex = 6;
             this.btnEquippedCard4.UseVisualStyleBackColor = true;
             this.btnEquippedCard4.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
@@ -568,9 +568,9 @@
             this.btnEquippedCard5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnEquippedCard5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnEquippedCard5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEquippedCard5.Location = new System.Drawing.Point(417, 17);
+            this.btnEquippedCard5.Location = new System.Drawing.Point(409, 17);
             this.btnEquippedCard5.Name = "btnEquippedCard5";
-            this.btnEquippedCard5.Size = new System.Drawing.Size(84, 138);
+            this.btnEquippedCard5.Size = new System.Drawing.Size(83, 138);
             this.btnEquippedCard5.TabIndex = 7;
             this.btnEquippedCard5.UseVisualStyleBackColor = true;
             this.btnEquippedCard5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
@@ -580,9 +580,9 @@
             this.btnEquippedCard6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnEquippedCard6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnEquippedCard6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEquippedCard6.Location = new System.Drawing.Point(517, 17);
+            this.btnEquippedCard6.Location = new System.Drawing.Point(507, 17);
             this.btnEquippedCard6.Name = "btnEquippedCard6";
-            this.btnEquippedCard6.Size = new System.Drawing.Size(84, 138);
+            this.btnEquippedCard6.Size = new System.Drawing.Size(83, 138);
             this.btnEquippedCard6.TabIndex = 8;
             this.btnEquippedCard6.UseVisualStyleBackColor = true;
             this.btnEquippedCard6.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
@@ -592,9 +592,9 @@
             this.btnEquippedCard7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnEquippedCard7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnEquippedCard7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEquippedCard7.Location = new System.Drawing.Point(617, 17);
+            this.btnEquippedCard7.Location = new System.Drawing.Point(605, 17);
             this.btnEquippedCard7.Name = "btnEquippedCard7";
-            this.btnEquippedCard7.Size = new System.Drawing.Size(84, 138);
+            this.btnEquippedCard7.Size = new System.Drawing.Size(83, 138);
             this.btnEquippedCard7.TabIndex = 9;
             this.btnEquippedCard7.UseVisualStyleBackColor = true;
             this.btnEquippedCard7.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
@@ -607,6 +607,7 @@
             this.lblHealth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
             this.lblHealth.Location = new System.Drawing.Point(857, 29);
             this.lblHealth.Name = "lblHealth";
+            this.lblHealth.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblHealth.Size = new System.Drawing.Size(83, 47);
             this.lblHealth.TabIndex = 5;
             this.lblHealth.Text = "4,000";
@@ -631,9 +632,9 @@
             this.lblArmorPenetration.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
             this.lblArmorPenetration.Location = new System.Drawing.Point(1074, 31);
             this.lblArmorPenetration.Name = "lblArmorPenetration";
-            this.lblArmorPenetration.Size = new System.Drawing.Size(31, 47);
+            this.lblArmorPenetration.Size = new System.Drawing.Size(34, 47);
             this.lblArmorPenetration.TabIndex = 7;
-            this.lblArmorPenetration.Text = "-";
+            this.lblArmorPenetration.Text = "0";
             // 
             // lblDamage
             // 
@@ -643,9 +644,9 @@
             this.lblDamage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
             this.lblDamage.Location = new System.Drawing.Point(1189, 31);
             this.lblDamage.Name = "lblDamage";
-            this.lblDamage.Size = new System.Drawing.Size(31, 47);
+            this.lblDamage.Size = new System.Drawing.Size(59, 47);
             this.lblDamage.TabIndex = 8;
-            this.lblDamage.Text = "-";
+            this.lblDamage.Text = "0-0";
             // 
             // lblCritChance
             // 
@@ -655,9 +656,9 @@
             this.lblCritChance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
             this.lblCritChance.Location = new System.Drawing.Point(1367, 31);
             this.lblCritChance.Name = "lblCritChance";
-            this.lblCritChance.Size = new System.Drawing.Size(31, 47);
+            this.lblCritChance.Size = new System.Drawing.Size(48, 47);
             this.lblCritChance.TabIndex = 9;
-            this.lblCritChance.Text = "-";
+            this.lblCritChance.Text = "0%";
             // 
             // lblCritMulti
             // 
@@ -667,9 +668,9 @@
             this.lblCritMulti.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
             this.lblCritMulti.Location = new System.Drawing.Point(1484, 31);
             this.lblCritMulti.Name = "lblCritMulti";
-            this.lblCritMulti.Size = new System.Drawing.Size(31, 47);
+            this.lblCritMulti.Size = new System.Drawing.Size(48, 47);
             this.lblCritMulti.TabIndex = 10;
-            this.lblCritMulti.Text = "-";
+            this.lblCritMulti.Text = "0%";
             // 
             // lblInventoryHeader
             // 
@@ -1381,7 +1382,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ClientSize = new System.Drawing.Size(1916, 1054);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(1596, 874);
             this.Controls.Add(this.cboWeaponSlot);
             this.Controls.Add(this.pbIconWeaponsHighlighted);
             this.Controls.Add(this.pbIconOtherHighlighted);
