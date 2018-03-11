@@ -54,8 +54,8 @@
             this.btnInventoryWeapons02 = new System.Windows.Forms.Button();
             this.btnInventoryWeapons01 = new System.Windows.Forms.Button();
             this.btnInventoryWeapons00 = new System.Windows.Forms.Button();
-            this.btnEquippedWeapon1 = new System.Windows.Forms.Button();
-            this.btnEquippedWeapon2 = new System.Windows.Forms.Button();
+            this.btnEquippedWeapon = new System.Windows.Forms.Button();
+            this.btnEquippedWeaponSecondary = new System.Windows.Forms.Button();
             this.pnlEquippedCards = new System.Windows.Forms.Panel();
             this.btnEquippedCard1 = new System.Windows.Forms.Button();
             this.btnEquippedCard2 = new System.Windows.Forms.Button();
@@ -85,7 +85,6 @@
             this.tlpInventoryWeapons = new System.Windows.Forms.TableLayoutPanel();
             this.tbInventoryWeaponsPage1 = new System.Windows.Forms.TabPage();
             this.tcInventoryWeapons = new System.Windows.Forms.TabControl();
-            this.cboWeaponSlot = new System.Windows.Forms.ComboBox();
             this.tcInventoryCards = new System.Windows.Forms.TabControl();
             this.tbInventoryCardsPage1 = new System.Windows.Forms.TabPage();
             this.tlpInventoryCards = new System.Windows.Forms.TableLayoutPanel();
@@ -114,6 +113,10 @@
             this.btnInventoryCards40 = new System.Windows.Forms.Button();
             this.btnInventoryCards41 = new System.Windows.Forms.Button();
             this.btnInventoryCards31 = new System.Windows.Forms.Button();
+            this.lblArmorPenetrationSecondary = new System.Windows.Forms.Label();
+            this.lblDamageSecondary = new System.Windows.Forms.Label();
+            this.lblCritChanceSecondary = new System.Windows.Forms.Label();
+            this.lblCritMultiSecondary = new System.Windows.Forms.Label();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
@@ -470,35 +473,35 @@
             this.btnInventoryWeapons00.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
             this.btnInventoryWeapons00.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
-            // btnEquippedWeapon1
+            // btnEquippedWeapon
             // 
-            this.btnEquippedWeapon1.BackColor = System.Drawing.Color.Transparent;
-            this.btnEquippedWeapon1.FlatAppearance.BorderSize = 0;
-            this.btnEquippedWeapon1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnEquippedWeapon1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnEquippedWeapon1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEquippedWeapon1.Location = new System.Drawing.Point(76, 440);
-            this.btnEquippedWeapon1.Name = "btnEquippedWeapon1";
-            this.btnEquippedWeapon1.Size = new System.Drawing.Size(101, 155);
-            this.btnEquippedWeapon1.TabIndex = 2;
-            this.btnEquippedWeapon1.TabStop = false;
-            this.btnEquippedWeapon1.UseVisualStyleBackColor = false;
-            this.btnEquippedWeapon1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
+            this.btnEquippedWeapon.BackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedWeapon.FlatAppearance.BorderSize = 0;
+            this.btnEquippedWeapon.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedWeapon.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedWeapon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEquippedWeapon.Location = new System.Drawing.Point(76, 440);
+            this.btnEquippedWeapon.Name = "btnEquippedWeapon";
+            this.btnEquippedWeapon.Size = new System.Drawing.Size(101, 155);
+            this.btnEquippedWeapon.TabIndex = 2;
+            this.btnEquippedWeapon.TabStop = false;
+            this.btnEquippedWeapon.UseVisualStyleBackColor = false;
+            this.btnEquippedWeapon.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
             // 
-            // btnEquippedWeapon2
+            // btnEquippedWeaponSecondary
             // 
-            this.btnEquippedWeapon2.BackColor = System.Drawing.Color.Transparent;
-            this.btnEquippedWeapon2.FlatAppearance.BorderSize = 0;
-            this.btnEquippedWeapon2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnEquippedWeapon2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnEquippedWeapon2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEquippedWeapon2.Location = new System.Drawing.Point(1088, 440);
-            this.btnEquippedWeapon2.Name = "btnEquippedWeapon2";
-            this.btnEquippedWeapon2.Size = new System.Drawing.Size(101, 155);
-            this.btnEquippedWeapon2.TabIndex = 3;
-            this.btnEquippedWeapon2.TabStop = false;
-            this.btnEquippedWeapon2.UseVisualStyleBackColor = false;
-            this.btnEquippedWeapon2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
+            this.btnEquippedWeaponSecondary.BackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedWeaponSecondary.FlatAppearance.BorderSize = 0;
+            this.btnEquippedWeaponSecondary.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedWeaponSecondary.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedWeaponSecondary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEquippedWeaponSecondary.Location = new System.Drawing.Point(1088, 440);
+            this.btnEquippedWeaponSecondary.Name = "btnEquippedWeaponSecondary";
+            this.btnEquippedWeaponSecondary.Size = new System.Drawing.Size(101, 155);
+            this.btnEquippedWeaponSecondary.TabIndex = 3;
+            this.btnEquippedWeaponSecondary.TabStop = false;
+            this.btnEquippedWeaponSecondary.UseVisualStyleBackColor = false;
+            this.btnEquippedWeaponSecondary.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
             // 
             // pnlEquippedCards
             // 
@@ -618,7 +621,7 @@
             this.lblArmor.BackColor = System.Drawing.Color.Transparent;
             this.lblArmor.Font = new System.Drawing.Font("Tunga", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArmor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
-            this.lblArmor.Location = new System.Drawing.Point(970, 31);
+            this.lblArmor.Location = new System.Drawing.Point(970, 29);
             this.lblArmor.Name = "lblArmor";
             this.lblArmor.Size = new System.Drawing.Size(34, 47);
             this.lblArmor.TabIndex = 6;
@@ -626,49 +629,46 @@
             // 
             // lblArmorPenetration
             // 
-            this.lblArmorPenetration.AutoSize = true;
             this.lblArmorPenetration.BackColor = System.Drawing.Color.Transparent;
-            this.lblArmorPenetration.Font = new System.Drawing.Font("Tunga", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArmorPenetration.Font = new System.Drawing.Font("Tunga", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArmorPenetration.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
-            this.lblArmorPenetration.Location = new System.Drawing.Point(1074, 31);
+            this.lblArmorPenetration.Location = new System.Drawing.Point(1074, 21);
+            this.lblArmorPenetration.Margin = new System.Windows.Forms.Padding(0);
             this.lblArmorPenetration.Name = "lblArmorPenetration";
-            this.lblArmorPenetration.Size = new System.Drawing.Size(34, 47);
+            this.lblArmorPenetration.Size = new System.Drawing.Size(60, 25);
             this.lblArmorPenetration.TabIndex = 7;
             this.lblArmorPenetration.Text = "0";
             // 
             // lblDamage
             // 
-            this.lblDamage.AutoSize = true;
             this.lblDamage.BackColor = System.Drawing.Color.Transparent;
-            this.lblDamage.Font = new System.Drawing.Font("Tunga", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDamage.Font = new System.Drawing.Font("Tunga", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDamage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
-            this.lblDamage.Location = new System.Drawing.Point(1189, 31);
+            this.lblDamage.Location = new System.Drawing.Point(1189, 21);
             this.lblDamage.Name = "lblDamage";
-            this.lblDamage.Size = new System.Drawing.Size(59, 47);
+            this.lblDamage.Size = new System.Drawing.Size(120, 25);
             this.lblDamage.TabIndex = 8;
             this.lblDamage.Text = "0-0";
             // 
             // lblCritChance
             // 
-            this.lblCritChance.AutoSize = true;
             this.lblCritChance.BackColor = System.Drawing.Color.Transparent;
-            this.lblCritChance.Font = new System.Drawing.Font("Tunga", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCritChance.Font = new System.Drawing.Font("Tunga", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCritChance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
-            this.lblCritChance.Location = new System.Drawing.Point(1367, 31);
+            this.lblCritChance.Location = new System.Drawing.Point(1367, 21);
             this.lblCritChance.Name = "lblCritChance";
-            this.lblCritChance.Size = new System.Drawing.Size(48, 47);
+            this.lblCritChance.Size = new System.Drawing.Size(60, 25);
             this.lblCritChance.TabIndex = 9;
             this.lblCritChance.Text = "0%";
             // 
             // lblCritMulti
             // 
-            this.lblCritMulti.AutoSize = true;
             this.lblCritMulti.BackColor = System.Drawing.Color.Transparent;
-            this.lblCritMulti.Font = new System.Drawing.Font("Tunga", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCritMulti.Font = new System.Drawing.Font("Tunga", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCritMulti.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
-            this.lblCritMulti.Location = new System.Drawing.Point(1484, 31);
+            this.lblCritMulti.Location = new System.Drawing.Point(1484, 21);
             this.lblCritMulti.Name = "lblCritMulti";
-            this.lblCritMulti.Size = new System.Drawing.Size(48, 47);
+            this.lblCritMulti.Size = new System.Drawing.Size(60, 25);
             this.lblCritMulti.TabIndex = 10;
             this.lblCritMulti.Text = "0%";
             // 
@@ -886,23 +886,6 @@
             this.tcInventoryWeapons.SelectedIndex = 0;
             this.tcInventoryWeapons.Size = new System.Drawing.Size(523, 821);
             this.tcInventoryWeapons.TabIndex = 0;
-            // 
-            // cboWeaponSlot
-            // 
-            this.cboWeaponSlot.BackColor = System.Drawing.Color.Black;
-            this.cboWeaponSlot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboWeaponSlot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboWeaponSlot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.cboWeaponSlot.FormattingEnabled = true;
-            this.cboWeaponSlot.Items.AddRange(new object[] {
-            "Weapon 1",
-            "Weapon 2"});
-            this.cboWeaponSlot.Location = new System.Drawing.Point(700, 41);
-            this.cboWeaponSlot.MaxDropDownItems = 2;
-            this.cboWeaponSlot.Name = "cboWeaponSlot";
-            this.cboWeaponSlot.Size = new System.Drawing.Size(100, 21);
-            this.cboWeaponSlot.TabIndex = 23;
-            this.cboWeaponSlot.SelectedIndexChanged += new System.EventHandler(this.SelectedWeaponSlotChanged);
             // 
             // tcInventoryCards
             // 
@@ -1377,6 +1360,51 @@
             this.btnInventoryCards31.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
             this.btnInventoryCards31.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
+            // lblArmorPenetrationSecondary
+            // 
+            this.lblArmorPenetrationSecondary.BackColor = System.Drawing.Color.Transparent;
+            this.lblArmorPenetrationSecondary.Font = new System.Drawing.Font("Tunga", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArmorPenetrationSecondary.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
+            this.lblArmorPenetrationSecondary.Location = new System.Drawing.Point(1074, 46);
+            this.lblArmorPenetrationSecondary.Margin = new System.Windows.Forms.Padding(0);
+            this.lblArmorPenetrationSecondary.Name = "lblArmorPenetrationSecondary";
+            this.lblArmorPenetrationSecondary.Size = new System.Drawing.Size(60, 25);
+            this.lblArmorPenetrationSecondary.TabIndex = 25;
+            this.lblArmorPenetrationSecondary.Text = "0";
+            // 
+            // lblDamageSecondary
+            // 
+            this.lblDamageSecondary.BackColor = System.Drawing.Color.Transparent;
+            this.lblDamageSecondary.Font = new System.Drawing.Font("Tunga", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDamageSecondary.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
+            this.lblDamageSecondary.Location = new System.Drawing.Point(1189, 46);
+            this.lblDamageSecondary.Name = "lblDamageSecondary";
+            this.lblDamageSecondary.Size = new System.Drawing.Size(120, 25);
+            this.lblDamageSecondary.TabIndex = 26;
+            this.lblDamageSecondary.Text = "0-0";
+            // 
+            // lblCritChanceSecondary
+            // 
+            this.lblCritChanceSecondary.BackColor = System.Drawing.Color.Transparent;
+            this.lblCritChanceSecondary.Font = new System.Drawing.Font("Tunga", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCritChanceSecondary.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
+            this.lblCritChanceSecondary.Location = new System.Drawing.Point(1367, 46);
+            this.lblCritChanceSecondary.Name = "lblCritChanceSecondary";
+            this.lblCritChanceSecondary.Size = new System.Drawing.Size(60, 25);
+            this.lblCritChanceSecondary.TabIndex = 27;
+            this.lblCritChanceSecondary.Text = "0%";
+            // 
+            // lblCritMultiSecondary
+            // 
+            this.lblCritMultiSecondary.BackColor = System.Drawing.Color.Transparent;
+            this.lblCritMultiSecondary.Font = new System.Drawing.Font("Tunga", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCritMultiSecondary.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
+            this.lblCritMultiSecondary.Location = new System.Drawing.Point(1484, 46);
+            this.lblCritMultiSecondary.Name = "lblCritMultiSecondary";
+            this.lblCritMultiSecondary.Size = new System.Drawing.Size(60, 25);
+            this.lblCritMultiSecondary.TabIndex = 28;
+            this.lblCritMultiSecondary.Text = "0%";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1384,7 +1412,10 @@
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1596, 874);
-            this.Controls.Add(this.cboWeaponSlot);
+            this.Controls.Add(this.lblCritMultiSecondary);
+            this.Controls.Add(this.lblCritChanceSecondary);
+            this.Controls.Add(this.lblDamageSecondary);
+            this.Controls.Add(this.lblArmorPenetrationSecondary);
             this.Controls.Add(this.pbIconWeaponsHighlighted);
             this.Controls.Add(this.pbIconOtherHighlighted);
             this.Controls.Add(this.pbIconOther);
@@ -1404,8 +1435,8 @@
             this.Controls.Add(this.lblArmor);
             this.Controls.Add(this.lblHealth);
             this.Controls.Add(this.pnlEquippedCards);
-            this.Controls.Add(this.btnEquippedWeapon2);
-            this.Controls.Add(this.btnEquippedWeapon1);
+            this.Controls.Add(this.btnEquippedWeaponSecondary);
+            this.Controls.Add(this.btnEquippedWeapon);
             this.Controls.Add(this.tcInventoryWeapons);
             this.Controls.Add(this.tcInventoryCards);
             this.Name = "frmMain";
@@ -1457,8 +1488,8 @@
         private System.Windows.Forms.Button btnInventoryWeapons34;
         private System.Windows.Forms.Button btnInventoryWeapons24;
         private System.Windows.Forms.Button btnInventoryWeapons14;
-        private System.Windows.Forms.Button btnEquippedWeapon1;
-        private System.Windows.Forms.Button btnEquippedWeapon2;
+        private System.Windows.Forms.Button btnEquippedWeapon;
+        private System.Windows.Forms.Button btnEquippedWeaponSecondary;
         private System.Windows.Forms.Panel pnlEquippedCards;
         private System.Windows.Forms.Label lblHealth;
         private System.Windows.Forms.Label lblArmor;
@@ -1481,7 +1512,6 @@
         private System.Windows.Forms.TableLayoutPanel tlpInventoryWeapons;
         private System.Windows.Forms.TabPage tbInventoryWeaponsPage1;
         private System.Windows.Forms.TabControl tcInventoryWeapons;
-        private System.Windows.Forms.ComboBox cboWeaponSlot;
         private System.Windows.Forms.TabControl tcInventoryCards;
         private System.Windows.Forms.TabPage tbInventoryCardsPage1;
         private System.Windows.Forms.TableLayoutPanel tlpInventoryCards;
@@ -1517,6 +1547,10 @@
         private System.Windows.Forms.Button btnEquippedCard6;
         private System.Windows.Forms.Button btnEquippedCard5;
         private System.Windows.Forms.Button btnEquippedCard7;
+        private System.Windows.Forms.Label lblArmorPenetrationSecondary;
+        private System.Windows.Forms.Label lblDamageSecondary;
+        private System.Windows.Forms.Label lblCritChanceSecondary;
+        private System.Windows.Forms.Label lblCritMultiSecondary;
 
     }
 }

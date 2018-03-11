@@ -59,17 +59,17 @@ namespace VictorBuilder
         }
 
         //Calculate and update stats along top bar
-        private void CalculateStats(Tags slotTags)
+        private void CalculateStats(Tags slotTags, bool secondarySlot = false)
         {
             //Determine what type of item was changed that prompted a recalc of stats (ie. weapon, card, etc)
             if (slotTags.weaponTags != null)
             {
-                CalculateStatsFromNewWeapon(slotTags);
+                CalculateStatsFromNewWeapon(slotTags, secondarySlot);
 
                 //With the new weapon in place, add on the card mods
                 CalculateStatsFromEquippedCards();
             }
-            else if (slotTags.cardTags != null && (btnEquippedWeapon1.Tag != null || btnEquippedWeapon2.Tag != null))
+            else if (slotTags.cardTags != null && (btnEquippedWeapon.Tag != null || btnEquippedWeaponSecondary.Tag != null))
             {
                 CalculateStatsFromNewCard(slotTags);
             }
@@ -77,26 +77,50 @@ namespace VictorBuilder
             //CalculateSkills(slotTags);
         }
 
-        private void CalculateStatsFromNewWeapon(Tags slotTags)
+        private void CalculateStatsFromNewWeapon(Tags slotTags, bool secondarySlot)
         {
             //A weapon was changed, calculate stats based on the weapon and use the base values to start
-            //lblHealth.Text = //not affected by weapons
-            lblDamage.Text = (BaseDmgMin + slotTags.weaponTags.dmgMin).ToString() + "-" + (BaseDmgMax + slotTags.weaponTags.dmgMax).ToString();
-            //lblArmor.Text = //not affected by weapons
-            lblArmorPenetration.Text = (BaseArmorPenetration + slotTags.weaponTags.armorPenetration).ToString();
-            lblCritChance.Text = (BaseCritChance + slotTags.weaponTags.critChance).ToString() + "%";
-            lblCritMulti.Text = (BaseCritMulti + slotTags.weaponTags.critMulti).ToString() + "%";
+            if (secondarySlot)
+            {
+                //lblHealth.Text = //not affected by weapons
+                lblDamageSecondary.Text = (BaseDmgMin + slotTags.weaponTags.dmgMin).ToString() + "-" + (BaseDmgMax + slotTags.weaponTags.dmgMax).ToString();
+                //lblArmor.Text = //not affected by weapons
+                lblArmorPenetrationSecondary.Text = (BaseArmorPenetration + slotTags.weaponTags.armorPenetration).ToString();
+                lblCritChanceSecondary.Text = (BaseCritChance + slotTags.weaponTags.critChance).ToString() + "%";
+                lblCritMultiSecondary.Text = (BaseCritMulti + slotTags.weaponTags.critMulti).ToString() + "%";
+            }
+            else
+            { 
+                //lblHealth.Text = //not affected by weapons
+                lblDamage.Text = (BaseDmgMin + slotTags.weaponTags.dmgMin).ToString() + "-" + (BaseDmgMax + slotTags.weaponTags.dmgMax).ToString();
+                //lblArmor.Text = //not affected by weapons
+                lblArmorPenetration.Text = (BaseArmorPenetration + slotTags.weaponTags.armorPenetration).ToString();
+                lblCritChance.Text = (BaseCritChance + slotTags.weaponTags.critChance).ToString() + "%";
+                lblCritMulti.Text = (BaseCritMulti + slotTags.weaponTags.critMulti).ToString() + "%";
+            }
         }
 
        private void CalculateStatsFromNewCard(Tags slotTags)
         {
-            //A card was changed, and we have a weapon equipped, calculate stats based on the card and use the existing stats calc'd from having a weapon
             lblHealth.Text = string.Format("{0:n0}", HealthAsNumber() + slotTags.cardTags.health);
             //lblDamage.Text = //not affected by cards
             lblArmor.Text = string.Format("{0:n0}", ArmorAsNumber() + slotTags.cardTags.armor);
-            lblArmorPenetration.Text = (ArmorPenetrationAsNumber() + slotTags.cardTags.armorPenetration).ToString();
-            lblCritChance.Text = (CritChanceAsNumber() + slotTags.cardTags.critChance).ToString() + "%";
-            lblCritMulti.Text = (CritMultiAsNumber() + slotTags.cardTags.critMulti).ToString() + "%";        
+
+            //A card was changed, calculate stats based on the card and use the existing stats calc'd from having a weapon
+            if (btnEquippedWeapon.Tag != null)
+            {
+                //lblDamage.Text = //not affected by cards
+                lblArmorPenetration.Text = (ArmorPenetrationAsNumber() + slotTags.cardTags.armorPenetration).ToString();
+                lblCritChance.Text = (CritChanceAsNumber() + slotTags.cardTags.critChance).ToString() + "%";
+                lblCritMulti.Text = (CritMultiAsNumber() + slotTags.cardTags.critMulti).ToString() + "%";
+            }
+            else if (btnEquippedWeaponSecondary.Tag != null)
+            {
+                //lblDamage.Text = //not affected by cards
+                lblArmorPenetrationSecondary.Text = (ArmorPenetrationAsNumber() + slotTags.cardTags.armorPenetration).ToString();
+                lblCritChanceSecondary.Text = (CritChanceAsNumber() + slotTags.cardTags.critChance).ToString() + "%";
+                lblCritMultiSecondary.Text = (CritMultiAsNumber() + slotTags.cardTags.critMulti).ToString() + "%";            
+            }
         }
 
         private void CalculateStatsFromEquippedCards()
@@ -183,24 +207,18 @@ namespace VictorBuilder
             if (secondarySlot)
             {
                 //Copy item to secondary slot
-                btnEquippedWeapon2.Image = slot.Image;
-                btnEquippedWeapon2.Tag = slotTags;
+                btnEquippedWeaponSecondary.Image = slot.Image;
+                btnEquippedWeaponSecondary.Tag = slotTags;
                 itemEquipped = true;
-                if (cboWeaponSlot.SelectedIndex == 1)
-                {
-                    CalculateStats(slotTags);
-                }
+                CalculateStats(slotTags, secondarySlot);
             }
             else
             {
                 //Copy item to primary slot
-                btnEquippedWeapon1.Image = slot.Image;
-                btnEquippedWeapon1.Tag = slotTags;
+                btnEquippedWeapon.Image = slot.Image;
+                btnEquippedWeapon.Tag = slotTags;
                 itemEquipped = true;
-                if (cboWeaponSlot.SelectedIndex == 0)
-                {
-                    CalculateStats(slotTags);
-                }
+                CalculateStats(slotTags);
             }
         }
 
@@ -263,22 +281,6 @@ namespace VictorBuilder
         /********************************
          * END Unequip item logic *
          * ******************************/
-
-        //Determine which Weapon slot the user selected from the drop-down and call CalculateStats() to recalculate the stats along the top bar
-        private void SelectedWeaponSlotChanged(object sender, EventArgs e)
-        {
-            switch (cboWeaponSlot.SelectedIndex)
-            {
-                case 0:
-                    CalculateStats((Tags)btnEquippedWeapon1.Tag);
-                    break;
-                case 1:
-                    CalculateStats((Tags)btnEquippedWeapon2.Tag);
-                    break;
-                default:
-                    break;
-            }
-        }
 
         //Subproc called from mouse event for all Inventory slots to set a border around the currently hovered slot to highlight it
         private void HighlightSlot(object sender, EventArgs e)
