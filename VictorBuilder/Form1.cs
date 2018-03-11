@@ -114,7 +114,8 @@ namespace VictorBuilder
                 lblCritChance.Text = (CritChanceAsNumber() + slotTags.cardTags.critChance).ToString() + "%";
                 lblCritMulti.Text = (CritMultiAsNumber() + slotTags.cardTags.critMulti).ToString() + "%";
             }
-            else if (btnEquippedWeaponSecondary.Tag != null)
+
+            if (btnEquippedWeaponSecondary.Tag != null)
             {
                 //lblDamage.Text = //not affected by cards
                 lblArmorPenetrationSecondary.Text = (ArmorPenetrationAsNumber() + slotTags.cardTags.armorPenetration).ToString();
