@@ -124,8 +124,8 @@ namespace VictorBuilder
                 CritChance,
                 CritMulti,
                 Damage,
-                //MeleeDamage,
-                //RangedDamage
+                MeleeDamage,
+                RangedDamage
             }
 
             public string name;

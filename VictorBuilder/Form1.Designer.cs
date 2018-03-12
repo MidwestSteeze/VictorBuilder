@@ -1410,8 +1410,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1596, 874);
+            this.ClientSize = new System.Drawing.Size(1916, 1054);
             this.Controls.Add(this.lblCritMultiSecondary);
             this.Controls.Add(this.lblCritChanceSecondary);
             this.Controls.Add(this.lblDamageSecondary);

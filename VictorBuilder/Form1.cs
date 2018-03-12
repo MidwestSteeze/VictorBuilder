@@ -12,16 +12,38 @@ namespace VictorBuilder
 {
     public partial class frmMain : Form
     {
-        //Globals
+        //Global objects
         Tags.WeaponTags weaponTags;
         Tags.CardTags cardTags;
+
+        //Base stat values
+        int BaseHealth = 4000; //TODO - whats base life at max lvl?
         int BaseArmor = 0;
+        // Primary
         int BaseArmorPenetration = 0;
         int BaseCritChance = 0;
         int BaseCritMulti = 0;
         int BaseDmgMax = 0;
         int BaseDmgMin = 0;
-        int BaseHealth = 4000; //TODO - whats base life at max lvl?
+        // Secondary
+        int BaseArmorPenetrationSecondary = 0;
+        int BaseCritChanceSecondary = 0;
+        int BaseCritMultiSecondary = 0;
+        int BaseDmgMaxSecondary = 0;
+        int BaseDmgMinSecondary = 0;
+
+        //Stat modifiers (a runnning total from cards, outfit, etc) for calculating purposes
+        int modifierIncDamage = 0;
+        int modifierIncMeleeDamage = 0;
+        int modifierIncRangedDamage = 0;
+        int modifierFlatHealth = 0;
+        int modifierFlatArmor = 0;
+        int modifierFlatArmorPenetration = 0;
+        int modifierFlatArmorPenetrationSecondary = 0;
+        int modifierFlatCritChance = 0;
+        int modifierFlatCritChanceSecondary = 0;
+        int modifierFlatCritMulti = 0;
+        int modifierFlatCritMultiSecondary = 0;
 
         float scaleFactor = 0.5f;
 
@@ -40,9 +62,6 @@ namespace VictorBuilder
             tcInventoryWeapons.Region = new Region(new RectangleF(tbInventoryWeaponsPage1.Left, tbInventoryWeaponsPage1.Top, tbInventoryWeaponsPage1.Width, tbInventoryWeaponsPage1.Height));
             tcInventoryCards.Region = new Region(new RectangleF(tbInventoryCardsPage1.Left, tbInventoryCardsPage1.Top, tbInventoryCardsPage1.Width, tbInventoryCardsPage1.Height));
 
-            //Default weapon slot to show stats from as Weapon 1
-            //cboWeaponSlot.SelectedIndex = 0;
-
             //START Temporary OnLoad logic
             weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Sword, Tags.WeaponTags.WeaponDistance.Melee, 44, 75, 0, 35, 100);
             btnInventoryWeapons00.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Legendary, weaponTags);
@@ -52,7 +71,7 @@ namespace VictorBuilder
             btnInventoryWeapons10.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Rare, weaponTags);
             btnInventoryWeapons10.Image = Image.FromFile("..\\..\\images\\weapons\\icon_scythe.png");
 
-            cardTags = new Tags.CardTags("Warrior", 2, Tags.CardTags.CardMod.CritChance, 10, "+*% Critical Chance");
+            cardTags = new Tags.CardTags("Warrior", 2, Tags.CardTags.CardMod.Damage, 10, "+*% Damage");
             btnInventoryCards00.Tag = FillItemTags(Tags.ItemType.Card, Tags.RarityType.Common, cardTags);
             btnInventoryCards00.Image = Image.FromFile("..\\..\\images\\cards\\icon_warrior.png");
 
@@ -82,7 +101,8 @@ namespace VictorBuilder
             }
             else if (slotTags.cardTags != null && (btnEquippedWeapon.Tag != null || btnEquippedWeaponSecondary.Tag != null))
             {
-                CalculateStatsFromCardChange(slotTags);
+                //We added or removed a card and we have at least one weapon equipped, so recalc stats considering all cards
+                CalculateStatsFromEquippedCards();
             }
 
             //CalculateWeaponSkills(slotTags);
@@ -90,92 +110,155 @@ namespace VictorBuilder
 
         private void CalculateStatsFromWeaponChange(Tags slotTags, bool secondarySlot)
         {
-            //A weapon was changed, calculate stats based on the weapon and use the base values to start
+            //A weapon was changed, reset the base values and then re-calculate the stats
             if (secondarySlot)
             {
-                //lblHealth.Text = //not affected by weapons
-                lblDamageSecondary.Text = (BaseDmgMin + slotTags.weaponTags.dmgMin).ToString() + "-" + (BaseDmgMax + slotTags.weaponTags.dmgMax).ToString();
-                //lblArmor.Text = //not affected by weapons
-                lblArmorPenetrationSecondary.Text = (BaseArmorPenetration + slotTags.weaponTags.armorPenetration).ToString();
-                lblCritChanceSecondary.Text = (BaseCritChance + slotTags.weaponTags.critChance).ToString() + "%";
-                lblCritMultiSecondary.Text = (BaseCritMulti + slotTags.weaponTags.critMulti).ToString() + "%";
+                BaseDmgMinSecondary = slotTags.weaponTags.dmgMin;
+                BaseDmgMaxSecondary = slotTags.weaponTags.dmgMax;
+                BaseArmorPenetrationSecondary = slotTags.weaponTags.armorPenetration;
+                BaseCritChanceSecondary = slotTags.weaponTags.critChance;
+                BaseCritMultiSecondary = slotTags.weaponTags.critMulti;
             }
             else
-            { 
-                //lblHealth.Text = //not affected by weapons
-                lblDamage.Text = (BaseDmgMin + slotTags.weaponTags.dmgMin).ToString() + "-" + (BaseDmgMax + slotTags.weaponTags.dmgMax).ToString();
-                //lblArmor.Text = //not affected by weapons
-                lblArmorPenetration.Text = (BaseArmorPenetration + slotTags.weaponTags.armorPenetration).ToString();
-                lblCritChance.Text = (BaseCritChance + slotTags.weaponTags.critChance).ToString() + "%";
-                lblCritMulti.Text = (BaseCritMulti + slotTags.weaponTags.critMulti).ToString() + "%";
-            }
-        }
-
-       private void CalculateStatsFromCardChange(Tags slotTags)
-        {
-            //A card was changed, calculate stats based on the card and use the existing stats calc'd from having a weapon
-            switch (slotTags.cardTags.mod)
             {
-                case Tags.CardTags.CardMod.Health:
-                    lblHealth.Text = string.Format("{0:n0}", HealthAsNumber() + slotTags.cardTags.modValue);
-                    break;
-
-                case Tags.CardTags.CardMod.Armor:
-                    lblArmor.Text = string.Format("{0:n0}", ArmorAsNumber() + slotTags.cardTags.modValue);
-                    break;
-
-                case Tags.CardTags.CardMod.ArmorPenetration:
-                    if (btnEquippedWeapon.Tag != null)
-                    {
-                        lblArmorPenetration.Text = (ArmorPenetrationAsNumber() + slotTags.cardTags.modValue).ToString();
-                    }
-                    if (btnEquippedWeaponSecondary.Tag != null)
-                    {
-                        lblArmorPenetrationSecondary.Text = (ArmorPenetrationSecondaryAsNumber() + slotTags.cardTags.modValue).ToString();
-                    }
-                    break;
-
-                case Tags.CardTags.CardMod.CritChance:
-                    if (btnEquippedWeapon.Tag != null)
-                    {
-                        lblCritChance.Text = (CritChanceAsNumber() + slotTags.cardTags.modValue).ToString() + "%";
-                    }
-                    if (btnEquippedWeaponSecondary.Tag != null)
-                    {
-                        lblCritChanceSecondary.Text = (CritChanceSecondaryAsNumber() + slotTags.cardTags.modValue).ToString() + "%";
-                    }
-                    break;
-
-                case Tags.CardTags.CardMod.CritMulti:
-                    if (btnEquippedWeapon.Tag != null)
-                    {
-                        lblCritMulti.Text = (CritMultiAsNumber() + slotTags.cardTags.modValue).ToString() + "%";
-                    }
-                    if (btnEquippedWeaponSecondary.Tag != null)
-                    {
-                        lblCritMultiSecondary.Text = (CritMultiSecondaryAsNumber() + slotTags.cardTags.modValue).ToString() + "%";
-                    }
-                    break;
-
-                case Tags.CardTags.CardMod.Damage:
-                    //TODO
-                    break;
-
-                default:
-                    break;
+                BaseDmgMin = slotTags.weaponTags.dmgMin;
+                BaseDmgMax = slotTags.weaponTags.dmgMax;
+                BaseArmorPenetration = slotTags.weaponTags.armorPenetration;
+                BaseCritChance = slotTags.weaponTags.critChance;
+                BaseCritMulti = slotTags.weaponTags.critMulti;
             }
+
+            UpdateStatLabels();
         }
 
         private void CalculateStatsFromEquippedCards()
         { 
+            //Default the running total modifiers before we re-calc them
+            modifierIncDamage = 0;
+            modifierIncMeleeDamage = 0;
+            modifierIncRangedDamage = 0;
+
+            modifierFlatHealth = 0;
+            modifierFlatArmor = 0;
+            modifierFlatArmorPenetration = 0;
+            modifierFlatArmorPenetrationSecondary = 0;
+            modifierFlatCritChance = 0;
+            modifierFlatCritChanceSecondary = 0;
+            modifierFlatCritMulti = 0;
+            modifierFlatCritMultiSecondary = 0;                
+
             //Loop through all cards
             foreach (Button equippedCard in pnlEquippedCards.Controls)
             {
+                Tags slotTags = (Tags)equippedCard.Tag;
+
                 //Ensure this slot has a card in it
-                if ((Tags)equippedCard.Tag != null)
+                if (slotTags != null)
                 {
-                    //Take the mod from the card and update the stats or skills if it affects it
+                    //Take the mod from the card and add it to the running total modifier for calculating the stats at the end of this loop
+                    switch (slotTags.cardTags.mod)
+                    {
+                        case Tags.CardTags.CardMod.Health:
+                            modifierFlatHealth += slotTags.cardTags.modValue;
+                            break;
+
+                        case Tags.CardTags.CardMod.Armor:
+                            modifierFlatArmor += slotTags.cardTags.modValue;
+                            break;
+
+                        case Tags.CardTags.CardMod.ArmorPenetration:
+                            if (btnEquippedWeapon.Tag != null)
+                            {
+                                modifierFlatArmorPenetration += slotTags.cardTags.modValue;
+                            }
+                            if (btnEquippedWeaponSecondary.Tag != null)
+                            {
+                                modifierFlatArmorPenetrationSecondary += slotTags.cardTags.modValue;
+                            }
+                            break;
+
+                        case Tags.CardTags.CardMod.CritChance:
+                            if (btnEquippedWeapon.Tag != null)
+                            {
+                                modifierFlatCritChance += slotTags.cardTags.modValue;
+                            }
+                            if (btnEquippedWeaponSecondary.Tag != null)
+                            {
+                                modifierFlatCritChanceSecondary += slotTags.cardTags.modValue;
+                            }
+                            break;
+
+                        case Tags.CardTags.CardMod.CritMulti:
+                            if (btnEquippedWeapon.Tag != null)
+                            {
+                                modifierFlatCritMulti += slotTags.cardTags.modValue;
+                            }
+                            if (btnEquippedWeaponSecondary.Tag != null)
+                            {
+                                modifierFlatCritMultiSecondary += slotTags.cardTags.modValue;
+                            }
+                            break;
+
+                        case Tags.CardTags.CardMod.Damage:
+                            modifierIncDamage += slotTags.cardTags.modValue;
+                            break;
+
+                        case Tags.CardTags.CardMod.MeleeDamage:
+                            modifierIncMeleeDamage += slotTags.cardTags.modValue;
+                            break;
+
+                        case Tags.CardTags.CardMod.RangedDamage:
+                            modifierIncRangedDamage += slotTags.cardTags.modValue;
+                            break;
+
+                        default:
+                            break;
+                    }
                 }
+            }
+
+            //Now we have all the total modifiers; update all stat labels to reflect their additions
+            UpdateStatLabels();
+            //UpdateSkillLabels();
+        }
+
+        private void UpdateStatLabels()
+        {
+            lblHealth.Text = string.Format("{0:n0}", BaseHealth + modifierFlatHealth);
+            lblArmor.Text = string.Format("{0:n0}", BaseArmor + modifierFlatArmor);
+
+            if (btnEquippedWeapon.Tag != null)
+            {
+                //Add on the proper damage modifier(s) depending on the weapon type (ie. melee vs. ranged)
+                if (((Tags)btnEquippedWeapon.Tag).weaponTags.weaponDistance == Tags.WeaponTags.WeaponDistance.Melee)
+                {
+                    lblDamage.Text = Math.Round(BaseDmgMin * (1 + ((modifierIncDamage + modifierIncMeleeDamage) / 100.0))).ToString() + "-" + Math.Round(BaseDmgMax * (1 + ((modifierIncDamage + modifierIncMeleeDamage) / 100.0))).ToString();
+                }
+                if (((Tags)btnEquippedWeapon.Tag).weaponTags.weaponDistance == Tags.WeaponTags.WeaponDistance.Ranged)
+                {
+                    lblDamage.Text = Math.Round(BaseDmgMin * (1 + ((modifierIncDamage + modifierIncRangedDamage) / 100.0))).ToString() + "-" + Math.Round(BaseDmgMax * (1 + ((modifierIncDamage + modifierIncRangedDamage) / 100.0))).ToString();
+                }
+
+                lblArmorPenetration.Text = (BaseArmorPenetration + modifierFlatArmorPenetration).ToString();
+                lblCritChance.Text = (BaseCritChance + modifierFlatCritChance).ToString() + "%";
+                lblCritMulti.Text = (BaseCritMulti + modifierFlatCritMulti).ToString() + "%";
+            }
+            
+            if (btnEquippedWeaponSecondary.Tag != null)
+            {
+                //Add on the proper damage modifier(s) depending on the weapon type (ie. melee vs. ranged)
+                if (((Tags)btnEquippedWeaponSecondary.Tag).weaponTags.weaponDistance == Tags.WeaponTags.WeaponDistance.Melee)
+                {
+                    lblDamageSecondary.Text = Math.Round(BaseDmgMinSecondary * (1 + ((modifierIncDamage + modifierIncMeleeDamage) / 100.0))).ToString() + "-" + Math.Round(BaseDmgMaxSecondary * (1 + ((modifierIncDamage + modifierIncMeleeDamage) / 100.0))).ToString();
+                }
+                if (((Tags)btnEquippedWeaponSecondary.Tag).weaponTags.weaponDistance == Tags.WeaponTags.WeaponDistance.Ranged)
+                {
+                    lblDamageSecondary.Text = Math.Round(BaseDmgMinSecondary * (1 + ((modifierIncDamage + modifierIncRangedDamage) / 100.0))).ToString() + "-" + Math.Round(BaseDmgMaxSecondary * (1 + ((modifierIncDamage + modifierIncRangedDamage) / 100.0))).ToString();
+                }
+
+                lblArmorPenetrationSecondary.Text = (BaseArmorPenetrationSecondary + modifierFlatArmorPenetrationSecondary).ToString();
+                lblCritChanceSecondary.Text = (BaseCritChanceSecondary + modifierFlatCritChanceSecondary).ToString() + "%";
+                lblCritMultiSecondary.Text = (BaseCritMultiSecondary + modifierFlatCritMultiSecondary).ToString() + "%";
             }
         }
 
@@ -307,12 +390,7 @@ namespace VictorBuilder
             slot.Tag = null;
             itemUnequipped = true;            
 
-            //Invert the mod so we subtract the value (this way we can retain the same stat calculation logic)
-            slotTags.cardTags.modValue *= -1;
             CalculateStats(slotTags);
-
-            //Revert the mod until you figure out why a ByVal object has a property that's holding its change through the duration of the app (ie. it sticks as -10)
-            slotTags.cardTags.modValue *= -1;
         }
 
         private void UnequipWeapon(Button slot, Tags slotTags, bool secondarySlot, ref bool itemUnequipped)
