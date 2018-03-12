@@ -75,20 +75,20 @@ namespace VictorBuilder
             //Determine what type of item was changed that prompted a recalc of stats (ie. weapon, card, etc)
             if (slotTags.weaponTags != null)
             {
-                CalculateStatsFromNewWeapon(slotTags, secondarySlot);
+                CalculateStatsFromWeaponChange(slotTags, secondarySlot);
 
                 //With the new weapon in place, add on the card mods
                 CalculateStatsFromEquippedCards();
             }
             else if (slotTags.cardTags != null && (btnEquippedWeapon.Tag != null || btnEquippedWeaponSecondary.Tag != null))
             {
-                CalculateStatsFromNewCard(slotTags);
+                CalculateStatsFromCardChange(slotTags);
             }
 
-            //CalculateSkills(slotTags);
+            //CalculateWeaponSkills(slotTags);
         }
 
-        private void CalculateStatsFromNewWeapon(Tags slotTags, bool secondarySlot)
+        private void CalculateStatsFromWeaponChange(Tags slotTags, bool secondarySlot)
         {
             //A weapon was changed, calculate stats based on the weapon and use the base values to start
             if (secondarySlot)
@@ -111,7 +111,7 @@ namespace VictorBuilder
             }
         }
 
-       private void CalculateStatsFromNewCard(Tags slotTags)
+       private void CalculateStatsFromCardChange(Tags slotTags)
         {
             //A card was changed, calculate stats based on the card and use the existing stats calc'd from having a weapon
             switch (slotTags.cardTags.mod)
@@ -293,7 +293,7 @@ namespace VictorBuilder
                 case Tags.ItemType.Outfit:
                     break;
                 case Tags.ItemType.Weapon:
-                    UnequipWeapon(slot, slotTags, ref itemUnequipped); //, secondarySlot);
+                    UnequipWeapon(slot, slotTags, Control.ModifierKeys == Keys.Shift, ref itemUnequipped);
                     break;
                 default:
                     break;
@@ -305,17 +305,49 @@ namespace VictorBuilder
             //Remove the equipped card from the slot
             slot.Image = null;
             slot.Tag = null;
-            itemUnequipped = true;
-            //CalculateStats(slotTags); TODO remove stats from removed card
+            itemUnequipped = true;            
+
+            //Invert the mod so we subtract the value (this way we can retain the same stat calculation logic)
+            slotTags.cardTags.modValue *= -1;
+            CalculateStats(slotTags);
+
+            //Revert the mod until you figure out why a ByVal object has a property that's holding its change through the duration of the app (ie. it sticks as -10)
+            slotTags.cardTags.modValue *= -1;
         }
 
-        private void UnequipWeapon(Button slot, Tags slotTags, ref bool itemUnequipped)
+        private void UnequipWeapon(Button slot, Tags slotTags, bool secondarySlot, ref bool itemUnequipped)
         {
             //Remove the equipped weapon from the slot
             slot.Image = null;
             slot.Tag = null;
             itemUnequipped = true;
-            //CalculateStats(slotTags); TODO
+
+            ClearWeaponSlot(secondarySlot);
+        }
+
+        private void ClearWeaponSlot(bool secondarySlot)
+        {
+            //A weapon was unequipped, clear the stats
+            if (secondarySlot)
+            {
+                //lblHealth.Text = //not affected by weapons
+                lblDamageSecondary.Text = "0-0";
+                //lblArmor.Text = //not affected by weapons
+                lblArmorPenetrationSecondary.Text = "0";
+                lblCritChanceSecondary.Text = "0%";
+                lblCritMultiSecondary.Text = "0%";
+            }
+            else
+            {
+                //lblHealth.Text = //not affected by weapons
+                lblDamage.Text = "0-0";
+                //lblArmor.Text = //not affected by weapons
+                lblArmorPenetration.Text = "0";
+                lblCritChance.Text = "0%";
+                lblCritMulti.Text = "0%";
+            }
+
+            //ClearWeaponSkills(secondarySlot);
         }
 
         #endregion
