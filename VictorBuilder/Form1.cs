@@ -52,9 +52,20 @@ namespace VictorBuilder
             btnInventoryWeapons10.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Rare, weaponTags);
             btnInventoryWeapons10.Image = Image.FromFile("..\\..\\images\\weapons\\icon_scythe.png");
 
-            cardTags = new Tags.CardTags("Warrior", "+10% Melee Damage", 2);
+            cardTags = new Tags.CardTags("Warrior", 2, Tags.CardTags.CardMod.CritChance, 10, "+*% Critical Chance");
             btnInventoryCards00.Tag = FillItemTags(Tags.ItemType.Card, Tags.RarityType.Common, cardTags);
             btnInventoryCards00.Image = Image.FromFile("..\\..\\images\\cards\\icon_warrior.png");
+
+            tcInventoryWeapons.Visible = false;
+            tcInventoryCards.Visible = true;
+
+            btnEquippedWeapon.Tag = btnInventoryWeapons00.Tag;
+            btnEquippedWeapon.Image = btnInventoryWeapons00.Image;
+            CalculateStats((Tags)btnEquippedWeapon.Tag);
+
+            btnEquippedWeaponSecondary.Tag = btnInventoryWeapons10.Tag;
+            btnEquippedWeaponSecondary.Image = btnInventoryWeapons10.Image;
+            CalculateStats((Tags)btnEquippedWeaponSecondary.Tag, true);
             //END Temporary OnLoad logic
         }
 
@@ -102,25 +113,56 @@ namespace VictorBuilder
 
        private void CalculateStatsFromNewCard(Tags slotTags)
         {
-            lblHealth.Text = string.Format("{0:n0}", HealthAsNumber() + slotTags.cardTags.health);
-            //lblDamage.Text = //not affected by cards
-            lblArmor.Text = string.Format("{0:n0}", ArmorAsNumber() + slotTags.cardTags.armor);
-
             //A card was changed, calculate stats based on the card and use the existing stats calc'd from having a weapon
-            if (btnEquippedWeapon.Tag != null)
+            switch (slotTags.cardTags.mod)
             {
-                //lblDamage.Text = //not affected by cards
-                lblArmorPenetration.Text = (ArmorPenetrationAsNumber() + slotTags.cardTags.armorPenetration).ToString();
-                lblCritChance.Text = (CritChanceAsNumber() + slotTags.cardTags.critChance).ToString() + "%";
-                lblCritMulti.Text = (CritMultiAsNumber() + slotTags.cardTags.critMulti).ToString() + "%";
-            }
+                case Tags.CardTags.CardMod.Health:
+                    lblHealth.Text = string.Format("{0:n0}", HealthAsNumber() + slotTags.cardTags.modValue);
+                    break;
 
-            if (btnEquippedWeaponSecondary.Tag != null)
-            {
-                //lblDamage.Text = //not affected by cards
-                lblArmorPenetrationSecondary.Text = (ArmorPenetrationAsNumber() + slotTags.cardTags.armorPenetration).ToString();
-                lblCritChanceSecondary.Text = (CritChanceAsNumber() + slotTags.cardTags.critChance).ToString() + "%";
-                lblCritMultiSecondary.Text = (CritMultiAsNumber() + slotTags.cardTags.critMulti).ToString() + "%";            
+                case Tags.CardTags.CardMod.Armor:
+                    lblArmor.Text = string.Format("{0:n0}", ArmorAsNumber() + slotTags.cardTags.modValue);
+                    break;
+
+                case Tags.CardTags.CardMod.ArmorPenetration:
+                    if (btnEquippedWeapon.Tag != null)
+                    {
+                        lblArmorPenetration.Text = (ArmorPenetrationAsNumber() + slotTags.cardTags.modValue).ToString();
+                    }
+                    if (btnEquippedWeaponSecondary.Tag != null)
+                    {
+                        lblArmorPenetrationSecondary.Text = (ArmorPenetrationSecondaryAsNumber() + slotTags.cardTags.modValue).ToString();
+                    }
+                    break;
+
+                case Tags.CardTags.CardMod.CritChance:
+                    if (btnEquippedWeapon.Tag != null)
+                    {
+                        lblCritChance.Text = (CritChanceAsNumber() + slotTags.cardTags.modValue).ToString() + "%";
+                    }
+                    if (btnEquippedWeaponSecondary.Tag != null)
+                    {
+                        lblCritChanceSecondary.Text = (CritChanceSecondaryAsNumber() + slotTags.cardTags.modValue).ToString() + "%";
+                    }
+                    break;
+
+                case Tags.CardTags.CardMod.CritMulti:
+                    if (btnEquippedWeapon.Tag != null)
+                    {
+                        lblCritMulti.Text = (CritMultiAsNumber() + slotTags.cardTags.modValue).ToString() + "%";
+                    }
+                    if (btnEquippedWeaponSecondary.Tag != null)
+                    {
+                        lblCritMultiSecondary.Text = (CritMultiSecondaryAsNumber() + slotTags.cardTags.modValue).ToString() + "%";
+                    }
+                    break;
+
+                case Tags.CardTags.CardMod.Damage:
+                    //TODO
+                    break;
+
+                default:
+                    break;
             }
         }
 
@@ -138,10 +180,9 @@ namespace VictorBuilder
         }
 
         //Used for all Inventory slot controls to copy the item clicked by the user and move it to an equipped slot
-        private void SelectItem(object sender, MouseEventArgs e)
+        private void SelectItem(Button slot, MouseEventArgs e)
         {
             bool itemEquipped = false;
-            Button slot = (Button)sender;
 
             switch (e.Button)
             {
@@ -197,7 +238,7 @@ namespace VictorBuilder
                     equippedCard.Image = slot.Image;
                     equippedCard.Tag = slotTags;
                     itemEquipped = true;
-                    //CalculateStats(slotTags);
+                    CalculateStats(slotTags);
                     break;
                 }
             }
@@ -233,10 +274,9 @@ namespace VictorBuilder
          * ******************************/
         #region Unequip item logic
 
-        private void UnequipItem(object sender, EventArgs e) //Button slot, bool secondarySlot)
+        private void UnequipItem(Button slot, EventArgs e) //Button slot, bool secondarySlot)
         {
             bool itemUnequipped = false;
-            Button slot = (Button)sender;
             Tags slotTags = (Tags)slot.Tag;
 
             switch (slotTags.itemType)
@@ -266,7 +306,7 @@ namespace VictorBuilder
             slot.Image = null;
             slot.Tag = null;
             itemUnequipped = true;
-            //CalculateStats(slotTags); TODO
+            //CalculateStats(slotTags); TODO remove stats from removed card
         }
 
         private void UnequipWeapon(Button slot, Tags slotTags, ref bool itemUnequipped)
@@ -335,12 +375,22 @@ namespace VictorBuilder
 
         private void EquippedItem_MouseUp(object sender, MouseEventArgs e)
         {
-            UnequipItem(sender, e);
+            Button slot = (Button)sender;
+
+            if (slot.Tag != null)
+            {
+                UnequipItem(slot, e);
+            }
         }
 
         private void Inventory_MouseUp(object sender, MouseEventArgs e)
         {
-            SelectItem(sender, e);
+            Button slot = (Button)sender;
+
+            if (slot.Tag != null)
+            {
+                SelectItem(slot, e);
+            }
         }
 
         //Will call a subproc to highlight the item being hovered
@@ -512,9 +562,19 @@ namespace VictorBuilder
             return Convert.ToInt32(lblDamage.Text.Substring(0, lblDamage.Text.IndexOf("-")));
         }
 
+        private int DmgMinSecondaryAsNumber()
+        {
+            return Convert.ToInt32(lblDamageSecondary.Text.Substring(0, lblDamageSecondary.Text.IndexOf("-")));
+        }
+
         private int DmgMaxAsNumber()
         {
             return Convert.ToInt32(lblDamage.Text.Substring(lblDamage.Text.IndexOf("-") + 1));
+        }
+
+        private int DmgMaxSecondaryAsNumber()
+        {
+            return Convert.ToInt32(lblDamageSecondary.Text.Substring(lblDamageSecondary.Text.IndexOf("-") + 1));
         }
 
         private int ArmorAsNumber()
@@ -527,14 +587,29 @@ namespace VictorBuilder
             return Convert.ToInt32(lblArmorPenetration.Text);
         }
 
+        private int ArmorPenetrationSecondaryAsNumber()
+        {
+            return Convert.ToInt32(lblArmorPenetrationSecondary.Text);
+        }
+
         private int CritChanceAsNumber()
         {
             return Convert.ToInt32(lblCritChance.Text.Substring(0, lblCritChance.Text.Length - 1));
         }
 
+        private int CritChanceSecondaryAsNumber()
+        {
+            return Convert.ToInt32(lblCritChanceSecondary.Text.Substring(0, lblCritChanceSecondary.Text.Length - 1));
+        }
+
         private int CritMultiAsNumber()
         {
             return Convert.ToInt32(lblCritMulti.Text.Substring(0, lblCritMulti.Text.Length - 1));
+        }
+
+        private int CritMultiSecondaryAsNumber()
+        {
+            return Convert.ToInt32(lblCritMultiSecondary.Text.Substring(0, lblCritMultiSecondary.Text.Length - 1));
         }
 
         #endregion

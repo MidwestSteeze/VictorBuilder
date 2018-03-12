@@ -116,42 +116,58 @@ namespace VictorBuilder
         public class CardTags 
         {
             //enums here
+            public enum CardMod
+            { 
+                Health,
+                Armor,
+                ArmorPenetration,
+                CritChance,
+                CritMulti,
+                Damage,
+                //MeleeDamage,
+                //RangedDamage
+            }
 
             public string name;
-            public string stat;
             public int points = 0;
+
+            public CardMod mod;
+            public int modValue = 0;
+            public string modText;
 
             public bool divine = false;
             public bool wicked = false;
             public bool unique = false;
 
-            //Card stats that can affect the character sheet
-            public int health = 0; //Hope, -%Death
-            public int armor = 0; //The Knight, The Smith
-            public int armorPenetration = 0; //The Beast
-            public int critChance = 0; //Strength
-            public int critMulti = 0; //The Rogue, Wildcard, The Blademaster
+            ////Card stats that can affect the character sheet
+            //public int health = 0; //Hope, -%Death
+            //public int armor = 0; //The Knight, The Smith
+            //public int armorPenetration = 0; //The Beast
+            //public int critChance = 0; //Strength
+            //public int critMulti = 0; //The Rogue, Wildcard, The Blademaster
 
-            //Card stats that can affect the skill sheet
-            public int damage = 0; //Death
-            public int meleeDamage = 0; //The Warrior
-            public int rangedDamage = 0; //The Archer
+            ////Card stats that can affect the skill sheet
+            //public int damage = 0; //Death
+            //public int meleeDamage = 0; //The Warrior
+            //public int rangedDamage = 0; //The Archer
 
             /**********************
             /* Constructors START *
             /**********************/
-            public CardTags(string aName, string aStat, int aPoints)
+            public CardTags(string aName, int aPoints)
             {
                 name = aName;
-                stat = aStat;
                 points = aPoints;
             }
 
-            public CardTags(string aName, string aStat, int aPoints, bool aDivine, bool aWicked, bool aUnique, int aHealth, int aArmor, int aArmorPenetration, int aCritChance, int aCritMulti)
+            public CardTags(string aName, int aPoints, CardMod aMod, int aModValue, string aModText)
             {
                 name = aName;
-                stat = aStat;
                 points = aPoints;
+
+                mod = aMod;
+                modValue = aModValue;
+                modText = aModText;
 
                 //Let these default, and only set them based on the card you're creating then (ie. no need to set ALL attributes for a card that only has 1 mod)
                 //divine = aDivine;
