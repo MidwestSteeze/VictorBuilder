@@ -674,15 +674,14 @@
             // 
             // lblInventoryHeader
             // 
-            this.lblInventoryHeader.AutoSize = true;
             this.lblInventoryHeader.BackColor = System.Drawing.Color.Transparent;
             this.lblInventoryHeader.Font = new System.Drawing.Font("Bell MT", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInventoryHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
-            this.lblInventoryHeader.Location = new System.Drawing.Point(1510, 109);
+            this.lblInventoryHeader.Location = new System.Drawing.Point(1455, 109);
             this.lblInventoryHeader.Name = "lblInventoryHeader";
-            this.lblInventoryHeader.Size = new System.Drawing.Size(143, 27);
+            this.lblInventoryHeader.Size = new System.Drawing.Size(293, 27);
             this.lblInventoryHeader.TabIndex = 11;
-            this.lblInventoryHeader.Text = "lblInvHeader";
+            this.lblInventoryHeader.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblDestinyPoints
             // 

@@ -75,8 +75,13 @@ namespace VictorBuilder
             btnInventoryCards00.Tag = FillItemTags(Tags.ItemType.Card, Tags.RarityType.Common, cardTags);
             btnInventoryCards00.Image = Image.FromFile("..\\..\\images\\cards\\icon_sun2.png");
 
+            // Inventory page display
+            lblInventoryHeader.Text = "Destiny Cards";
             tcInventoryWeapons.Visible = false;
             tcInventoryCards.Visible = true;
+            pbIconWeapons.Visible = true;
+            pbIconWeaponsHighlighted.Visible = false;
+            pbIconCardsHighlighted.Visible = true;
 
             btnEquippedWeapon.Tag = btnInventoryWeapons00.Tag;
             btnEquippedWeapon.Image = btnInventoryWeapons00.Image;
@@ -623,6 +628,8 @@ namespace VictorBuilder
                     //pbIconDemonPowers.Visible = true;
                     pbIconCards.Visible = true;
                     pbIconOther.Visible = true;
+
+                    lblInventoryHeader.Text = "Weapons";
                     break;
                 case "consumables":
                     //pbIconConsumablesHighlighted.Visible = true;
@@ -630,6 +637,8 @@ namespace VictorBuilder
                     //pbIconDemonPowers.Visible = true;
                     pbIconCards.Visible = true;
                     pbIconOther.Visible = true;
+
+                    lblInventoryHeader.Text = "Consumables";
                     break;
                 //case "demonPowers":
                     //pbIconDemonPowersHighlighted.Visible = true;
@@ -637,6 +646,8 @@ namespace VictorBuilder
                     //pbIconConsumables.Visible = true;
                     //pbIconCards.Visible = true;
                     //pbIconOther.Visible = true;
+
+					//lblInventoryHeader.Text = "Demon Powers";
                     //break;
                 case "cards":
                     pbIconCardsHighlighted.Visible = true;
@@ -644,6 +655,8 @@ namespace VictorBuilder
                     pbIconConsumables.Visible = true;
                     //pbIconDemonPowers.Visible = true;
                     pbIconOther.Visible = true;
+
+                    lblInventoryHeader.Text = "Destiny Cards";
                     break;
                 case "other":
                     pbIconOtherHighlighted.Visible = true;
@@ -651,6 +664,8 @@ namespace VictorBuilder
                     pbIconConsumables.Visible = true;
                     //pbIconDemonPowers.Visible = true;
                     pbIconCards.Visible = true;
+
+                    lblInventoryHeader.Text = "Other";
                     break;
                 default:
                     break;
