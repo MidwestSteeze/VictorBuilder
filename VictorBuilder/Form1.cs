@@ -71,9 +71,9 @@ namespace VictorBuilder
             btnInventoryWeapons10.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Rare, weaponTags);
             btnInventoryWeapons10.Image = Image.FromFile("..\\..\\images\\weapons\\icon_scythe.png");
 
-            cardTags = new Tags.CardTags("Warrior", 2, Tags.CardTags.CardMod.Damage, 10, "+*% Damage");
+            cardTags = new Tags.CardTags("The Sun", 2, Tags.CardTags.CardMod.Damage, 10, "+*% Damage");
             btnInventoryCards00.Tag = FillItemTags(Tags.ItemType.Card, Tags.RarityType.Common, cardTags);
-            btnInventoryCards00.Image = Image.FromFile("..\\..\\images\\cards\\icon_warrior.png");
+            btnInventoryCards00.Image = Image.FromFile("..\\..\\images\\cards\\icon_sun2.png");
 
             tcInventoryWeapons.Visible = false;
             tcInventoryCards.Visible = true;
@@ -318,7 +318,7 @@ namespace VictorBuilder
                 if ((Tags)equippedCard.Tag == null)
                 {
                     //Empty card slot found; copy the card into this equippable card slot
-                    equippedCard.Image = slot.Image;
+                    equippedCard.BackgroundImage = slot.Image;
                     equippedCard.Tag = slotTags;
                     itemEquipped = true;
                     CalculateStats(slotTags);
@@ -386,7 +386,7 @@ namespace VictorBuilder
         private void UnequipCard(Button slot, Tags slotTags, ref bool itemUnequipped)
         {
             //Remove the equipped card from the slot
-            slot.Image = null;
+            slot.BackgroundImage = null;
             slot.Tag = null;
             itemUnequipped = true;            
 
