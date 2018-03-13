@@ -26,6 +26,8 @@ namespace VictorBuilder
             Legendary
         }
 
+        public string description;
+        public string name;
         public ItemType itemType;
         public RarityType rarity;
         public WeaponTags weaponTags;
@@ -36,23 +38,29 @@ namespace VictorBuilder
         /**********************/
         public Tags() { }
 
-        public Tags(ItemType aItemType, RarityType aRarityType)
+        public Tags(ItemType aItemType, RarityType aRarityType, string aName, string aDescription)
         {
             itemType = aItemType;
             rarity = aRarityType;
+            name = aName;
+            description = aDescription;
         }
 
-        public Tags(ItemType aItemType, RarityType aRarityType, WeaponTags aWeaponTags)
+        public Tags(ItemType aItemType, RarityType aRarityType, string aName, string aDescription, WeaponTags aWeaponTags)
         {
             itemType = aItemType;
             rarity = aRarityType;
+            name = aName;
+            description = aDescription;
             weaponTags = aWeaponTags;
         }
 
-        public Tags(ItemType aItemType, RarityType aRarityType, CardTags aCardTags)
+        public Tags(ItemType aItemType, RarityType aRarityType, string aName, string aDescription, CardTags aCardTags)
         {
             itemType = aItemType;
             rarity = aRarityType;
+            name = aName;
+            description = aDescription;
             cardTags = aCardTags;
         }
 
@@ -128,12 +136,10 @@ namespace VictorBuilder
                 RangedDamage
             }
 
-            public string name;
             public int points = 0;
 
             public CardMod mod;
             public int modValue = 0;
-            public string modText;
 
             public bool divine = false;
             public bool wicked = false;
@@ -154,20 +160,17 @@ namespace VictorBuilder
             /**********************
             /* Constructors START *
             /**********************/
-            public CardTags(string aName, int aPoints)
+            public CardTags(int aPoints)
             {
-                name = aName;
                 points = aPoints;
             }
 
-            public CardTags(string aName, int aPoints, CardMod aMod, int aModValue, string aModText)
+            public CardTags(int aPoints, CardMod aMod, int aModValue)
             {
-                name = aName;
                 points = aPoints;
 
                 mod = aMod;
                 modValue = aModValue;
-                modText = aModText;
 
                 //Let these default, and only set them based on the card you're creating then (ie. no need to set ALL attributes for a card that only has 1 mod)
                 //divine = aDivine;

@@ -45,7 +45,7 @@ namespace VictorBuilder
         int modifierFlatCritMulti = 0;
         int modifierFlatCritMultiSecondary = 0;
 
-        float scaleFactor = 0.5f;
+        //float scaleFactor = 0.5f;
 
         public frmMain()
         {
@@ -64,15 +64,15 @@ namespace VictorBuilder
 
             //START Temporary OnLoad logic
             weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Sword, Tags.WeaponTags.WeaponDistance.Melee, 44, 75, 0, 35, 100);
-            btnInventoryWeapons00.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Legendary, weaponTags);
+            btnInventoryWeapons00.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Legendary, "Storm", "Attack speed increased by 25%" + Environment.NewLine + "Critical chance increased by 15%" + Environment.NewLine + "Critical hits create ball lightnings", weaponTags);
             btnInventoryWeapons00.Image = Image.FromFile("..\\..\\images\\weapons\\icon_sword.png");
 
             weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Scythe, Tags.WeaponTags.WeaponDistance.Melee, 10, 190, 10, 15, 100);
-            btnInventoryWeapons10.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Rare, weaponTags);
+            btnInventoryWeapons10.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Rare, "Vengeance", "Damage increased by 32% when health is below 50%" + Environment.NewLine + "Gain 10.0% of max health on crit (5 sec. cooldown)" + Environment.NewLine + "Triggers a Meteor storm when your health drops below 40%. Cannot trigger more than once every 60 seconds", weaponTags);
             btnInventoryWeapons10.Image = Image.FromFile("..\\..\\images\\weapons\\icon_scythe.png");
 
-            cardTags = new Tags.CardTags("The Sun", 2, Tags.CardTags.CardMod.Damage, 10, "+*% Damage");
-            btnInventoryCards00.Tag = FillItemTags(Tags.ItemType.Card, Tags.RarityType.Common, cardTags);
+            cardTags = new Tags.CardTags(2, Tags.CardTags.CardMod.Damage, 10);
+            btnInventoryCards00.Tag = FillItemTags(Tags.ItemType.Card, Tags.RarityType.Common, "The Sun", "+#% Damage", cardTags);
             btnInventoryCards00.Image = Image.FromFile("..\\..\\images\\cards\\icon_sun2.png");
 
             // Inventory page display
@@ -381,7 +381,7 @@ namespace VictorBuilder
                 case Tags.ItemType.Outfit:
                     break;
                 case Tags.ItemType.Weapon:
-                    UnequipWeapon(slot, slotTags, Control.ModifierKeys == Keys.Shift, ref itemUnequipped);
+                    UnequipWeapon(slot, slotTags, slot.Name.Contains("Secondary"), ref itemUnequipped);
                     break;
                 default:
                     break;
@@ -439,11 +439,8 @@ namespace VictorBuilder
          * ******************************/
 
         //Subproc called from mouse event for all Inventory slots to set a border around the currently hovered slot to highlight it
-        private void HighlightSlot(object sender, EventArgs e)
+        private void HighlightSlot(Button slot, Tags slotTags)
         {
-            Button slot = (Button)sender;
-            Tags slotTags = (Tags)slot.Tag;
-
             if (slotTags != null)
             {
                 //Highlight the currently hovered inventory slot
@@ -480,10 +477,8 @@ namespace VictorBuilder
         }
 
         //Subproc called from mouse event for all Inventory slots to remove a border around the previously hovered slot to unhighlight it
-        private void UnhighlightSlot(object sender, EventArgs e)
-        {
-            Button slot = (Button)sender;
-            
+        private void UnhighlightSlot(Button slot)
+        {            
             slot.FlatAppearance.BorderSize = 1;
             slot.FlatAppearance.BorderColor = Color.Black;
         }
@@ -508,40 +503,103 @@ namespace VictorBuilder
             }
         }
 
-        //Will call a subproc to highlight the item being hovered
+        //Will call a subproc to highlight the item being hovered and show hover text
         private void Inventory_MouseHover(object sender, EventArgs e)
         {
-            HighlightSlot(sender, e);
+            Button slot = (Button)sender;
+            Tags slotTags = (Tags)slot.Tag;
+
+            HighlightSlot(slot, slotTags);
+            
+            //Adjust hover text visibility and info if the hovered slot actually contains an item
+            if (slotTags != null)
+            {
+                SetHoverTextVisibility(slot, slotTags, true);
+            }
         }
 
-        //Will call a subproc to unhighlight the item that was being hovered
+        //Will call a subproc to unhighlight the item that was being hovered and hide hover text
         private void Inventory_MouseLeave(object sender, EventArgs e)
         {
-            UnhighlightSlot(sender, e);
+            Button slot = (Button)sender;
+            Tags slotTags = (Tags)slot.Tag;
+
+            UnhighlightSlot(slot);
+
+            //Hide the hover text
+            SetHoverTextVisibility(slot, slotTags, false);
         }
 
-        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType)
+        private void SetHoverTextVisibility(Button slot, Tags slotTags, bool visibility)
         {
-            return new Tags(aItemType, aRarityType);
+            //Set visibility of the hover text panel
+            pnlHoverTextWeapon.Visible = visibility;
+
+            if (visibility)
+            {
+                //Set the appropriate visibility and text of the labels inside the hover text panel based on the item type
+                switch (slotTags.itemType)
+                {
+                    case Tags.ItemType.Card:
+                        //TEXT
+                        //LINE 1 (name)
+                        //lblHoverTextCardName.Text = slotTags.name;
+                        //LINE 2 (stats)
+                        //lblHoverTextWeaponDamage.Text = slotTags.weaponTags.dmgMin.ToString() + "-" + slotTags.weaponTags.dmgMax.ToString();
+                        //lblHoverTextWeaponArmorPenetration.Text = slotTags.weaponTags.armorPenetration.ToString();
+                        //lblHoverTextWeaponCritChance.Text = slotTags.weaponTags.critChance.ToString() + "%";
+                        //lblHoverTextWeaponCritMulti.Text = slotTags.weaponTags.critMulti.ToString() + "%";
+                        //LINE 3 (weapon text/description eg. prefix/suffix)
+                        //lblHoverTextCardDescription.Text = slotTags.description.Replace("#", slotTags.cardTags.modValue.ToString());
+                        break;
+                    //case Tags.ItemType.Consumable:
+                    //    break;
+                    //case Tags.ItemType.DemonPower:
+                    //    break;
+                    //case Tags.ItemType.Empty:
+                    //    break;
+                    //case Tags.ItemType.Outfit:
+                    //    break;
+                    case Tags.ItemType.Weapon:
+                        //TEXT
+                        //LINE 1 (name)
+                        lblHoverTextWeaponName.Text = slotTags.name;
+                        //LINE 2 (stats)
+                        lblHoverTextWeaponDamage.Text = slotTags.weaponTags.dmgMin.ToString() + "-" + slotTags.weaponTags.dmgMax.ToString();
+                        lblHoverTextWeaponArmorPenetration.Text = slotTags.weaponTags.armorPenetration.ToString();
+                        lblHoverTextWeaponCritChance.Text = slotTags.weaponTags.critChance.ToString() + "%";
+                        lblHoverTextWeaponCritMulti.Text = slotTags.weaponTags.critMulti.ToString() + "%";
+                        //LINE 3 (weapon text/description eg. prefix/suffix)
+                        lblHoverTextWeaponDescription.Text = slotTags.description;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
-        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType,
+        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType, string aName, string aDescription)
+        {
+            return new Tags(aItemType, aRarityType, aName, aDescription);
+        }
+
+        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType, string aName, string aDescription,
                                   Tags.WeaponTags.WeaponType aWeaponType)
         {
             Tags.WeaponTags weaponTags = new Tags.WeaponTags(aWeaponType);
-            return new Tags(aItemType, aRarityType, weaponTags);
+            return new Tags(aItemType, aRarityType, aName, aDescription, weaponTags);
         }
 
-        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType,
+        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType, string aName, string aDescription,
                                   Tags.WeaponTags aWeaponTags)
         {
-            return new Tags(aItemType, aRarityType, aWeaponTags);
+            return new Tags(aItemType, aRarityType, aName, aDescription, aWeaponTags);
         }
 
-        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType,
+        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType, string aName, string aDescription,
                                   Tags.CardTags aCardTags)
         {
-            return new Tags(aItemType, aRarityType, aCardTags);
+            return new Tags(aItemType, aRarityType, aName, aDescription, aCardTags);
         }
 
         private void ResizeFont(Control.ControlCollection coll, float scaleFactor)
