@@ -124,6 +124,10 @@
             this.lblHoverTextWeaponDamage = new System.Windows.Forms.Label();
             this.lblHoverTextWeaponDescription = new System.Windows.Forms.Label();
             this.lblHoverTextWeaponName = new System.Windows.Forms.Label();
+            this.pnlHoverTextCard = new System.Windows.Forms.Panel();
+            this.lblHoverTextCardPoints = new System.Windows.Forms.Label();
+            this.lblHoverTextCardDescription = new System.Windows.Forms.Label();
+            this.lblHoverTextCardName = new System.Windows.Forms.Label();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
@@ -139,6 +143,7 @@
             this.tbInventoryCardsPage1.SuspendLayout();
             this.tlpInventoryCards.SuspendLayout();
             this.pnlHoverTextWeapon.SuspendLayout();
+            this.pnlHoverTextCard.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnInventoryWeapons44
@@ -540,6 +545,8 @@
             this.btnEquippedCard1.Size = new System.Drawing.Size(83, 138);
             this.btnEquippedCard1.TabIndex = 4;
             this.btnEquippedCard1.UseVisualStyleBackColor = true;
+            this.btnEquippedCard1.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnEquippedCard1.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
             this.btnEquippedCard1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
             // 
             // btnEquippedCard2
@@ -552,6 +559,8 @@
             this.btnEquippedCard2.Size = new System.Drawing.Size(83, 138);
             this.btnEquippedCard2.TabIndex = 3;
             this.btnEquippedCard2.UseVisualStyleBackColor = true;
+            this.btnEquippedCard2.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnEquippedCard2.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
             this.btnEquippedCard2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
             // 
             // btnEquippedCard3
@@ -564,6 +573,8 @@
             this.btnEquippedCard3.Size = new System.Drawing.Size(83, 138);
             this.btnEquippedCard3.TabIndex = 5;
             this.btnEquippedCard3.UseVisualStyleBackColor = true;
+            this.btnEquippedCard3.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnEquippedCard3.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
             this.btnEquippedCard3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
             // 
             // btnEquippedCard4
@@ -576,6 +587,8 @@
             this.btnEquippedCard4.Size = new System.Drawing.Size(83, 138);
             this.btnEquippedCard4.TabIndex = 6;
             this.btnEquippedCard4.UseVisualStyleBackColor = true;
+            this.btnEquippedCard4.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnEquippedCard4.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
             this.btnEquippedCard4.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
             // 
             // btnEquippedCard5
@@ -588,6 +601,8 @@
             this.btnEquippedCard5.Size = new System.Drawing.Size(83, 138);
             this.btnEquippedCard5.TabIndex = 7;
             this.btnEquippedCard5.UseVisualStyleBackColor = true;
+            this.btnEquippedCard5.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnEquippedCard5.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
             this.btnEquippedCard5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
             // 
             // btnEquippedCard6
@@ -600,6 +615,8 @@
             this.btnEquippedCard6.Size = new System.Drawing.Size(83, 138);
             this.btnEquippedCard6.TabIndex = 8;
             this.btnEquippedCard6.UseVisualStyleBackColor = true;
+            this.btnEquippedCard6.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnEquippedCard6.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
             this.btnEquippedCard6.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
             // 
             // btnEquippedCard7
@@ -612,6 +629,8 @@
             this.btnEquippedCard7.Size = new System.Drawing.Size(83, 138);
             this.btnEquippedCard7.TabIndex = 9;
             this.btnEquippedCard7.UseVisualStyleBackColor = true;
+            this.btnEquippedCard7.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnEquippedCard7.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
             this.btnEquippedCard7.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
             // 
             // lblHealth
@@ -1435,7 +1454,7 @@
             // 
             this.lblHoverTextWeaponCritMulti.BackColor = System.Drawing.Color.Transparent;
             this.lblHoverTextWeaponCritMulti.Font = new System.Drawing.Font("Copperplate Gothic Light", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHoverTextWeaponCritMulti.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(181)))), ((int)(((byte)(18)))));
+            this.lblHoverTextWeaponCritMulti.ForeColor = System.Drawing.Color.White;
             this.lblHoverTextWeaponCritMulti.Location = new System.Drawing.Point(423, 64);
             this.lblHoverTextWeaponCritMulti.Margin = new System.Windows.Forms.Padding(0);
             this.lblHoverTextWeaponCritMulti.Name = "lblHoverTextWeaponCritMulti";
@@ -1447,7 +1466,7 @@
             // 
             this.lblHoverTextWeaponCritChance.BackColor = System.Drawing.Color.Transparent;
             this.lblHoverTextWeaponCritChance.Font = new System.Drawing.Font("Copperplate Gothic Light", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHoverTextWeaponCritChance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(181)))), ((int)(((byte)(18)))));
+            this.lblHoverTextWeaponCritChance.ForeColor = System.Drawing.Color.White;
             this.lblHoverTextWeaponCritChance.Location = new System.Drawing.Point(320, 64);
             this.lblHoverTextWeaponCritChance.Margin = new System.Windows.Forms.Padding(0);
             this.lblHoverTextWeaponCritChance.Name = "lblHoverTextWeaponCritChance";
@@ -1459,7 +1478,7 @@
             // 
             this.lblHoverTextWeaponArmorPenetration.BackColor = System.Drawing.Color.Transparent;
             this.lblHoverTextWeaponArmorPenetration.Font = new System.Drawing.Font("Copperplate Gothic Light", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHoverTextWeaponArmorPenetration.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(181)))), ((int)(((byte)(18)))));
+            this.lblHoverTextWeaponArmorPenetration.ForeColor = System.Drawing.Color.White;
             this.lblHoverTextWeaponArmorPenetration.Location = new System.Drawing.Point(215, 64);
             this.lblHoverTextWeaponArmorPenetration.Margin = new System.Windows.Forms.Padding(0);
             this.lblHoverTextWeaponArmorPenetration.Name = "lblHoverTextWeaponArmorPenetration";
@@ -1471,7 +1490,7 @@
             // 
             this.lblHoverTextWeaponDamage.BackColor = System.Drawing.Color.Transparent;
             this.lblHoverTextWeaponDamage.Font = new System.Drawing.Font("Copperplate Gothic Light", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHoverTextWeaponDamage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(181)))), ((int)(((byte)(18)))));
+            this.lblHoverTextWeaponDamage.ForeColor = System.Drawing.Color.White;
             this.lblHoverTextWeaponDamage.Location = new System.Drawing.Point(71, 64);
             this.lblHoverTextWeaponDamage.Margin = new System.Windows.Forms.Padding(0);
             this.lblHoverTextWeaponDamage.Name = "lblHoverTextWeaponDamage";
@@ -1501,6 +1520,52 @@
             this.lblHoverTextWeaponName.TabIndex = 0;
             this.lblHoverTextWeaponName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // pnlHoverTextCard
+            // 
+            this.pnlHoverTextCard.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlHoverTextCard.BackgroundImage")));
+            this.pnlHoverTextCard.Controls.Add(this.lblHoverTextCardPoints);
+            this.pnlHoverTextCard.Controls.Add(this.lblHoverTextCardDescription);
+            this.pnlHoverTextCard.Controls.Add(this.lblHoverTextCardName);
+            this.pnlHoverTextCard.Location = new System.Drawing.Point(362, 440);
+            this.pnlHoverTextCard.Name = "pnlHoverTextCard";
+            this.pnlHoverTextCard.Size = new System.Drawing.Size(514, 256);
+            this.pnlHoverTextCard.TabIndex = 30;
+            this.pnlHoverTextCard.Visible = false;
+            // 
+            // lblHoverTextCardPoints
+            // 
+            this.lblHoverTextCardPoints.BackColor = System.Drawing.Color.Transparent;
+            this.lblHoverTextCardPoints.Font = new System.Drawing.Font("Copperplate Gothic Light", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoverTextCardPoints.ForeColor = System.Drawing.Color.White;
+            this.lblHoverTextCardPoints.Location = new System.Drawing.Point(250, 60);
+            this.lblHoverTextCardPoints.Margin = new System.Windows.Forms.Padding(0);
+            this.lblHoverTextCardPoints.Name = "lblHoverTextCardPoints";
+            this.lblHoverTextCardPoints.Size = new System.Drawing.Size(100, 26);
+            this.lblHoverTextCardPoints.TabIndex = 2;
+            this.lblHoverTextCardPoints.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblHoverTextCardDescription
+            // 
+            this.lblHoverTextCardDescription.BackColor = System.Drawing.Color.Transparent;
+            this.lblHoverTextCardDescription.Font = new System.Drawing.Font("Copperplate Gothic Light", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoverTextCardDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(181)))), ((int)(((byte)(18)))));
+            this.lblHoverTextCardDescription.Location = new System.Drawing.Point(12, 116);
+            this.lblHoverTextCardDescription.Name = "lblHoverTextCardDescription";
+            this.lblHoverTextCardDescription.Size = new System.Drawing.Size(501, 116);
+            this.lblHoverTextCardDescription.TabIndex = 1;
+            this.lblHoverTextCardDescription.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblHoverTextCardName
+            // 
+            this.lblHoverTextCardName.BackColor = System.Drawing.Color.Transparent;
+            this.lblHoverTextCardName.Font = new System.Drawing.Font("Copperplate Gothic Light", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoverTextCardName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(181)))), ((int)(((byte)(18)))));
+            this.lblHoverTextCardName.Location = new System.Drawing.Point(10, 24);
+            this.lblHoverTextCardName.Name = "lblHoverTextCardName";
+            this.lblHoverTextCardName.Size = new System.Drawing.Size(501, 21);
+            this.lblHoverTextCardName.TabIndex = 0;
+            this.lblHoverTextCardName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1509,6 +1574,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1596, 874);
             this.Controls.Add(this.pnlHoverTextWeapon);
+            this.Controls.Add(this.pnlHoverTextCard);
             this.Controls.Add(this.lblCritMultiSecondary);
             this.Controls.Add(this.lblCritChanceSecondary);
             this.Controls.Add(this.lblDamageSecondary);
@@ -1554,6 +1620,7 @@
             this.tbInventoryCardsPage1.ResumeLayout(false);
             this.tlpInventoryCards.ResumeLayout(false);
             this.pnlHoverTextWeapon.ResumeLayout(false);
+            this.pnlHoverTextCard.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1656,6 +1723,10 @@
         private System.Windows.Forms.Label lblHoverTextWeaponArmorPenetration;
         private System.Windows.Forms.Label lblHoverTextWeaponDamage;
         private System.Windows.Forms.Label lblHoverTextWeaponCritMulti;
+        private System.Windows.Forms.Panel pnlHoverTextCard;
+        private System.Windows.Forms.Label lblHoverTextCardPoints;
+        private System.Windows.Forms.Label lblHoverTextCardDescription;
+        private System.Windows.Forms.Label lblHoverTextCardName;
 
     }
 }

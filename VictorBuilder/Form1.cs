@@ -532,8 +532,9 @@ namespace VictorBuilder
 
         private void SetHoverTextVisibility(Button slot, Tags slotTags, bool visibility)
         {
-            //Set visibility of the hover text panel
-            pnlHoverTextWeapon.Visible = visibility;
+            //Hide all panels; we'll conditionally show the correct one after this
+            pnlHoverTextWeapon.Visible = false;
+            pnlHoverTextCard.Visible = false;
 
             if (visibility)
             {
@@ -543,14 +544,13 @@ namespace VictorBuilder
                     case Tags.ItemType.Card:
                         //TEXT
                         //LINE 1 (name)
-                        //lblHoverTextCardName.Text = slotTags.name;
+                        lblHoverTextCardName.Text = slotTags.name;
                         //LINE 2 (stats)
-                        //lblHoverTextWeaponDamage.Text = slotTags.weaponTags.dmgMin.ToString() + "-" + slotTags.weaponTags.dmgMax.ToString();
-                        //lblHoverTextWeaponArmorPenetration.Text = slotTags.weaponTags.armorPenetration.ToString();
-                        //lblHoverTextWeaponCritChance.Text = slotTags.weaponTags.critChance.ToString() + "%";
-                        //lblHoverTextWeaponCritMulti.Text = slotTags.weaponTags.critMulti.ToString() + "%";
-                        //LINE 3 (weapon text/description eg. prefix/suffix)
-                        //lblHoverTextCardDescription.Text = slotTags.description.Replace("#", slotTags.cardTags.modValue.ToString());
+                        lblHoverTextCardPoints.Text = slotTags.cardTags.points.ToString();
+                        //LINE 3 (card mod description)
+                        lblHoverTextCardDescription.Text = slotTags.description.Replace("#", slotTags.cardTags.modValue.ToString());
+
+                        pnlHoverTextCard.Visible = true;
                         break;
                     //case Tags.ItemType.Consumable:
                     //    break;
@@ -571,6 +571,8 @@ namespace VictorBuilder
                         lblHoverTextWeaponCritMulti.Text = slotTags.weaponTags.critMulti.ToString() + "%";
                         //LINE 3 (weapon text/description eg. prefix/suffix)
                         lblHoverTextWeaponDescription.Text = slotTags.description;
+
+                        pnlHoverTextWeapon.Visible = true;
                         break;
                     default:
                         break;
