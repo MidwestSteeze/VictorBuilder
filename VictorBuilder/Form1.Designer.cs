@@ -72,7 +72,6 @@
             this.lblCritMulti = new System.Windows.Forms.Label();
             this.lblInventoryHeader = new System.Windows.Forms.Label();
             this.lblDestinyPoints = new System.Windows.Forms.Label();
-            this.lblDestinyPointsTotal = new System.Windows.Forms.Label();
             this.lblEquippedDestinyPoints = new System.Windows.Forms.Label();
             this.lblLevel = new System.Windows.Forms.Label();
             this.pbIconWeapons = new System.Windows.Forms.PictureBox();
@@ -718,37 +717,26 @@
             // 
             this.lblDestinyPoints.AutoSize = true;
             this.lblDestinyPoints.BackColor = System.Drawing.Color.Transparent;
-            this.lblDestinyPoints.Font = new System.Drawing.Font("Bell MT", 15F);
+            this.lblDestinyPoints.Font = new System.Drawing.Font("Copperplate Gothic Light", 15F, System.Drawing.FontStyle.Bold);
             this.lblDestinyPoints.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
-            this.lblDestinyPoints.Location = new System.Drawing.Point(514, 744);
+            this.lblDestinyPoints.Location = new System.Drawing.Point(490, 745);
             this.lblDestinyPoints.Name = "lblDestinyPoints";
-            this.lblDestinyPoints.Size = new System.Drawing.Size(118, 23);
+            this.lblDestinyPoints.Size = new System.Drawing.Size(188, 21);
             this.lblDestinyPoints.TabIndex = 12;
-            this.lblDestinyPoints.Text = "(placeholder)";
-            // 
-            // lblDestinyPointsTotal
-            // 
-            this.lblDestinyPointsTotal.AutoSize = true;
-            this.lblDestinyPointsTotal.BackColor = System.Drawing.Color.Transparent;
-            this.lblDestinyPointsTotal.Font = new System.Drawing.Font("Tunga", 22F);
-            this.lblDestinyPointsTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
-            this.lblDestinyPointsTotal.Location = new System.Drawing.Point(705, 731);
-            this.lblDestinyPointsTotal.Name = "lblDestinyPointsTotal";
-            this.lblDestinyPointsTotal.Size = new System.Drawing.Size(60, 52);
-            this.lblDestinyPointsTotal.TabIndex = 13;
-            this.lblDestinyPointsTotal.Text = "/18";
+            this.lblDestinyPoints.Text = "Destiny Points:";
             // 
             // lblEquippedDestinyPoints
             // 
-            this.lblEquippedDestinyPoints.AutoSize = true;
             this.lblEquippedDestinyPoints.BackColor = System.Drawing.Color.Transparent;
             this.lblEquippedDestinyPoints.Font = new System.Drawing.Font("Tunga", 22F);
             this.lblEquippedDestinyPoints.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
-            this.lblEquippedDestinyPoints.Location = new System.Drawing.Point(685, 731);
+            this.lblEquippedDestinyPoints.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblEquippedDestinyPoints.Location = new System.Drawing.Point(669, 732);
+            this.lblEquippedDestinyPoints.Margin = new System.Windows.Forms.Padding(0);
             this.lblEquippedDestinyPoints.Name = "lblEquippedDestinyPoints";
-            this.lblEquippedDestinyPoints.Size = new System.Drawing.Size(39, 52);
+            this.lblEquippedDestinyPoints.Size = new System.Drawing.Size(92, 35);
             this.lblEquippedDestinyPoints.TabIndex = 14;
-            this.lblEquippedDestinyPoints.Text = "#";
+            this.lblEquippedDestinyPoints.Text = "18";
             // 
             // lblLevel
             // 
@@ -1588,7 +1576,6 @@
             this.Controls.Add(this.pbIconWeapons);
             this.Controls.Add(this.lblLevel);
             this.Controls.Add(this.lblEquippedDestinyPoints);
-            this.Controls.Add(this.lblDestinyPointsTotal);
             this.Controls.Add(this.lblDestinyPoints);
             this.Controls.Add(this.lblInventoryHeader);
             this.Controls.Add(this.lblCritMulti);
@@ -1664,7 +1651,6 @@
         private System.Windows.Forms.Label lblCritMulti;
         private System.Windows.Forms.Label lblInventoryHeader;
         private System.Windows.Forms.Label lblDestinyPoints;
-        private System.Windows.Forms.Label lblDestinyPointsTotal;
         private System.Windows.Forms.Label lblEquippedDestinyPoints;
         private System.Windows.Forms.Label lblLevel;
         private System.Windows.Forms.PictureBox pbIconWeapons;

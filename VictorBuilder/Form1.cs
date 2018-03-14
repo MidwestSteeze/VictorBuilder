@@ -31,6 +31,7 @@ namespace VictorBuilder
         int BaseCritMultiSecondary = 0;
         int BaseDmgMaxSecondary = 0;
         int BaseDmgMinSecondary = 0;
+        int maximumCardPoints = 18;
 
         //Stat modifiers (a runnning total from cards, outfit, etc) for calculating purposes
         int modifierIncDamage = 0;
@@ -44,6 +45,9 @@ namespace VictorBuilder
         int modifierFlatCritChanceSecondary = 0;
         int modifierFlatCritMulti = 0;
         int modifierFlatCritMultiSecondary = 0;
+
+        //Other running totals
+        int totalCardPoints = 0;
 
         //float scaleFactor = 0.5f;
 
@@ -90,6 +94,8 @@ namespace VictorBuilder
             btnEquippedWeaponSecondary.Tag = btnInventoryWeapons10.Tag;
             btnEquippedWeaponSecondary.Image = btnInventoryWeapons10.Image;
             CalculateStats((Tags)btnEquippedWeaponSecondary.Tag, true);
+
+            lblEquippedDestinyPoints.Text = totalCardPoints.ToString() + "/" + maximumCardPoints.ToString();
             //END Temporary OnLoad logic
         }
 
@@ -325,6 +331,10 @@ namespace VictorBuilder
                     //Empty card slot found; copy the card into this equippable card slot
                     equippedCard.BackgroundImage = slot.Image;
                     equippedCard.Tag = slotTags;
+
+                    totalCardPoints += slotTags.cardTags.points;
+                    lblEquippedDestinyPoints.Text = totalCardPoints.ToString() + "/" + maximumCardPoints.ToString();
+
                     itemEquipped = true;
                     CalculateStats(slotTags);
                     break;
@@ -393,6 +403,10 @@ namespace VictorBuilder
             //Remove the equipped card from the slot
             slot.BackgroundImage = null;
             slot.Tag = null;
+
+            totalCardPoints -= slotTags.cardTags.points;
+            lblEquippedDestinyPoints.Text = totalCardPoints.ToString() + "/" + maximumCardPoints.ToString();
+
             itemUnequipped = true;            
 
             CalculateStats(slotTags);
