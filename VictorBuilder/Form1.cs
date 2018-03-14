@@ -14,6 +14,9 @@ namespace VictorBuilder
     {
         //Global objects
         Tags.WeaponTags weaponTags;
+        Tags.WeaponTags.AttackTags attackTags1;
+        Tags.WeaponTags.AttackTags attackTags2;
+        Tags.WeaponTags.AttackTags attackTags3;
         Tags.CardTags cardTags;
 
         //Base stat values
@@ -31,7 +34,7 @@ namespace VictorBuilder
         int BaseCritMultiSecondary = 0;
         int BaseDmgMaxSecondary = 0;
         int BaseDmgMinSecondary = 0;
-        int maximumCardPoints = 18;
+        int maximumCardPoints = 24;
 
         //Stat modifiers (a runnning total from cards, outfit, etc) for calculating purposes
         int modifierIncDamage = 0;
@@ -67,11 +70,18 @@ namespace VictorBuilder
             tcInventoryCards.Region = new Region(new RectangleF(tbInventoryCardsPage1.Left, tbInventoryCardsPage1.Top, tbInventoryCardsPage1.Width, tbInventoryCardsPage1.Height));
 
             //START Temporary OnLoad logic
-            weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Sword, Tags.WeaponTags.WeaponDistance.Melee, 44, 75, 0, 35, 100);
+            attackTags1 = new Tags.WeaponTags.AttackTags("Sword Hack", "..\\..\\images\\attacks\\Sword_Hack.png", "..\\..\\images\\attacks\\Sword_Hack_HoverText.png");
+            attackTags2 = new Tags.WeaponTags.AttackTags("Slash", "..\\..\\images\\attacks\\Sword_Slash.png", "..\\..\\images\\attacks\\Sword_Slash_HoverText.png");
+            attackTags3 = new Tags.WeaponTags.AttackTags("Dash", "..\\..\\images\\attacks\\Sword_Dash.png", "..\\..\\images\\attacks\\Sword_Dash_HoverText.png");            
+            weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Sword, Tags.WeaponTags.WeaponDistance.Melee, 44, 75, 0, 35, 100, attackTags1, attackTags2, attackTags3);
+
             btnInventoryWeapons00.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Legendary, "Storm", "Attack speed increased by 25%" + Environment.NewLine + "Critical chance increased by 15%" + Environment.NewLine + "Critical hits create ball lightnings", weaponTags);
             btnInventoryWeapons00.Image = Image.FromFile("..\\..\\images\\weapons\\icon_sword.png");
 
-            weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Scythe, Tags.WeaponTags.WeaponDistance.Melee, 10, 190, 10, 15, 100);
+            attackTags1 = new Tags.WeaponTags.AttackTags("Scythe Slash", "..\\..\\images\\attacks\\Sword_Hack.png", "..\\..\\images\\attacks\\Sword_Hack_HoverText.png");
+            attackTags2 = new Tags.WeaponTags.AttackTags("Stun", "..\\..\\images\\attacks\\Sword_Slash.png", "..\\..\\images\\attacks\\Sword_Slash_HoverText.png");
+            attackTags3 = new Tags.WeaponTags.AttackTags("Whirlwind", "..\\..\\images\\attacks\\Sword_Dash.png", "..\\..\\images\\attacks\\Sword_Dash_HoverText.png");
+            weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Scythe, Tags.WeaponTags.WeaponDistance.Melee, 10, 190, 10, 15, 100, attackTags1, attackTags2, attackTags3);
             btnInventoryWeapons10.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Rare, "Vengeance", "Damage increased by 32% when health is below 50%" + Environment.NewLine + "Gain 10.0% of max health on crit (5 sec. cooldown)" + Environment.NewLine + "Triggers a Meteor storm when your health drops below 40%. Cannot trigger more than once every 60 seconds", weaponTags);
             btnInventoryWeapons10.Image = Image.FromFile("..\\..\\images\\weapons\\icon_scythe.png");
 
@@ -350,6 +360,8 @@ namespace VictorBuilder
                 btnEquippedWeaponSecondary.Image = slot.Image;
                 btnEquippedWeaponSecondary.Tag = slotTags;
                 itemEquipped = true;
+                
+                //Update the stats (ie. dmg, etc)
                 CalculateStats(slotTags, secondarySlot);
             }
             else
@@ -359,6 +371,15 @@ namespace VictorBuilder
                 btnEquippedWeapon.Tag = slotTags;
                 itemEquipped = true;
                 CalculateStats(slotTags);
+
+                //Show the attacks panel
+                lblAttack1.Image = Image.FromFile(slotTags.weaponTags.attack1.attackImageURL);
+                lblAttack2.Image = Image.FromFile(slotTags.weaponTags.attack2.attackImageURL);
+                lblAttack3.Image = Image.FromFile(slotTags.weaponTags.attack3.attackImageURL);
+                lblAttackStats1.Text = slotTags.weaponTags.attack1.attackName + "?-?"; // TODO + Damage
+                lblAttackStats2.Text = slotTags.weaponTags.attack2.attackName + "?-?"; // TODO + Damage
+                lblAttackStats3.Text = slotTags.weaponTags.attack3.attackName + "?-?"; // TODO + Damage
+                pnlEquippedWeaponAttacks.Visible = true;
             }
         }
 
@@ -418,6 +439,15 @@ namespace VictorBuilder
             slot.Image = null;
             slot.Tag = null;
             itemUnequipped = true;
+
+            if (secondarySlot)
+            {
+                //TODO
+            }
+            else
+            {
+                pnlEquippedWeaponAttacks.Visible = false;
+            }
 
             ClearWeaponSlot(secondarySlot);
         }
@@ -592,6 +622,38 @@ namespace VictorBuilder
                         break;
                 }
             }
+        }
+
+        //Will call a subproc to highlight the item being hovered and show hover text
+        private void Attack_MouseHover(object sender, EventArgs e)
+        {
+            Label slot = (Label)sender;
+            Tags slotTags = (Tags)btnEquippedWeapon.Tag;
+            int position = Convert.ToInt32(slot.Name.Substring(slot.Name.Length - 1));
+
+            //Adjust hover text visibility and info
+            switch (position)
+            {
+                case 1:
+                    pnlAttackHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack1.attackImageHoverTextURL);
+                    pnlAttackHoverText.Visible = true;
+                    break;
+                case 2:
+                    pnlAttackHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack2.attackImageHoverTextURL);
+                    pnlAttackHoverText.Visible = true;
+                    break;
+                case 3:
+                    pnlAttackHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack3.attackImageHoverTextURL);
+                    pnlAttackHoverText.Visible = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void Attack_MouseLeave(object sender, EventArgs e)
+        {
+            pnlAttackHoverText.Visible = false;
         }
 
         private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType, string aName, string aDescription)

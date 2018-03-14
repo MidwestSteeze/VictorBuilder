@@ -127,6 +127,15 @@
             this.lblHoverTextCardPoints = new System.Windows.Forms.Label();
             this.lblHoverTextCardDescription = new System.Windows.Forms.Label();
             this.lblHoverTextCardName = new System.Windows.Forms.Label();
+            this.pnlEquippedWeaponAttacks = new System.Windows.Forms.Panel();
+            this.pnlAttackStats = new System.Windows.Forms.Panel();
+            this.lblAttackStats3 = new System.Windows.Forms.Label();
+            this.pnlAttackHoverText = new System.Windows.Forms.Panel();
+            this.lblAttack3 = new System.Windows.Forms.Label();
+            this.lblAttack2 = new System.Windows.Forms.Label();
+            this.lblAttack1 = new System.Windows.Forms.Label();
+            this.lblAttackStats2 = new System.Windows.Forms.Label();
+            this.lblAttackStats1 = new System.Windows.Forms.Label();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
@@ -143,6 +152,8 @@
             this.tlpInventoryCards.SuspendLayout();
             this.pnlHoverTextWeapon.SuspendLayout();
             this.pnlHoverTextCard.SuspendLayout();
+            this.pnlEquippedWeaponAttacks.SuspendLayout();
+            this.pnlAttackStats.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnInventoryWeapons44
@@ -746,9 +757,9 @@
             this.lblLevel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(202)))));
             this.lblLevel.Location = new System.Drawing.Point(658, 672);
             this.lblLevel.Name = "lblLevel";
-            this.lblLevel.Size = new System.Drawing.Size(87, 60);
+            this.lblLevel.Size = new System.Drawing.Size(60, 60);
             this.lblLevel.TabIndex = 15;
-            this.lblLevel.Text = "lblLvl";
+            this.lblLevel.Text = "60";
             // 
             // pbIconWeapons
             // 
@@ -1554,13 +1565,103 @@
             this.lblHoverTextCardName.TabIndex = 0;
             this.lblHoverTextCardName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // pnlEquippedWeaponAttacks
+            // 
+            this.pnlEquippedWeaponAttacks.BackColor = System.Drawing.Color.Transparent;
+            this.pnlEquippedWeaponAttacks.Controls.Add(this.pnlAttackStats);
+            this.pnlEquippedWeaponAttacks.Controls.Add(this.pnlAttackHoverText);
+            this.pnlEquippedWeaponAttacks.Controls.Add(this.lblAttack3);
+            this.pnlEquippedWeaponAttacks.Controls.Add(this.lblAttack2);
+            this.pnlEquippedWeaponAttacks.Controls.Add(this.lblAttack1);
+            this.pnlEquippedWeaponAttacks.Location = new System.Drawing.Point(183, 280);
+            this.pnlEquippedWeaponAttacks.Name = "pnlEquippedWeaponAttacks";
+            this.pnlEquippedWeaponAttacks.Size = new System.Drawing.Size(322, 396);
+            this.pnlEquippedWeaponAttacks.TabIndex = 31;
+            this.pnlEquippedWeaponAttacks.Visible = false;
+            // 
+            // pnlAttackStats
+            // 
+            this.pnlAttackStats.BackColor = System.Drawing.Color.Black;
+            this.pnlAttackStats.Controls.Add(this.lblAttackStats1);
+            this.pnlAttackStats.Controls.Add(this.lblAttackStats2);
+            this.pnlAttackStats.Controls.Add(this.lblAttackStats3);
+            this.pnlAttackStats.Location = new System.Drawing.Point(0, 316);
+            this.pnlAttackStats.Name = "pnlAttackStats";
+            this.pnlAttackStats.Size = new System.Drawing.Size(322, 70);
+            this.pnlAttackStats.TabIndex = 5;
+            // 
+            // lblAttackStats3
+            // 
+            this.lblAttackStats3.Font = new System.Drawing.Font("Copperplate Gothic Light", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAttackStats3.ForeColor = System.Drawing.Color.White;
+            this.lblAttackStats3.Location = new System.Drawing.Point(5, 45);
+            this.lblAttackStats3.Name = "lblAttackStats3";
+            this.lblAttackStats3.Size = new System.Drawing.Size(312, 20);
+            this.lblAttackStats3.TabIndex = 4;
+            this.lblAttackStats3.Text = "Dash: 10-190";
+            // 
+            // pnlAttackHoverText
+            // 
+            this.pnlAttackHoverText.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pnlAttackHoverText.Location = new System.Drawing.Point(0, 0);
+            this.pnlAttackHoverText.Name = "pnlAttackHoverText";
+            this.pnlAttackHoverText.Size = new System.Drawing.Size(322, 246);
+            this.pnlAttackHoverText.TabIndex = 3;
+            // 
+            // lblAttack3
+            // 
+            this.lblAttack3.Location = new System.Drawing.Point(196, 251);
+            this.lblAttack3.Name = "lblAttack3";
+            this.lblAttack3.Size = new System.Drawing.Size(60, 60);
+            this.lblAttack3.TabIndex = 2;
+            this.lblAttack3.MouseLeave += new System.EventHandler(this.Attack_MouseLeave);
+            this.lblAttack3.MouseHover += new System.EventHandler(this.Attack_MouseHover);
+            // 
+            // lblAttack2
+            // 
+            this.lblAttack2.Location = new System.Drawing.Point(131, 251);
+            this.lblAttack2.Name = "lblAttack2";
+            this.lblAttack2.Size = new System.Drawing.Size(60, 60);
+            this.lblAttack2.TabIndex = 1;
+            this.lblAttack2.MouseLeave += new System.EventHandler(this.Attack_MouseLeave);
+            this.lblAttack2.MouseHover += new System.EventHandler(this.Attack_MouseHover);
+            // 
+            // lblAttack1
+            // 
+            this.lblAttack1.Location = new System.Drawing.Point(66, 251);
+            this.lblAttack1.Name = "lblAttack1";
+            this.lblAttack1.Size = new System.Drawing.Size(60, 60);
+            this.lblAttack1.TabIndex = 0;
+            this.lblAttack1.MouseLeave += new System.EventHandler(this.Attack_MouseLeave);
+            this.lblAttack1.MouseHover += new System.EventHandler(this.Attack_MouseHover);
+            // 
+            // lblAttackStats2
+            // 
+            this.lblAttackStats2.Font = new System.Drawing.Font("Copperplate Gothic Light", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAttackStats2.ForeColor = System.Drawing.Color.White;
+            this.lblAttackStats2.Location = new System.Drawing.Point(5, 25);
+            this.lblAttackStats2.Name = "lblAttackStats2";
+            this.lblAttackStats2.Size = new System.Drawing.Size(312, 20);
+            this.lblAttackStats2.TabIndex = 5;
+            this.lblAttackStats2.Text = "Slash: 10-190";
+            // 
+            // lblAttackStats1
+            // 
+            this.lblAttackStats1.Font = new System.Drawing.Font("Copperplate Gothic Light", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAttackStats1.ForeColor = System.Drawing.Color.White;
+            this.lblAttackStats1.Location = new System.Drawing.Point(5, 5);
+            this.lblAttackStats1.Name = "lblAttackStats1";
+            this.lblAttackStats1.Size = new System.Drawing.Size(312, 20);
+            this.lblAttackStats1.TabIndex = 6;
+            this.lblAttackStats1.Text = "Sword Hack: 10-190";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1596, 874);
+            this.ClientSize = new System.Drawing.Size(1916, 1054);
             this.Controls.Add(this.pnlHoverTextWeapon);
             this.Controls.Add(this.pnlHoverTextCard);
             this.Controls.Add(this.lblCritMultiSecondary);
@@ -1589,6 +1690,7 @@
             this.Controls.Add(this.btnEquippedWeapon);
             this.Controls.Add(this.tcInventoryWeapons);
             this.Controls.Add(this.tcInventoryCards);
+            this.Controls.Add(this.pnlEquippedWeaponAttacks);
             this.Name = "frmMain";
             this.Text = "Victor Builder";
             this.Resize += new System.EventHandler(this.frmMain_Resize);
@@ -1608,6 +1710,8 @@
             this.tlpInventoryCards.ResumeLayout(false);
             this.pnlHoverTextWeapon.ResumeLayout(false);
             this.pnlHoverTextCard.ResumeLayout(false);
+            this.pnlEquippedWeaponAttacks.ResumeLayout(false);
+            this.pnlAttackStats.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1713,6 +1817,15 @@
         private System.Windows.Forms.Label lblHoverTextCardPoints;
         private System.Windows.Forms.Label lblHoverTextCardDescription;
         private System.Windows.Forms.Label lblHoverTextCardName;
+        private System.Windows.Forms.Panel pnlEquippedWeaponAttacks;
+        private System.Windows.Forms.Label lblAttack1;
+        private System.Windows.Forms.Label lblAttack3;
+        private System.Windows.Forms.Label lblAttack2;
+        private System.Windows.Forms.Panel pnlAttackHoverText;
+        private System.Windows.Forms.Label lblAttackStats3;
+        private System.Windows.Forms.Panel pnlAttackStats;
+        private System.Windows.Forms.Label lblAttackStats1;
+        private System.Windows.Forms.Label lblAttackStats2;
 
     }
 }

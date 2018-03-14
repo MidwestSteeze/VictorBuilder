@@ -94,18 +94,26 @@ namespace VictorBuilder
             public int critMulti;
             public int dmgMax;
             public int dmgMin;
+
             public WeaponDistance weaponDistance;
             public WeaponType weaponType;
+
+            public AttackTags attack1;
+            public AttackTags attack2;
+            public AttackTags attack3;
 
             /**********************
             /* Constructors START *
             /**********************/
+            public WeaponTags() { }
+
             public WeaponTags(WeaponType aWeaponType)
             {
                 weaponType = aWeaponType;
             }
 
-            public WeaponTags(WeaponType aWeaponType, WeaponDistance aWeaponDistance, int aDmgMin, int aDmgMax, int aArmorPenetration, int aCritChance, int aCritMulti)
+            public WeaponTags(WeaponType aWeaponType, WeaponDistance aWeaponDistance, int aDmgMin, int aDmgMax, int aArmorPenetration, int aCritChance, int aCritMulti,
+                                AttackTags aAttackTags1, AttackTags aAttackTags2, AttackTags aAttackTags3)
             {
                 armorPenetration = aArmorPenetration;
                 critChance = aCritChance;
@@ -114,11 +122,35 @@ namespace VictorBuilder
                 dmgMin = aDmgMin;
                 weaponDistance = aWeaponDistance;
                 weaponType = aWeaponType;
+                attack1 = aAttackTags1;
+                attack2 = aAttackTags2;
+                attack3 = aAttackTags3;
             }
 
             /**********************
             /* Constructors END   *
             /**********************/
+
+            public class AttackTags : WeaponTags
+            {
+                public string attackName;
+                public string attackImageURL;
+                public string attackImageHoverTextURL;
+
+                /**********************
+                /* Constructors START *
+                /**********************/
+                public AttackTags(string aAttackName, string aAttackImageURL, string aAttackImageHoverTextURL)
+                {
+                    attackName = aAttackName;
+                    attackImageURL = aAttackImageURL;
+                    attackImageHoverTextURL = aAttackImageHoverTextURL;
+                }
+
+                /**********************
+                /* Constructors END   *
+                /**********************/
+            }
         }
 
         public class CardTags 
