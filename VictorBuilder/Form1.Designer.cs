@@ -129,13 +129,13 @@
             this.lblHoverTextCardName = new System.Windows.Forms.Label();
             this.pnlEquippedWeaponAttacks = new System.Windows.Forms.Panel();
             this.pnlAttackStats = new System.Windows.Forms.Panel();
+            this.lblAttackStats1 = new System.Windows.Forms.Label();
+            this.lblAttackStats2 = new System.Windows.Forms.Label();
             this.lblAttackStats3 = new System.Windows.Forms.Label();
             this.pnlAttackHoverText = new System.Windows.Forms.Panel();
             this.lblAttack3 = new System.Windows.Forms.Label();
             this.lblAttack2 = new System.Windows.Forms.Label();
             this.lblAttack1 = new System.Windows.Forms.Label();
-            this.lblAttackStats2 = new System.Windows.Forms.Label();
-            this.lblAttackStats1 = new System.Windows.Forms.Label();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
@@ -1585,10 +1585,28 @@
             this.pnlAttackStats.Controls.Add(this.lblAttackStats1);
             this.pnlAttackStats.Controls.Add(this.lblAttackStats2);
             this.pnlAttackStats.Controls.Add(this.lblAttackStats3);
-            this.pnlAttackStats.Location = new System.Drawing.Point(0, 316);
+            this.pnlAttackStats.Location = new System.Drawing.Point(66, 316);
             this.pnlAttackStats.Name = "pnlAttackStats";
-            this.pnlAttackStats.Size = new System.Drawing.Size(322, 70);
+            this.pnlAttackStats.Size = new System.Drawing.Size(190, 70);
             this.pnlAttackStats.TabIndex = 5;
+            // 
+            // lblAttackStats1
+            // 
+            this.lblAttackStats1.Font = new System.Drawing.Font("Copperplate Gothic Light", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAttackStats1.ForeColor = System.Drawing.Color.White;
+            this.lblAttackStats1.Location = new System.Drawing.Point(5, 5);
+            this.lblAttackStats1.Name = "lblAttackStats1";
+            this.lblAttackStats1.Size = new System.Drawing.Size(190, 20);
+            this.lblAttackStats1.TabIndex = 6;
+            // 
+            // lblAttackStats2
+            // 
+            this.lblAttackStats2.Font = new System.Drawing.Font("Copperplate Gothic Light", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAttackStats2.ForeColor = System.Drawing.Color.White;
+            this.lblAttackStats2.Location = new System.Drawing.Point(5, 25);
+            this.lblAttackStats2.Name = "lblAttackStats2";
+            this.lblAttackStats2.Size = new System.Drawing.Size(190, 20);
+            this.lblAttackStats2.TabIndex = 5;
             // 
             // lblAttackStats3
             // 
@@ -1596,9 +1614,8 @@
             this.lblAttackStats3.ForeColor = System.Drawing.Color.White;
             this.lblAttackStats3.Location = new System.Drawing.Point(5, 45);
             this.lblAttackStats3.Name = "lblAttackStats3";
-            this.lblAttackStats3.Size = new System.Drawing.Size(312, 20);
+            this.lblAttackStats3.Size = new System.Drawing.Size(190, 20);
             this.lblAttackStats3.TabIndex = 4;
-            this.lblAttackStats3.Text = "Dash: 10-190";
             // 
             // pnlAttackHoverText
             // 
@@ -1635,33 +1652,13 @@
             this.lblAttack1.MouseLeave += new System.EventHandler(this.Attack_MouseLeave);
             this.lblAttack1.MouseHover += new System.EventHandler(this.Attack_MouseHover);
             // 
-            // lblAttackStats2
-            // 
-            this.lblAttackStats2.Font = new System.Drawing.Font("Copperplate Gothic Light", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAttackStats2.ForeColor = System.Drawing.Color.White;
-            this.lblAttackStats2.Location = new System.Drawing.Point(5, 25);
-            this.lblAttackStats2.Name = "lblAttackStats2";
-            this.lblAttackStats2.Size = new System.Drawing.Size(312, 20);
-            this.lblAttackStats2.TabIndex = 5;
-            this.lblAttackStats2.Text = "Slash: 10-190";
-            // 
-            // lblAttackStats1
-            // 
-            this.lblAttackStats1.Font = new System.Drawing.Font("Copperplate Gothic Light", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAttackStats1.ForeColor = System.Drawing.Color.White;
-            this.lblAttackStats1.Location = new System.Drawing.Point(5, 5);
-            this.lblAttackStats1.Name = "lblAttackStats1";
-            this.lblAttackStats1.Size = new System.Drawing.Size(312, 20);
-            this.lblAttackStats1.TabIndex = 6;
-            this.lblAttackStats1.Text = "Sword Hack: 10-190";
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1916, 1054);
+            this.ClientSize = new System.Drawing.Size(1596, 874);
             this.Controls.Add(this.pnlHoverTextWeapon);
             this.Controls.Add(this.pnlHoverTextCard);
             this.Controls.Add(this.lblCritMultiSecondary);

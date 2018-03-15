@@ -19,6 +19,9 @@ namespace VictorBuilder
         Tags.WeaponTags.AttackTags attackTags3;
         Tags.CardTags cardTags;
 
+        //Global variables
+        string urlAttacks = "..\\..\\images\\attacks\\";
+
         //Base stat values
         int BaseHealth = 4000; //TODO - whats base life at max lvl?
         int BaseArmor = 0;
@@ -126,7 +129,8 @@ namespace VictorBuilder
                 CalculateStatsFromEquippedCards();
             }
 
-            //CalculateWeaponSkills(slotTags);
+            //Recalculate all weapon attacks incase we changed a weapon/card/modifiers that affect each attack's damages
+            CalculateWeaponSkills(slotTags);
         }
 
         private void CalculateStatsFromWeaponChange(Tags slotTags, bool secondarySlot)
@@ -238,9 +242,113 @@ namespace VictorBuilder
                 }
             }
 
-            //Now we have all the total modifiers; update all stat labels to reflect their additions
+            //Now we have all the total modifiers; update all stat and skill labels to reflect their additions
             UpdateStatLabels();
-            //UpdateSkillLabels();
+            UpdateSkillLabels();
+        }
+
+        private void CalculateWeaponSkills(Tags slotTags)
+        { 
+            //We have our weapon base mods set  (ie. dmg, armor pen, crit, etc)
+            // and we have our modifiers from cards set
+            // plug those into the calculations based on the calc used for attack1/attack2/attack3 (need to store these in db i think...)
+            switch (slotTags.weaponTags.weaponType)
+            {
+                case Tags.WeaponTags.WeaponType.Hammer:
+                    //Pound (weapon base damage * cards)
+                    //121-161 --> 121-161
+                    slotTags.weaponTags.attack1.attackName = "Pound";
+                    slotTags.weaponTags.attack1.attackDmgMin = slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage));
+                    slotTags.weaponTags.attack1.attackDmgMax = slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage));
+                    slotTags.weaponTags.attack1.attackImageURL = urlAttacks + "Hammer_Pound.png";
+                    slotTags.weaponTags.attack1.attackImageHoverTextURL = urlAttacks + "Hammer_Pound_HoverText.png";
+
+                    //Crush (weapon base damage * cards * 5) //TODO Cards before or after the * 5?
+                    //121-161 --> 605-805
+                    //131-175 --> 655-875
+                    slotTags.weaponTags.attack2.attackName = "Crush";
+                    slotTags.weaponTags.attack2.attackDmgMin = slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage)) * 5;
+                    slotTags.weaponTags.attack2.attackDmgMax = slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage)) * 5;
+                    slotTags.weaponTags.attack2.attackImageURL = urlAttacks + "Hammer_Crush.png";
+                    slotTags.weaponTags.attack2.attackImageHoverTextURL = urlAttacks + "Hammer_Crush_HoverText.png";
+
+                    //Smash (weapon base damage * cards * 2.5) //TODO Cards before or after the * 2.5?
+                    //121-161 --> 302-402
+                    //131-175 --> 327-437
+                    slotTags.weaponTags.attack3.attackName = "Smash";
+                    slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage))) * 2.496);
+                    slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage))) * 2.497);
+                    slotTags.weaponTags.attack3.attackImageURL = urlAttacks + "Hammer_Smash.png";
+                    slotTags.weaponTags.attack3.attackImageHoverTextURL = urlAttacks + "Hammer_Smash_HoverText.png";
+                    break;
+                case Tags.WeaponTags.WeaponType.HandMortar:
+                    break;
+                case Tags.WeaponTags.WeaponType.Shotgun:
+                    break;
+                case Tags.WeaponTags.WeaponType.LightningGun:
+                    break;
+                case Tags.WeaponTags.WeaponType.Rapier:
+                    break;
+                case Tags.WeaponTags.WeaponType.Sword:
+                    //Sword Hack (weapon base damage * cards)
+                    //46-84 --> 46-84
+                    slotTags.weaponTags.attack1.attackName = "Sword Hack";
+                    slotTags.weaponTags.attack1.attackDmgMin = slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage));
+                    slotTags.weaponTags.attack1.attackDmgMax = slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage));
+                    slotTags.weaponTags.attack1.attackImageURL = urlAttacks + "Sword_Hack.png";
+                    slotTags.weaponTags.attack1.attackImageHoverTextURL = urlAttacks + "Sword_Hack_HoverText.png";
+
+                    //Slash (weapon base damage * cards * 4) //TODO Cards before or after the * 4?
+                    //46-84  --> 184-344
+                    //57-108 --> 228-432
+                    slotTags.weaponTags.attack2.attackName = "Slash";
+                    slotTags.weaponTags.attack2.attackDmgMin = (slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage))) * 4;
+                    slotTags.weaponTags.attack2.attackDmgMax = (slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage))) * 4;
+                    slotTags.weaponTags.attack2.attackImageURL = urlAttacks + "Sword_Slash.png";
+                    slotTags.weaponTags.attack2.attackImageHoverTextURL = urlAttacks + "Sword_Slash_HoverText.png";
+
+                    //Dash (weapon base damage * cards * 2) //TODO Cards before or after the * 2?
+                    //46-84  --> 92-172
+                    //57-108 --> 114-216
+                    slotTags.weaponTags.attack3.attackName = "Dash";
+                    slotTags.weaponTags.attack3.attackDmgMin = (slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage))) * 2;
+                    slotTags.weaponTags.attack3.attackDmgMax = (slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage))) * 2;
+                    slotTags.weaponTags.attack3.attackImageURL = urlAttacks + "Sword_Dash.png";
+                    slotTags.weaponTags.attack3.attackImageHoverTextURL = urlAttacks + "Sword_Dash_HoverText.png";
+                    break;
+                case Tags.WeaponTags.WeaponType.Scythe:
+                    //Reap (weapon base damage * cards)
+                    //20-203 --> 20-203
+                    slotTags.weaponTags.attack1.attackName = "Reap";
+                    slotTags.weaponTags.attack1.attackDmgMin = slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage));
+                    slotTags.weaponTags.attack1.attackDmgMax = slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage));
+                    slotTags.weaponTags.attack1.attackImageURL = urlAttacks + "Scythe_Reap.png";
+                    slotTags.weaponTags.attack1.attackImageHoverTextURL = urlAttacks + "Scythe_Reap_HoverText.png";
+
+                    //Shockwave (no damage)
+                    slotTags.weaponTags.attack2.attackName = "Shockwave";
+                    slotTags.weaponTags.attack2.attackDmgMin = 0;
+                    slotTags.weaponTags.attack2.attackDmgMax = 0;
+                    slotTags.weaponTags.attack2.attackImageURL = urlAttacks + "Scythe_Shockwave.png";
+                    slotTags.weaponTags.attack2.attackImageHoverTextURL = urlAttacks + "Scythe_Shockwave_HoverText.png";
+
+                    //Whirlwind (weapon base damage * cards)
+                    //20-203 --> 20-203
+                    //16-161 --> 16-161
+                    slotTags.weaponTags.attack3.attackName = "Whirlwind";
+                    slotTags.weaponTags.attack3.attackDmgMin = slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage));
+                    slotTags.weaponTags.attack3.attackDmgMax = slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage));
+                    slotTags.weaponTags.attack3.attackImageURL = urlAttacks + "Scythe_Whirlwind.png";
+                    slotTags.weaponTags.attack3.attackImageHoverTextURL = urlAttacks + "Scythe_Whirlwind_HoverText.png";
+                    break;
+                case Tags.WeaponTags.WeaponType.Tome:
+                    break;
+                default:
+                    break;
+            }
+
+            //Update the labels that display these values beside each equipped weapon slot
+            UpdateSkillLabels();
         }
 
         private void UpdateStatLabels()
@@ -280,6 +388,34 @@ namespace VictorBuilder
                 lblArmorPenetrationSecondary.Text = (BaseArmorPenetrationSecondary + modifierFlatArmorPenetrationSecondary).ToString();
                 lblCritChanceSecondary.Text = (BaseCritChanceSecondary + modifierFlatCritChanceSecondary).ToString() + "%";
                 lblCritMultiSecondary.Text = (BaseCritMultiSecondary + modifierFlatCritMultiSecondary).ToString() + "%";
+            }
+        }
+
+        private void UpdateSkillLabels()
+        {
+            Tags slotTags;
+
+            //Show the attack damages on their corresponding labels
+            if (btnEquippedWeapon.Tag != null)
+            {
+                slotTags = (Tags)btnEquippedWeapon.Tag;
+
+                lblAttack1.Image = Image.FromFile(urlAttacks + slotTags.weaponTags.attack1.attackImageURL);
+                lblAttack2.Image = Image.FromFile(urlAttacks + slotTags.weaponTags.attack2.attackImageURL);
+                lblAttack3.Image = Image.FromFile(urlAttacks + slotTags.weaponTags.attack3.attackImageURL);
+
+                lblAttackStats1.Text = slotTags.weaponTags.attack1.attackName + ": " + slotTags.weaponTags.attack1.attackDmgMin + "-" + slotTags.weaponTags.attack1.attackDmgMax;
+                lblAttackStats2.Text = slotTags.weaponTags.attack2.attackName + ": " + slotTags.weaponTags.attack2.attackDmgMin + "-" + slotTags.weaponTags.attack2.attackDmgMax;
+                lblAttackStats3.Text = slotTags.weaponTags.attack3.attackName + ": " + slotTags.weaponTags.attack3.attackDmgMin + "-" + slotTags.weaponTags.attack3.attackDmgMax;
+            }
+
+            if (btnEquippedWeaponSecondary.Tag != null)
+            {
+                slotTags = (Tags)btnEquippedWeapon.Tag;
+
+                //lblAttackSecondaryStats1.Text = slotTags.weaponTags.attack1.attackName + ": " + slotTags.weaponTags.attack1.attackDmgMin + "-" + slotTags.weaponTags.attack1.attackDmgMax;
+                //lblAttackSecondaryStats2.Text = slotTags.weaponTags.attack2.attackName + ": " + slotTags.weaponTags.attack2.attackDmgMin + "-" + slotTags.weaponTags.attack2.attackDmgMax;
+                //lblAttackSecondaryStats3.Text = slotTags.weaponTags.attack3.attackName + ": " + slotTags.weaponTags.attack3.attackDmgMin + "-" + slotTags.weaponTags.attack3.attackDmgMax;
             }
         }
 
@@ -373,12 +509,6 @@ namespace VictorBuilder
                 CalculateStats(slotTags);
 
                 //Show the attacks panel
-                lblAttack1.Image = Image.FromFile(slotTags.weaponTags.attack1.attackImageURL);
-                lblAttack2.Image = Image.FromFile(slotTags.weaponTags.attack2.attackImageURL);
-                lblAttack3.Image = Image.FromFile(slotTags.weaponTags.attack3.attackImageURL);
-                lblAttackStats1.Text = slotTags.weaponTags.attack1.attackName + "?-?"; // TODO + Damage
-                lblAttackStats2.Text = slotTags.weaponTags.attack2.attackName + "?-?"; // TODO + Damage
-                lblAttackStats3.Text = slotTags.weaponTags.attack3.attackName + "?-?"; // TODO + Damage
                 pnlEquippedWeaponAttacks.Visible = true;
             }
         }

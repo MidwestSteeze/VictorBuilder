@@ -136,6 +136,8 @@ namespace VictorBuilder
                 public string attackName;
                 public string attackImageURL;
                 public string attackImageHoverTextURL;
+                public int attackDmgMin;
+                public int attackDmgMax;
 
                 /**********************
                 /* Constructors START *
