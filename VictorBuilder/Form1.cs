@@ -413,9 +413,13 @@ namespace VictorBuilder
             {
                 slotTags = (Tags)btnEquippedWeapon.Tag;
 
-                //lblAttackSecondaryStats1.Text = slotTags.weaponTags.attack1.attackName + ": " + slotTags.weaponTags.attack1.attackDmgMin + "-" + slotTags.weaponTags.attack1.attackDmgMax;
-                //lblAttackSecondaryStats2.Text = slotTags.weaponTags.attack2.attackName + ": " + slotTags.weaponTags.attack2.attackDmgMin + "-" + slotTags.weaponTags.attack2.attackDmgMax;
-                //lblAttackSecondaryStats3.Text = slotTags.weaponTags.attack3.attackName + ": " + slotTags.weaponTags.attack3.attackDmgMin + "-" + slotTags.weaponTags.attack3.attackDmgMax;
+                lblAttackSecondary1.Image = Image.FromFile(urlAttacks + slotTags.weaponTags.attack1.attackImageURL);
+                lblAttackSecondary2.Image = Image.FromFile(urlAttacks + slotTags.weaponTags.attack2.attackImageURL);
+                lblAttackSecondary3.Image = Image.FromFile(urlAttacks + slotTags.weaponTags.attack3.attackImageURL);
+
+                lblAttackStatsSecondary1.Text = slotTags.weaponTags.attack1.attackName + ": " + slotTags.weaponTags.attack1.attackDmgMin + "-" + slotTags.weaponTags.attack1.attackDmgMax;
+                lblAttackStatsSecondary2.Text = slotTags.weaponTags.attack2.attackName + ": " + slotTags.weaponTags.attack2.attackDmgMin + "-" + slotTags.weaponTags.attack2.attackDmgMax;
+                lblAttackStatsSecondary3.Text = slotTags.weaponTags.attack3.attackName + ": " + slotTags.weaponTags.attack3.attackDmgMin + "-" + slotTags.weaponTags.attack3.attackDmgMax;
             }
         }
 
@@ -499,6 +503,7 @@ namespace VictorBuilder
                 
                 //Update the stats (ie. dmg, etc)
                 CalculateStats(slotTags, secondarySlot);
+                pnlEquippedWeaponAttacksSecondary.Visible = true;
             }
             else
             {
@@ -572,7 +577,7 @@ namespace VictorBuilder
 
             if (secondarySlot)
             {
-                //TODO
+                pnlEquippedWeaponAttacksSecondary.Visible = false;
             }
             else
             {
@@ -757,33 +762,72 @@ namespace VictorBuilder
         //Will call a subproc to highlight the item being hovered and show hover text
         private void Attack_MouseHover(object sender, EventArgs e)
         {
+            Tags slotTags;
             Label slot = (Label)sender;
-            Tags slotTags = (Tags)btnEquippedWeapon.Tag;
-            int position = Convert.ToInt32(slot.Name.Substring(slot.Name.Length - 1));
 
-            //Adjust hover text visibility and info
-            switch (position)
+            if (slot.Name.Contains("Secondary"))
             {
-                case 1:
-                    pnlAttackHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack1.attackImageHoverTextURL);
-                    pnlAttackHoverText.Visible = true;
-                    break;
-                case 2:
-                    pnlAttackHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack2.attackImageHoverTextURL);
-                    pnlAttackHoverText.Visible = true;
-                    break;
-                case 3:
-                    pnlAttackHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack3.attackImageHoverTextURL);
-                    pnlAttackHoverText.Visible = true;
-                    break;
-                default:
-                    break;
+                slotTags = (Tags)btnEquippedWeaponSecondary.Tag;
+                int position = Convert.ToInt32(slot.Name.Substring(slot.Name.Length - 1));
+
+                //Adjust hover text visibility and info
+                switch (position)
+                {
+                    case 1:
+                        pnlAttackSecondaryHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack1.attackImageHoverTextURL);
+                        pnlAttackSecondaryHoverText.Visible = true;
+                        break;
+                    case 2:
+                        pnlAttackSecondaryHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack2.attackImageHoverTextURL);
+                        pnlAttackSecondaryHoverText.Visible = true;
+                        break;
+                    case 3:
+                        pnlAttackSecondaryHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack3.attackImageHoverTextURL);
+                        pnlAttackSecondaryHoverText.Visible = true;
+                        break;
+                    default:
+                        break;
+                }
             }
+            else
+            {
+                slotTags = (Tags)btnEquippedWeapon.Tag;
+                int position = Convert.ToInt32(slot.Name.Substring(slot.Name.Length - 1));
+
+                //Adjust hover text visibility and info
+                switch (position)
+                {
+                    case 1:
+                        pnlAttackHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack1.attackImageHoverTextURL);
+                        pnlAttackHoverText.Visible = true;
+                        break;
+                    case 2:
+                        pnlAttackHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack2.attackImageHoverTextURL);
+                        pnlAttackHoverText.Visible = true;
+                        break;
+                    case 3:
+                        pnlAttackHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack3.attackImageHoverTextURL);
+                        pnlAttackHoverText.Visible = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
         }
 
         private void Attack_MouseLeave(object sender, EventArgs e)
         {
-            pnlAttackHoverText.Visible = false;
+            Label slot = (Label)sender;
+
+            if (slot.Name.Contains("Secondary"))
+            {
+                pnlAttackSecondaryHoverText.Visible = false;
+            }
+            else
+            {
+                pnlAttackHoverText.Visible = false;
+            }
         }
 
         private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType, string aName, string aDescription)
