@@ -67,6 +67,8 @@ namespace VictorBuilder
             //Prevent flicker on button highlight changes
             this.DoubleBuffered = true;
 
+            PreloadOutfits();
+
             //Scale the app at startup to half its original size
             //SizeF factor = new SizeF(scaleFactor, scaleFactor);
             //this.Scale(factor);
@@ -95,10 +97,6 @@ namespace VictorBuilder
             cardTags = new Tags.CardTags(2, Tags.CardTags.CardMod.Damage, 10);
             btnInventoryCards00.Tag = FillItemTags(Tags.ItemType.Card, Tags.RarityType.Common, "The Sun", "+#% Damage", cardTags);
             btnInventoryCards00.Image = Image.FromFile("..\\..\\images\\cards\\icon_sun2.png");
-
-            outfitTags = new Tags.OutfitTags(0, "highlander.png");
-            btnInventoryOther00.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Highlander's Outfit", "You gain 200 Overdrive when you use a weapon special attack, but attacks no longer grant Overdrive." + Environment.NewLine + "Reduces weapon cooldowns by 15%.", outfitTags);
-            btnInventoryOther00.Image = Image.FromFile(urlOutfits + "highlander.png");
 
             // Inventory page display
             lblInventoryHeader.Text = "Destiny Cards";
@@ -1021,6 +1019,33 @@ namespace VictorBuilder
                     break;
             }
             
+        }
+
+        private void PreloadOutfits()
+        {
+            outfitTags = new Tags.OutfitTags(-1, "adventurer.png");
+            btnInventoryOther00.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Adventurer's Outfit", "TODO", outfitTags);
+            btnInventoryOther00.Image = Image.FromFile(urlOutfits + "adventurer.png");
+
+            outfitTags = new Tags.OutfitTags(-1, "cavalier.png");
+            btnInventoryOther10.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Cavalier's Outfit", "TODO", outfitTags);
+            btnInventoryOther10.Image = Image.FromFile(urlOutfits + "cavalier.png");
+
+            outfitTags = new Tags.OutfitTags(0, "highlander.png");
+            btnInventoryOther20.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Highlander's Outfit", "You gain 200 Overdrive when you use a weapon special attack, but attacks no longer grant Overdrive." + Environment.NewLine + "Reduces weapon cooldowns by 15%.", outfitTags);
+            btnInventoryOther20.Image = Image.FromFile(urlOutfits + "highlander.png");
+
+            outfitTags = new Tags.OutfitTags(-1, "hunter.png");
+            btnInventoryOther30.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Hunter's Outfit", "TODO", outfitTags);
+            btnInventoryOther30.Image = Image.FromFile(urlOutfits + "hunter.png");
+
+            outfitTags = new Tags.OutfitTags(-1, "vigilante.png");
+            btnInventoryOther40.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Vigilante's Outfit", "TODO", outfitTags);
+            btnInventoryOther40.Image = Image.FromFile(urlOutfits + "vigilante.png");
+
+            outfitTags = new Tags.OutfitTags(-1, "zealot.png");
+            btnInventoryOther01.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Zealot's Outfit", "TODO", outfitTags);
+            btnInventoryOther01.Image = Image.FromFile(urlOutfits + "zealot.png");
         }
 
         /***************************
