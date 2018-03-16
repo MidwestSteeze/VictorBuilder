@@ -18,9 +18,12 @@ namespace VictorBuilder
         Tags.WeaponTags.AttackTags attackTags2;
         Tags.WeaponTags.AttackTags attackTags3;
         Tags.CardTags cardTags;
+        Tags.OutfitTags outfitTags;
 
         //Global variables
         string urlAttacks = "..\\..\\images\\attacks\\";
+        string urlBackgrounds = "..\\..\\images\\backgrounds\\";
+        string urlOutfits = "..\\..\\images\\outfits\\";
 
         //Base stat values
         int BaseHealth = 4000; //TODO - whats base life at max lvl?
@@ -92,6 +95,10 @@ namespace VictorBuilder
             cardTags = new Tags.CardTags(2, Tags.CardTags.CardMod.Damage, 10);
             btnInventoryCards00.Tag = FillItemTags(Tags.ItemType.Card, Tags.RarityType.Common, "The Sun", "+#% Damage", cardTags);
             btnInventoryCards00.Image = Image.FromFile("..\\..\\images\\cards\\icon_sun2.png");
+
+            outfitTags = new Tags.OutfitTags(0, "highlander.png");
+            btnInventoryOther00.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Highlander's Outfit", "You gain 200 Overdrive when you use a weapon special attack, but attacks no longer grant Overdrive." + Environment.NewLine + "Reduces weapon cooldowns by 15%.", outfitTags);
+            btnInventoryOther00.Image = Image.FromFile(urlOutfits + "highlander.png");
 
             // Inventory page display
             lblInventoryHeader.Text = "Destiny Cards";
@@ -465,6 +472,7 @@ namespace VictorBuilder
                 case Tags.ItemType.Empty:
                     break;
                 case Tags.ItemType.Outfit:
+                    EquipOutfit(slot, slotTags, ref itemEquipped);
                     break;
                 case Tags.ItemType.Weapon:
                     EquipWeapon(slot, slotTags, secondarySlot, ref itemEquipped);
@@ -494,6 +502,15 @@ namespace VictorBuilder
                     break;
                 }
             }
+        }
+
+        private void EquipOutfit(Button slot, Tags slotTags, ref bool itemEquipped)
+        {
+            //Copy item to outfit slot
+            this.BackgroundImage = Image.FromFile(urlBackgrounds + slotTags.outfitTags.urlOutfitBackgroundImage);
+            btnEquippedOutfit.Tag = slotTags;
+            itemEquipped = true;
+            //CalculateStats(slotTags); //TODO adds armor, maybe adds some life? that's prob it
         }
 
         private void EquipWeapon(Button slot, Tags slotTags, bool secondarySlot, ref bool itemEquipped)
@@ -718,6 +735,7 @@ namespace VictorBuilder
             //Hide all panels; we'll conditionally show the correct one after this
             pnlHoverTextWeapon.Visible = false;
             pnlHoverTextCard.Visible = false;
+            pnlHoverTextOutfit.Visible = false;
 
             if (visibility)
             {
@@ -741,8 +759,17 @@ namespace VictorBuilder
                     //    break;
                     //case Tags.ItemType.Empty:
                     //    break;
-                    //case Tags.ItemType.Outfit:
-                    //    break;
+                    case Tags.ItemType.Outfit:
+                        //TEXT
+                        //LINE 1 (name)
+                        lblHoverTextOutfitName.Text = slotTags.name;
+                        //LINE 2 (stats)
+                        lblHoverTextOutfitArmor.Text = slotTags.outfitTags.armor.ToString();
+                        //LINE 3 (weapon text/description eg. prefix/suffix)
+                        lblHoverTextOutfitDescription.Text = slotTags.description;
+
+                        pnlHoverTextOutfit.Visible = true;
+                        break;
                     case Tags.ItemType.Weapon:
                         //TEXT
                         //LINE 1 (name)
@@ -856,6 +883,11 @@ namespace VictorBuilder
                                   Tags.CardTags aCardTags)
         {
             return new Tags(aItemType, aRarityType, aName, aDescription, aCardTags);
+        }
+
+        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType, string aName, string aDescription, Tags.OutfitTags aOutfitTags)
+        {
+            return new Tags(aItemType, aRarityType, aName, aDescription, aOutfitTags);
         }
 
         private void ResizeFont(Control.ControlCollection coll, float scaleFactor)

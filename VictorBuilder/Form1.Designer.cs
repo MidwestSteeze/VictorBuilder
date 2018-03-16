@@ -173,6 +173,11 @@
             this.btnInventoryOther40 = new System.Windows.Forms.Button();
             this.btnInventoryOther41 = new System.Windows.Forms.Button();
             this.btnInventoryOther31 = new System.Windows.Forms.Button();
+            this.btnEquippedOutfit = new System.Windows.Forms.Button();
+            this.pnlHoverTextOutfit = new System.Windows.Forms.Panel();
+            this.lblHoverTextOutfitArmor = new System.Windows.Forms.Label();
+            this.lblHoverTextOutfitDescription = new System.Windows.Forms.Label();
+            this.lblHoverTextOutfitName = new System.Windows.Forms.Label();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
@@ -196,6 +201,7 @@
             this.tcInventoryOther.SuspendLayout();
             this.tbInventoryOtherPage1.SuspendLayout();
             this.tlpInventoryOther.SuspendLayout();
+            this.pnlHoverTextOutfit.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnInventoryWeapons44
@@ -2254,6 +2260,69 @@
             this.btnInventoryOther31.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
             this.btnInventoryOther31.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
+            // btnEquippedOutfit
+            // 
+            this.btnEquippedOutfit.BackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedOutfit.FlatAppearance.BorderSize = 0;
+            this.btnEquippedOutfit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedOutfit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedOutfit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEquippedOutfit.Location = new System.Drawing.Point(1011, 117);
+            this.btnEquippedOutfit.Name = "btnEquippedOutfit";
+            this.btnEquippedOutfit.Size = new System.Drawing.Size(94, 135);
+            this.btnEquippedOutfit.TabIndex = 34;
+            this.btnEquippedOutfit.TabStop = false;
+            this.btnEquippedOutfit.UseVisualStyleBackColor = false;
+            this.btnEquippedOutfit.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnEquippedOutfit.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            // 
+            // pnlHoverTextOutfit
+            // 
+            this.pnlHoverTextOutfit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlHoverTextOutfit.BackgroundImage")));
+            this.pnlHoverTextOutfit.Controls.Add(this.lblHoverTextOutfitArmor);
+            this.pnlHoverTextOutfit.Controls.Add(this.lblHoverTextOutfitDescription);
+            this.pnlHoverTextOutfit.Controls.Add(this.lblHoverTextOutfitName);
+            this.pnlHoverTextOutfit.Location = new System.Drawing.Point(362, 440);
+            this.pnlHoverTextOutfit.Name = "pnlHoverTextOutfit";
+            this.pnlHoverTextOutfit.Size = new System.Drawing.Size(514, 246);
+            this.pnlHoverTextOutfit.TabIndex = 35;
+            this.pnlHoverTextOutfit.Visible = false;
+            // 
+            // lblHoverTextOutfitArmor
+            // 
+            this.lblHoverTextOutfitArmor.BackColor = System.Drawing.Color.Transparent;
+            this.lblHoverTextOutfitArmor.Font = new System.Drawing.Font("Copperplate Gothic Light", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoverTextOutfitArmor.ForeColor = System.Drawing.Color.White;
+            this.lblHoverTextOutfitArmor.Location = new System.Drawing.Point(264, 64);
+            this.lblHoverTextOutfitArmor.Margin = new System.Windows.Forms.Padding(0);
+            this.lblHoverTextOutfitArmor.Name = "lblHoverTextOutfitArmor";
+            this.lblHoverTextOutfitArmor.Size = new System.Drawing.Size(75, 26);
+            this.lblHoverTextOutfitArmor.TabIndex = 2;
+            this.lblHoverTextOutfitArmor.Text = "0";
+            this.lblHoverTextOutfitArmor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblHoverTextOutfitDescription
+            // 
+            this.lblHoverTextOutfitDescription.BackColor = System.Drawing.Color.Transparent;
+            this.lblHoverTextOutfitDescription.Font = new System.Drawing.Font("Copperplate Gothic Light", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoverTextOutfitDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(84)))), ((int)(((byte)(136)))));
+            this.lblHoverTextOutfitDescription.Location = new System.Drawing.Point(12, 116);
+            this.lblHoverTextOutfitDescription.Name = "lblHoverTextOutfitDescription";
+            this.lblHoverTextOutfitDescription.Size = new System.Drawing.Size(501, 116);
+            this.lblHoverTextOutfitDescription.TabIndex = 1;
+            this.lblHoverTextOutfitDescription.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblHoverTextOutfitName
+            // 
+            this.lblHoverTextOutfitName.BackColor = System.Drawing.Color.Transparent;
+            this.lblHoverTextOutfitName.Font = new System.Drawing.Font("Copperplate Gothic Light", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoverTextOutfitName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(84)))), ((int)(((byte)(136)))));
+            this.lblHoverTextOutfitName.Location = new System.Drawing.Point(10, 24);
+            this.lblHoverTextOutfitName.Name = "lblHoverTextOutfitName";
+            this.lblHoverTextOutfitName.Size = new System.Drawing.Size(501, 21);
+            this.lblHoverTextOutfitName.TabIndex = 0;
+            this.lblHoverTextOutfitName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2261,6 +2330,8 @@
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1916, 1054);
+            this.Controls.Add(this.pnlHoverTextOutfit);
+            this.Controls.Add(this.btnEquippedOutfit);
             this.Controls.Add(this.pnlEquippedWeaponAttacksSecondary);
             this.Controls.Add(this.pnlHoverTextWeapon);
             this.Controls.Add(this.pnlHoverTextCard);
@@ -2318,6 +2389,7 @@
             this.tcInventoryOther.ResumeLayout(false);
             this.tbInventoryOtherPage1.ResumeLayout(false);
             this.tlpInventoryOther.ResumeLayout(false);
+            this.pnlHoverTextOutfit.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2469,6 +2541,11 @@
         private System.Windows.Forms.Button btnInventoryOther40;
         private System.Windows.Forms.Button btnInventoryOther41;
         private System.Windows.Forms.Button btnInventoryOther31;
+        private System.Windows.Forms.Button btnEquippedOutfit;
+        private System.Windows.Forms.Panel pnlHoverTextOutfit;
+        private System.Windows.Forms.Label lblHoverTextOutfitArmor;
+        private System.Windows.Forms.Label lblHoverTextOutfitDescription;
+        private System.Windows.Forms.Label lblHoverTextOutfitName;
 
     }
 }

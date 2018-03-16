@@ -32,6 +32,7 @@ namespace VictorBuilder
         public RarityType rarity;
         public WeaponTags weaponTags;
         public CardTags cardTags;
+        public OutfitTags outfitTags;
 
         /**********************
         /* Constructors START *
@@ -62,6 +63,15 @@ namespace VictorBuilder
             name = aName;
             description = aDescription;
             cardTags = aCardTags;
+        }
+
+        public Tags(ItemType aItemType, RarityType aRarityType, string aName, string aDescription, OutfitTags aOutfitTags)
+        {
+            itemType = aItemType;
+            rarity = aRarityType;
+            name = aName;
+            description = aDescription;
+            outfitTags = aOutfitTags;
         }
 
         /**********************
@@ -221,6 +231,18 @@ namespace VictorBuilder
             /**********************
             /* Constructors END   *
             /**********************/
+        }
+
+        public class OutfitTags : Tags
+        {
+            public int armor;
+            public string urlOutfitBackgroundImage;
+
+            public OutfitTags(int aArmor, string aUrlOutfitBackgroundImage)
+            {
+                armor = aArmor;
+                urlOutfitBackgroundImage = aUrlOutfitBackgroundImage;
+            }
         }
     }
 }
