@@ -71,6 +71,7 @@ namespace VictorBuilder
             //Remove the weird default border that a TabControl keeps around its children tab pages
             tcInventoryWeapons.Region = new Region(new RectangleF(tbInventoryWeaponsPage1.Left, tbInventoryWeaponsPage1.Top, tbInventoryWeaponsPage1.Width, tbInventoryWeaponsPage1.Height));
             tcInventoryCards.Region = new Region(new RectangleF(tbInventoryCardsPage1.Left, tbInventoryCardsPage1.Top, tbInventoryCardsPage1.Width, tbInventoryCardsPage1.Height));
+            tcInventoryOther.Region = new Region(new RectangleF(tbInventoryOtherPage1.Left, tbInventoryOtherPage1.Top, tbInventoryOtherPage1.Width, tbInventoryOtherPage1.Height));
 
             //START Temporary OnLoad logic
             attackTags1 = new Tags.WeaponTags.AttackTags("Sword Hack", "..\\..\\images\\attacks\\Sword_Hack.png", "..\\..\\images\\attacks\\Sword_Hack_HoverText.png");
@@ -96,9 +97,12 @@ namespace VictorBuilder
             lblInventoryHeader.Text = "Destiny Cards";
             tcInventoryWeapons.Visible = false;
             tcInventoryCards.Visible = true;
+            tcInventoryOther.Visible = false;
             pbIconWeapons.Visible = true;
             pbIconWeaponsHighlighted.Visible = false;
             pbIconCardsHighlighted.Visible = true;
+            pbIconOther.Visible = true;
+            pbIconOtherHighlighted.Visible = false;
 
             btnEquippedWeapon.Tag = btnInventoryWeapons00.Tag;
             btnEquippedWeapon.Image = btnInventoryWeapons00.Image;
@@ -889,10 +893,10 @@ namespace VictorBuilder
         { 
             //Hide all inventory tabs
             tcInventoryWeapons.Visible = false;
-            //tbInventoryConsumables.Visible = false;
-            //tbInventoryDemonPowers.Visible = false;
+            //tcInventoryConsumables.Visible = false;
+            //tcInventoryDemonPowers.Visible = false;
             tcInventoryCards.Visible = false;
-            //tbInventoryOther.Visible = false;
+            tcInventoryOther.Visible = false;
 
             //create multiple panels and hide/show the selected one
             switch (pageName)
@@ -903,6 +907,10 @@ namespace VictorBuilder
 
                 case "cards":
                     tcInventoryCards.Visible = true;
+                    break;
+
+                case "other":
+                    tcInventoryOther.Visible = true;
                     break;
                 default:
                     break;
