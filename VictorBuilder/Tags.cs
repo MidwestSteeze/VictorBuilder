@@ -236,6 +236,8 @@ namespace VictorBuilder
         public class OutfitTags : Tags
         {
             public int armor;
+            public int critChance = 0;
+            public int health = 0;
             public string urlOutfitBackgroundImage;
 
             public OutfitTags(int aArmor, string aUrlOutfitBackgroundImage)

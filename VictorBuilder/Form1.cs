@@ -101,13 +101,13 @@ namespace VictorBuilder
             // Inventory page display
             lblInventoryHeader.Text = "Destiny Cards";
             tcInventoryWeapons.Visible = false;
-            tcInventoryCards.Visible = true;
-            tcInventoryOther.Visible = false;
+            tcInventoryCards.Visible = false;
+            tcInventoryOther.Visible = true;
             pbIconWeapons.Visible = true;
             pbIconWeaponsHighlighted.Visible = false;
-            pbIconCardsHighlighted.Visible = true;
-            pbIconOther.Visible = true;
-            pbIconOtherHighlighted.Visible = false;
+            pbIconCardsHighlighted.Visible = false;
+            pbIconOther.Visible = false;
+            pbIconOtherHighlighted.Visible = true;
 
             btnEquippedWeapon.Tag = btnInventoryWeapons00.Tag;
             btnEquippedWeapon.Image = btnInventoryWeapons00.Image;
@@ -131,15 +131,24 @@ namespace VictorBuilder
 
                 //With the new weapon in place, add on the card mods
                 CalculateStatsFromEquippedCards();
+
+                //Recalculate all weapon attacks incase we changed a weapon/card/modifiers that affect each attack's damages
+                CalculateWeaponSkills(slotTags);
             }
             else if (slotTags.cardTags != null && (btnEquippedWeapon.Tag != null || btnEquippedWeaponSecondary.Tag != null))
             {
                 //We added or removed a card and we have at least one weapon equipped, so recalc stats considering all cards
                 CalculateStatsFromEquippedCards();
-            }
 
-            //Recalculate all weapon attacks incase we changed a weapon/card/modifiers that affect each attack's damages
-            CalculateWeaponSkills(slotTags);
+                //Recalculate all weapon attacks incase we changed a weapon/card/modifiers that affect each attack's damages
+                CalculateWeaponSkills(slotTags);
+            }
+            else if (slotTags.outfitTags != null)
+            {
+                CalculateStatsFromEquippedCards();
+
+                CalculateStatsFromOutfit(slotTags);
+            }
         }
 
         private void CalculateStatsFromWeaponChange(Tags slotTags, bool secondarySlot)
@@ -254,6 +263,17 @@ namespace VictorBuilder
             //Now we have all the total modifiers; update all stat and skill labels to reflect their additions
             UpdateStatLabels();
             UpdateSkillLabels();
+        }
+
+        private void CalculateStatsFromOutfit(Tags slotTags)
+        { 
+            //Outfits can add armor, health or crit chance; tack them onto the totals
+            modifierFlatArmor += slotTags.outfitTags.armor;
+            modifierFlatHealth += slotTags.outfitTags.health;
+            modifierFlatCritChance += slotTags.outfitTags.critChance;
+            modifierFlatCritChanceSecondary += slotTags.outfitTags.critChance;
+
+            UpdateStatLabels();
         }
 
         private void CalculateWeaponSkills(Tags slotTags)
@@ -508,7 +528,7 @@ namespace VictorBuilder
             this.BackgroundImage = Image.FromFile(urlBackgrounds + slotTags.outfitTags.urlOutfitBackgroundImage);
             btnEquippedOutfit.Tag = slotTags;
             itemEquipped = true;
-            //CalculateStats(slotTags); //TODO adds armor, maybe adds some life? that's prob it
+            CalculateStats(slotTags);
         }
 
         private void EquipWeapon(Button slot, Tags slotTags, bool secondarySlot, ref bool itemEquipped)
@@ -1023,28 +1043,34 @@ namespace VictorBuilder
 
         private void PreloadOutfits()
         {
-            outfitTags = new Tags.OutfitTags(-1, "adventurer.png");
-            btnInventoryOther00.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Adventurer's Outfit", "TODO", outfitTags);
+            outfitTags = new Tags.OutfitTags(30, "adventurer.png");
+            btnInventoryOther00.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Adventurer's Outfit", "Increases the Destiny slots by 1.  Increases maximum Overdrive by 2,000.  Increases Overdrive gain by 30%.", outfitTags);
             btnInventoryOther00.Image = Image.FromFile(urlOutfits + "adventurer.png");
 
-            outfitTags = new Tags.OutfitTags(-1, "cavalier.png");
-            btnInventoryOther10.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Cavalier's Outfit", "TODO", outfitTags);
+            outfitTags = new Tags.OutfitTags(50, "cavalier.png");
+            btnInventoryOther10.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Cavalier's Outfit", "You gain 180 Overdrive every second, but attacks no longer grant Overdrive.", outfitTags);
             btnInventoryOther10.Image = Image.FromFile(urlOutfits + "cavalier.png");
 
-            outfitTags = new Tags.OutfitTags(0, "highlander.png");
-            btnInventoryOther20.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Highlander's Outfit", "You gain 200 Overdrive when you use a weapon special attack, but attacks no longer grant Overdrive." + Environment.NewLine + "Reduces weapon cooldowns by 15%.", outfitTags);
+            outfitTags = new Tags.OutfitTags(70, "highlander.png");
+            btnInventoryOther20.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Highlander's Outfit", "You gain 300 Overdrive when you use a weapon special attack, but attacks no longer grant Overdrive." + Environment.NewLine + "Reduces weapon cooldowns by 15%.", outfitTags);
             btnInventoryOther20.Image = Image.FromFile(urlOutfits + "highlander.png");
 
-            outfitTags = new Tags.OutfitTags(-1, "hunter.png");
-            btnInventoryOther30.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Hunter's Outfit", "TODO", outfitTags);
+            outfitTags = new Tags.OutfitTags(80, "hunter.png");
+            btnInventoryOther30.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Hunter's Outfit", "Gain 200% of the damage taken as Overdrive.", outfitTags);
             btnInventoryOther30.Image = Image.FromFile(urlOutfits + "hunter.png");
 
-            outfitTags = new Tags.OutfitTags(-1, "vigilante.png");
-            btnInventoryOther40.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Vigilante's Outfit", "TODO", outfitTags);
+            //outfitTags = new Tags.OutfitTags(150, "vanguard.png");
+            //btnInventoryOther30.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Vanguard's Outfit", "High Armor.  Increases maximum Overdrive by 2,000.  Overdrive doesn't diminish outside of combat but Overdrive gain is decreased by 10%.", outfitTags);
+            //btnInventoryOther30.Image = Image.FromFile(urlOutfits + "vanguard.png");
+
+            outfitTags = new Tags.OutfitTags(70, "vigilante.png");
+            outfitTags.critChance = 10;
+            btnInventoryOther40.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Vigilante's Outfit", "Critical hits grant 300% more Overdrive.  Normal attacks no longer grant Overdrive.", outfitTags);
             btnInventoryOther40.Image = Image.FromFile(urlOutfits + "vigilante.png");
 
-            outfitTags = new Tags.OutfitTags(-1, "zealot.png");
-            btnInventoryOther01.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Zealot's Outfit", "TODO", outfitTags);
+            outfitTags = new Tags.OutfitTags(100, "zealot.png");
+            outfitTags.health = 1000;
+            btnInventoryOther01.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Zealot's Outfit", "High Armor.  Increases Health by 1,000.", outfitTags);
             btnInventoryOther01.Image = Image.FromFile(urlOutfits + "zealot.png");
         }
 
