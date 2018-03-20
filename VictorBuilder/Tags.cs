@@ -30,6 +30,7 @@ namespace VictorBuilder
         public string name;
         public ItemType itemType;
         public RarityType rarity;
+        public string image;
         public WeaponTags weaponTags;
         public CardTags cardTags;
         public OutfitTags outfitTags;
@@ -47,12 +48,13 @@ namespace VictorBuilder
             description = aDescription;
         }
 
-        public Tags(ItemType aItemType, RarityType aRarityType, string aName, string aDescription, WeaponTags aWeaponTags)
+        public Tags(ItemType aItemType, RarityType aRarityType, string aName, string aDescription, string aImage, WeaponTags aWeaponTags)
         {
             itemType = aItemType;
             rarity = aRarityType;
             name = aName;
             description = aDescription;
+            image = aImage;
             weaponTags = aWeaponTags;
         }
 

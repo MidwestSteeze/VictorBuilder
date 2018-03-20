@@ -178,6 +178,7 @@
             this.lblHoverTextOutfitArmor = new System.Windows.Forms.Label();
             this.lblHoverTextOutfitDescription = new System.Windows.Forms.Label();
             this.lblHoverTextOutfitName = new System.Windows.Forms.Label();
+            this.btnCreateItem = new System.Windows.Forms.Button();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
@@ -904,30 +905,30 @@
             this.tlpInventoryWeapons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
             this.tlpInventoryWeapons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
             this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons00, 0, 0);
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons04, 0, 4);
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons14, 1, 4);
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons03, 0, 3);
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons24, 2, 4);
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons13, 1, 3);
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons34, 3, 4);
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons44, 4, 4);
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons23, 2, 3);
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons33, 3, 3);
             this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons10, 1, 0);
             this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons20, 2, 0);
+            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons30, 3, 0);
+            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons40, 4, 0);
             this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons01, 0, 1);
             this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons11, 1, 1);
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons43, 4, 3);
             this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons21, 2, 1);
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons22, 2, 2);
+            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons31, 3, 1);
+            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons41, 4, 1);
             this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons02, 0, 2);
             this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons12, 1, 2);
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons42, 4, 2);
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons30, 3, 0);
+            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons22, 2, 2);
             this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons32, 3, 2);
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons40, 4, 0);
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons41, 4, 1);
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons31, 3, 1);
+            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons42, 4, 2);
+            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons03, 0, 3);
+            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons13, 1, 3);
+            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons23, 2, 3);
+            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons33, 3, 3);
+            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons43, 4, 3);
+            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons04, 0, 4);
+            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons14, 1, 4);
+            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons24, 2, 4);            
+            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons34, 3, 4);
+            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons44, 4, 4);
             this.tlpInventoryWeapons.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tlpInventoryWeapons.Location = new System.Drawing.Point(0, 0);
             this.tlpInventoryWeapons.Margin = new System.Windows.Forms.Padding(0);
@@ -2323,13 +2324,27 @@
             this.lblHoverTextOutfitName.TabIndex = 0;
             this.lblHoverTextOutfitName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // btnCreateItem
+            // 
+            this.btnCreateItem.BackColor = System.Drawing.Color.Black;
+            this.btnCreateItem.ForeColor = System.Drawing.Color.White;
+            this.btnCreateItem.Location = new System.Drawing.Point(1255, 175);
+            this.btnCreateItem.Name = "btnCreateItem";
+            this.btnCreateItem.Size = new System.Drawing.Size(75, 23);
+            this.btnCreateItem.TabIndex = 36;
+            this.btnCreateItem.Text = "Create Item";
+            this.btnCreateItem.UseVisualStyleBackColor = false;
+            this.btnCreateItem.Click += new System.EventHandler(this.btnCreateItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1916, 1054);
+            this.Controls.Add(this.btnCreateItem);
             this.Controls.Add(this.pnlHoverTextOutfit);
             this.Controls.Add(this.btnEquippedOutfit);
             this.Controls.Add(this.pnlEquippedWeaponAttacksSecondary);
@@ -2546,6 +2561,7 @@
         private System.Windows.Forms.Label lblHoverTextOutfitArmor;
         private System.Windows.Forms.Label lblHoverTextOutfitDescription;
         private System.Windows.Forms.Label lblHoverTextOutfitName;
+        private System.Windows.Forms.Button btnCreateItem;
 
     }
 }

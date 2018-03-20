@@ -19,11 +19,14 @@ namespace VictorBuilder
         Tags.WeaponTags.AttackTags attackTags3;
         Tags.CardTags cardTags;
         Tags.OutfitTags outfitTags;
+        Tags newItemTags;
 
         //Global variables
         string urlAttacks = "..\\..\\images\\attacks\\";
         string urlBackgrounds = "..\\..\\images\\backgrounds\\";
         string urlOutfits = "..\\..\\images\\outfits\\";
+        string urlCards = "..\\..\\images\\cards\\";
+        string urlWeapons = "..\\..\\images\\weapons\\";
 
         //Base stat values
         int BaseHealth = 4000; //TODO - whats base life at max lvl?
@@ -84,14 +87,14 @@ namespace VictorBuilder
             attackTags3 = new Tags.WeaponTags.AttackTags("Dash", "..\\..\\images\\attacks\\Sword_Dash.png", "..\\..\\images\\attacks\\Sword_Dash_HoverText.png");            
             weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Sword, Tags.WeaponTags.WeaponDistance.Melee, 44, 75, 0, 35, 100, attackTags1, attackTags2, attackTags3);
 
-            btnInventoryWeapons00.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Legendary, "Storm", "Attack speed increased by 25%" + Environment.NewLine + "Critical chance increased by 15%" + Environment.NewLine + "Critical hits create ball lightnings", weaponTags);
+            btnInventoryWeapons00.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Legendary, "Storm", "Attack speed increased by 25%" + Environment.NewLine + "Critical chance increased by 15%" + Environment.NewLine + "Critical hits create ball lightnings", "icon_sword.png", weaponTags);
             btnInventoryWeapons00.Image = Image.FromFile("..\\..\\images\\weapons\\icon_sword.png");
 
             attackTags1 = new Tags.WeaponTags.AttackTags("Scythe Slash", "..\\..\\images\\attacks\\Sword_Hack.png", "..\\..\\images\\attacks\\Sword_Hack_HoverText.png");
             attackTags2 = new Tags.WeaponTags.AttackTags("Stun", "..\\..\\images\\attacks\\Sword_Slash.png", "..\\..\\images\\attacks\\Sword_Slash_HoverText.png");
             attackTags3 = new Tags.WeaponTags.AttackTags("Whirlwind", "..\\..\\images\\attacks\\Sword_Dash.png", "..\\..\\images\\attacks\\Sword_Dash_HoverText.png");
             weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Scythe, Tags.WeaponTags.WeaponDistance.Melee, 10, 190, 10, 15, 100, attackTags1, attackTags2, attackTags3);
-            btnInventoryWeapons10.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Rare, "Vengeance", "Damage increased by 32% when health is below 50%" + Environment.NewLine + "Gain 10.0% of max health on crit (5 sec. cooldown)" + Environment.NewLine + "Triggers a Meteor storm when your health drops below 40%. Cannot trigger more than once every 60 seconds", weaponTags);
+            btnInventoryWeapons10.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Rare, "Vengeance", "Damage increased by 32% when health is below 50%" + Environment.NewLine + "Gain 10.0% of max health on crit (5 sec. cooldown)" + Environment.NewLine + "Triggers a Meteor storm when your health drops below 40%. Cannot trigger more than once every 60 seconds", "icon_scythe.png", weaponTags);
             btnInventoryWeapons10.Image = Image.FromFile("..\\..\\images\\weapons\\icon_scythe.png");
 
             cardTags = new Tags.CardTags(2, Tags.CardTags.CardMod.Damage, 10);
@@ -884,17 +887,17 @@ namespace VictorBuilder
             return new Tags(aItemType, aRarityType, aName, aDescription);
         }
 
-        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType, string aName, string aDescription,
+        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType, string aName, string aDescription, string aImage,
                                   Tags.WeaponTags.WeaponType aWeaponType)
         {
             Tags.WeaponTags weaponTags = new Tags.WeaponTags(aWeaponType);
-            return new Tags(aItemType, aRarityType, aName, aDescription, weaponTags);
+            return new Tags(aItemType, aRarityType, aName, aDescription, aImage, weaponTags);
         }
 
-        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType, string aName, string aDescription,
+        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType, string aName, string aDescription, string aImage,
                                   Tags.WeaponTags aWeaponTags)
         {
-            return new Tags(aItemType, aRarityType, aName, aDescription, aWeaponTags);
+            return new Tags(aItemType, aRarityType, aName, aDescription, aImage, aWeaponTags);
         }
 
         private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType, string aName, string aDescription,
@@ -1139,8 +1142,86 @@ namespace VictorBuilder
         }
 
         #endregion
+
         /***************************
          *  END Stats as numbers *
-         *  ************************/     
+         *  ************************/    
+
+        private void btnCreateItem_Click(object sender, EventArgs e)
+        {
+            bool itemCreated = false;
+
+            //Create and show the CreateItem form
+            using (CreateItemForm frmCreateItem = new CreateItemForm())
+            {
+                itemCreated = (frmCreateItem.ShowDialog() == DialogResult.OK);
+
+                if (itemCreated)
+                {
+                    //We created an item, so grab its values
+                    newItemTags = frmCreateItem.newItemTags;
+
+					//Add the new item into the inventory (ie. Weapon, Card, etc)
+                    AddNewItemToInventory();
+                }
+            }
+        }
+
+        private void AddNewItemToInventory()
+        {
+            TabControl inventoryCategory;
+            TabPage inventory;
+            TableLayoutPanel inventorySlots;
+            bool itemLoaded = false;
+            string urlFilePath = string.Empty;
+
+            //Determine which item category we created a new item for
+            switch (newItemTags.itemType)
+            {
+                case Tags.ItemType.Card:
+                    inventoryCategory = tcInventoryCards;
+                    urlFilePath = urlCards;
+                    break;
+                //case Tags.ItemType.Consumable:
+                //    break;
+                //case Tags.ItemType.DemonPower:
+                //    break;
+                //case Tags.ItemType.Empty:
+                //    break;
+                //case Tags.ItemType.Outfit:
+                //    break;
+                case Tags.ItemType.Weapon:
+                    inventoryCategory = tcInventoryWeapons;
+                    urlFilePath = urlWeapons;
+                    break;
+                default:
+                    throw new Exception("No item type found for " + newItemTags.itemType);
+            }
+
+            //Get the child controls of the inventory category we're going to add this new item into
+            inventory = inventoryCategory.SelectedTab;
+            inventorySlots = (TableLayoutPanel)inventory.Controls[inventory.Controls.Count - 1];
+
+            //Loop through all inventory slots and add the new item to the first available slot
+            foreach (Button inventorySlot in inventorySlots.Controls)
+            {
+                //Check if the inventory slot is empty
+                if ((Tags)inventorySlot.Tag == null)
+                {
+                    //Empty inventory slot found; copy the new item into this equippable inventory slot
+                    inventorySlot.BackgroundImage = Image.FromFile(urlFilePath + newItemTags.image);
+                    inventorySlot.Tag = newItemTags; //equippedCard.Tag = slotTags;
+
+                    itemLoaded = true;
+                    break;
+                }                
+            }
+
+            if (!itemLoaded)
+            { 
+                //We didn't find an empty slot, need to create a new TabPage with a TableLayoutPanel and a new button to hold this new item
+                //TODO
+            }
+        }
     }
 }
