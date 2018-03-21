@@ -169,6 +169,7 @@ namespace VictorBuilder
         {
             //Find the base item in the database (type and rarity) and calculate on the affixes (if applicable)
             GetWeaponFromTable();
+            CalculateStats();
 
             //Return to the main form
             this.DialogResult = DialogResult.OK;
@@ -197,7 +198,6 @@ namespace VictorBuilder
             int wpnCritMulti;
             Tags.WeaponTags.WeaponDistance wpnDistance;
             Affix.Modifier modifier;
-            string tmpModifier;
             string wpnDescription = string.Empty;
 
             //Attack data
@@ -378,6 +378,58 @@ namespace VictorBuilder
                         newItemTags.description += newItemTags.weaponTags.thirdAffix.listBoxDisplay;
                     }
                     #endregion
+                }
+            }
+        }
+
+        private void CalculateStats()
+        {
+            switch (newItemTags.itemType)
+            {
+                case Tags.ItemType.Card:
+                    //CalculateCardStats();
+                    break;
+                case Tags.ItemType.Weapon:
+                    CalculateWeaponStats();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void CalculateWeaponStats()
+        { 
+            //Add on the affix modifiers (if any) to the base weapon stats (ie. dmg, armor pen, crit, etc)
+            CalculateOnModifier(newItemTags.weaponTags.prefix);
+            CalculateOnModifier(newItemTags.weaponTags.suffix);
+            CalculateOnModifier(newItemTags.weaponTags.thirdAffix);
+        }
+
+        private void CalculateOnModifier(Affix aAffix)
+        {
+            if (aAffix != null)
+            {
+                switch (aAffix.modifier)
+                {
+                    case Affix.Modifier.None:
+                        break;
+                    //case Affix.Modifier.Armor:
+                    //break;
+                    case Affix.Modifier.ArmorPenetration:
+                        newItemTags.weaponTags.armorPenetration += aAffix.value;
+                        break;
+                    case Affix.Modifier.Damage:
+                        newItemTags.weaponTags.dmgMin = (int)Math.Round(newItemTags.weaponTags.dmgMin * (1 + (aAffix.value / 100.0)));
+                        newItemTags.weaponTags.dmgMax = (int)Math.Round(newItemTags.weaponTags.dmgMax * (1 + (aAffix.value / 100.0)));
+                        break;
+                    case Affix.Modifier.CritChance:
+                        newItemTags.weaponTags.critChance += aAffix.value;
+                        break;
+                    case Affix.Modifier.CritMulti:
+                        newItemTags.weaponTags.critMulti += aAffix.value;
+                        break;
+                    default:
+                        break;
                 }
             }
         }
