@@ -360,6 +360,9 @@
             this.btnInventoryWeapons41.TabIndex = 14;
             this.btnInventoryWeapons41.TabStop = false;
             this.btnInventoryWeapons41.UseVisualStyleBackColor = false;
+            this.btnInventoryWeapons41.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryWeapons41.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryWeapons41.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryWeapons31
             // 
@@ -373,6 +376,9 @@
             this.btnInventoryWeapons31.TabIndex = 13;
             this.btnInventoryWeapons31.TabStop = false;
             this.btnInventoryWeapons31.UseVisualStyleBackColor = false;
+            this.btnInventoryWeapons31.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryWeapons31.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryWeapons31.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryWeapons21
             // 
@@ -386,6 +392,9 @@
             this.btnInventoryWeapons21.TabIndex = 12;
             this.btnInventoryWeapons21.TabStop = false;
             this.btnInventoryWeapons21.UseVisualStyleBackColor = false;
+            this.btnInventoryWeapons21.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryWeapons21.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryWeapons21.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryWeapons40
             // 
@@ -399,6 +408,9 @@
             this.btnInventoryWeapons40.TabIndex = 11;
             this.btnInventoryWeapons40.TabStop = false;
             this.btnInventoryWeapons40.UseVisualStyleBackColor = false;
+            this.btnInventoryWeapons40.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryWeapons40.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryWeapons40.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryWeapons30
             // 
@@ -412,6 +424,9 @@
             this.btnInventoryWeapons30.TabIndex = 10;
             this.btnInventoryWeapons30.TabStop = false;
             this.btnInventoryWeapons30.UseVisualStyleBackColor = false;
+            this.btnInventoryWeapons30.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryWeapons30.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryWeapons30.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryWeapons20
             // 
@@ -425,6 +440,9 @@
             this.btnInventoryWeapons20.TabIndex = 9;
             this.btnInventoryWeapons20.TabStop = false;
             this.btnInventoryWeapons20.UseVisualStyleBackColor = false;
+            this.btnInventoryWeapons20.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryWeapons20.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryWeapons20.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryWeapons12
             // 
@@ -926,7 +944,7 @@
             this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons43, 4, 3);
             this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons04, 0, 4);
             this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons14, 1, 4);
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons24, 2, 4);            
+            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons24, 2, 4);
             this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons34, 3, 4);
             this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons44, 4, 4);
             this.tlpInventoryWeapons.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;

@@ -13,46 +13,24 @@ namespace VictorBuilder
 {
     public partial class CreateItemForm : Form
     {
+        string connectionString = Properties.Settings.Default.ItemsConnectionString;
         public Tags newItemTags;
-
-        public class Affix
-        {
-            public enum Modifier
-            { 
-                Armor,
-                ArmorPenetration,
-                Damage,
-                CritChance,
-                CritMulti,
-                NA
-            }
-
-            public string name;
-            public Modifier modifier;            
-            public int value;
-            public string weaponDescription;
-            public string listBoxDisplay { get; set; }
-
-            public Affix(string aName, Modifier aModifier, int aValue, string aWeaponDescription)
-            {
-                name = aName;
-                modifier = aModifier;
-                value = aValue;
-                weaponDescription = aWeaponDescription;
-                listBoxDisplay = aWeaponDescription;
-                listBoxDisplay.Replace("#", value.ToString()); //TODOSSG not working
-            }
-        }
 
         public CreateItemForm()
         {
             InitializeComponent();
+
+            //Load up the Affixes list box selectable data for creating a weapon
+            FillAffixesLists();
         }
 
         private void cboType_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Enable the Rarity combo box
             cboRarity.Enabled = true;
+
+            //Update the Legendary Weapons list box to contain options for the currently selected weapon type
+            FillLegendaryWeaponsList();
         }
 
         private void cboRarity_SelectedIndexChanged(object sender, EventArgs e)
@@ -60,17 +38,13 @@ namespace VictorBuilder
             tcWeaponMods.Enabled = true;
             switch (cboRarity.SelectedItem.ToString())
             {
-                case "Common":
-                    //Load up the Prefixes and Suffixes list boxes with values
-                    FillAffixesLists();
+                case "Common":                    
                     tcWeaponMods.SelectedTab = tpAffixes;
                     //Don't allow a third affix to be added
                     lstThirdAffix.Enabled = false;
                     break;
                 case "Uncommon":
                 case "Rare":
-                    //Load up the Prefixes and Suffixes list boxes with values
-                    FillAffixesLists();
                     tcWeaponMods.SelectedTab = tpAffixes;
                     //Allow a third affix to be added
                     lstThirdAffix.Enabled = true;
@@ -88,71 +62,107 @@ namespace VictorBuilder
             //Prefixes
             lstPrefixes.DisplayMember = "listBoxDisplay";
             lstPrefixes.Items.Add(new Affix("Cursed", Affix.Modifier.Damage, 22, "Damaged increased by #%, but decreases gold drops"));
-            lstPrefixes.Items.Add(new Affix("Dancing", Affix.Modifier.NA, 22, "#% increased attack speed"));
+            lstPrefixes.Items.Add(new Affix("Dancing", Affix.Modifier.None, 22, "#% increased attack speed"));
             lstPrefixes.Items.Add(new Affix("Devastating", Affix.Modifier.Damage, 24, "#% increased damage"));
-            lstPrefixes.Items.Add(new Affix("Efficient", Affix.Modifier.NA, 30, "#% faster weapon skill cooldowns"));
-            lstPrefixes.Items.Add(new Affix("Elder", Affix.Modifier.NA, 0, "While equipped, gain more experience points"));
-            lstPrefixes.Items.Add(new Affix("Essence Slayer", Affix.Modifier.NA, 0, "Increased damage against Essences"));
-            lstPrefixes.Items.Add(new Affix("Executioner", Affix.Modifier.NA, 0, "Increased damage when health is above 90%"));
-            lstPrefixes.Items.Add(new Affix("Gargoyle Slayer", Affix.Modifier.NA, 0, "Increased damage against Gargoyles"));
-            lstPrefixes.Items.Add(new Affix("Gided", Affix.Modifier.NA, 4, "Gold cost increased # times"));
-            lstPrefixes.Items.Add(new Affix("Greedy", Affix.Modifier.NA, 0, "Killed monsters drop extra gold"));
-            lstPrefixes.Items.Add(new Affix("Inquisitor", Affix.Modifier.NA, -1, "#% increased damage when Overdrive meter is full"));
+            lstPrefixes.Items.Add(new Affix("Efficient", Affix.Modifier.None, 30, "#% faster weapon skill cooldowns"));
+            lstPrefixes.Items.Add(new Affix("Elder", Affix.Modifier.None, 0, "While equipped, gain more experience points"));
+            lstPrefixes.Items.Add(new Affix("Essence Slayer", Affix.Modifier.None, 0, "Increased damage against Essences"));
+            lstPrefixes.Items.Add(new Affix("Executioner", Affix.Modifier.None, 0, "Increased damage when health is above 90%"));
+            lstPrefixes.Items.Add(new Affix("Gargoyle Slayer", Affix.Modifier.None, 0, "Increased damage against Gargoyles"));
+            lstPrefixes.Items.Add(new Affix("Gided", Affix.Modifier.None, 4, "Gold cost increased # times"));
+            lstPrefixes.Items.Add(new Affix("Greedy", Affix.Modifier.None, 0, "Killed monsters drop extra gold"));
+            lstPrefixes.Items.Add(new Affix("Inquisitor", Affix.Modifier.None, -1, "#% increased damage when Overdrive meter is full"));
             lstPrefixes.Items.Add(new Affix("Piercing", Affix.Modifier.ArmorPenetration, -1, "+# armor penetration"));
-            lstPrefixes.Items.Add(new Affix("Skeleton Slayer", Affix.Modifier.NA, 0, "#% increased damage against Skeletons"));
-            lstPrefixes.Items.Add(new Affix("Spider Slayer", Affix.Modifier.NA, 0, "#% increased damage against Spiders"));
-            lstPrefixes.Items.Add(new Affix("Survivor", Affix.Modifier.NA, 44, "Damage is increased by #% while health is below 50%"));
-            lstPrefixes.Items.Add(new Affix("Vampire Slayer", Affix.Modifier.NA, 0, "#% increased damage against Vampires"));
+            lstPrefixes.Items.Add(new Affix("Skeleton Slayer", Affix.Modifier.None, 0, "#% increased damage against Skeletons"));
+            lstPrefixes.Items.Add(new Affix("Spider Slayer", Affix.Modifier.None, 0, "#% increased damage against Spiders"));
+            lstPrefixes.Items.Add(new Affix("Survivor", Affix.Modifier.None, 44, "Damage is increased by #% while health is below 50%"));
+            lstPrefixes.Items.Add(new Affix("Vampire Slayer", Affix.Modifier.None, 0, "#% increased damage against Vampires"));
             lstPrefixes.Items.Add(new Affix("Vicious", Affix.Modifier.CritMulti, -1, "#% increased critical damage"));
-            lstPrefixes.Items.Add(new Affix("Wraith Slayer", Affix.Modifier.NA, 0, "#% increased damage against Wraiths"));
-            lstPrefixes.Items.Add(new Affix("Zealous", Affix.Modifier.NA, 0, "Overdrive meter fills #% faster"));
+            lstPrefixes.Items.Add(new Affix("Wraith Slayer", Affix.Modifier.None, 0, "#% increased damage against Wraiths"));
+            lstPrefixes.Items.Add(new Affix("Zealous", Affix.Modifier.None, 0, "Overdrive meter fills #% faster"));
 
             //Suffixes
             lstSuffixes.DisplayMember = "listBoxDisplay";
             lstSuffixes.Items.Add(new Affix("of the Assassin", Affix.Modifier.CritChance, -1, "#% increased critical strike chance"));
-            lstSuffixes.Items.Add(new Affix("of the Bear", Affix.Modifier.NA, 0, "Knock back enemies on critical hit (has cooldown)"));
+            lstSuffixes.Items.Add(new Affix("of the Bear", Affix.Modifier.None, 0, "Knock back enemies on critical hit (has cooldown)"));
             lstSuffixes.Items.Add(new Affix("of the Duelist", Affix.Modifier.ArmorPenetration, 68, "+# armor penetration"));
-            lstSuffixes.Items.Add(new Affix("of Extraordinary Luck", Affix.Modifier.NA, 0, "While equipped, find better items"));
-            lstSuffixes.Items.Add(new Affix("of the Fox", Affix.Modifier.NA, 0, "Reduces weapon cooldowns on overkill (has cooldown)"));
-            lstSuffixes.Items.Add(new Affix("of the Leech", Affix.Modifier.NA, 0, "Gain a lot of health on critical hit (has cooldown)"));
-            lstSuffixes.Items.Add(new Affix("of Luck", Affix.Modifier.NA, -1, "While equipped, find #% more items"));
-            lstSuffixes.Items.Add(new Affix("of Mauling", Affix.Modifier.NA, 0, "Knock back enemies with #% chance"));
-            lstSuffixes.Items.Add(new Affix("of the Ram", Affix.Modifier.NA, 0, "Inflict Daze on critical hit (has cooldown)"));
-            lstSuffixes.Items.Add(new Affix("of Value", Affix.Modifier.NA, 4, "Gold cost increases # times"));
-            lstSuffixes.Items.Add(new Affix("Vampirism", Affix.Modifier.NA, 68, "# health gained on hit"));
-            lstSuffixes.Items.Add(new Affix("of the Vulture", Affix.Modifier.NA, 0, "Gain a lot of health on overkill (has cooldown)"));
-            lstSuffixes.Items.Add(new Affix("of the Wolf", Affix.Modifier.NA, 5, "#% chance to inflict Vulnerable on hit"));
+            lstSuffixes.Items.Add(new Affix("of Extraordinary Luck", Affix.Modifier.None, 0, "While equipped, find better items"));
+            lstSuffixes.Items.Add(new Affix("of the Fox", Affix.Modifier.None, 0, "Reduces weapon cooldowns on overkill (has cooldown)"));
+            lstSuffixes.Items.Add(new Affix("of the Leech", Affix.Modifier.None, 0, "Gain a lot of health on critical hit (has cooldown)"));
+            lstSuffixes.Items.Add(new Affix("of Luck", Affix.Modifier.None, -1, "While equipped, find #% more items"));
+            lstSuffixes.Items.Add(new Affix("of Mauling", Affix.Modifier.None, 0, "Knock back enemies with #% chance"));
+            lstSuffixes.Items.Add(new Affix("of the Ram", Affix.Modifier.None, 0, "Inflict Daze on critical hit (has cooldown)"));
+            lstSuffixes.Items.Add(new Affix("of Value", Affix.Modifier.None, 4, "Gold cost increases # times"));
+            lstSuffixes.Items.Add(new Affix("Vampirism", Affix.Modifier.None, 68, "# health gained on hit"));
+            lstSuffixes.Items.Add(new Affix("of the Vulture", Affix.Modifier.None, 0, "Gain a lot of health on overkill (has cooldown)"));
+            lstSuffixes.Items.Add(new Affix("of the Wolf", Affix.Modifier.None, 5, "#% chance to inflict Vulnerable on hit"));
 
             //Third Affix
             lstThirdAffix.DisplayMember = "listBoxDisplay";
             lstThirdAffix.Items.Add(new Affix("Cursed", Affix.Modifier.Damage, 22, "Damaged increased by #%, but decreases gold drops"));
-            lstThirdAffix.Items.Add(new Affix("Dancing", Affix.Modifier.NA, 22, "#% increased attack speed"));
+            lstThirdAffix.Items.Add(new Affix("Dancing", Affix.Modifier.None, 22, "#% increased attack speed"));
             lstThirdAffix.Items.Add(new Affix("Devastating", Affix.Modifier.Damage, 24, "#% increased damage"));
-            lstThirdAffix.Items.Add(new Affix("Efficient", Affix.Modifier.NA, 30, "#% faster weapon skill cooldowns"));
-            lstThirdAffix.Items.Add(new Affix("Elder", Affix.Modifier.NA, 0, "While equipped, gain more experience points"));
-            lstThirdAffix.Items.Add(new Affix("Essence Slayer", Affix.Modifier.NA, 0, "Increased damage against Essences"));
-            lstThirdAffix.Items.Add(new Affix("Executioner", Affix.Modifier.NA, 0, "Increased damage when health is above 90%"));
-            lstThirdAffix.Items.Add(new Affix("Gargoyle Slayer", Affix.Modifier.NA, 0, "Increased damage against Gargoyles"));
-            lstThirdAffix.Items.Add(new Affix("Greedy", Affix.Modifier.NA, 0, "Killed monsters drop extra gold"));
-            lstThirdAffix.Items.Add(new Affix("Inquisitor", Affix.Modifier.NA, -1, "#% increased damage when Overdrive meter is full"));
+            lstThirdAffix.Items.Add(new Affix("Efficient", Affix.Modifier.None, 30, "#% faster weapon skill cooldowns"));
+            lstThirdAffix.Items.Add(new Affix("Elder", Affix.Modifier.None, 0, "While equipped, gain more experience points"));
+            lstThirdAffix.Items.Add(new Affix("Essence Slayer", Affix.Modifier.None, 0, "Increased damage against Essences"));
+            lstThirdAffix.Items.Add(new Affix("Executioner", Affix.Modifier.None, 0, "Increased damage when health is above 90%"));
+            lstThirdAffix.Items.Add(new Affix("Gargoyle Slayer", Affix.Modifier.None, 0, "Increased damage against Gargoyles"));
+            lstThirdAffix.Items.Add(new Affix("Greedy", Affix.Modifier.None, 0, "Killed monsters drop extra gold"));
+            lstThirdAffix.Items.Add(new Affix("Inquisitor", Affix.Modifier.None, -1, "#% increased damage when Overdrive meter is full"));
             lstThirdAffix.Items.Add(new Affix("Piercing", Affix.Modifier.ArmorPenetration, -1, "+# armor penetration"));
-            lstThirdAffix.Items.Add(new Affix("Skeleton Slayer", Affix.Modifier.NA, 0, "#% increased damage against Skeletons"));
-            lstThirdAffix.Items.Add(new Affix("Spider Slayer", Affix.Modifier.NA, 0, "#% increased damage against Spiders"));
-            lstThirdAffix.Items.Add(new Affix("Survivor", Affix.Modifier.NA, 44, "Damage is increased by #% while health is below 50%"));
-            lstThirdAffix.Items.Add(new Affix("Vampire Slayer", Affix.Modifier.NA, 0, "#% increased damage against Vampires"));
+            lstThirdAffix.Items.Add(new Affix("Skeleton Slayer", Affix.Modifier.None, 0, "#% increased damage against Skeletons"));
+            lstThirdAffix.Items.Add(new Affix("Spider Slayer", Affix.Modifier.None, 0, "#% increased damage against Spiders"));
+            lstThirdAffix.Items.Add(new Affix("Survivor", Affix.Modifier.None, 44, "Damage is increased by #% while health is below 50%"));
+            lstThirdAffix.Items.Add(new Affix("Vampire Slayer", Affix.Modifier.None, 0, "#% increased damage against Vampires"));
             lstThirdAffix.Items.Add(new Affix("Vicious", Affix.Modifier.CritMulti, -1, "#% increased critical damage"));
-            lstThirdAffix.Items.Add(new Affix("Wraith Slayer", Affix.Modifier.NA, 0, "#% increased damage against Wraiths"));
-            lstThirdAffix.Items.Add(new Affix("Zealous", Affix.Modifier.NA, 0, "Overdrive meter fills #% faster"));
+            lstThirdAffix.Items.Add(new Affix("Wraith Slayer", Affix.Modifier.None, 0, "#% increased damage against Wraiths"));
+            lstThirdAffix.Items.Add(new Affix("Zealous", Affix.Modifier.None, 0, "Overdrive meter fills #% faster"));
             lstThirdAffix.Items.Add(new Affix("of the Assassin", Affix.Modifier.CritChance, -1, "#% increased critical strike chance"));
-            lstThirdAffix.Items.Add(new Affix("of the Bear", Affix.Modifier.NA, 0, "Knock back enemies on critical hit (has cooldown)"));
-            lstThirdAffix.Items.Add(new Affix("of the Fox", Affix.Modifier.NA, 0, "Reduces weapon cooldowns on overkill (has cooldown)"));
-            lstThirdAffix.Items.Add(new Affix("of the Leech", Affix.Modifier.NA, 0, "Gain a lot of health on critical hit (has cooldown)"));
-            lstThirdAffix.Items.Add(new Affix("of Luck", Affix.Modifier.NA, -1, "While equipped, find #% more items"));
-            lstThirdAffix.Items.Add(new Affix("of Mauling", Affix.Modifier.NA, 0, "Knock back enemies with #% chance"));
-            lstThirdAffix.Items.Add(new Affix("of the Ram", Affix.Modifier.NA, 0, "Inflict Daze on critical hit (has cooldown)"));
-            lstThirdAffix.Items.Add(new Affix("Vampirism", Affix.Modifier.NA, 68, "# health gained on hit"));
-            lstThirdAffix.Items.Add(new Affix("of the Vulture", Affix.Modifier.NA, 0, "Gain a lot of health on overkill (has cooldown)"));
-            lstThirdAffix.Items.Add(new Affix("of the Wolf", Affix.Modifier.NA, 5, "#% chance to inflict Vulnerable on hit"));
+            lstThirdAffix.Items.Add(new Affix("of the Bear", Affix.Modifier.None, 0, "Knock back enemies on critical hit (has cooldown)"));
+            lstThirdAffix.Items.Add(new Affix("of the Fox", Affix.Modifier.None, 0, "Reduces weapon cooldowns on overkill (has cooldown)"));
+            lstThirdAffix.Items.Add(new Affix("of the Leech", Affix.Modifier.None, 0, "Gain a lot of health on critical hit (has cooldown)"));
+            lstThirdAffix.Items.Add(new Affix("of Luck", Affix.Modifier.None, -1, "While equipped, find #% more items"));
+            lstThirdAffix.Items.Add(new Affix("of Mauling", Affix.Modifier.None, 0, "Knock back enemies with #% chance"));
+            lstThirdAffix.Items.Add(new Affix("of the Ram", Affix.Modifier.None, 0, "Inflict Daze on critical hit (has cooldown)"));
+            lstThirdAffix.Items.Add(new Affix("Vampirism", Affix.Modifier.None, 68, "# health gained on hit"));
+            lstThirdAffix.Items.Add(new Affix("of the Vulture", Affix.Modifier.None, 0, "Gain a lot of health on overkill (has cooldown)"));
+            lstThirdAffix.Items.Add(new Affix("of the Wolf", Affix.Modifier.None, 5, "#% chance to inflict Vulnerable on hit"));
+        }
+
+        private void FillLegendaryWeaponsList()
+        {
+            lstLegendaries.Items.Clear();
+
+            //Pull the names from the database and fill the list
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                //Query the WeaponsLegendary table for a list of all legendary weapons
+                string weaponsLegendaryQuery = "SELECT * FROM WeaponsLegendary WHERE "
+                    + "Type = '" + cboType.SelectedItem + "';";
+
+                OleDbCommand command = new OleDbCommand(weaponsLegendaryQuery, connection);
+
+                try
+                {
+                    connection.Open();
+                    OleDbDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        lstLegendaries.Items.Add(reader[1].ToString());
+                    }
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+                Console.ReadLine();
+            }
         }
 
         private void btnCreateWeapon_Click(object sender, EventArgs e)
@@ -174,6 +184,8 @@ namespace VictorBuilder
 
             //Generic data
             Tags.ItemType itemType = Tags.ItemType.Weapon;
+            string wpnName;
+            string wpnImage;
 
             //Weapon data
             Tags.WeaponTags.WeaponType wpnType;
@@ -184,12 +196,9 @@ namespace VictorBuilder
             int wpnCritChance;
             int wpnCritMulti;
             Tags.WeaponTags.WeaponDistance wpnDistance;
-            string wpnName;
-            Affix prefix;
-            Affix suffix;
-            Affix thirdAffix;
+            Affix.Modifier modifier;
+            string tmpModifier;
             string wpnDescription = string.Empty;
-            string wpnImage;
 
             //Attack data
             string attackSlot;
@@ -197,39 +206,9 @@ namespace VictorBuilder
             string attackImageURL;
             string attackImageHoverTextURL;
 
-            //Get the user-selected weapon affixes
-            prefix = (Affix)lstPrefixes.SelectedItem; 
-            suffix = (Affix)lstSuffixes.SelectedItem;
-            thirdAffix = (Affix)lstThirdAffix.SelectedItem;
-
-			//Populate the hover text
-            if (prefix != null)
-            {
-                wpnDescription = prefix.listBoxDisplay;
-            }
-            if (suffix != null)
-            {
-                if (wpnDescription != string.Empty)
-                {
-                    wpnDescription += Environment.NewLine;
-                }
-
-                wpnDescription += suffix.listBoxDisplay;
-            }
-            if (thirdAffix != null)
-            {
-                if (wpnDescription != string.Empty)
-                {
-                    wpnDescription += Environment.NewLine;
-                }
-
-                wpnDescription += thirdAffix.listBoxDisplay;
-            }
-
-            string connectionString = Properties.Settings.Default.ItemsConnectionString;
-
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
+                #region GetAttacks
                 //Query the Attacks table for the selected weapon's attacks
                 string attackQuery = "SELECT * FROM Attacks WHERE "
                     + "WeaponType = '" + cboType.SelectedItem + "';";
@@ -274,7 +253,9 @@ namespace VictorBuilder
                 }
 
                 Console.ReadLine();
+                #endregion
 
+                #region GetWeaponBase
                 //Query the Weapons table for base values
                 string weaponQuery = "SELECT * FROM Weapons WHERE "
                      + "Type = '" + cboType.SelectedItem + "'"
@@ -313,6 +294,91 @@ namespace VictorBuilder
                     connection.Close();
                 }
                 Console.ReadLine();
+                #endregion
+
+                //If we are creating a Legendary item, grab/override additional data from the WeaponsLegendary table
+                if (newItemTags.rarity == Tags.RarityType.Legendary)
+                {
+                    #region SetLegendaryAffixesAndProperties
+                    string weaponLegendaryQuery = "SELECT * FROM WeaponsLegendary WHERE "
+                         + "Type = '" + cboType.SelectedItem + "'" 
+                         + "AND WeaponName = '" + lstLegendaries.SelectedItem + "';";
+
+                    command = new OleDbCommand(weaponLegendaryQuery, connection);
+
+                    try
+                    {
+                        connection.Open();
+                        OleDbDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            newItemTags.name = reader[1].ToString();
+                            newItemTags.image = reader[2].ToString();
+
+                            Enum.TryParse(reader[4].ToString(), out modifier);
+                            newItemTags.weaponTags.prefix = new Affix("", modifier, (int)reader[3], reader[5].ToString());
+
+                            Enum.TryParse(reader[7].ToString(), out modifier);
+                            newItemTags.weaponTags.suffix = new Affix("", modifier, (int)reader[6], reader[8].ToString());
+
+                            newItemTags.weaponTags.specialStat = reader[9].ToString();
+                        }
+
+                        newItemTags.description = newItemTags.weaponTags.prefix.listBoxDisplay + Environment.NewLine + newItemTags.weaponTags.suffix.listBoxDisplay + Environment.NewLine + newItemTags.weaponTags.specialStat;
+                        reader.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                    Console.ReadLine();
+                #endregion
+                }
+                else
+                {
+                    #region SetRareAffixesAndProperties
+                    //Set the user-selected rare weapon affixes
+                    newItemTags.weaponTags.prefix = (Affix)lstPrefixes.SelectedItem;
+                    newItemTags.weaponTags.suffix = (Affix)lstSuffixes.SelectedItem;
+                    newItemTags.weaponTags.thirdAffix = (Affix)lstThirdAffix.SelectedItem;
+
+                    //Populate the hover text and update the weapon name
+                    if (newItemTags.weaponTags.prefix != null)
+                    {
+                        newItemTags.description = newItemTags.weaponTags.prefix.listBoxDisplay;
+                        newItemTags.name = newItemTags.weaponTags.prefix.name + " " + newItemTags.weaponTags.weaponType.ToString();
+                    }
+                    else
+                    {
+                        newItemTags.name = newItemTags.weaponTags.weaponType.ToString();
+                    }
+
+                    if (newItemTags.weaponTags.suffix != null)
+                    {
+                        if (newItemTags.description != string.Empty)
+                        {
+                            newItemTags.description += Environment.NewLine;
+                            newItemTags.name += " ";
+                        }
+
+                        newItemTags.description += newItemTags.weaponTags.suffix.listBoxDisplay;
+                        newItemTags.name += newItemTags.weaponTags.suffix.name;
+                    }
+                    if (newItemTags.weaponTags.thirdAffix != null)
+                    {
+                        if (newItemTags.description != string.Empty)
+                        {
+                            newItemTags.description += Environment.NewLine;
+                        }
+
+                        newItemTags.description += newItemTags.weaponTags.thirdAffix.listBoxDisplay;
+                    }
+                    #endregion
+                }
             }
         }
 

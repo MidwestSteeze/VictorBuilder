@@ -1210,7 +1210,7 @@ namespace VictorBuilder
                 {
                     //Empty inventory slot found; copy the new item into this equippable inventory slot
                     inventorySlot.BackgroundImage = Image.FromFile(urlFilePath + newItemTags.image);
-                    inventorySlot.Tag = newItemTags; //equippedCard.Tag = slotTags;
+                    inventorySlot.Tag = newItemTags;
 
                     itemLoaded = true;
                     break;

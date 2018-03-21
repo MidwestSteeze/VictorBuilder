@@ -114,6 +114,11 @@ namespace VictorBuilder
             public AttackTags attack2;
             public AttackTags attack3;
 
+            public Affix prefix;
+            public Affix suffix;
+            public Affix thirdAffix;
+            public string specialStat;
+
             /**********************
             /* Constructors START *
             /**********************/
@@ -247,6 +252,36 @@ namespace VictorBuilder
                 armor = aArmor;
                 urlOutfitBackgroundImage = aUrlOutfitBackgroundImage;
             }
+        }
+    }
+
+    public class Affix
+    {
+        public enum Modifier
+        {
+            None,
+            Armor,
+            ArmorPenetration,
+            Damage,
+            CritChance,
+            CritMulti
+        }
+
+        public string name;
+        public Modifier modifier;
+        public int value;
+        public string weaponDescription;
+        public string listBoxDisplay { get; set; }
+
+        public Affix() { }
+
+        public Affix(string aName, Modifier aModifier, int aValue, string aWeaponDescription)
+        {
+            name = aName;
+            modifier = aModifier;
+            value = aValue;
+            weaponDescription = aWeaponDescription;
+            listBoxDisplay = aWeaponDescription.Replace("#", value.ToString());
         }
     }
 }
