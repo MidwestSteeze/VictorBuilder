@@ -1202,26 +1202,47 @@ namespace VictorBuilder
             inventory = inventoryCategory.SelectedTab;
             inventorySlots = (TableLayoutPanel)inventory.Controls[inventory.Controls.Count - 1];
 
-            //Loop through all inventory slots and add the new item to the first available slot
-            foreach (Button inventorySlot in inventorySlots.Controls)
+            if (inventorySlots.Controls.Count < 25)
             {
-                //Check if the inventory slot is empty
-                if ((Tags)inventorySlot.Tag == null)
-                {
-                    //Empty inventory slot found; copy the new item into this equippable inventory slot
-                    inventorySlot.Image = Image.FromFile(urlFilePath + newItemTags.image);
-                    inventorySlot.Tag = newItemTags;
+                //Create a new button and add it to the Inventory
+                Button inventorySlot = CreateNewInventorySlot();
 
-                    itemLoaded = true;
-                    break;
-                }                
+                //Assign the new item to the new inventory slot
+                inventorySlot.Image = Image.FromFile(urlFilePath + newItemTags.image);
+                inventorySlot.Tag = newItemTags;
+
+                inventorySlots.Controls.Add(inventorySlot);
+                itemLoaded = true;
             }
-
-            if (!itemLoaded)
-            { 
+            else
+            {
                 //We didn't find an empty slot, need to create a new TabPage with a TableLayoutPanel and a new button to hold this new item
-                //TODO
+                //TODO                
             }
+        }
+
+        private Button CreateNewInventorySlot()
+        {
+            Button inventorySlot = new Button();
+
+            inventorySlot.BackColor = System.Drawing.Color.Transparent;
+            inventorySlot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            inventorySlot.Cursor = System.Windows.Forms.Cursors.Default;
+            inventorySlot.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            inventorySlot.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            inventorySlot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inventorySlot.ForeColor = System.Drawing.SystemColors.ControlText;
+            inventorySlot.Location = new System.Drawing.Point(3, 3);
+            //inventorySlot.Name = "btnInventoryWeapons00";
+            inventorySlot.Size = new System.Drawing.Size(95, 153);
+            //inventorySlot.TabIndex = 1;
+            inventorySlot.TabStop = false;
+            inventorySlot.UseVisualStyleBackColor = false;
+            inventorySlot.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            inventorySlot.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            inventorySlot.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
+
+            return inventorySlot;
         }
     }
 }

@@ -362,11 +362,10 @@ namespace VictorBuilder
                         if (newItemTags.description != string.Empty)
                         {
                             newItemTags.description += Environment.NewLine;
-                            newItemTags.name += " ";
                         }
 
                         newItemTags.description += newItemTags.weaponTags.suffix.listBoxDisplay;
-                        newItemTags.name += newItemTags.weaponTags.suffix.name;
+                        newItemTags.name += " " + newItemTags.weaponTags.suffix.name;
                     }
                     if (newItemTags.weaponTags.thirdAffix != null)
                     {
