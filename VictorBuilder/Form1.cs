@@ -1209,7 +1209,7 @@ namespace VictorBuilder
                 if ((Tags)inventorySlot.Tag == null)
                 {
                     //Empty inventory slot found; copy the new item into this equippable inventory slot
-                    inventorySlot.BackgroundImage = Image.FromFile(urlFilePath + newItemTags.image);
+                    inventorySlot.Image = Image.FromFile(urlFilePath + newItemTags.image);
                     inventorySlot.Tag = newItemTags;
 
                     itemLoaded = true;
