@@ -87,19 +87,19 @@ namespace VictorBuilder
             attackTags3 = new Tags.WeaponTags.AttackTags("Dash", "..\\..\\images\\attacks\\Sword_Dash.png", "..\\..\\images\\attacks\\Sword_Dash_HoverText.png");            
             weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Sword, Tags.WeaponTags.WeaponDistance.Melee, 44, 75, 0, 35, 100, attackTags1, attackTags2, attackTags3);
 
-            btnInventoryWeapons00.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Legendary, "Storm", "Attack speed increased by 25%" + Environment.NewLine + "Critical chance increased by 15%" + Environment.NewLine + "Critical hits create ball lightnings", "icon_sword.png", weaponTags);
-            btnInventoryWeapons00.Image = Image.FromFile("..\\..\\images\\weapons\\icon_sword.png");
+            btnInventoryWeapons00.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Legendary, "Storm", "Attack speed increased by 25%" + Environment.NewLine + "Critical chance increased by 15%" + Environment.NewLine + "Critical hits create ball lightnings", "sword.png", weaponTags);
+            btnInventoryWeapons00.Image = Image.FromFile("..\\..\\images\\weapons\\sword.png");
 
             attackTags1 = new Tags.WeaponTags.AttackTags("Scythe Slash", "..\\..\\images\\attacks\\Sword_Hack.png", "..\\..\\images\\attacks\\Sword_Hack_HoverText.png");
             attackTags2 = new Tags.WeaponTags.AttackTags("Stun", "..\\..\\images\\attacks\\Sword_Slash.png", "..\\..\\images\\attacks\\Sword_Slash_HoverText.png");
             attackTags3 = new Tags.WeaponTags.AttackTags("Whirlwind", "..\\..\\images\\attacks\\Sword_Dash.png", "..\\..\\images\\attacks\\Sword_Dash_HoverText.png");
             weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Scythe, Tags.WeaponTags.WeaponDistance.Melee, 10, 190, 10, 15, 100, attackTags1, attackTags2, attackTags3);
-            btnInventoryWeapons10.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Rare, "Vengeance", "Damage increased by 32% when health is below 50%" + Environment.NewLine + "Gain 10.0% of max health on crit (5 sec. cooldown)" + Environment.NewLine + "Triggers a Meteor storm when your health drops below 40%. Cannot trigger more than once every 60 seconds", "icon_scythe.png", weaponTags);
-            btnInventoryWeapons10.Image = Image.FromFile("..\\..\\images\\weapons\\icon_scythe.png");
+            btnInventoryWeapons10.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Rare, "Vengeance", "Damage increased by 32% when health is below 50%" + Environment.NewLine + "Gain 10.0% of max health on crit (5 sec. cooldown)" + Environment.NewLine + "Triggers a Meteor storm when your health drops below 40%. Cannot trigger more than once every 60 seconds", "scythe.png", weaponTags);
+            btnInventoryWeapons10.Image = Image.FromFile("..\\..\\images\\weapons\\scythe.png");
 
             cardTags = new Tags.CardTags(2, Tags.CardTags.CardMod.Damage, 10);
             btnInventoryCards00.Tag = FillItemTags(Tags.ItemType.Card, Tags.RarityType.Common, "The Sun", "+#% Damage", cardTags);
-            btnInventoryCards00.Image = Image.FromFile("..\\..\\images\\cards\\icon_sun2.png");
+            btnInventoryCards00.Image = Image.FromFile("..\\..\\images\\cards\\sun2.png");
 
             // Inventory page display
             lblInventoryHeader.Text = "Destiny Cards";
