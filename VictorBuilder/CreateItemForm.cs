@@ -516,6 +516,7 @@ namespace VictorBuilder
                         card.rarity = rarity;
 
                         cardTags = new Tags.CardTags();
+                        cardTags.points = (int)reader[5];
 
                         Enum.TryParse(reader[2].ToString(), out modifier);
                         cardTags.prefix = new Affix("", modifier, (int)reader[3], reader[4].ToString());

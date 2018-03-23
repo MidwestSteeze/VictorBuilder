@@ -65,7 +65,6 @@
             this.tbInventoryCardsPage1 = new System.Windows.Forms.TabPage();
             this.tlpInventoryCards = new System.Windows.Forms.TableLayoutPanel();
             this.btnInventoryCards00 = new System.Windows.Forms.Button();
-            this.btnInventoryCards10 = new System.Windows.Forms.Button();
             this.lblArmorPenetrationSecondary = new System.Windows.Forms.Label();
             this.lblDamageSecondary = new System.Windows.Forms.Label();
             this.lblCritChanceSecondary = new System.Windows.Forms.Label();
@@ -624,7 +623,6 @@
             this.tlpInventoryCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
             this.tlpInventoryCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
             this.tlpInventoryCards.Controls.Add(this.btnInventoryCards00, 0, 0);
-            this.tlpInventoryCards.Controls.Add(this.btnInventoryCards10, 1, 0);
             this.tlpInventoryCards.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tlpInventoryCards.Location = new System.Drawing.Point(0, 0);
             this.tlpInventoryCards.Margin = new System.Windows.Forms.Padding(0);
@@ -656,22 +654,6 @@
             this.btnInventoryCards00.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
             this.btnInventoryCards00.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
             this.btnInventoryCards00.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
-            // 
-            // btnInventoryCards10
-            // 
-            this.btnInventoryCards10.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryCards10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryCards10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryCards10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryCards10.Location = new System.Drawing.Point(106, 3);
-            this.btnInventoryCards10.Name = "btnInventoryCards10";
-            this.btnInventoryCards10.Size = new System.Drawing.Size(95, 153);
-            this.btnInventoryCards10.TabIndex = 6;
-            this.btnInventoryCards10.TabStop = false;
-            this.btnInventoryCards10.UseVisualStyleBackColor = false;
-            this.btnInventoryCards10.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryCards10.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryCards10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // lblArmorPenetrationSecondary
             // 
@@ -1676,7 +1658,6 @@
         private System.Windows.Forms.TabPage tbInventoryCardsPage1;
         private System.Windows.Forms.TableLayoutPanel tlpInventoryCards;
         private System.Windows.Forms.Button btnInventoryCards00;
-        private System.Windows.Forms.Button btnInventoryCards10;
         private System.Windows.Forms.Button btnEquippedCard2;
         private System.Windows.Forms.Button btnEquippedCard1;
         private System.Windows.Forms.Button btnEquippedCard4;
