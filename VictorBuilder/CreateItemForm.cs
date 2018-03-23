@@ -495,7 +495,7 @@ namespace VictorBuilder
                 //Query to run against the Cards table
                 string cardsQuery = "SELECT * FROM Cards WHERE "
                     + "Rarity = '" + cboCardRarity.SelectedItem + "'"
-                    + "ORDER BY CardName;";
+                    + "ORDER BY CardName ASC;";
 
                 OleDbCommand command = new OleDbCommand(cardsQuery, connection);
 
@@ -505,6 +505,9 @@ namespace VictorBuilder
                     OleDbDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
+                        //Refresh the card object
+                        card = new Tags();
+
                         //Fill card object of current row in the database
                         card.name = reader[0].ToString();
                         card.image = reader[11].ToString();

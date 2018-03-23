@@ -61,8 +61,6 @@
             this.cboCardRarity = new System.Windows.Forms.ComboBox();
             this.weaponsBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.weaponsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.itemsDataSet = new VictorBuilder.ItemsDataSet();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -74,6 +72,8 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.weaponsBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.weaponsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemsDataSet = new VictorBuilder.ItemsDataSet();
             this.weaponsTableAdapter = new VictorBuilder.ItemsDataSetTableAdapters.WeaponsTableAdapter();
             this.tableAdapterManager = new VictorBuilder.ItemsDataSetTableAdapters.TableAdapterManager();
             this.gbWeapon.SuspendLayout();
@@ -442,16 +442,6 @@
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Add new";
             // 
-            // weaponsBindingSource
-            // 
-            this.weaponsBindingSource.DataMember = "Weapons";
-            this.weaponsBindingSource.DataSource = this.itemsDataSet;
-            // 
-            // itemsDataSet
-            // 
-            this.itemsDataSet.DataSetName = "ItemsDataSet";
-            this.itemsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
@@ -536,6 +526,16 @@
             this.weaponsBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
             this.weaponsBindingNavigatorSaveItem.Text = "Save Data";
             this.weaponsBindingNavigatorSaveItem.Click += new System.EventHandler(this.weaponsBindingNavigatorSaveItem_Click);
+            // 
+            // weaponsBindingSource
+            // 
+            this.weaponsBindingSource.DataMember = "Weapons";
+            this.weaponsBindingSource.DataSource = this.itemsDataSet;
+            // 
+            // itemsDataSet
+            // 
+            this.itemsDataSet.DataSetName = "ItemsDataSet";
+            this.itemsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // weaponsTableAdapter
             // 

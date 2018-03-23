@@ -100,7 +100,7 @@ namespace VictorBuilder
             cardTags = new Tags.CardTags(2);
             cardTags.prefix = new Affix("The Warrior", Affix.Modifier.Damage, 10, "+#% Damage");
             btnInventoryCards00.Tag = FillItemTags(Tags.ItemType.Card, Tags.RarityType.Common, "The Sun", "", cardTags);
-            btnInventoryCards00.Image = Image.FromFile("..\\..\\images\\cards\\sun2.png");
+            btnInventoryCards00.Image = Image.FromFile("..\\..\\images\\cards\\thesun2.png");
 
             // Inventory page display
             lblInventoryHeader.Text = "Destiny Cards";
