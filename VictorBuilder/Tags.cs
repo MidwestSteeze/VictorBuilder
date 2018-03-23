@@ -26,8 +26,9 @@ namespace VictorBuilder
             Legendary
         }
 
-        public string description;
         public string name;
+        public string description;
+        public string listBoxDisplay { get; set; }
         public ItemType itemType;
         public RarityType rarity;
         public string image;
@@ -65,6 +66,20 @@ namespace VictorBuilder
             name = aName;
             description = aDescription;
             cardTags = aCardTags;
+
+            //Populate the Tags.Description based on the cards affixes
+            if (cardTags.prefix != null)
+            {
+                description += cardTags.prefix.description.Replace("#", cardTags.prefix.value.ToString());
+            }
+            if (cardTags.suffix != null)
+            {
+                description += cardTags.suffix.description.Replace("#", cardTags.suffix.value.ToString());
+            }
+            if (cardTags.thirdAffix != null)
+            {
+                description += cardTags.thirdAffix.description.Replace("#", cardTags.thirdAffix.value.ToString());
+            }
         }
 
         public Tags(ItemType aItemType, RarityType aRarityType, string aName, string aDescription, OutfitTags aOutfitTags)
@@ -172,67 +187,32 @@ namespace VictorBuilder
             }
         }
 
-        public class CardTags 
+        public class CardTags : Tags
         {
-            //enums here
-            public enum CardMod
+            public enum DivineWicked
             { 
-                Health,
-                Armor,
-                ArmorPenetration,
-                CritChance,
-                CritMulti,
-                Damage,
-                MeleeDamage,
-                RangedDamage
+                None,
+                Divine,
+                Wicked
             }
 
+            public Affix prefix;
+            public Affix suffix;
+            public Affix thirdAffix;
             public int points = 0;
-
-            public CardMod mod;
-            public int modValue = 0;
-
-            public bool divine = false;
-            public bool wicked = false;
             public bool unique = false;
+            public bool conditional = false;
+            public DivineWicked divineWicked = DivineWicked.None;
 
-            ////Card stats that can affect the character sheet
-            //public int health = 0; //Hope, -%Death
-            //public int armor = 0; //The Knight, The Smith
-            //public int armorPenetration = 0; //The Beast
-            //public int critChance = 0; //Strength
-            //public int critMulti = 0; //The Rogue, Wildcard, The Blademaster
-
-            ////Card stats that can affect the skill sheet
-            //public int damage = 0; //Death
-            //public int meleeDamage = 0; //The Warrior
-            //public int rangedDamage = 0; //The Archer
 
             /**********************
             /* Constructors START *
             /**********************/
+            public CardTags() { }
+
             public CardTags(int aPoints)
             {
                 points = aPoints;
-            }
-
-            public CardTags(int aPoints, CardMod aMod, int aModValue)
-            {
-                points = aPoints;
-
-                mod = aMod;
-                modValue = aModValue;
-
-                //Let these default, and only set them based on the card you're creating then (ie. no need to set ALL attributes for a card that only has 1 mod)
-                //divine = aDivine;
-                //wicked = aWicked;
-                //unique = aUnique;
-
-                //health = aHealth;
-                //armor = aArmor;
-                //armorPenetration = aArmorPenetration;
-                //critChance = aCritChance;
-                //critMulti = aCritMulti;
             }
 
             /**********************
@@ -260,28 +240,31 @@ namespace VictorBuilder
         public enum Modifier
         {
             None,
+            Health,
             Armor,
             ArmorPenetration,
-            Damage,
             CritChance,
-            CritMulti
+            CritMulti,
+            Damage,
+            MeleeDamage,
+            RangedDamage
         }
 
         public string name;
         public Modifier modifier;
         public int value;
-        public string weaponDescription;
+        public string description;
         public string listBoxDisplay { get; set; }
 
         public Affix() { }
 
-        public Affix(string aName, Modifier aModifier, int aValue, string aWeaponDescription)
+        public Affix(string aName, Modifier aModifier, int aValue, string aDescription)
         {
             name = aName;
             modifier = aModifier;
             value = aValue;
-            weaponDescription = aWeaponDescription;
-            listBoxDisplay = aWeaponDescription.Replace("#", value.ToString());
+            description = aDescription;
+            listBoxDisplay = aDescription.Replace("#", value.ToString());
         }
     }
 }
