@@ -102,27 +102,12 @@
             this.tbInventoryOtherPage1 = new System.Windows.Forms.TabPage();
             this.tlpInventoryOther = new System.Windows.Forms.TableLayoutPanel();
             this.btnInventoryOther00 = new System.Windows.Forms.Button();
-            this.btnInventoryOther04 = new System.Windows.Forms.Button();
-            this.btnInventoryOther14 = new System.Windows.Forms.Button();
-            this.btnInventoryOther03 = new System.Windows.Forms.Button();
-            this.btnInventoryOther24 = new System.Windows.Forms.Button();
-            this.btnInventoryOther13 = new System.Windows.Forms.Button();
-            this.btnInventoryOther34 = new System.Windows.Forms.Button();
-            this.btnInventoryOther44 = new System.Windows.Forms.Button();
-            this.btnInventoryOther23 = new System.Windows.Forms.Button();
-            this.btnInventoryOther33 = new System.Windows.Forms.Button();
             this.btnInventoryOther10 = new System.Windows.Forms.Button();
             this.btnInventoryOther20 = new System.Windows.Forms.Button();
             this.btnInventoryOther01 = new System.Windows.Forms.Button();
             this.btnInventoryOther11 = new System.Windows.Forms.Button();
-            this.btnInventoryOther43 = new System.Windows.Forms.Button();
             this.btnInventoryOther21 = new System.Windows.Forms.Button();
-            this.btnInventoryOther22 = new System.Windows.Forms.Button();
-            this.btnInventoryOther02 = new System.Windows.Forms.Button();
-            this.btnInventoryOther12 = new System.Windows.Forms.Button();
-            this.btnInventoryOther42 = new System.Windows.Forms.Button();
             this.btnInventoryOther30 = new System.Windows.Forms.Button();
-            this.btnInventoryOther32 = new System.Windows.Forms.Button();
             this.btnInventoryOther40 = new System.Windows.Forms.Button();
             this.btnInventoryOther41 = new System.Windows.Forms.Button();
             this.btnInventoryOther31 = new System.Windows.Forms.Button();
@@ -1038,27 +1023,12 @@
             this.tlpInventoryOther.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
             this.tlpInventoryOther.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
             this.tlpInventoryOther.Controls.Add(this.btnInventoryOther00, 0, 0);
-            this.tlpInventoryOther.Controls.Add(this.btnInventoryOther04, 0, 4);
-            this.tlpInventoryOther.Controls.Add(this.btnInventoryOther14, 1, 4);
-            this.tlpInventoryOther.Controls.Add(this.btnInventoryOther03, 0, 3);
-            this.tlpInventoryOther.Controls.Add(this.btnInventoryOther24, 2, 4);
-            this.tlpInventoryOther.Controls.Add(this.btnInventoryOther13, 1, 3);
-            this.tlpInventoryOther.Controls.Add(this.btnInventoryOther34, 3, 4);
-            this.tlpInventoryOther.Controls.Add(this.btnInventoryOther44, 4, 4);
-            this.tlpInventoryOther.Controls.Add(this.btnInventoryOther23, 2, 3);
-            this.tlpInventoryOther.Controls.Add(this.btnInventoryOther33, 3, 3);
             this.tlpInventoryOther.Controls.Add(this.btnInventoryOther10, 1, 0);
             this.tlpInventoryOther.Controls.Add(this.btnInventoryOther20, 2, 0);
             this.tlpInventoryOther.Controls.Add(this.btnInventoryOther01, 0, 1);
             this.tlpInventoryOther.Controls.Add(this.btnInventoryOther11, 1, 1);
-            this.tlpInventoryOther.Controls.Add(this.btnInventoryOther43, 4, 3);
             this.tlpInventoryOther.Controls.Add(this.btnInventoryOther21, 2, 1);
-            this.tlpInventoryOther.Controls.Add(this.btnInventoryOther22, 2, 2);
-            this.tlpInventoryOther.Controls.Add(this.btnInventoryOther02, 0, 2);
-            this.tlpInventoryOther.Controls.Add(this.btnInventoryOther12, 1, 2);
-            this.tlpInventoryOther.Controls.Add(this.btnInventoryOther42, 4, 2);
             this.tlpInventoryOther.Controls.Add(this.btnInventoryOther30, 3, 0);
-            this.tlpInventoryOther.Controls.Add(this.btnInventoryOther32, 3, 2);
             this.tlpInventoryOther.Controls.Add(this.btnInventoryOther40, 4, 0);
             this.tlpInventoryOther.Controls.Add(this.btnInventoryOther41, 4, 1);
             this.tlpInventoryOther.Controls.Add(this.btnInventoryOther31, 3, 1);
@@ -1093,150 +1063,6 @@
             this.btnInventoryOther00.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
             this.btnInventoryOther00.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
             this.btnInventoryOther00.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
-            // 
-            // btnInventoryOther04
-            // 
-            this.btnInventoryOther04.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther04.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther04.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther04.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryOther04.Location = new System.Drawing.Point(3, 639);
-            this.btnInventoryOther04.Name = "btnInventoryOther04";
-            this.btnInventoryOther04.Size = new System.Drawing.Size(95, 153);
-            this.btnInventoryOther04.TabIndex = 5;
-            this.btnInventoryOther04.TabStop = false;
-            this.btnInventoryOther04.UseVisualStyleBackColor = false;
-            this.btnInventoryOther04.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryOther04.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryOther04.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
-            // 
-            // btnInventoryOther14
-            // 
-            this.btnInventoryOther14.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther14.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther14.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryOther14.Location = new System.Drawing.Point(106, 639);
-            this.btnInventoryOther14.Name = "btnInventoryOther14";
-            this.btnInventoryOther14.Size = new System.Drawing.Size(95, 153);
-            this.btnInventoryOther14.TabIndex = 22;
-            this.btnInventoryOther14.TabStop = false;
-            this.btnInventoryOther14.UseVisualStyleBackColor = false;
-            this.btnInventoryOther14.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryOther14.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryOther14.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
-            // 
-            // btnInventoryOther03
-            // 
-            this.btnInventoryOther03.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther03.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther03.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther03.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryOther03.Location = new System.Drawing.Point(3, 480);
-            this.btnInventoryOther03.Name = "btnInventoryOther03";
-            this.btnInventoryOther03.Size = new System.Drawing.Size(95, 153);
-            this.btnInventoryOther03.TabIndex = 4;
-            this.btnInventoryOther03.TabStop = false;
-            this.btnInventoryOther03.UseVisualStyleBackColor = false;
-            this.btnInventoryOther03.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryOther03.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryOther03.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
-            // 
-            // btnInventoryOther24
-            // 
-            this.btnInventoryOther24.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther24.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther24.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryOther24.Location = new System.Drawing.Point(209, 639);
-            this.btnInventoryOther24.Name = "btnInventoryOther24";
-            this.btnInventoryOther24.Size = new System.Drawing.Size(95, 153);
-            this.btnInventoryOther24.TabIndex = 23;
-            this.btnInventoryOther24.TabStop = false;
-            this.btnInventoryOther24.UseVisualStyleBackColor = false;
-            this.btnInventoryOther24.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryOther24.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryOther24.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
-            // 
-            // btnInventoryOther13
-            // 
-            this.btnInventoryOther13.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther13.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther13.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryOther13.Location = new System.Drawing.Point(106, 480);
-            this.btnInventoryOther13.Name = "btnInventoryOther13";
-            this.btnInventoryOther13.Size = new System.Drawing.Size(95, 153);
-            this.btnInventoryOther13.TabIndex = 18;
-            this.btnInventoryOther13.TabStop = false;
-            this.btnInventoryOther13.UseVisualStyleBackColor = false;
-            this.btnInventoryOther13.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryOther13.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryOther13.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
-            // 
-            // btnInventoryOther34
-            // 
-            this.btnInventoryOther34.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther34.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther34.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther34.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryOther34.Location = new System.Drawing.Point(312, 639);
-            this.btnInventoryOther34.Name = "btnInventoryOther34";
-            this.btnInventoryOther34.Size = new System.Drawing.Size(95, 153);
-            this.btnInventoryOther34.TabIndex = 24;
-            this.btnInventoryOther34.TabStop = false;
-            this.btnInventoryOther34.UseVisualStyleBackColor = false;
-            this.btnInventoryOther34.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryOther34.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryOther34.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
-            // 
-            // btnInventoryOther44
-            // 
-            this.btnInventoryOther44.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther44.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther44.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther44.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryOther44.Location = new System.Drawing.Point(415, 639);
-            this.btnInventoryOther44.Name = "btnInventoryOther44";
-            this.btnInventoryOther44.Size = new System.Drawing.Size(97, 153);
-            this.btnInventoryOther44.TabIndex = 25;
-            this.btnInventoryOther44.TabStop = false;
-            this.btnInventoryOther44.UseVisualStyleBackColor = false;
-            this.btnInventoryOther44.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryOther44.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryOther44.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
-            // 
-            // btnInventoryOther23
-            // 
-            this.btnInventoryOther23.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther23.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther23.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryOther23.Location = new System.Drawing.Point(209, 480);
-            this.btnInventoryOther23.Name = "btnInventoryOther23";
-            this.btnInventoryOther23.Size = new System.Drawing.Size(95, 153);
-            this.btnInventoryOther23.TabIndex = 19;
-            this.btnInventoryOther23.TabStop = false;
-            this.btnInventoryOther23.UseVisualStyleBackColor = false;
-            this.btnInventoryOther23.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryOther23.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryOther23.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
-            // 
-            // btnInventoryOther33
-            // 
-            this.btnInventoryOther33.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther33.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther33.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther33.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryOther33.Location = new System.Drawing.Point(312, 480);
-            this.btnInventoryOther33.Name = "btnInventoryOther33";
-            this.btnInventoryOther33.Size = new System.Drawing.Size(95, 153);
-            this.btnInventoryOther33.TabIndex = 20;
-            this.btnInventoryOther33.TabStop = false;
-            this.btnInventoryOther33.UseVisualStyleBackColor = false;
-            this.btnInventoryOther33.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryOther33.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryOther33.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryOther10
             // 
@@ -1302,22 +1128,6 @@
             this.btnInventoryOther11.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
             this.btnInventoryOther11.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
-            // btnInventoryOther43
-            // 
-            this.btnInventoryOther43.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther43.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther43.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther43.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryOther43.Location = new System.Drawing.Point(415, 480);
-            this.btnInventoryOther43.Name = "btnInventoryOther43";
-            this.btnInventoryOther43.Size = new System.Drawing.Size(97, 153);
-            this.btnInventoryOther43.TabIndex = 21;
-            this.btnInventoryOther43.TabStop = false;
-            this.btnInventoryOther43.UseVisualStyleBackColor = false;
-            this.btnInventoryOther43.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryOther43.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryOther43.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
-            // 
             // btnInventoryOther21
             // 
             this.btnInventoryOther21.BackColor = System.Drawing.Color.Transparent;
@@ -1334,70 +1144,6 @@
             this.btnInventoryOther21.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
             this.btnInventoryOther21.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
-            // btnInventoryOther22
-            // 
-            this.btnInventoryOther22.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther22.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther22.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryOther22.Location = new System.Drawing.Point(209, 321);
-            this.btnInventoryOther22.Name = "btnInventoryOther22";
-            this.btnInventoryOther22.Size = new System.Drawing.Size(95, 153);
-            this.btnInventoryOther22.TabIndex = 21;
-            this.btnInventoryOther22.TabStop = false;
-            this.btnInventoryOther22.UseVisualStyleBackColor = false;
-            this.btnInventoryOther22.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryOther22.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryOther22.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
-            // 
-            // btnInventoryOther02
-            // 
-            this.btnInventoryOther02.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther02.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther02.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther02.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryOther02.Location = new System.Drawing.Point(3, 321);
-            this.btnInventoryOther02.Name = "btnInventoryOther02";
-            this.btnInventoryOther02.Size = new System.Drawing.Size(95, 153);
-            this.btnInventoryOther02.TabIndex = 3;
-            this.btnInventoryOther02.TabStop = false;
-            this.btnInventoryOther02.UseVisualStyleBackColor = false;
-            this.btnInventoryOther02.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryOther02.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryOther02.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
-            // 
-            // btnInventoryOther12
-            // 
-            this.btnInventoryOther12.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther12.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther12.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryOther12.Location = new System.Drawing.Point(106, 321);
-            this.btnInventoryOther12.Name = "btnInventoryOther12";
-            this.btnInventoryOther12.Size = new System.Drawing.Size(95, 153);
-            this.btnInventoryOther12.TabIndex = 8;
-            this.btnInventoryOther12.TabStop = false;
-            this.btnInventoryOther12.UseVisualStyleBackColor = false;
-            this.btnInventoryOther12.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryOther12.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryOther12.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
-            // 
-            // btnInventoryOther42
-            // 
-            this.btnInventoryOther42.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther42.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther42.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther42.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryOther42.Location = new System.Drawing.Point(415, 321);
-            this.btnInventoryOther42.Name = "btnInventoryOther42";
-            this.btnInventoryOther42.Size = new System.Drawing.Size(97, 153);
-            this.btnInventoryOther42.TabIndex = 17;
-            this.btnInventoryOther42.TabStop = false;
-            this.btnInventoryOther42.UseVisualStyleBackColor = false;
-            this.btnInventoryOther42.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryOther42.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryOther42.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
-            // 
             // btnInventoryOther30
             // 
             this.btnInventoryOther30.BackColor = System.Drawing.Color.Transparent;
@@ -1413,22 +1159,6 @@
             this.btnInventoryOther30.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
             this.btnInventoryOther30.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
             this.btnInventoryOther30.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
-            // 
-            // btnInventoryOther32
-            // 
-            this.btnInventoryOther32.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther32.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther32.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryOther32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryOther32.Location = new System.Drawing.Point(312, 321);
-            this.btnInventoryOther32.Name = "btnInventoryOther32";
-            this.btnInventoryOther32.Size = new System.Drawing.Size(95, 153);
-            this.btnInventoryOther32.TabIndex = 16;
-            this.btnInventoryOther32.TabStop = false;
-            this.btnInventoryOther32.UseVisualStyleBackColor = false;
-            this.btnInventoryOther32.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryOther32.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryOther32.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryOther40
             // 
@@ -1560,7 +1290,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1916, 1054);
+            this.ClientSize = new System.Drawing.Size(1596, 874);
             this.Controls.Add(this.btnCreateItem);
             this.Controls.Add(this.pnlHoverTextOutfit);
             this.Controls.Add(this.btnEquippedOutfit);
@@ -1702,27 +1432,12 @@
         private System.Windows.Forms.TabPage tbInventoryOtherPage1;
         private System.Windows.Forms.TableLayoutPanel tlpInventoryOther;
         private System.Windows.Forms.Button btnInventoryOther00;
-        private System.Windows.Forms.Button btnInventoryOther04;
-        private System.Windows.Forms.Button btnInventoryOther14;
-        private System.Windows.Forms.Button btnInventoryOther03;
-        private System.Windows.Forms.Button btnInventoryOther24;
-        private System.Windows.Forms.Button btnInventoryOther13;
-        private System.Windows.Forms.Button btnInventoryOther34;
-        private System.Windows.Forms.Button btnInventoryOther44;
-        private System.Windows.Forms.Button btnInventoryOther23;
-        private System.Windows.Forms.Button btnInventoryOther33;
         private System.Windows.Forms.Button btnInventoryOther10;
         private System.Windows.Forms.Button btnInventoryOther20;
         private System.Windows.Forms.Button btnInventoryOther01;
         private System.Windows.Forms.Button btnInventoryOther11;
-        private System.Windows.Forms.Button btnInventoryOther43;
         private System.Windows.Forms.Button btnInventoryOther21;
-        private System.Windows.Forms.Button btnInventoryOther22;
-        private System.Windows.Forms.Button btnInventoryOther02;
-        private System.Windows.Forms.Button btnInventoryOther12;
-        private System.Windows.Forms.Button btnInventoryOther42;
         private System.Windows.Forms.Button btnInventoryOther30;
-        private System.Windows.Forms.Button btnInventoryOther32;
         private System.Windows.Forms.Button btnInventoryOther40;
         private System.Windows.Forms.Button btnInventoryOther41;
         private System.Windows.Forms.Button btnInventoryOther31;
