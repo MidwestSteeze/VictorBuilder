@@ -1512,6 +1512,8 @@ namespace VictorBuilder {
             
             private global::System.Data.DataColumn columnConditional;
             
+            private global::System.Data.DataColumn columnImageURL;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public CardsDataTable() {
@@ -1635,6 +1637,14 @@ namespace VictorBuilder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ImageURLColumn {
+                get {
+                    return this.columnImageURL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1670,7 +1680,7 @@ namespace VictorBuilder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CardsRow AddCardsRow(string CardName, string Rarity, string Modifier, int ModifierValue, string ModifierDescription, int Points, string SecondaryModifier, int SecondaryModifierValue, string SecondaryModifierDescription, bool Unique, bool Conditional) {
+            public CardsRow AddCardsRow(string CardName, string Rarity, string Modifier, int ModifierValue, string ModifierDescription, int Points, string SecondaryModifier, int SecondaryModifierValue, string SecondaryModifierDescription, bool Unique, bool Conditional, string ImageURL) {
                 CardsRow rowCardsRow = ((CardsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CardName,
@@ -1683,7 +1693,8 @@ namespace VictorBuilder {
                         SecondaryModifierValue,
                         SecondaryModifierDescription,
                         Unique,
-                        Conditional};
+                        Conditional,
+                        ImageURL};
                 rowCardsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCardsRow);
                 return rowCardsRow;
@@ -1725,6 +1736,7 @@ namespace VictorBuilder {
                 this.columnSecondaryModifierDescription = base.Columns["SecondaryModifierDescription"];
                 this.columnUnique = base.Columns["Unique"];
                 this.columnConditional = base.Columns["Conditional"];
+                this.columnImageURL = base.Columns["ImageURL"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1752,6 +1764,8 @@ namespace VictorBuilder {
                 base.Columns.Add(this.columnUnique);
                 this.columnConditional = new global::System.Data.DataColumn("Conditional", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnConditional);
+                this.columnImageURL = new global::System.Data.DataColumn("ImageURL", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImageURL);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnCardName,
                                 this.columnRarity}, true));
@@ -1763,6 +1777,7 @@ namespace VictorBuilder {
                 this.columnModifierDescription.MaxLength = 255;
                 this.columnSecondaryModifier.MaxLength = 255;
                 this.columnSecondaryModifierDescription.MaxLength = 255;
+                this.columnImageURL.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2714,6 +2729,22 @@ namespace VictorBuilder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ImageURL {
+                get {
+                    try {
+                        return ((string)(this[this.tableCards.ImageURLColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ImageURL\' in table \'Cards\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCards.ImageURLColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsModifierNull() {
                 return this.IsNull(this.tableCards.ModifierColumn);
             }
@@ -2818,6 +2849,18 @@ namespace VictorBuilder {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetConditionalNull() {
                 this[this.tableCards.ConditionalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsImageURLNull() {
+                return this.IsNull(this.tableCards.ImageURLColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetImageURLNull() {
+                this[this.tableCards.ImageURLColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -4853,10 +4896,11 @@ namespace VictorBuilder.ItemsDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("SecondaryModifierDescription", "SecondaryModifierDescription");
             tableMapping.ColumnMappings.Add("Unique", "Unique");
             tableMapping.ColumnMappings.Add("Conditional", "Conditional");
+            tableMapping.ColumnMappings.Add("ImageURL", "ImageURL");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `Cards` WHERE ((`CardName` = ?) AND (`Rarity` = ?) AND ((? = 1 AND `Modifier` IS NULL) OR (`Modifier` = ?)) AND ((? = 1 AND `ModifierValue` IS NULL) OR (`ModifierValue` = ?)) AND ((? = 1 AND `ModifierDescription` IS NULL) OR (`ModifierDescription` = ?)) AND ((? = 1 AND `Points` IS NULL) OR (`Points` = ?)) AND ((? = 1 AND `SecondaryModifier` IS NULL) OR (`SecondaryModifier` = ?)) AND ((? = 1 AND `SecondaryModifierValue` IS NULL) OR (`SecondaryModifierValue` = ?)) AND ((? = 1 AND `SecondaryModifierDescription` IS NULL) OR (`SecondaryModifierDescription` = ?)) AND ((? = 1 AND `Unique` IS NULL) OR (`Unique` = ?)) AND ((? = 1 AND `Conditional` IS NULL) OR (`Conditional` = ?)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `Cards` WHERE ((`CardName` = ?) AND (`Rarity` = ?) AND ((? = 1 AND `Modifier` IS NULL) OR (`Modifier` = ?)) AND ((? = 1 AND `ModifierValue` IS NULL) OR (`ModifierValue` = ?)) AND ((? = 1 AND `ModifierDescription` IS NULL) OR (`ModifierDescription` = ?)) AND ((? = 1 AND `Points` IS NULL) OR (`Points` = ?)) AND ((? = 1 AND `SecondaryModifier` IS NULL) OR (`SecondaryModifier` = ?)) AND ((? = 1 AND `SecondaryModifierValue` IS NULL) OR (`SecondaryModifierValue` = ?)) AND ((? = 1 AND `SecondaryModifierDescription` IS NULL) OR (`SecondaryModifierDescription` = ?)) AND ((? = 1 AND `Unique` IS NULL) OR (`Unique` = ?)) AND ((? = 1 AND `Conditional` IS NULL) OR (`Conditional` = ?)) AND ((? = 1 AND `ImageURL` IS NULL) OR (`ImageURL` = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_CardName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CardName", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Rarity", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Rarity", global::System.Data.DataRowVersion.Original, false, null));
@@ -4878,12 +4922,11 @@ namespace VictorBuilder.ItemsDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Unique", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Unique", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Conditional", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Conditional", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Conditional", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Conditional", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_ImageURL", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ImageURL", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ImageURL", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ImageURL", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `Cards` (`CardName`, `Rarity`, `Modifier`, `ModifierValue`, `Modifier" +
-                "Description`, `Points`, `SecondaryModifier`, `SecondaryModifierValue`, `Secondar" +
-                "yModifierDescription`, `Unique`, `Conditional`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, " +
-                "?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO `Cards` (`CardName`, `Rarity`, `Modifier`, `ModifierValue`, `ModifierDescription`, `Points`, `SecondaryModifier`, `SecondaryModifierValue`, `SecondaryModifierDescription`, `Unique`, `Conditional`, `ImageURL`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CardName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CardName", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Rarity", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Rarity", global::System.Data.DataRowVersion.Current, false, null));
@@ -4896,9 +4939,10 @@ namespace VictorBuilder.ItemsDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("SecondaryModifierDescription", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "SecondaryModifierDescription", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Unique", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Unique", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Conditional", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Conditional", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ImageURL", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ImageURL", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `Cards` SET `CardName` = ?, `Rarity` = ?, `Modifier` = ?, `ModifierValue` = ?, `ModifierDescription` = ?, `Points` = ?, `SecondaryModifier` = ?, `SecondaryModifierValue` = ?, `SecondaryModifierDescription` = ?, `Unique` = ?, `Conditional` = ? WHERE ((`CardName` = ?) AND (`Rarity` = ?) AND ((? = 1 AND `Modifier` IS NULL) OR (`Modifier` = ?)) AND ((? = 1 AND `ModifierValue` IS NULL) OR (`ModifierValue` = ?)) AND ((? = 1 AND `ModifierDescription` IS NULL) OR (`ModifierDescription` = ?)) AND ((? = 1 AND `Points` IS NULL) OR (`Points` = ?)) AND ((? = 1 AND `SecondaryModifier` IS NULL) OR (`SecondaryModifier` = ?)) AND ((? = 1 AND `SecondaryModifierValue` IS NULL) OR (`SecondaryModifierValue` = ?)) AND ((? = 1 AND `SecondaryModifierDescription` IS NULL) OR (`SecondaryModifierDescription` = ?)) AND ((? = 1 AND `Unique` IS NULL) OR (`Unique` = ?)) AND ((? = 1 AND `Conditional` IS NULL) OR (`Conditional` = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `Cards` SET `CardName` = ?, `Rarity` = ?, `Modifier` = ?, `ModifierValue` = ?, `ModifierDescription` = ?, `Points` = ?, `SecondaryModifier` = ?, `SecondaryModifierValue` = ?, `SecondaryModifierDescription` = ?, `Unique` = ?, `Conditional` = ?, `ImageURL` = ? WHERE ((`CardName` = ?) AND (`Rarity` = ?) AND ((? = 1 AND `Modifier` IS NULL) OR (`Modifier` = ?)) AND ((? = 1 AND `ModifierValue` IS NULL) OR (`ModifierValue` = ?)) AND ((? = 1 AND `ModifierDescription` IS NULL) OR (`ModifierDescription` = ?)) AND ((? = 1 AND `Points` IS NULL) OR (`Points` = ?)) AND ((? = 1 AND `SecondaryModifier` IS NULL) OR (`SecondaryModifier` = ?)) AND ((? = 1 AND `SecondaryModifierValue` IS NULL) OR (`SecondaryModifierValue` = ?)) AND ((? = 1 AND `SecondaryModifierDescription` IS NULL) OR (`SecondaryModifierDescription` = ?)) AND ((? = 1 AND `Unique` IS NULL) OR (`Unique` = ?)) AND ((? = 1 AND `Conditional` IS NULL) OR (`Conditional` = ?)) AND ((? = 1 AND `ImageURL` IS NULL) OR (`ImageURL` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CardName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CardName", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Rarity", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Rarity", global::System.Data.DataRowVersion.Current, false, null));
@@ -4911,6 +4955,7 @@ namespace VictorBuilder.ItemsDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("SecondaryModifierDescription", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "SecondaryModifierDescription", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Unique", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Unique", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Conditional", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Conditional", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ImageURL", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ImageURL", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_CardName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CardName", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Rarity", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Rarity", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Modifier", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Modifier", global::System.Data.DataRowVersion.Original, true, null));
@@ -4931,6 +4976,8 @@ namespace VictorBuilder.ItemsDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Unique", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Unique", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Conditional", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Conditional", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Conditional", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Conditional", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_ImageURL", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ImageURL", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ImageURL", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ImageURL", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4948,7 +4995,7 @@ namespace VictorBuilder.ItemsDataSetTableAdapters {
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT CardName, Rarity, Modifier, ModifierValue, ModifierDescription, Points, Se" +
                 "condaryModifier, SecondaryModifierValue, SecondaryModifierDescription, [Unique]," +
-                " Conditional FROM Cards";
+                " Conditional, ImageURL FROM Cards";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5009,7 +5056,7 @@ namespace VictorBuilder.ItemsDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_CardName, string Original_Rarity, string Original_Modifier, global::System.Nullable<int> Original_ModifierValue, string Original_ModifierDescription, global::System.Nullable<int> Original_Points, string Original_SecondaryModifier, global::System.Nullable<int> Original_SecondaryModifierValue, string Original_SecondaryModifierDescription, bool Original_Unique, bool Original_Conditional) {
+        public virtual int Delete(string Original_CardName, string Original_Rarity, string Original_Modifier, global::System.Nullable<int> Original_ModifierValue, string Original_ModifierDescription, global::System.Nullable<int> Original_Points, string Original_SecondaryModifier, global::System.Nullable<int> Original_SecondaryModifierValue, string Original_SecondaryModifierDescription, bool Original_Unique, bool Original_Conditional, string Original_ImageURL) {
             if ((Original_CardName == null)) {
                 this.Adapter.DeleteCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -5082,6 +5129,14 @@ namespace VictorBuilder.ItemsDataSetTableAdapters {
             this.Adapter.DeleteCommand.Parameters[17].Value = ((bool)(Original_Unique));
             this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(0));
             this.Adapter.DeleteCommand.Parameters[19].Value = ((bool)(Original_Conditional));
+            if ((Original_ImageURL == null)) {
+                this.Adapter.DeleteCommand.Parameters[20].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[21].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[20].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[21].Value = ((string)(Original_ImageURL));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5102,7 +5157,7 @@ namespace VictorBuilder.ItemsDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string CardName, string Rarity, string Modifier, global::System.Nullable<int> ModifierValue, string ModifierDescription, global::System.Nullable<int> Points, string SecondaryModifier, global::System.Nullable<int> SecondaryModifierValue, string SecondaryModifierDescription, bool Unique, bool Conditional) {
+        public virtual int Insert(string CardName, string Rarity, string Modifier, global::System.Nullable<int> ModifierValue, string ModifierDescription, global::System.Nullable<int> Points, string SecondaryModifier, global::System.Nullable<int> SecondaryModifierValue, string SecondaryModifierDescription, bool Unique, bool Conditional, string ImageURL) {
             if ((CardName == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -5159,6 +5214,12 @@ namespace VictorBuilder.ItemsDataSetTableAdapters {
             }
             this.Adapter.InsertCommand.Parameters[9].Value = ((bool)(Unique));
             this.Adapter.InsertCommand.Parameters[10].Value = ((bool)(Conditional));
+            if ((ImageURL == null)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(ImageURL));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5191,6 +5252,7 @@ namespace VictorBuilder.ItemsDataSetTableAdapters {
                     string SecondaryModifierDescription, 
                     bool Unique, 
                     bool Conditional, 
+                    string ImageURL, 
                     string Original_CardName, 
                     string Original_Rarity, 
                     string Original_Modifier, 
@@ -5201,7 +5263,8 @@ namespace VictorBuilder.ItemsDataSetTableAdapters {
                     global::System.Nullable<int> Original_SecondaryModifierValue, 
                     string Original_SecondaryModifierDescription, 
                     bool Original_Unique, 
-                    bool Original_Conditional) {
+                    bool Original_Conditional, 
+                    string Original_ImageURL) {
             if ((CardName == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -5258,78 +5321,92 @@ namespace VictorBuilder.ItemsDataSetTableAdapters {
             }
             this.Adapter.UpdateCommand.Parameters[9].Value = ((bool)(Unique));
             this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(Conditional));
-            if ((Original_CardName == null)) {
+            if ((ImageURL == null)) {
                 this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_CardName));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(ImageURL));
             }
-            if ((Original_Rarity == null)) {
+            if ((Original_CardName == null)) {
                 this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_Rarity));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_CardName));
+            }
+            if ((Original_Rarity == null)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_Rarity));
             }
             if ((Original_Modifier == null)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_Modifier));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_Modifier));
             }
             if ((Original_ModifierValue.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_ModifierValue.Value));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Original_ModifierValue.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             if ((Original_ModifierDescription == null)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_ModifierDescription));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_ModifierDescription));
             }
             if ((Original_Points.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(Original_Points.Value));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((int)(Original_Points.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
             }
             if ((Original_SecondaryModifier == null)) {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_SecondaryModifier));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((string)(Original_SecondaryModifier));
             }
             if ((Original_SecondaryModifierValue.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(Original_SecondaryModifierValue.Value));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(Original_SecondaryModifierValue.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
             }
             if ((Original_SecondaryModifierDescription == null)) {
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((string)(Original_SecondaryModifierDescription));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((string)(Original_SecondaryModifierDescription));
             }
-            this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[28].Value = ((bool)(Original_Unique));
-            this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[30].Value = ((bool)(Original_Conditional));
+            this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[29].Value = ((bool)(Original_Unique));
+            this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[31].Value = ((bool)(Original_Conditional));
+            if ((Original_ImageURL == null)) {
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[33].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((string)(Original_ImageURL));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5360,6 +5437,7 @@ namespace VictorBuilder.ItemsDataSetTableAdapters {
                     string SecondaryModifierDescription, 
                     bool Unique, 
                     bool Conditional, 
+                    string ImageURL, 
                     string Original_CardName, 
                     string Original_Rarity, 
                     string Original_Modifier, 
@@ -5370,8 +5448,9 @@ namespace VictorBuilder.ItemsDataSetTableAdapters {
                     global::System.Nullable<int> Original_SecondaryModifierValue, 
                     string Original_SecondaryModifierDescription, 
                     bool Original_Unique, 
-                    bool Original_Conditional) {
-            return this.Update(Original_CardName, Original_Rarity, Modifier, ModifierValue, ModifierDescription, Points, SecondaryModifier, SecondaryModifierValue, SecondaryModifierDescription, Unique, Conditional, Original_CardName, Original_Rarity, Original_Modifier, Original_ModifierValue, Original_ModifierDescription, Original_Points, Original_SecondaryModifier, Original_SecondaryModifierValue, Original_SecondaryModifierDescription, Original_Unique, Original_Conditional);
+                    bool Original_Conditional, 
+                    string Original_ImageURL) {
+            return this.Update(Original_CardName, Original_Rarity, Modifier, ModifierValue, ModifierDescription, Points, SecondaryModifier, SecondaryModifierValue, SecondaryModifierDescription, Unique, Conditional, ImageURL, Original_CardName, Original_Rarity, Original_Modifier, Original_ModifierValue, Original_ModifierDescription, Original_Points, Original_SecondaryModifier, Original_SecondaryModifierValue, Original_SecondaryModifierDescription, Original_Unique, Original_Conditional, Original_ImageURL);
         }
     }
     
