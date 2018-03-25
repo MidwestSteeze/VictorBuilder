@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,7 @@ namespace VictorBuilder
         string urlOutfits = "..\\..\\images\\outfits\\";
         string urlCards = "..\\..\\images\\cards\\";
         string urlWeapons = "..\\..\\images\\weapons\\";
+        string urlImageNotFound = "..\\..\\images\\imagenotfound.png";
 
         //Base stat values
         int BaseHealth = 4000; //TODO - whats base life at max lvl?
@@ -563,10 +565,10 @@ namespace VictorBuilder
                 btnEquippedWeapon.Image = slot.Image;
                 btnEquippedWeapon.Tag = slotTags;
 
-                //Show the attack icons for the new weapon
-                lblAttack1.Image = Image.FromFile(urlAttacks + slotTags.weaponTags.attack1.attackImageURL);
-                lblAttack2.Image = Image.FromFile(urlAttacks + slotTags.weaponTags.attack2.attackImageURL);
-                lblAttack3.Image = Image.FromFile(urlAttacks + slotTags.weaponTags.attack3.attackImageURL);
+                    //Show the attack icons for the new weapon
+                    lblAttack1.Image = Image.FromFile(urlAttacks + slotTags.weaponTags.attack1.attackImageURL);
+                    lblAttack2.Image = Image.FromFile(urlAttacks + slotTags.weaponTags.attack2.attackImageURL);
+                    lblAttack3.Image = Image.FromFile(urlAttacks + slotTags.weaponTags.attack3.attackImageURL);
 
                 itemEquipped = true;
                 CalculateStats(slotTags);
@@ -842,15 +844,15 @@ namespace VictorBuilder
                 switch (position)
                 {
                     case 1:
-                        pnlAttackSecondaryHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack1.attackImageHoverTextURL);
+                            pnlAttackSecondaryHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack1.attackImageHoverTextURL);
                         pnlAttackSecondaryHoverText.Visible = true;
                         break;
                     case 2:
-                        pnlAttackSecondaryHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack2.attackImageHoverTextURL);
+                            pnlAttackSecondaryHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack2.attackImageHoverTextURL);
                         pnlAttackSecondaryHoverText.Visible = true;
                         break;
                     case 3:
-                        pnlAttackSecondaryHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack3.attackImageHoverTextURL);
+                            pnlAttackSecondaryHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack3.attackImageHoverTextURL);
                         pnlAttackSecondaryHoverText.Visible = true;
                         break;
                     default:
@@ -866,15 +868,15 @@ namespace VictorBuilder
                 switch (position)
                 {
                     case 1:
-                        pnlAttackHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack1.attackImageHoverTextURL);
+                            pnlAttackHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack1.attackImageHoverTextURL);
                         pnlAttackHoverText.Visible = true;
                         break;
                     case 2:
-                        pnlAttackHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack2.attackImageHoverTextURL);
+                            pnlAttackHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack2.attackImageHoverTextURL);
                         pnlAttackHoverText.Visible = true;
                         break;
                     case 3:
-                        pnlAttackHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack3.attackImageHoverTextURL);
+                            pnlAttackHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack3.attackImageHoverTextURL);
                         pnlAttackHoverText.Visible = true;
                         break;
                     default:
@@ -1224,7 +1226,15 @@ namespace VictorBuilder
                 Button inventorySlot = CreateNewInventorySlot();
 
                 //Assign the new item to the new inventory slot
-                inventorySlot.Image = Image.FromFile(urlFilePath + newItemTags.image);
+                try
+                {
+                    inventorySlot.Image = Image.FromFile(urlFilePath + newItemTags.image);
+                }
+                catch (FileNotFoundException e)
+                {
+                    inventorySlot.Image = Image.FromFile(urlImageNotFound);
+                }
+
                 inventorySlot.Tag = newItemTags;
 
                 inventorySlots.Controls.Add(inventorySlot);
