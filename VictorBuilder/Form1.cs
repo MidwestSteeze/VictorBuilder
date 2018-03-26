@@ -339,6 +339,20 @@ namespace VictorBuilder
                     //slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.497);
                     break;
                 case Tags.WeaponTags.WeaponType.Shotgun:
+                    //Fire (weapon base damage * cards * ?)
+                    //?-? --> ?-?
+                    //slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                    //slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+
+                    //Aimed Shot (weapon base damage * cards * ?)
+                    //?-? --> ?-?
+                    //slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
+                    //slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
+
+                    //Point-Blank Shot (weapon base damage * cards * ?)
+                    //?-? --> ?-?
+                    //slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.496);
+                    //slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.497);
                     break;
                 case Tags.WeaponTags.WeaponType.LightningGun:
                     //Shock (weapon base damage * cards * ?)
