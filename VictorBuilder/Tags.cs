@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace VictorBuilder
 {
+    [Serializable]
     public class Tags
     {
         public enum ItemType
@@ -174,6 +175,8 @@ namespace VictorBuilder
                 /**********************
                 /* Constructors START *
                 /**********************/
+                public AttackTags() { }
+
                 public AttackTags(string aAttackName, string aAttackImageURL, string aAttackImageHoverTextURL)
                 {
                     attackName = aAttackName;
@@ -227,6 +230,8 @@ namespace VictorBuilder
             public int health = 0;
             public string urlOutfitBackgroundImage;
 
+            public OutfitTags() { }
+
             public OutfitTags(int aArmor, string aUrlOutfitBackgroundImage)
             {
                 armor = aArmor;
@@ -235,6 +240,7 @@ namespace VictorBuilder
         }
     }
 
+    [Serializable]
     public class Affix
     {
         public enum Modifier

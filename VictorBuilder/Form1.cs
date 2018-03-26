@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace VictorBuilder
 {
@@ -21,6 +23,7 @@ namespace VictorBuilder
         Tags.CardTags cardTags;
         Tags.OutfitTags outfitTags;
         Tags newItemTags;
+        List<Button> equippedItemControls;
 
         //Global variables
         string urlAttacks = "..\\..\\images\\attacks\\";
@@ -73,6 +76,9 @@ namespace VictorBuilder
             this.DoubleBuffered = true;
 
             PreloadOutfits();
+
+            //Build the list of equipped item controls so we can iterate through it when Saving/Importing a build
+            BuildListOfEquippedItems();
 
             //Scale the app at startup to half its original size
             //SizeF factor = new SizeF(scaleFactor, scaleFactor);
@@ -1316,6 +1322,87 @@ namespace VictorBuilder
             inventorySlot.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
 
             return inventorySlot;
+        }
+
+        private void BuildListOfEquippedItems()
+        {
+            equippedItemControls = new List<Button>();
+
+            foreach (Button equippedCard in pnlEquippedCards.Controls)
+            {
+                equippedItemControls.Add(equippedCard);
+            }
+
+            equippedItemControls.Add(btnEquippedOutfit);
+            equippedItemControls.Add(btnEquippedWeapon);
+            equippedItemControls.Add(btnEquippedWeaponSecondary);
+            //equippedItemControls.Add(btnEquippedConsumable);
+            //equippedItemControls.Add(btnEquippedConsumableSecondary);
+            //equippedItemControls.Add(btnEquippedDemonPower);
+            //equippedItemControls.Add(btnEquippedDemonPowerSecondary);
+        }
+
+        //Generate xml of the current build and open a Save File Dialog so the user can specify where to save their build
+        private void btnSaveBuild_Click(object sender, EventArgs e)
+        {
+            //Open the file dialog to prompt the user where they want to save the build
+            SaveFileDialog saveBuildDialog = new SaveFileDialog();
+            saveBuildDialog.Filter = "Xml files (*.xml)|*.xml|All files (*.*)|*.*";
+            saveBuildDialog.Title = "Save build...";
+
+            if (saveBuildDialog.ShowDialog() == DialogResult.OK)
+            {
+                //Create objects that'll make up the xml of the build
+                XmlDocument build = new XmlDocument();
+                build.LoadXml("<Build></Build>");
+                XmlElement root = build.DocumentElement;
+                XmlElement items = build.CreateElement("Items");
+                XmlElement item = build.CreateElement("Item");
+                XmlElement itemTags = build.CreateElement("ItemTags");
+                Tags slotTags;
+
+                //Add what will be the collection of Items underneath the root node of the xml document
+                root.AppendChild(items);
+
+                try
+                {
+                    foreach (Button equippedItemControl in equippedItemControls)  //TODO the last control is overwriting the previously written one
+                    {
+                        //Generate xml for the item if the current slot has an item equipped within it
+                        if (equippedItemControl.Tag != null)
+                        {
+                            //Serialize the current item into an xml string to be appended to the build doc
+                            slotTags = (Tags)equippedItemControl.Tag;
+                            XmlSerializer serializer = new XmlSerializer(slotTags.GetType());
+
+                            //Add the name of the control that this item belongs to for referencing when importing a build
+                            item.InnerXml = "<Control>" + equippedItemControl.Name + "</Control>";
+
+                            //Auto-generate the xml for the item by utilizing an XML serializer
+                            using (StringWriter writer = new StringWriter())
+                            {
+                                serializer.Serialize(writer, equippedItemControl.Tag);
+                                itemTags.InnerXml = writer.ToString();
+
+                                item.AppendChild(itemTags.SelectSingleNode("Tags"));
+
+                                //Add the item to the list of items in the build
+                                items.AppendChild(item);
+                            }
+                        }
+                    }
+                }
+                //if invalid cast, ignore and move on to the next control
+                catch (Exception ex)
+                {
+                    MessageBox.Show("btnSaveBuild_Click threw an exception" + Environment.NewLine + ex.Message);
+                    throw;
+                }
+
+                //Save the xml to the file specified by the user
+                System.IO.File.WriteAllText(saveBuildDialog.FileName, build.OuterXml);
+                MessageBox.Show("Build saved.");
+            }            
         }
     }
 }

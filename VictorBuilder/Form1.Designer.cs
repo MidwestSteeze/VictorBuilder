@@ -117,6 +117,7 @@
             this.lblHoverTextOutfitDescription = new System.Windows.Forms.Label();
             this.lblHoverTextOutfitName = new System.Windows.Forms.Label();
             this.btnCreateItem = new System.Windows.Forms.Button();
+            this.btnSaveBuild = new System.Windows.Forms.Button();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
@@ -1283,6 +1284,16 @@
             this.btnCreateItem.UseVisualStyleBackColor = false;
             this.btnCreateItem.Click += new System.EventHandler(this.btnCreateItem_Click);
             // 
+            // btnSaveBuild
+            // 
+            this.btnSaveBuild.Location = new System.Drawing.Point(76, 42);
+            this.btnSaveBuild.Name = "btnSaveBuild";
+            this.btnSaveBuild.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveBuild.TabIndex = 37;
+            this.btnSaveBuild.Text = "Save Build...";
+            this.btnSaveBuild.UseVisualStyleBackColor = true;
+            this.btnSaveBuild.Click += new System.EventHandler(this.btnSaveBuild_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1290,7 +1301,8 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1596, 874);
+            this.ClientSize = new System.Drawing.Size(1916, 1054);
+            this.Controls.Add(this.btnSaveBuild);
             this.Controls.Add(this.btnCreateItem);
             this.Controls.Add(this.pnlHoverTextOutfit);
             this.Controls.Add(this.btnEquippedOutfit);
@@ -1447,6 +1459,7 @@
         private System.Windows.Forms.Label lblHoverTextOutfitDescription;
         private System.Windows.Forms.Label lblHoverTextOutfitName;
         private System.Windows.Forms.Button btnCreateItem;
+        private System.Windows.Forms.Button btnSaveBuild;
 
     }
 }
