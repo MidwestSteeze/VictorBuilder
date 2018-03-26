@@ -294,7 +294,11 @@ namespace VictorBuilder
         }
 
         private void CalculateWeaponSkills(Tags slotTags)
-        { 
+        {
+            //Prefix the attack image urls with the full relative filepath
+            slotTags.weaponTags.attack1.attackImageURL = urlAttacks + slotTags.weaponTags.attack1.attackImageURL;
+            slotTags.weaponTags.attack1.attackImageHoverTextURL = urlAttacks + slotTags.weaponTags.attack1.attackImageHoverTextURL;
+
             //We have our weapon base mods set  (ie. dmg, armor pen, crit, etc)
             // and we have our modifiers from cards set
             // plug those into the calculations based on the calc used for attack1/attack2/attack3 (need to store these in db i think...)
@@ -303,91 +307,120 @@ namespace VictorBuilder
                 case Tags.WeaponTags.WeaponType.Hammer:
                     //Pound (weapon base damage * cards)
                     //121-161 --> 121-161
-                    slotTags.weaponTags.attack1.attackName = "Pound";
                     slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
                     slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
-                    slotTags.weaponTags.attack1.attackImageURL = urlAttacks + "Hammer_Pound.png";
-                    slotTags.weaponTags.attack1.attackImageHoverTextURL = urlAttacks + "Hammer_Pound_HoverText.png";
 
                     //Crush (weapon base damage * cards * 5) //TODO Cards before or after the * 5?
                     //121-161 --> 605-805
                     //131-175 --> 655-875
-                    slotTags.weaponTags.attack2.attackName = "Crush";
                     slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
                     slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
-                    slotTags.weaponTags.attack2.attackImageURL = urlAttacks + "Hammer_Crush.png";
-                    slotTags.weaponTags.attack2.attackImageHoverTextURL = urlAttacks + "Hammer_Crush_HoverText.png";
 
                     //Smash (weapon base damage * cards * 2.5) //TODO Cards before or after the * 2.5?
                     //121-161 --> 302-402
                     //131-175 --> 327-437
-                    slotTags.weaponTags.attack3.attackName = "Smash";
                     slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.496);
                     slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.497);
-                    slotTags.weaponTags.attack3.attackImageURL = urlAttacks + "Hammer_Smash.png";
-                    slotTags.weaponTags.attack3.attackImageHoverTextURL = urlAttacks + "Hammer_Smash_HoverText.png";
                     break;
                 case Tags.WeaponTags.WeaponType.HandMortar:
+                    //Bouncing Betty (weapon base damage * cards * ?)
+                    //?-? --> ?-?
+                    //slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                    //slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+
+                    //Fire Lake (weapon base damage * cards * ?)
+                    //?-? --> ?-?
+                    //slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
+                    //slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
+
+                    //Explosive Jump (weapon base damage * cards * ?)
+                    //?-? --> ?-?
+                    //slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.496);
+                    //slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.497);
                     break;
                 case Tags.WeaponTags.WeaponType.Shotgun:
                     break;
                 case Tags.WeaponTags.WeaponType.LightningGun:
+                    //Shock (weapon base damage * cards * ?)
+                    //?-? --> ?-?
+                    //slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                    //slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+
+                    //Ball Lightning (weapon base damage * cards * ?)
+                    //?-? --> ?-?
+                    //slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
+                    //slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
+
+                    //Lightning Trap (weapon base damage * cards * ?)
+                    //?-? --> ?-?
+                    //slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.496);
+                    //slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.497);
                     break;
                 case Tags.WeaponTags.WeaponType.Rapier:
+                    //Flurry (weapon base damage * cards * ?)
+                    //?-? --> ?-?
+                    //slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                    //slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+
+                    //Charge (weapon base damage * cards * ?)
+                    //?-? --> ?-?
+                    //slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
+                    //slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
+
+                    //Coup De Grace (weapon base damage * cards * ?)
+                    //?-? --> ?-?
+                    //slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.496);
+                    //slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.497);
                     break;
                 case Tags.WeaponTags.WeaponType.Sword:
                     //Sword Hack (weapon base damage * cards)
                     //46-84 --> 46-84
-                    slotTags.weaponTags.attack1.attackName = "Sword Hack";
                     slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
                     slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
-                    slotTags.weaponTags.attack1.attackImageURL = urlAttacks + "Sword_Hack.png";
-                    slotTags.weaponTags.attack1.attackImageHoverTextURL = urlAttacks + "Sword_Hack_HoverText.png";
 
                     //Slash (weapon base damage * cards * 4) //TODO Cards before or after the * 4?
                     //46-84  --> 184-344
                     //57-108 --> 228-432
-                    slotTags.weaponTags.attack2.attackName = "Slash";
                     slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 4);
                     slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 4);
-                    slotTags.weaponTags.attack2.attackImageURL = urlAttacks + "Sword_Slash.png";
-                    slotTags.weaponTags.attack2.attackImageHoverTextURL = urlAttacks + "Sword_Slash_HoverText.png";
 
                     //Dash (weapon base damage * cards * 2) //TODO Cards before or after the * 2?
                     //46-84  --> 92-172
                     //57-108 --> 114-216
-                    slotTags.weaponTags.attack3.attackName = "Dash";
                     slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2);
                     slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2);
-                    slotTags.weaponTags.attack3.attackImageURL = urlAttacks + "Sword_Dash.png";
-                    slotTags.weaponTags.attack3.attackImageHoverTextURL = urlAttacks + "Sword_Dash_HoverText.png";
                     break;
                 case Tags.WeaponTags.WeaponType.Scythe:
                     //Reap (weapon base damage * cards)
                     //20-203 --> 20-203
-                    slotTags.weaponTags.attack1.attackName = "Reap";
                     slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
                     slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
-                    slotTags.weaponTags.attack1.attackImageURL = urlAttacks + "Scythe_Reap.png";
-                    slotTags.weaponTags.attack1.attackImageHoverTextURL = urlAttacks + "Scythe_Reap_HoverText.png";
 
                     //Shockwave (no damage)
-                    slotTags.weaponTags.attack2.attackName = "Shockwave";
                     slotTags.weaponTags.attack2.attackDmgMin = 0;
                     slotTags.weaponTags.attack2.attackDmgMax = 0;
-                    slotTags.weaponTags.attack2.attackImageURL = urlAttacks + "Scythe_Shockwave.png";
-                    slotTags.weaponTags.attack2.attackImageHoverTextURL = urlAttacks + "Scythe_Shockwave_HoverText.png";
 
                     //Whirlwind (weapon base damage * cards)
                     //20-203 --> 20-203
                     //16-161 --> 16-161
-                    slotTags.weaponTags.attack3.attackName = "Whirlwind";
                     slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
                     slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
-                    slotTags.weaponTags.attack3.attackImageURL = urlAttacks + "Scythe_Whirlwind.png";
-                    slotTags.weaponTags.attack3.attackImageHoverTextURL = urlAttacks + "Scythe_Whirlwind_HoverText.png";
                     break;
                 case Tags.WeaponTags.WeaponType.Tome:
+                    //Magic Missiles (weapon base damage * cards * ?)
+                    //?-? --> ?-?
+                    //slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                    //slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+
+                    //Dimension Wave (weapon base damage * cards * ?)
+                    //?-? --> ?-?
+                    //slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
+                    //slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
+
+                    //Singularity Orb (weapon base damage * cards * ?)
+                    //?-? --> ?-?
+                    //slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.496);
+                    //slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.497);
                     break;
                 default:
                     break;
@@ -844,15 +877,15 @@ namespace VictorBuilder
                 switch (position)
                 {
                     case 1:
-                            pnlAttackSecondaryHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack1.attackImageHoverTextURL);
+                        pnlAttackSecondaryHoverText.BackgroundImage = Image.FromFile(urlAttacks + slotTags.weaponTags.attack1.attackImageHoverTextURL);
                         pnlAttackSecondaryHoverText.Visible = true;
                         break;
                     case 2:
-                            pnlAttackSecondaryHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack2.attackImageHoverTextURL);
+                        pnlAttackSecondaryHoverText.BackgroundImage = Image.FromFile(urlAttacks + slotTags.weaponTags.attack2.attackImageHoverTextURL);
                         pnlAttackSecondaryHoverText.Visible = true;
                         break;
                     case 3:
-                            pnlAttackSecondaryHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack3.attackImageHoverTextURL);
+                        pnlAttackSecondaryHoverText.BackgroundImage = Image.FromFile(urlAttacks + slotTags.weaponTags.attack3.attackImageHoverTextURL);
                         pnlAttackSecondaryHoverText.Visible = true;
                         break;
                     default:
@@ -868,15 +901,15 @@ namespace VictorBuilder
                 switch (position)
                 {
                     case 1:
-                            pnlAttackHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack1.attackImageHoverTextURL);
+                        pnlAttackHoverText.BackgroundImage = Image.FromFile(urlAttacks + slotTags.weaponTags.attack1.attackImageHoverTextURL);
                         pnlAttackHoverText.Visible = true;
                         break;
                     case 2:
-                            pnlAttackHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack2.attackImageHoverTextURL);
+                        pnlAttackHoverText.BackgroundImage = Image.FromFile(urlAttacks + slotTags.weaponTags.attack2.attackImageHoverTextURL);
                         pnlAttackHoverText.Visible = true;
                         break;
                     case 3:
-                            pnlAttackHoverText.BackgroundImage = Image.FromFile(slotTags.weaponTags.attack3.attackImageHoverTextURL);
+                        pnlAttackHoverText.BackgroundImage = Image.FromFile(urlAttacks + slotTags.weaponTags.attack3.attackImageHoverTextURL);
                         pnlAttackHoverText.Visible = true;
                         break;
                     default:
