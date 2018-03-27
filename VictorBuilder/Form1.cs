@@ -201,7 +201,9 @@ namespace VictorBuilder
             modifierFlatCritChance = 0;
             modifierFlatCritChanceSecondary = 0;
             modifierFlatCritMulti = 0;
-            modifierFlatCritMultiSecondary = 0;                
+            modifierFlatCritMultiSecondary = 0;  
+            
+            totalCardPoints = 0;
 
             //Loop through all cards
             foreach (Button equippedCard in pnlEquippedCards.Controls)
@@ -211,6 +213,9 @@ namespace VictorBuilder
                 //Ensure this slot has a card in it
                 if (slotTags != null)
                 {
+                    //Keep a running total of the currently used Destiny Points
+                    totalCardPoints += slotTags.cardTags.points;
+
                     //Add the prefix and suffix, which may contain modifiers, to a collection to iterate over
                     Affix[] affixes = new Affix[] { slotTags.cardTags.prefix, slotTags.cardTags.suffix};
 
@@ -286,6 +291,7 @@ namespace VictorBuilder
             //Now we have all the total modifiers; update all stat and skill labels to reflect their additions
             UpdateStatLabels();
             UpdateSkillLabels();
+            lblEquippedDestinyPoints.Text = totalCardPoints.ToString() + "/" + maximumCardPoints.ToString();
         }
 
         private void CalculateStatsFromOutfit(Tags slotTags)
@@ -506,7 +512,7 @@ namespace VictorBuilder
 
             if (btnEquippedWeaponSecondary.Tag != null)
             {
-                slotTags = (Tags)btnEquippedWeapon.Tag;
+                slotTags = (Tags)btnEquippedWeaponSecondary.Tag;
 
                 lblAttackStatsSecondary1.Text = slotTags.weaponTags.attack1.attackName + ": " + slotTags.weaponTags.attack1.attackDmgMin + "-" + slotTags.weaponTags.attack1.attackDmgMax;
                 lblAttackStatsSecondary2.Text = slotTags.weaponTags.attack2.attackName + ": " + slotTags.weaponTags.attack2.attackDmgMin + "-" + slotTags.weaponTags.attack2.attackDmgMax;
@@ -571,11 +577,8 @@ namespace VictorBuilder
                 if ((Tags)equippedCard.Tag == null)
                 {
                     //Empty card slot found; copy the card into this equippable card slot
-                    equippedCard.BackgroundImage = slot.Image;
+                    equippedCard.Image = Image.FromFile(urlCards + slotTags.image);
                     equippedCard.Tag = slotTags;
-
-                    totalCardPoints += slotTags.cardTags.points;
-                    lblEquippedDestinyPoints.Text = totalCardPoints.ToString() + "/" + maximumCardPoints.ToString();
 
                     itemEquipped = true;
                     CalculateStats(slotTags);
@@ -598,7 +601,7 @@ namespace VictorBuilder
             if (secondarySlot)
             {
                 //Copy item to secondary slot
-                btnEquippedWeaponSecondary.Image = slot.Image;
+                btnEquippedWeaponSecondary.Image = Image.FromFile(urlWeapons + slotTags.image);
                 btnEquippedWeaponSecondary.Tag = slotTags;
 
                 //Show the attack icons for the new weapon
@@ -615,7 +618,7 @@ namespace VictorBuilder
             else
             {
                 //Copy item to primary slot
-                btnEquippedWeapon.Image = slot.Image;
+                btnEquippedWeapon.Image = Image.FromFile(urlWeapons + slotTags.image);
                 btnEquippedWeapon.Tag = slotTags;
 
                     //Show the attack icons for the new weapon
@@ -670,14 +673,10 @@ namespace VictorBuilder
         private void UnequipCard(Button slot, Tags slotTags, ref bool itemUnequipped)
         {
             //Remove the equipped card from the slot
-            slot.BackgroundImage = null;
+            slot.Image = null;
             slot.Tag = null;
 
-            totalCardPoints -= slotTags.cardTags.points;
-            lblEquippedDestinyPoints.Text = totalCardPoints.ToString() + "/" + maximumCardPoints.ToString();
-
-            itemUnequipped = true;            
-
+            itemUnequipped = true;
             CalculateStats(slotTags);
         }
 
@@ -1414,6 +1413,8 @@ namespace VictorBuilder
             XmlDocument build;
             XmlNodeList items;
             Button slot;
+            bool itemEquipped = false;
+            Tags slotTags;
 
             //Open the file dialog to prompt the user where to pick their build file to load
             OpenFileDialog loadBuildDialog = new OpenFileDialog();
@@ -1442,11 +1443,11 @@ namespace VictorBuilder
 
                     //Assign the imported item to its corresponding control (setting the Tag and Image properties)   
                     slot = Controls.Find(importItem.SelectSingleNode("Control").InnerText, true).First() as Button;
-                    slot.Tag = item;
+
                     switch (item.itemType)
                     {
                         case Tags.ItemType.Card:
-                            slot.Image = Image.FromFile(urlCards + item.image);
+                            EquipCard(slot, item, ref itemEquipped);
                             break;
                         //case Tags.ItemType.Consumable:
                         //    slot.Image = Image.FromFile(urlConsumables + item.image);
@@ -1457,29 +1458,47 @@ namespace VictorBuilder
                         //case Tags.ItemType.Empty:
                         //    break;
                         case Tags.ItemType.Outfit:
-                            slot.Image = Image.FromFile(urlOutfits + item.image);
+                            EquipOutfit(slot, item, ref itemEquipped);
                             break;
                         case Tags.ItemType.Weapon:
-                            slot.Image = Image.FromFile(urlWeapons + item.image);
+                            if (slot.Name.Contains("Secondary"))
+                            {
+                                EquipWeapon(slot, item, true, ref itemEquipped);
+                            }
+                            else
+                            {
+                                EquipWeapon(slot, item, false, ref itemEquipped);
+                            }                            
                             break;
                         default:
                             break;
                     }
                 }
-
-                //Update Stats/Skills
-                //TODO
             }
         }
 
         private void ClearEquippedItems()
         {
+            //Clear equipped item slots
             foreach (Button item in equippedItemControls)
             {
                 //Clear the slot's displayed image and tag value
                 item.Image = null;
                 item.Tag = null;
             }
+
+            //Reset stats and skills (sub-calls from the following call)
+            CalculateStatsFromEquippedCards();
+
+            //Hide the attack panels and reset the top-bar damage stats
+            pnlEquippedWeaponAttacks.Visible = false;
+            pnlEquippedWeaponAttacksSecondary.Visible = false;
+            ClearWeaponSlot(false);
+            ClearWeaponSlot(true);
+
+            //Clear the card points label
+            totalCardPoints = 0;
+            lblEquippedDestinyPoints.Text = totalCardPoints.ToString() + "/" + maximumCardPoints.ToString();
         }
     }
 }
