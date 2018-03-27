@@ -96,7 +96,7 @@ namespace VictorBuilder
         /* Constructors END   *
         /**********************/
 
-        public class WeaponTags : Tags
+        public class WeaponTags
         {
 
             public enum WeaponDistance
@@ -164,7 +164,7 @@ namespace VictorBuilder
             /* Constructors END   *
             /**********************/
 
-            public class AttackTags : WeaponTags
+            public class AttackTags
             {
                 public string attackName;
                 public string attackImageURL;
@@ -190,7 +190,7 @@ namespace VictorBuilder
             }
         }
 
-        public class CardTags : Tags
+        public class CardTags
         {
             public enum DivineWicked
             { 
@@ -223,7 +223,7 @@ namespace VictorBuilder
             /**********************/
         }
 
-        public class OutfitTags : Tags
+        public class OutfitTags
         {
             public int armor;
             public int critChance = 0;
