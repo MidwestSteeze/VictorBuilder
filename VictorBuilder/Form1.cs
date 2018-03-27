@@ -98,16 +98,16 @@ namespace VictorBuilder
             btnInventoryWeapons00.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Legendary, "Storm", "Attack speed increased by 25%" + Environment.NewLine + "Critical chance increased by 15%" + Environment.NewLine + "Critical hits create ball lightnings", "sword.png", weaponTags);
             btnInventoryWeapons00.Image = Image.FromFile("..\\..\\images\\weapons\\sword.png");
 
-            attackTags1 = new Tags.WeaponTags.AttackTags("Scythe Slash", "..\\..\\images\\attacks\\Sword_Hack.png", "..\\..\\images\\attacks\\Sword_Hack_HoverText.png");
-            attackTags2 = new Tags.WeaponTags.AttackTags("Stun", "..\\..\\images\\attacks\\Sword_Slash.png", "..\\..\\images\\attacks\\Sword_Slash_HoverText.png");
-            attackTags3 = new Tags.WeaponTags.AttackTags("Whirlwind", "..\\..\\images\\attacks\\Sword_Dash.png", "..\\..\\images\\attacks\\Sword_Dash_HoverText.png");
+            attackTags1 = new Tags.WeaponTags.AttackTags("Reap", "..\\..\\images\\attacks\\Scythe_Reap.png", "..\\..\\images\\attacks\\Scythe_Reap_HoverText.png");
+            attackTags2 = new Tags.WeaponTags.AttackTags("Shockwave", "..\\..\\images\\attacks\\Scythe_Shockwave.png", "..\\..\\images\\attacks\\Scythe_Shockwave_HoverText.png");
+            attackTags3 = new Tags.WeaponTags.AttackTags("Whirlwind", "..\\..\\images\\attacks\\Scythe_Whirlwind.png", "..\\..\\images\\attacks\\Scythe_Whirlwind_HoverText.png");
             weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Scythe, Tags.WeaponTags.WeaponDistance.Melee, 10, 190, 10, 15, 100, attackTags1, attackTags2, attackTags3);
             btnInventoryWeapons10.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Rare, "Vengeance", "Damage increased by 32% when health is below 50%" + Environment.NewLine + "Gain 10.0% of max health on crit (5 sec. cooldown)" + Environment.NewLine + "Triggers a Meteor storm when your health drops below 40%. Cannot trigger more than once every 60 seconds", "scythe.png", weaponTags);
             btnInventoryWeapons10.Image = Image.FromFile("..\\..\\images\\weapons\\scythe.png");
 
             cardTags = new Tags.CardTags(2);
             cardTags.prefix = new Affix("The Warrior", Affix.Modifier.Damage, 10, "+#% Damage");
-            btnInventoryCards00.Tag = FillItemTags(Tags.ItemType.Card, Tags.RarityType.Common, "The Sun", "", cardTags);
+            btnInventoryCards00.Tag = FillItemTags(Tags.ItemType.Card, Tags.RarityType.Common, "The Sun", "", "thesun2.png" , cardTags);
             btnInventoryCards00.Image = Image.FromFile("..\\..\\images\\cards\\thesun2.png");
 
             // Inventory page display
@@ -971,10 +971,10 @@ namespace VictorBuilder
             return new Tags(aItemType, aRarityType, aName, aDescription, aImage, aWeaponTags);
         }
 
-        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType, string aName, string aDescription,
+        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType, string aName, string aDescription, string aImage,
                                   Tags.CardTags aCardTags)
         {
-            return new Tags(aItemType, aRarityType, aName, aDescription, aCardTags);
+            return new Tags(aItemType, aRarityType, aName, aDescription, aImage, aCardTags);
         }
 
         private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType, string aName, string aDescription, Tags.OutfitTags aOutfitTags)
@@ -1406,6 +1406,80 @@ namespace VictorBuilder
                 System.IO.File.WriteAllText(saveBuildDialog.FileName, build.OuterXml);
                 MessageBox.Show("Build saved.");
             }            
+        }
+
+        private void btnLoadBuild_Click(object sender, EventArgs e)
+        {
+            Tags item;
+            XmlDocument build;
+            XmlNodeList items;
+            Button slot;
+
+            //Open the file dialog to prompt the user where to pick their build file to load
+            OpenFileDialog loadBuildDialog = new OpenFileDialog();
+            loadBuildDialog.Filter = "Xml files (*.xml)|*.xml|All files (*.*)|*.*";
+            loadBuildDialog.Title = "Load build...";
+
+            if (loadBuildDialog.ShowDialog() == DialogResult.OK)
+            {
+                ClearEquippedItems();
+
+                //Load the build into an xml document for further processing
+                build = new XmlDocument();
+                build.Load(loadBuildDialog.FileName);
+
+                //Process all <item> nodes
+                items = build.SelectNodes("Build/Items/Item");
+
+                //Create an instance of the XmlSerializer specifying type and namespace
+                XmlSerializer serializer = new XmlSerializer(typeof(Tags));
+
+                //Loop through every item and load them into their corresponding control
+                foreach (XmlNode importItem in items)
+                {
+                    //Deserialize the imported item in xml format to an object
+                    item = (Tags)serializer.Deserialize(new XmlNodeReader(importItem.SelectSingleNode("Tags")));
+
+                    //Assign the imported item to its corresponding control (setting the Tag and Image properties)   
+                    slot = Controls.Find(importItem.SelectSingleNode("Control").InnerText, true).First() as Button;
+                    slot.Tag = item;
+                    switch (item.itemType)
+                    {
+                        case Tags.ItemType.Card:
+                            slot.Image = Image.FromFile(urlCards + item.image);
+                            break;
+                        //case Tags.ItemType.Consumable:
+                        //    slot.Image = Image.FromFile(urlConsumables + item.image);
+                        //    break;
+                        //case Tags.ItemType.DemonPower:
+                        //    slot.Image = Image.FromFile(urlDemonPowers + item.image);
+                        //    break;
+                        //case Tags.ItemType.Empty:
+                        //    break;
+                        case Tags.ItemType.Outfit:
+                            slot.Image = Image.FromFile(urlOutfits + item.image);
+                            break;
+                        case Tags.ItemType.Weapon:
+                            slot.Image = Image.FromFile(urlWeapons + item.image);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                //Update Stats/Skills
+                //TODO
+            }
+        }
+
+        private void ClearEquippedItems()
+        {
+            foreach (Button item in equippedItemControls)
+            {
+                //Clear the slot's displayed image and tag value
+                item.Image = null;
+                item.Tag = null;
+            }
         }
     }
 }

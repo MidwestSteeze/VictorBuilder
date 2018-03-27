@@ -60,12 +60,13 @@ namespace VictorBuilder
             weaponTags = aWeaponTags;
         }
 
-        public Tags(ItemType aItemType, RarityType aRarityType, string aName, string aDescription, CardTags aCardTags)
+        public Tags(ItemType aItemType, RarityType aRarityType, string aName, string aDescription, string aImage, CardTags aCardTags)
         {
             itemType = aItemType;
             rarity = aRarityType;
             name = aName;
             description = aDescription;
+            image = aImage;
             cardTags = aCardTags;
 
             //Populate the Tags.Description based on the cards affixes

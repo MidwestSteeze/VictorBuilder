@@ -118,6 +118,7 @@
             this.lblHoverTextOutfitName = new System.Windows.Forms.Label();
             this.btnCreateItem = new System.Windows.Forms.Button();
             this.btnSaveBuild = new System.Windows.Forms.Button();
+            this.btnLoadBuild = new System.Windows.Forms.Button();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
@@ -1286,13 +1287,23 @@
             // 
             // btnSaveBuild
             // 
-            this.btnSaveBuild.Location = new System.Drawing.Point(76, 42);
+            this.btnSaveBuild.Location = new System.Drawing.Point(711, 39);
             this.btnSaveBuild.Name = "btnSaveBuild";
             this.btnSaveBuild.Size = new System.Drawing.Size(75, 23);
             this.btnSaveBuild.TabIndex = 37;
             this.btnSaveBuild.Text = "Save Build...";
             this.btnSaveBuild.UseVisualStyleBackColor = true;
             this.btnSaveBuild.Click += new System.EventHandler(this.btnSaveBuild_Click);
+            // 
+            // btnLoadBuild
+            // 
+            this.btnLoadBuild.Location = new System.Drawing.Point(407, 39);
+            this.btnLoadBuild.Name = "btnLoadBuild";
+            this.btnLoadBuild.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadBuild.TabIndex = 38;
+            this.btnLoadBuild.Text = "Load Build";
+            this.btnLoadBuild.UseVisualStyleBackColor = true;
+            this.btnLoadBuild.Click += new System.EventHandler(this.btnLoadBuild_Click);
             // 
             // frmMain
             // 
@@ -1301,7 +1312,8 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1916, 1054);
+            this.ClientSize = new System.Drawing.Size(1613, 891);
+            this.Controls.Add(this.btnLoadBuild);
             this.Controls.Add(this.btnSaveBuild);
             this.Controls.Add(this.btnCreateItem);
             this.Controls.Add(this.pnlHoverTextOutfit);
@@ -1460,6 +1472,7 @@
         private System.Windows.Forms.Label lblHoverTextOutfitName;
         private System.Windows.Forms.Button btnCreateItem;
         private System.Windows.Forms.Button btnSaveBuild;
+        private System.Windows.Forms.Button btnLoadBuild;
 
     }
 }
