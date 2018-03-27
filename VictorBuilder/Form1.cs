@@ -54,8 +54,10 @@ namespace VictorBuilder
         int modifierIncDamage = 0;
         int modifierIncMeleeDamage = 0;
         int modifierIncRangedDamage = 0;
-        int modifierFlatHealth = 0;
-        int modifierFlatArmor = 0;
+        int modifierFlatHealthCards = 0;
+        int modifierFlatHealthOutfit = 0;
+        int modifierFlatArmorCards = 0;
+        int modifierFlatArmorOutfit = 0;
         int modifierFlatArmorPenetration = 0;
         int modifierFlatArmorPenetrationSecondary = 0;
         int modifierFlatCritChance = 0;
@@ -194,8 +196,8 @@ namespace VictorBuilder
             modifierIncMeleeDamage = 0;
             modifierIncRangedDamage = 0;
 
-            modifierFlatHealth = 0;
-            modifierFlatArmor = 0;
+            modifierFlatHealthCards = 0;
+            modifierFlatArmorCards = 0;
             modifierFlatArmorPenetration = 0;
             modifierFlatArmorPenetrationSecondary = 0;
             modifierFlatCritChance = 0;
@@ -228,11 +230,11 @@ namespace VictorBuilder
                             switch (affix.modifier)
                             {
                                 case Affix.Modifier.Health:
-                                    modifierFlatHealth += affix.value;
+                                    modifierFlatHealthCards += affix.value;
                                     break;
 
                                 case Affix.Modifier.Armor:
-                                    modifierFlatArmor += affix.value;
+                                    modifierFlatArmorCards += affix.value;
                                     break;
 
                                 case Affix.Modifier.ArmorPenetration:
@@ -295,10 +297,13 @@ namespace VictorBuilder
         }
 
         private void CalculateStatsFromOutfit(Tags slotTags)
-        { 
+        {
+            modifierFlatHealthOutfit = 0;
+            modifierFlatArmorOutfit = 0;
+
             //Outfits can add armor, health or crit chance; tack them onto the totals
-            modifierFlatArmor += slotTags.outfitTags.armor;
-            modifierFlatHealth += slotTags.outfitTags.health;
+            modifierFlatArmorOutfit += slotTags.outfitTags.armor;
+            modifierFlatHealthOutfit += slotTags.outfitTags.health;
             modifierFlatCritChance += slotTags.outfitTags.critChance;
             modifierFlatCritChanceSecondary += slotTags.outfitTags.critChance;
 
@@ -458,8 +463,8 @@ namespace VictorBuilder
 
         private void UpdateStatLabels()
         {
-            lblHealth.Text = string.Format("{0:n0}", BaseHealth + modifierFlatHealth);
-            lblArmor.Text = string.Format("{0:n0}", BaseArmor + modifierFlatArmor);
+            lblHealth.Text = string.Format("{0:n0}", BaseHealth + modifierFlatHealthCards + modifierFlatHealthOutfit);
+            lblArmor.Text = string.Format("{0:n0}", BaseArmor + modifierFlatArmorCards + modifierFlatArmorOutfit);
 
             if (btnEquippedWeapon.Tag != null)
             {
