@@ -1357,7 +1357,7 @@ namespace VictorBuilder
                 build.LoadXml("<Build></Build>");
                 XmlElement root = build.DocumentElement;
                 XmlElement items = build.CreateElement("Items");
-                XmlElement item = build.CreateElement("Item");
+                XmlElement item;
                 XmlElement itemTags = build.CreateElement("ItemTags");
                 Tags slotTags;
 
@@ -1375,7 +1375,10 @@ namespace VictorBuilder
                             slotTags = (Tags)equippedItemControl.Tag;
                             XmlSerializer serializer = new XmlSerializer(slotTags.GetType());
 
-                            //Add the name of the control that this item belongs to for referencing when importing a build
+                            //Create a new item, so we don't overwrite the last one
+                            item = build.CreateElement("Item");
+
+							//Add the name of the control that this item belongs to for referencing when importing a build
                             item.InnerXml = "<Control>" + equippedItemControl.Name + "</Control>";
 
                             //Auto-generate the xml for the item by utilizing an XML serializer
