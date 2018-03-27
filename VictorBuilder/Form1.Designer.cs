@@ -753,7 +753,7 @@
             // lblHoverTextWeaponDescription
             // 
             this.lblHoverTextWeaponDescription.BackColor = System.Drawing.Color.Transparent;
-            this.lblHoverTextWeaponDescription.Font = new System.Drawing.Font("Copperplate Gothic Light", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoverTextWeaponDescription.Font = new System.Drawing.Font("Franklin Gothic Book", 12F);
             this.lblHoverTextWeaponDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(181)))), ((int)(((byte)(18)))));
             this.lblHoverTextWeaponDescription.Location = new System.Drawing.Point(12, 116);
             this.lblHoverTextWeaponDescription.Name = "lblHoverTextWeaponDescription";
@@ -799,7 +799,7 @@
             // lblHoverTextCardDescription
             // 
             this.lblHoverTextCardDescription.BackColor = System.Drawing.Color.Transparent;
-            this.lblHoverTextCardDescription.Font = new System.Drawing.Font("Copperplate Gothic Light", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoverTextCardDescription.Font = new System.Drawing.Font("Franklin Gothic Book", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHoverTextCardDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(181)))), ((int)(((byte)(18)))));
             this.lblHoverTextCardDescription.Location = new System.Drawing.Point(12, 116);
             this.lblHoverTextCardDescription.Name = "lblHoverTextCardDescription";
@@ -1254,8 +1254,8 @@
             // lblHoverTextOutfitDescription
             // 
             this.lblHoverTextOutfitDescription.BackColor = System.Drawing.Color.Transparent;
-            this.lblHoverTextOutfitDescription.Font = new System.Drawing.Font("Copperplate Gothic Light", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHoverTextOutfitDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(84)))), ((int)(((byte)(136)))));
+            this.lblHoverTextOutfitDescription.Font = new System.Drawing.Font("Franklin Gothic Book", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoverTextOutfitDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
             this.lblHoverTextOutfitDescription.Location = new System.Drawing.Point(12, 116);
             this.lblHoverTextOutfitDescription.Name = "lblHoverTextOutfitDescription";
             this.lblHoverTextOutfitDescription.Size = new System.Drawing.Size(501, 116);
@@ -1287,7 +1287,7 @@
             // 
             // btnSaveBuild
             // 
-            this.btnSaveBuild.Location = new System.Drawing.Point(711, 39);
+            this.btnSaveBuild.Location = new System.Drawing.Point(87, 53);
             this.btnSaveBuild.Name = "btnSaveBuild";
             this.btnSaveBuild.Size = new System.Drawing.Size(75, 23);
             this.btnSaveBuild.TabIndex = 37;
@@ -1297,7 +1297,7 @@
             // 
             // btnLoadBuild
             // 
-            this.btnLoadBuild.Location = new System.Drawing.Point(407, 39);
+            this.btnLoadBuild.Location = new System.Drawing.Point(87, 29);
             this.btnLoadBuild.Name = "btnLoadBuild";
             this.btnLoadBuild.Size = new System.Drawing.Size(75, 23);
             this.btnLoadBuild.TabIndex = 38;
@@ -1318,13 +1318,13 @@
             this.Controls.Add(this.btnCreateItem);
             this.Controls.Add(this.pnlHoverTextOutfit);
             this.Controls.Add(this.btnEquippedOutfit);
-            this.Controls.Add(this.pnlEquippedWeaponAttacksSecondary);
             this.Controls.Add(this.pnlHoverTextWeapon);
             this.Controls.Add(this.pnlHoverTextCard);
             this.Controls.Add(this.lblCritMultiSecondary);
             this.Controls.Add(this.lblCritChanceSecondary);
             this.Controls.Add(this.lblDamageSecondary);
             this.Controls.Add(this.lblArmorPenetrationSecondary);
+            this.Controls.Add(this.pnlEquippedWeaponAttacksSecondary);
             this.Controls.Add(this.pbIconWeaponsHighlighted);
             this.Controls.Add(this.pbIconOtherHighlighted);
             this.Controls.Add(this.pbIconOther);
