@@ -576,9 +576,11 @@ namespace VictorBuilder
                     break;
                 case Tags.CardTags.DivineWicked.Divine:
                     newItemTags.cardTags.thirdAffix = (Affix)lstCardDivineMods.SelectedItem;
+                    newItemTags.name = newItemTags.name.Insert(0, "Divine ");
                     break;
                 case Tags.CardTags.DivineWicked.Wicked:
                     newItemTags.cardTags.thirdAffix = (Affix)lstCardWickedMods.SelectedItem;
+                    newItemTags.name = newItemTags.name.Insert(0, "Wicked ");
                     break;
                 default:
                     break;
