@@ -98,19 +98,19 @@ namespace VictorBuilder
             weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Sword, Tags.WeaponTags.WeaponDistance.Melee, 44, 75, 0, 35, 100, attackTags1, attackTags2, attackTags3);
 
             btnInventoryWeapons00.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Legendary, "Storm", "Attack speed increased by 25%" + Environment.NewLine + "Critical chance increased by 15%" + Environment.NewLine + "Critical hits create ball lightnings", "sword.png", weaponTags);
-            btnInventoryWeapons00.Image = Image.FromFile("..\\..\\images\\weapons\\sword.png");
+            btnInventoryWeapons00.BackgroundImage = Image.FromFile("..\\..\\images\\weapons\\sword.png");
 
             attackTags1 = new Tags.WeaponTags.AttackTags("Reap", "..\\..\\images\\attacks\\Scythe_Reap.png", "..\\..\\images\\attacks\\Scythe_Reap_HoverText.png");
             attackTags2 = new Tags.WeaponTags.AttackTags("Shockwave", "..\\..\\images\\attacks\\Scythe_Shockwave.png", "..\\..\\images\\attacks\\Scythe_Shockwave_HoverText.png");
             attackTags3 = new Tags.WeaponTags.AttackTags("Whirlwind", "..\\..\\images\\attacks\\Scythe_Whirlwind.png", "..\\..\\images\\attacks\\Scythe_Whirlwind_HoverText.png");
             weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Scythe, Tags.WeaponTags.WeaponDistance.Melee, 10, 190, 10, 15, 100, attackTags1, attackTags2, attackTags3);
             btnInventoryWeapons10.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Rare, "Vengeance", "Damage increased by 32% when health is below 50%" + Environment.NewLine + "Gain 10.0% of max health on crit (5 sec. cooldown)" + Environment.NewLine + "Triggers a Meteor storm when your health drops below 40%. Cannot trigger more than once every 60 seconds", "scythe.png", weaponTags);
-            btnInventoryWeapons10.Image = Image.FromFile("..\\..\\images\\weapons\\scythe.png");
+            btnInventoryWeapons10.BackgroundImage = Image.FromFile("..\\..\\images\\weapons\\scythe.png");
 
             cardTags = new Tags.CardTags(2);
             cardTags.prefix = new Affix("The Warrior", Affix.Modifier.Damage, 10, "+#% Damage");
             btnInventoryCards00.Tag = FillItemTags(Tags.ItemType.Card, Tags.RarityType.Common, "The Sun", "", "thesun2.png" , cardTags);
-            btnInventoryCards00.Image = Image.FromFile("..\\..\\images\\cards\\thesun2.png");
+            btnInventoryCards00.BackgroundImage = Image.FromFile("..\\..\\images\\cards\\thesun2.png");
 
             // Inventory page display
             lblInventoryHeader.Text = "Destiny Cards";
@@ -124,11 +124,11 @@ namespace VictorBuilder
             pbIconOtherHighlighted.Visible = true;
 
             btnEquippedWeapon.Tag = btnInventoryWeapons00.Tag;
-            btnEquippedWeapon.Image = btnInventoryWeapons00.Image;
+            btnEquippedWeapon.BackgroundImage = btnInventoryWeapons00.BackgroundImage;
             CalculateStats((Tags)btnEquippedWeapon.Tag);
 
             btnEquippedWeaponSecondary.Tag = btnInventoryWeapons10.Tag;
-            btnEquippedWeaponSecondary.Image = btnInventoryWeapons10.Image;
+            btnEquippedWeaponSecondary.BackgroundImage = btnInventoryWeapons10.BackgroundImage;
             CalculateStats((Tags)btnEquippedWeaponSecondary.Tag, true);
 
             lblEquippedDestinyPoints.Text = totalCardPoints.ToString() + "/" + maximumCardPoints.ToString();
@@ -582,7 +582,7 @@ namespace VictorBuilder
                 if ((Tags)equippedCard.Tag == null)
                 {
                     //Empty card slot found; copy the card into this equippable card slot
-                    equippedCard.Image = Image.FromFile(urlCards + slotTags.image);
+                    equippedCard.BackgroundImage = Image.FromFile(urlCards + slotTags.image);
                     equippedCard.Tag = slotTags;
 
                     itemEquipped = true;
@@ -606,13 +606,13 @@ namespace VictorBuilder
             if (secondarySlot)
             {
                 //Copy item to secondary slot
-                btnEquippedWeaponSecondary.Image = Image.FromFile(urlWeapons + slotTags.image);
+                btnEquippedWeaponSecondary.BackgroundImage = Image.FromFile(urlWeapons + slotTags.image);
                 btnEquippedWeaponSecondary.Tag = slotTags;
 
                 //Show the attack icons for the new weapon
-                lblAttackSecondary1.Image = Image.FromFile(urlAttacks + slotTags.weaponTags.attack1.attackImageURL);
-                lblAttackSecondary2.Image = Image.FromFile(urlAttacks + slotTags.weaponTags.attack2.attackImageURL);
-                lblAttackSecondary3.Image = Image.FromFile(urlAttacks + slotTags.weaponTags.attack3.attackImageURL);
+                btnAttackSecondary1.BackgroundImage = Image.FromFile(urlAttacks + slotTags.weaponTags.attack1.attackImageURL);
+                btnAttackSecondary2.BackgroundImage = Image.FromFile(urlAttacks + slotTags.weaponTags.attack2.attackImageURL);
+                btnAttackSecondary3.BackgroundImage = Image.FromFile(urlAttacks + slotTags.weaponTags.attack3.attackImageURL);
 
                 itemEquipped = true;
                 
@@ -623,13 +623,13 @@ namespace VictorBuilder
             else
             {
                 //Copy item to primary slot
-                btnEquippedWeapon.Image = Image.FromFile(urlWeapons + slotTags.image);
+                btnEquippedWeapon.BackgroundImage = Image.FromFile(urlWeapons + slotTags.image);
                 btnEquippedWeapon.Tag = slotTags;
 
-                    //Show the attack icons for the new weapon
-                    lblAttack1.Image = Image.FromFile(urlAttacks + slotTags.weaponTags.attack1.attackImageURL);
-                    lblAttack2.Image = Image.FromFile(urlAttacks + slotTags.weaponTags.attack2.attackImageURL);
-                    lblAttack3.Image = Image.FromFile(urlAttacks + slotTags.weaponTags.attack3.attackImageURL);
+                //Show the attack icons for the new weapon
+                btnAttack1.BackgroundImage = Image.FromFile(urlAttacks + slotTags.weaponTags.attack1.attackImageURL);
+                btnAttack2.BackgroundImage = Image.FromFile(urlAttacks + slotTags.weaponTags.attack2.attackImageURL);
+                btnAttack3.BackgroundImage = Image.FromFile(urlAttacks + slotTags.weaponTags.attack3.attackImageURL);
 
                 itemEquipped = true;
                 CalculateStats(slotTags);
@@ -678,7 +678,7 @@ namespace VictorBuilder
         private void UnequipCard(Button slot, Tags slotTags, ref bool itemUnequipped)
         {
             //Remove the equipped card from the slot
-            slot.Image = null;
+            slot.BackgroundImage = null;
             slot.Tag = null;
 
             itemUnequipped = true;
@@ -688,7 +688,7 @@ namespace VictorBuilder
         private void UnequipWeapon(Button slot, Tags slotTags, bool secondarySlot, ref bool itemUnequipped)
         {
             //Remove the equipped weapon from the slot
-            slot.Image = null;
+            slot.BackgroundImage = null;
             slot.Tag = null;
             itemUnequipped = true;
 
@@ -890,7 +890,7 @@ namespace VictorBuilder
         private void Attack_MouseHover(object sender, EventArgs e)
         {
             Tags slotTags;
-            Label slot = (Label)sender;
+            Button slot = (Button)sender;
 
             if (slot.Name.Contains("Secondary"))
             {
@@ -945,7 +945,7 @@ namespace VictorBuilder
 
         private void Attack_MouseLeave(object sender, EventArgs e)
         {
-            Label slot = (Label)sender;
+            Button slot = (Button)sender;
 
             if (slot.Name.Contains("Secondary"))
             {
@@ -1123,33 +1123,33 @@ namespace VictorBuilder
         {
             outfitTags = new Tags.OutfitTags(30, "adventurer.png");
             btnInventoryOther00.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Adventurer's Outfit", "Increases the Destiny slots by 1.  Increases maximum Overdrive by 2,000.  Increases Overdrive gain by 30%.", outfitTags);
-            btnInventoryOther00.Image = Image.FromFile(urlOutfits + "adventurer.png");
+            btnInventoryOther00.BackgroundImage = Image.FromFile(urlOutfits + "adventurer.png");
 
             outfitTags = new Tags.OutfitTags(50, "cavalier.png");
             btnInventoryOther10.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Cavalier's Outfit", "You gain 180 Overdrive every second, but attacks no longer grant Overdrive.", outfitTags);
-            btnInventoryOther10.Image = Image.FromFile(urlOutfits + "cavalier.png");
+            btnInventoryOther10.BackgroundImage = Image.FromFile(urlOutfits + "cavalier.png");
 
             outfitTags = new Tags.OutfitTags(70, "highlander.png");
             btnInventoryOther20.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Highlander's Outfit", "You gain 300 Overdrive when you use a weapon special attack, but attacks no longer grant Overdrive." + Environment.NewLine + "Reduces weapon cooldowns by 15%.", outfitTags);
-            btnInventoryOther20.Image = Image.FromFile(urlOutfits + "highlander.png");
+            btnInventoryOther20.BackgroundImage = Image.FromFile(urlOutfits + "highlander.png");
 
             outfitTags = new Tags.OutfitTags(80, "hunter.png");
             btnInventoryOther30.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Hunter's Outfit", "Gain 200% of the damage taken as Overdrive.", outfitTags);
-            btnInventoryOther30.Image = Image.FromFile(urlOutfits + "hunter.png");
+            btnInventoryOther30.BackgroundImage = Image.FromFile(urlOutfits + "hunter.png");
 
             //outfitTags = new Tags.OutfitTags(150, "vanguard.png");
             //btnInventoryOther30.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Vanguard's Outfit", "High Armor.  Increases maximum Overdrive by 2,000.  Overdrive doesn't diminish outside of combat but Overdrive gain is decreased by 10%.", outfitTags);
-            //btnInventoryOther30.Image = Image.FromFile(urlOutfits + "vanguard.png");
+            //btnInventoryOther30.BackgroundImage = Image.FromFile(urlOutfits + "vanguard.png");
 
             outfitTags = new Tags.OutfitTags(70, "vigilante.png");
             outfitTags.critChance = 10;
             btnInventoryOther40.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Vigilante's Outfit", "Critical hits grant 300% more Overdrive.  Normal attacks no longer grant Overdrive.", outfitTags);
-            btnInventoryOther40.Image = Image.FromFile(urlOutfits + "vigilante.png");
+            btnInventoryOther40.BackgroundImage = Image.FromFile(urlOutfits + "vigilante.png");
 
             outfitTags = new Tags.OutfitTags(100, "zealot.png");
             outfitTags.health = 1000;
             btnInventoryOther01.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Zealot's Outfit", "High Armor.  Increases Health by 1,000.", outfitTags);
-            btnInventoryOther01.Image = Image.FromFile(urlOutfits + "zealot.png");
+            btnInventoryOther01.BackgroundImage = Image.FromFile(urlOutfits + "zealot.png");
         }
 
         /***************************
@@ -1285,11 +1285,11 @@ namespace VictorBuilder
                 //Assign the new item to the new inventory slot
                 try
                 {
-                    inventorySlot.Image = Image.FromFile(urlFilePath + newItemTags.image);
+                    inventorySlot.BackgroundImage = Image.FromFile(urlFilePath + newItemTags.image);
                 }
                 catch (FileNotFoundException e)
                 {
-                    inventorySlot.Image = Image.FromFile(urlImageNotFound);
+                    inventorySlot.BackgroundImage = Image.FromFile(urlImageNotFound);
                 }
 
                 inventorySlot.Tag = newItemTags;
@@ -1317,7 +1317,7 @@ namespace VictorBuilder
             inventorySlot.ForeColor = System.Drawing.SystemColors.ControlText;
             inventorySlot.Location = new System.Drawing.Point(3, 3);
             //inventorySlot.Name = "btnInventoryWeapons00";
-            inventorySlot.Size = new System.Drawing.Size(95, 153);
+            inventorySlot.Size = new System.Drawing.Size(61, 98);
             //inventorySlot.TabIndex = 1;
             inventorySlot.TabStop = false;
             inventorySlot.UseVisualStyleBackColor = false;
@@ -1455,10 +1455,10 @@ namespace VictorBuilder
                             EquipCard(slot, item, ref itemEquipped);
                             break;
                         //case Tags.ItemType.Consumable:
-                        //    slot.Image = Image.FromFile(urlConsumables + item.image);
+                        //    slot.BackgroundImage = Image.FromFile(urlConsumables + item.image);
                         //    break;
                         //case Tags.ItemType.DemonPower:
-                        //    slot.Image = Image.FromFile(urlDemonPowers + item.image);
+                        //    slot.BackgroundImage = Image.FromFile(urlDemonPowers + item.image);
                         //    break;
                         //case Tags.ItemType.Empty:
                         //    break;
@@ -1488,7 +1488,7 @@ namespace VictorBuilder
             foreach (Button item in equippedItemControls)
             {
                 //Clear the slot's displayed image and tag value
-                item.Image = null;
+                item.BackgroundImage = null;
                 item.Tag = null;
             }
 
