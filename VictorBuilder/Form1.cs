@@ -563,8 +563,10 @@ namespace VictorBuilder
                     EquipCard(slot, slotTags, ref itemEquipped);
                     break;
                 case Tags.ItemType.Consumable:
+                    //EquipConsumable(slot, slotTags, secondarySlot, ref itemEquipped);
                     break;
                 case Tags.ItemType.DemonPower:
+                    //EquipDemonPower(slot, slotTags, secondarySlot, ref itemEquipped);
                     break;
                 case Tags.ItemType.Empty:
                     break;
@@ -675,8 +677,10 @@ namespace VictorBuilder
                     UnequipCard(slot, slotTags, ref itemUnequipped);
                     break;
                 case Tags.ItemType.Consumable:
+                    //UnequipConsumable(slot, slotTags, slot.Name.Contains("Secondary"), ref itemUnequipped);
                     break;
                 case Tags.ItemType.DemonPower:
+                    //UnequipDemonPower(slot, slotTags, slot.Name.Contains("Secondary"), ref itemUnequipped);
                     break;
                 case Tags.ItemType.Empty:
                     break;

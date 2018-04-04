@@ -149,6 +149,10 @@
             this.pbIconConsumablesHighlighted = new System.Windows.Forms.PictureBox();
             this.pbIconDemonPowers = new System.Windows.Forms.PictureBox();
             this.pbIconDemonPowersHighlighted = new System.Windows.Forms.PictureBox();
+            this.btnEquippedDemonPowerSecondary = new System.Windows.Forms.Button();
+            this.btnEquippedDemonPower = new System.Windows.Forms.Button();
+            this.btnEquippedConsumableSecondary = new System.Windows.Forms.Button();
+            this.btnEquippedConsumable = new System.Windows.Forms.Button();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
@@ -1911,6 +1915,78 @@
             this.pbIconDemonPowersHighlighted.Tag = "demonPowers";
             this.pbIconDemonPowersHighlighted.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InventoryCategoryChange);
             // 
+            // btnEquippedDemonPowerSecondary
+            // 
+            this.btnEquippedDemonPowerSecondary.BackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedDemonPowerSecondary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEquippedDemonPowerSecondary.FlatAppearance.BorderSize = 0;
+            this.btnEquippedDemonPowerSecondary.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedDemonPowerSecondary.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedDemonPowerSecondary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEquippedDemonPowerSecondary.Location = new System.Drawing.Point(723, 411);
+            this.btnEquippedDemonPowerSecondary.Name = "btnEquippedDemonPowerSecondary";
+            this.btnEquippedDemonPowerSecondary.Size = new System.Drawing.Size(61, 98);
+            this.btnEquippedDemonPowerSecondary.TabIndex = 45;
+            this.btnEquippedDemonPowerSecondary.TabStop = false;
+            this.btnEquippedDemonPowerSecondary.UseVisualStyleBackColor = false;
+            this.btnEquippedDemonPowerSecondary.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnEquippedDemonPowerSecondary.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnEquippedDemonPowerSecondary.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
+            // 
+            // btnEquippedDemonPower
+            // 
+            this.btnEquippedDemonPower.BackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedDemonPower.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEquippedDemonPower.FlatAppearance.BorderSize = 0;
+            this.btnEquippedDemonPower.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedDemonPower.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedDemonPower.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEquippedDemonPower.Location = new System.Drawing.Point(60, 411);
+            this.btnEquippedDemonPower.Name = "btnEquippedDemonPower";
+            this.btnEquippedDemonPower.Size = new System.Drawing.Size(61, 98);
+            this.btnEquippedDemonPower.TabIndex = 46;
+            this.btnEquippedDemonPower.TabStop = false;
+            this.btnEquippedDemonPower.UseVisualStyleBackColor = false;
+            this.btnEquippedDemonPower.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnEquippedDemonPower.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnEquippedDemonPower.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
+            // 
+            // btnEquippedConsumableSecondary
+            // 
+            this.btnEquippedConsumableSecondary.BackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedConsumableSecondary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEquippedConsumableSecondary.FlatAppearance.BorderSize = 0;
+            this.btnEquippedConsumableSecondary.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedConsumableSecondary.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedConsumableSecondary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEquippedConsumableSecondary.Location = new System.Drawing.Point(701, 185);
+            this.btnEquippedConsumableSecondary.Name = "btnEquippedConsumableSecondary";
+            this.btnEquippedConsumableSecondary.Size = new System.Drawing.Size(61, 98);
+            this.btnEquippedConsumableSecondary.TabIndex = 47;
+            this.btnEquippedConsumableSecondary.TabStop = false;
+            this.btnEquippedConsumableSecondary.UseVisualStyleBackColor = false;
+            this.btnEquippedConsumableSecondary.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnEquippedConsumableSecondary.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnEquippedConsumableSecondary.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
+            // 
+            // btnEquippedConsumable
+            // 
+            this.btnEquippedConsumable.BackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedConsumable.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEquippedConsumable.FlatAppearance.BorderSize = 0;
+            this.btnEquippedConsumable.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedConsumable.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEquippedConsumable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEquippedConsumable.Location = new System.Drawing.Point(89, 185);
+            this.btnEquippedConsumable.Name = "btnEquippedConsumable";
+            this.btnEquippedConsumable.Size = new System.Drawing.Size(61, 98);
+            this.btnEquippedConsumable.TabIndex = 48;
+            this.btnEquippedConsumable.TabStop = false;
+            this.btnEquippedConsumable.UseVisualStyleBackColor = false;
+            this.btnEquippedConsumable.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnEquippedConsumable.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnEquippedConsumable.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1919,6 +1995,10 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.btnEquippedConsumable);
+            this.Controls.Add(this.btnEquippedConsumableSecondary);
+            this.Controls.Add(this.btnEquippedDemonPower);
+            this.Controls.Add(this.btnEquippedDemonPowerSecondary);
             this.Controls.Add(this.pbIconDemonPowersHighlighted);
             this.Controls.Add(this.pbIconDemonPowers);
             this.Controls.Add(this.pbIconConsumablesHighlighted);
@@ -2119,6 +2199,10 @@
         private System.Windows.Forms.PictureBox pbIconConsumablesHighlighted;
         private System.Windows.Forms.PictureBox pbIconDemonPowers;
         private System.Windows.Forms.PictureBox pbIconDemonPowersHighlighted;
+        private System.Windows.Forms.Button btnEquippedDemonPowerSecondary;
+        private System.Windows.Forms.Button btnEquippedDemonPower;
+        private System.Windows.Forms.Button btnEquippedConsumableSecondary;
+        private System.Windows.Forms.Button btnEquippedConsumable;
 
     }
 }
