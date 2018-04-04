@@ -30,6 +30,8 @@ namespace VictorBuilder
         string urlBackgrounds = "..\\..\\images\\backgrounds\\";
         string urlOutfits = "..\\..\\images\\outfits\\";
         string urlCards = "..\\..\\images\\cards\\";
+        string urlConsumables = "..\\..\\images\\consumables\\";
+        string urlDemonPowers = "..\\..\\images\\demonpowers\\";
         string urlWeapons = "..\\..\\images\\weapons\\";
         string urlImageNotFound = "..\\..\\images\\imagenotfound.png";
 
@@ -563,10 +565,10 @@ namespace VictorBuilder
                     EquipCard(slot, slotTags, ref itemEquipped);
                     break;
                 case Tags.ItemType.Consumable:
-                    //EquipConsumable(slot, slotTags, secondarySlot, ref itemEquipped);
+                    EquipConsumable(slot, slotTags, secondarySlot, ref itemEquipped);
                     break;
                 case Tags.ItemType.DemonPower:
-                    //EquipDemonPower(slot, slotTags, secondarySlot, ref itemEquipped);
+                    EquipDemonPower(slot, slotTags, secondarySlot, ref itemEquipped);
                     break;
                 case Tags.ItemType.Empty:
                     break;
@@ -606,6 +608,46 @@ namespace VictorBuilder
                         break;
                     }
                 }
+            }
+        }
+
+        private void EquipConsumable(Button slot, Tags slotTags, bool secondarySlot, ref bool itemEquipped)
+        {
+            if (secondarySlot)
+            {
+                //Copy item to secondary slot
+                btnEquippedConsumableSecondary.BackgroundImage = Image.FromFile(urlConsumables + slotTags.image);
+                btnEquippedConsumableSecondary.Tag = slotTags;
+
+                itemEquipped = true;
+            }
+            else
+            {
+                //Copy item to primary slot
+                btnEquippedConsumable.BackgroundImage = Image.FromFile(urlConsumables + slotTags.image);
+                btnEquippedConsumable.Tag = slotTags;
+
+                itemEquipped = true;
+            }
+        }
+
+        private void EquipDemonPower(Button slot, Tags slotTags, bool secondarySlot, ref bool itemEquipped)
+        {
+            if (secondarySlot)
+            {
+                //Copy item to secondary slot
+                btnEquippedDemonPowerSecondary.BackgroundImage = Image.FromFile(urlDemonPowers + slotTags.image);
+                btnEquippedDemonPowerSecondary.Tag = slotTags;
+
+                itemEquipped = true;
+            }
+            else
+            {
+                //Copy item to primary slot
+                btnEquippedDemonPower.BackgroundImage = Image.FromFile(urlDemonPowers + slotTags.image);
+                btnEquippedDemonPower.Tag = slotTags;
+
+                itemEquipped = true;
             }
         }
 
@@ -677,10 +719,10 @@ namespace VictorBuilder
                     UnequipCard(slot, slotTags, ref itemUnequipped);
                     break;
                 case Tags.ItemType.Consumable:
-                    //UnequipConsumable(slot, slotTags, slot.Name.Contains("Secondary"), ref itemUnequipped);
+                    UnequipConsumable(slot, slotTags, ref itemUnequipped);
                     break;
                 case Tags.ItemType.DemonPower:
-                    //UnequipDemonPower(slot, slotTags, slot.Name.Contains("Secondary"), ref itemUnequipped);
+                    UnequipDemonPower(slot, slotTags, ref itemUnequipped);
                     break;
                 case Tags.ItemType.Empty:
                     break;
@@ -702,6 +744,24 @@ namespace VictorBuilder
 
             itemUnequipped = true;
             CalculateStats(slotTags);
+        }
+
+        private void UnequipConsumable(Button slot, Tags slotTags, ref bool itemUnequipped)
+        {
+            //Remove the equipped consumable from the slot
+            slot.BackgroundImage = null;
+            slot.Tag = null;
+
+            itemUnequipped = true;
+        }
+
+        private void UnequipDemonPower(Button slot, Tags slotTags, ref bool itemUnequipped)
+        {
+            //Remove the equipped demon power from the slot
+            slot.BackgroundImage = null;
+            slot.Tag = null;
+
+            itemUnequipped = true;
         }
 
         private void UnequipWeapon(Button slot, Tags slotTags, bool secondarySlot, ref bool itemUnequipped)
