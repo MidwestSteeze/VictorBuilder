@@ -581,13 +581,22 @@ namespace VictorBuilder
                 //Check if the card slot is empty
                 if ((Tags)equippedCard.Tag == null)
                 {
-                    //Empty card slot found; copy the card into this equippable card slot
-                    equippedCard.BackgroundImage = Image.FromFile(urlCards + slotTags.image);
-                    equippedCard.Tag = slotTags;
+                    //Only equip the card if we have enough available Destiny Points to do so
+                    if ((totalCardPoints + slotTags.cardTags.points) <= maximumCardPoints)
+                    {
+                        //Empty card slot found; copy the card into this equippable card slot
+                        equippedCard.BackgroundImage = Image.FromFile(urlCards + slotTags.image);
+                        equippedCard.Tag = slotTags;
 
-                    itemEquipped = true;
-                    CalculateStats(slotTags);
-                    break;
+                        itemEquipped = true;
+                        CalculateStats(slotTags);
+                        break;
+                    }
+                    else
+                    {
+                        itemEquipped = false;
+                        break;
+                    }
                 }
             }
         }
