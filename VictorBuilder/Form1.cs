@@ -88,6 +88,8 @@ namespace VictorBuilder
 
             //Remove the weird default border that a TabControl keeps around its children tab pages
             tcInventoryWeapons.Region = new Region(new RectangleF(tbInventoryWeaponsPage1.Left, tbInventoryWeaponsPage1.Top, tbInventoryWeaponsPage1.Width, tbInventoryWeaponsPage1.Height));
+            tcInventoryConsumables.Region = new Region(new RectangleF(tbInventoryConsumablesPage1.Left, tbInventoryConsumablesPage1.Top, tbInventoryConsumablesPage1.Width, tbInventoryConsumablesPage1.Height));
+            tcInventoryDemonPowers.Region = new Region(new RectangleF(tbInventoryDemonPowersPage1.Left, tbInventoryDemonPowersPage1.Top, tbInventoryDemonPowersPage1.Width, tbInventoryDemonPowersPage1.Height));
             tcInventoryCards.Region = new Region(new RectangleF(tbInventoryCardsPage1.Left, tbInventoryCardsPage1.Top, tbInventoryCardsPage1.Width, tbInventoryCardsPage1.Height));
             tcInventoryOther.Region = new Region(new RectangleF(tbInventoryOtherPage1.Left, tbInventoryOtherPage1.Top, tbInventoryOtherPage1.Width, tbInventoryOtherPage1.Height));
 
@@ -119,6 +121,10 @@ namespace VictorBuilder
             tcInventoryOther.Visible = true;
             pbIconWeapons.Visible = true;
             pbIconWeaponsHighlighted.Visible = false;
+            pbIconConsumables.Visible = true;
+            pbIconConsumablesHighlighted.Visible = false;
+            pbIconDemonPowers.Visible = true;
+            pbIconDemonPowersHighlighted.Visible = false;
             pbIconCardsHighlighted.Visible = false;
             pbIconOther.Visible = false;
             pbIconOtherHighlighted.Visible = true;
@@ -1066,9 +1072,9 @@ namespace VictorBuilder
             pbIconWeapons.Visible = false;
             pbIconWeaponsHighlighted.Visible = false;
             pbIconConsumables.Visible = false;
-            //pbIconConsumablesHighlighted.Visible = false;
-            //pbIconDemonPowers.Visible = false;
-            //pbIconDemonPowersHighlighted.Visible = false;
+            pbIconConsumablesHighlighted.Visible = false;
+            pbIconDemonPowers.Visible = false;
+            pbIconDemonPowersHighlighted.Visible = false;
             pbIconCards.Visible = false;
             pbIconCardsHighlighted.Visible = false;
             pbIconOther.Visible = false;
@@ -1080,35 +1086,35 @@ namespace VictorBuilder
                 case "weapons":
                     pbIconWeaponsHighlighted.Visible = true;
                     pbIconConsumables.Visible = true;
-                    //pbIconDemonPowers.Visible = true;
+                    pbIconDemonPowers.Visible = true;
                     pbIconCards.Visible = true;
                     pbIconOther.Visible = true;
 
                     lblInventoryHeader.Text = "Weapons";
                     break;
                 case "consumables":
-                    //pbIconConsumablesHighlighted.Visible = true;
+                    pbIconConsumablesHighlighted.Visible = true;
                     pbIconWeapons.Visible = true;
-                    //pbIconDemonPowers.Visible = true;
+                    pbIconDemonPowers.Visible = true;
                     pbIconCards.Visible = true;
                     pbIconOther.Visible = true;
 
                     lblInventoryHeader.Text = "Consumables";
                     break;
-                //case "demonPowers":
-                    //pbIconDemonPowersHighlighted.Visible = true;
-                    //pbIconWeapons.Visible = true;
-                    //pbIconConsumables.Visible = true;
-                    //pbIconCards.Visible = true;
-                    //pbIconOther.Visible = true;
+                case "demonPowers":
+                    pbIconDemonPowersHighlighted.Visible = true;
+                    pbIconWeapons.Visible = true;
+                    pbIconConsumables.Visible = true;
+                    pbIconCards.Visible = true;
+                    pbIconOther.Visible = true;
 
-					//lblInventoryHeader.Text = "Demon Powers";
-                    //break;
+					lblInventoryHeader.Text = "Demon Powers";
+                    break;
                 case "cards":
                     pbIconCardsHighlighted.Visible = true;
                     pbIconWeapons.Visible = true;
                     pbIconConsumables.Visible = true;
-                    //pbIconDemonPowers.Visible = true;
+                    pbIconDemonPowers.Visible = true;
                     pbIconOther.Visible = true;
 
                     lblInventoryHeader.Text = "Destiny Cards";
@@ -1117,7 +1123,7 @@ namespace VictorBuilder
                     pbIconOtherHighlighted.Visible = true;
                     pbIconWeapons.Visible = true;
                     pbIconConsumables.Visible = true;
-                    //pbIconDemonPowers.Visible = true;
+                    pbIconDemonPowers.Visible = true;
                     pbIconCards.Visible = true;
 
                     lblInventoryHeader.Text = "Other";

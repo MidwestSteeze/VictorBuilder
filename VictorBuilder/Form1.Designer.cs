@@ -120,6 +120,35 @@
             this.btnSaveBuild = new System.Windows.Forms.Button();
             this.btnLoadBuild = new System.Windows.Forms.Button();
             this.pnlStats = new System.Windows.Forms.Panel();
+            this.tcInventoryDemonPowers = new System.Windows.Forms.TabControl();
+            this.tbInventoryDemonPowersPage1 = new System.Windows.Forms.TabPage();
+            this.tlpInventoryDemonPowers = new System.Windows.Forms.TableLayoutPanel();
+            this.btnInventoryDemonPowers00 = new System.Windows.Forms.Button();
+            this.btnInventoryDemonPowers10 = new System.Windows.Forms.Button();
+            this.btnInventoryDemonPowers20 = new System.Windows.Forms.Button();
+            this.btnInventoryDemonPowers01 = new System.Windows.Forms.Button();
+            this.btnInventoryDemonPowers11 = new System.Windows.Forms.Button();
+            this.btnInventoryDemonPowers21 = new System.Windows.Forms.Button();
+            this.btnInventoryDemonPowers30 = new System.Windows.Forms.Button();
+            this.btnInventoryDemonPowers40 = new System.Windows.Forms.Button();
+            this.btnInventoryDemonPowers41 = new System.Windows.Forms.Button();
+            this.btnInventoryDemonPowers31 = new System.Windows.Forms.Button();
+            this.tcInventoryConsumables = new System.Windows.Forms.TabControl();
+            this.tbInventoryConsumablesPage1 = new System.Windows.Forms.TabPage();
+            this.tlpInventoryConsumables = new System.Windows.Forms.TableLayoutPanel();
+            this.btnInventoryConsumables00 = new System.Windows.Forms.Button();
+            this.btnInventoryConsumables10 = new System.Windows.Forms.Button();
+            this.btnInventoryConsumables20 = new System.Windows.Forms.Button();
+            this.btnInventoryConsumables01 = new System.Windows.Forms.Button();
+            this.btnInventoryConsumables11 = new System.Windows.Forms.Button();
+            this.btnInventoryConsumables21 = new System.Windows.Forms.Button();
+            this.btnInventoryConsumables30 = new System.Windows.Forms.Button();
+            this.btnInventoryConsumables40 = new System.Windows.Forms.Button();
+            this.btnInventoryConsumables41 = new System.Windows.Forms.Button();
+            this.btnInventoryConsumables31 = new System.Windows.Forms.Button();
+            this.pbIconConsumablesHighlighted = new System.Windows.Forms.PictureBox();
+            this.pbIconDemonPowers = new System.Windows.Forms.PictureBox();
+            this.pbIconDemonPowersHighlighted = new System.Windows.Forms.PictureBox();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
@@ -145,6 +174,15 @@
             this.tlpInventoryOther.SuspendLayout();
             this.pnlHoverTextOutfit.SuspendLayout();
             this.pnlStats.SuspendLayout();
+            this.tcInventoryDemonPowers.SuspendLayout();
+            this.tbInventoryDemonPowersPage1.SuspendLayout();
+            this.tlpInventoryDemonPowers.SuspendLayout();
+            this.tcInventoryConsumables.SuspendLayout();
+            this.tbInventoryConsumablesPage1.SuspendLayout();
+            this.tlpInventoryConsumables.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumablesHighlighted)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconDemonPowers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconDemonPowersHighlighted)).BeginInit();
             this.SuspendLayout();
             // 
             // btnInventoryWeapons10
@@ -474,13 +512,15 @@
             // pbIconConsumables
             // 
             this.pbIconConsumables.BackColor = System.Drawing.Color.Transparent;
+            this.pbIconConsumables.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbIconConsumables.BackgroundImage")));
             this.pbIconConsumables.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbIconConsumables.Location = new System.Drawing.Point(970, 102);
+            this.pbIconConsumables.Location = new System.Drawing.Point(969, 102);
             this.pbIconConsumables.Name = "pbIconConsumables";
             this.pbIconConsumables.Size = new System.Drawing.Size(64, 27);
             this.pbIconConsumables.TabIndex = 17;
             this.pbIconConsumables.TabStop = false;
             this.pbIconConsumables.Tag = "consumables";
+            this.pbIconConsumables.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InventoryCategoryChange);
             // 
             // pbIconCards
             // 
@@ -1376,6 +1416,441 @@
             this.pnlStats.Size = new System.Drawing.Size(709, 75);
             this.pnlStats.TabIndex = 39;
             // 
+            // tcInventoryDemonPowers
+            // 
+            this.tcInventoryDemonPowers.Controls.Add(this.tbInventoryDemonPowersPage1);
+            this.tcInventoryDemonPowers.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tcInventoryDemonPowers.Location = new System.Drawing.Point(895, 112);
+            this.tcInventoryDemonPowers.Margin = new System.Windows.Forms.Padding(0);
+            this.tcInventoryDemonPowers.Name = "tcInventoryDemonPowers";
+            this.tcInventoryDemonPowers.Padding = new System.Drawing.Point(0, 0);
+            this.tcInventoryDemonPowers.SelectedIndex = 0;
+            this.tcInventoryDemonPowers.Size = new System.Drawing.Size(350, 549);
+            this.tcInventoryDemonPowers.TabIndex = 40;
+            // 
+            // tbInventoryDemonPowersPage1
+            // 
+            this.tbInventoryDemonPowersPage1.BackColor = System.Drawing.Color.Transparent;
+            this.tbInventoryDemonPowersPage1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbInventoryDemonPowersPage1.BackgroundImage")));
+            this.tbInventoryDemonPowersPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tbInventoryDemonPowersPage1.Controls.Add(this.tlpInventoryDemonPowers);
+            this.tbInventoryDemonPowersPage1.Location = new System.Drawing.Point(4, 22);
+            this.tbInventoryDemonPowersPage1.Margin = new System.Windows.Forms.Padding(0);
+            this.tbInventoryDemonPowersPage1.Name = "tbInventoryDemonPowersPage1";
+            this.tbInventoryDemonPowersPage1.Size = new System.Drawing.Size(342, 523);
+            this.tbInventoryDemonPowersPage1.TabIndex = 0;
+            // 
+            // tlpInventoryDemonPowers
+            // 
+            this.tlpInventoryDemonPowers.BackColor = System.Drawing.Color.Transparent;
+            this.tlpInventoryDemonPowers.ColumnCount = 5;
+            this.tlpInventoryDemonPowers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryDemonPowers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryDemonPowers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryDemonPowers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryDemonPowers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryDemonPowers.Controls.Add(this.btnInventoryDemonPowers00, 0, 0);
+            this.tlpInventoryDemonPowers.Controls.Add(this.btnInventoryDemonPowers10, 1, 0);
+            this.tlpInventoryDemonPowers.Controls.Add(this.btnInventoryDemonPowers20, 2, 0);
+            this.tlpInventoryDemonPowers.Controls.Add(this.btnInventoryDemonPowers01, 0, 1);
+            this.tlpInventoryDemonPowers.Controls.Add(this.btnInventoryDemonPowers11, 1, 1);
+            this.tlpInventoryDemonPowers.Controls.Add(this.btnInventoryDemonPowers21, 2, 1);
+            this.tlpInventoryDemonPowers.Controls.Add(this.btnInventoryDemonPowers30, 3, 0);
+            this.tlpInventoryDemonPowers.Controls.Add(this.btnInventoryDemonPowers40, 4, 0);
+            this.tlpInventoryDemonPowers.Controls.Add(this.btnInventoryDemonPowers41, 4, 1);
+            this.tlpInventoryDemonPowers.Controls.Add(this.btnInventoryDemonPowers31, 3, 1);
+            this.tlpInventoryDemonPowers.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.tlpInventoryDemonPowers.Location = new System.Drawing.Point(0, 0);
+            this.tlpInventoryDemonPowers.Margin = new System.Windows.Forms.Padding(0);
+            this.tlpInventoryDemonPowers.Name = "tlpInventoryDemonPowers";
+            this.tlpInventoryDemonPowers.RowCount = 5;
+            this.tlpInventoryDemonPowers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryDemonPowers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryDemonPowers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryDemonPowers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryDemonPowers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryDemonPowers.Size = new System.Drawing.Size(340, 520);
+            this.tlpInventoryDemonPowers.TabIndex = 23;
+            // 
+            // btnInventoryDemonPowers00
+            // 
+            this.btnInventoryDemonPowers00.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers00.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryDemonPowers00.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnInventoryDemonPowers00.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers00.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers00.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryDemonPowers00.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnInventoryDemonPowers00.Location = new System.Drawing.Point(3, 3);
+            this.btnInventoryDemonPowers00.Name = "btnInventoryDemonPowers00";
+            this.btnInventoryDemonPowers00.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryDemonPowers00.TabIndex = 1;
+            this.btnInventoryDemonPowers00.TabStop = false;
+            this.btnInventoryDemonPowers00.UseVisualStyleBackColor = false;
+            // 
+            // btnInventoryDemonPowers10
+            // 
+            this.btnInventoryDemonPowers10.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryDemonPowers10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryDemonPowers10.Location = new System.Drawing.Point(71, 3);
+            this.btnInventoryDemonPowers10.Name = "btnInventoryDemonPowers10";
+            this.btnInventoryDemonPowers10.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryDemonPowers10.TabIndex = 6;
+            this.btnInventoryDemonPowers10.TabStop = false;
+            this.btnInventoryDemonPowers10.UseVisualStyleBackColor = false;
+            // 
+            // btnInventoryDemonPowers20
+            // 
+            this.btnInventoryDemonPowers20.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryDemonPowers20.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers20.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryDemonPowers20.Location = new System.Drawing.Point(139, 3);
+            this.btnInventoryDemonPowers20.Name = "btnInventoryDemonPowers20";
+            this.btnInventoryDemonPowers20.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryDemonPowers20.TabIndex = 9;
+            this.btnInventoryDemonPowers20.TabStop = false;
+            this.btnInventoryDemonPowers20.UseVisualStyleBackColor = false;
+            // 
+            // btnInventoryDemonPowers01
+            // 
+            this.btnInventoryDemonPowers01.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers01.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryDemonPowers01.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers01.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers01.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryDemonPowers01.Location = new System.Drawing.Point(3, 107);
+            this.btnInventoryDemonPowers01.Name = "btnInventoryDemonPowers01";
+            this.btnInventoryDemonPowers01.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryDemonPowers01.TabIndex = 2;
+            this.btnInventoryDemonPowers01.TabStop = false;
+            this.btnInventoryDemonPowers01.UseVisualStyleBackColor = false;
+            // 
+            // btnInventoryDemonPowers11
+            // 
+            this.btnInventoryDemonPowers11.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryDemonPowers11.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers11.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryDemonPowers11.Location = new System.Drawing.Point(71, 107);
+            this.btnInventoryDemonPowers11.Name = "btnInventoryDemonPowers11";
+            this.btnInventoryDemonPowers11.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryDemonPowers11.TabIndex = 7;
+            this.btnInventoryDemonPowers11.TabStop = false;
+            this.btnInventoryDemonPowers11.UseVisualStyleBackColor = false;
+            // 
+            // btnInventoryDemonPowers21
+            // 
+            this.btnInventoryDemonPowers21.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryDemonPowers21.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryDemonPowers21.Location = new System.Drawing.Point(139, 107);
+            this.btnInventoryDemonPowers21.Name = "btnInventoryDemonPowers21";
+            this.btnInventoryDemonPowers21.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryDemonPowers21.TabIndex = 12;
+            this.btnInventoryDemonPowers21.TabStop = false;
+            this.btnInventoryDemonPowers21.UseVisualStyleBackColor = false;
+            // 
+            // btnInventoryDemonPowers30
+            // 
+            this.btnInventoryDemonPowers30.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers30.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryDemonPowers30.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers30.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers30.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryDemonPowers30.Location = new System.Drawing.Point(207, 3);
+            this.btnInventoryDemonPowers30.Name = "btnInventoryDemonPowers30";
+            this.btnInventoryDemonPowers30.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryDemonPowers30.TabIndex = 10;
+            this.btnInventoryDemonPowers30.TabStop = false;
+            this.btnInventoryDemonPowers30.UseVisualStyleBackColor = false;
+            // 
+            // btnInventoryDemonPowers40
+            // 
+            this.btnInventoryDemonPowers40.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers40.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryDemonPowers40.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers40.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers40.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryDemonPowers40.Location = new System.Drawing.Point(275, 3);
+            this.btnInventoryDemonPowers40.Name = "btnInventoryDemonPowers40";
+            this.btnInventoryDemonPowers40.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryDemonPowers40.TabIndex = 11;
+            this.btnInventoryDemonPowers40.TabStop = false;
+            this.btnInventoryDemonPowers40.UseVisualStyleBackColor = false;
+            // 
+            // btnInventoryDemonPowers41
+            // 
+            this.btnInventoryDemonPowers41.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers41.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryDemonPowers41.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers41.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers41.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryDemonPowers41.Location = new System.Drawing.Point(275, 107);
+            this.btnInventoryDemonPowers41.Name = "btnInventoryDemonPowers41";
+            this.btnInventoryDemonPowers41.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryDemonPowers41.TabIndex = 14;
+            this.btnInventoryDemonPowers41.TabStop = false;
+            this.btnInventoryDemonPowers41.UseVisualStyleBackColor = false;
+            // 
+            // btnInventoryDemonPowers31
+            // 
+            this.btnInventoryDemonPowers31.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers31.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryDemonPowers31.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers31.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryDemonPowers31.Location = new System.Drawing.Point(207, 107);
+            this.btnInventoryDemonPowers31.Name = "btnInventoryDemonPowers31";
+            this.btnInventoryDemonPowers31.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryDemonPowers31.TabIndex = 13;
+            this.btnInventoryDemonPowers31.TabStop = false;
+            this.btnInventoryDemonPowers31.UseVisualStyleBackColor = false;
+            // 
+            // tcInventoryConsumables
+            // 
+            this.tcInventoryConsumables.Controls.Add(this.tbInventoryConsumablesPage1);
+            this.tcInventoryConsumables.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tcInventoryConsumables.Location = new System.Drawing.Point(895, 112);
+            this.tcInventoryConsumables.Margin = new System.Windows.Forms.Padding(0);
+            this.tcInventoryConsumables.Name = "tcInventoryConsumables";
+            this.tcInventoryConsumables.Padding = new System.Drawing.Point(0, 0);
+            this.tcInventoryConsumables.SelectedIndex = 0;
+            this.tcInventoryConsumables.Size = new System.Drawing.Size(350, 549);
+            this.tcInventoryConsumables.TabIndex = 41;
+            // 
+            // tbInventoryConsumablesPage1
+            // 
+            this.tbInventoryConsumablesPage1.BackColor = System.Drawing.Color.Transparent;
+            this.tbInventoryConsumablesPage1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbInventoryConsumablesPage1.BackgroundImage")));
+            this.tbInventoryConsumablesPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tbInventoryConsumablesPage1.Controls.Add(this.tlpInventoryConsumables);
+            this.tbInventoryConsumablesPage1.Location = new System.Drawing.Point(4, 22);
+            this.tbInventoryConsumablesPage1.Margin = new System.Windows.Forms.Padding(0);
+            this.tbInventoryConsumablesPage1.Name = "tbInventoryConsumablesPage1";
+            this.tbInventoryConsumablesPage1.Size = new System.Drawing.Size(342, 523);
+            this.tbInventoryConsumablesPage1.TabIndex = 0;
+            // 
+            // tlpInventoryConsumables
+            // 
+            this.tlpInventoryConsumables.BackColor = System.Drawing.Color.Transparent;
+            this.tlpInventoryConsumables.ColumnCount = 5;
+            this.tlpInventoryConsumables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryConsumables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryConsumables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryConsumables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryConsumables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryConsumables.Controls.Add(this.btnInventoryConsumables00, 0, 0);
+            this.tlpInventoryConsumables.Controls.Add(this.btnInventoryConsumables10, 1, 0);
+            this.tlpInventoryConsumables.Controls.Add(this.btnInventoryConsumables20, 2, 0);
+            this.tlpInventoryConsumables.Controls.Add(this.btnInventoryConsumables01, 0, 1);
+            this.tlpInventoryConsumables.Controls.Add(this.btnInventoryConsumables11, 1, 1);
+            this.tlpInventoryConsumables.Controls.Add(this.btnInventoryConsumables21, 2, 1);
+            this.tlpInventoryConsumables.Controls.Add(this.btnInventoryConsumables30, 3, 0);
+            this.tlpInventoryConsumables.Controls.Add(this.btnInventoryConsumables40, 4, 0);
+            this.tlpInventoryConsumables.Controls.Add(this.btnInventoryConsumables41, 4, 1);
+            this.tlpInventoryConsumables.Controls.Add(this.btnInventoryConsumables31, 3, 1);
+            this.tlpInventoryConsumables.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.tlpInventoryConsumables.Location = new System.Drawing.Point(0, 0);
+            this.tlpInventoryConsumables.Margin = new System.Windows.Forms.Padding(0);
+            this.tlpInventoryConsumables.Name = "tlpInventoryConsumables";
+            this.tlpInventoryConsumables.RowCount = 5;
+            this.tlpInventoryConsumables.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryConsumables.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryConsumables.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryConsumables.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryConsumables.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryConsumables.Size = new System.Drawing.Size(340, 520);
+            this.tlpInventoryConsumables.TabIndex = 23;
+            // 
+            // btnInventoryConsumables00
+            // 
+            this.btnInventoryConsumables00.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables00.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryConsumables00.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnInventoryConsumables00.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables00.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables00.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryConsumables00.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnInventoryConsumables00.Location = new System.Drawing.Point(3, 3);
+            this.btnInventoryConsumables00.Name = "btnInventoryConsumables00";
+            this.btnInventoryConsumables00.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryConsumables00.TabIndex = 1;
+            this.btnInventoryConsumables00.TabStop = false;
+            this.btnInventoryConsumables00.UseVisualStyleBackColor = false;
+            // 
+            // btnInventoryConsumables10
+            // 
+            this.btnInventoryConsumables10.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryConsumables10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryConsumables10.Location = new System.Drawing.Point(71, 3);
+            this.btnInventoryConsumables10.Name = "btnInventoryConsumables10";
+            this.btnInventoryConsumables10.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryConsumables10.TabIndex = 6;
+            this.btnInventoryConsumables10.TabStop = false;
+            this.btnInventoryConsumables10.UseVisualStyleBackColor = false;
+            // 
+            // btnInventoryConsumables20
+            // 
+            this.btnInventoryConsumables20.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryConsumables20.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables20.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryConsumables20.Location = new System.Drawing.Point(139, 3);
+            this.btnInventoryConsumables20.Name = "btnInventoryConsumables20";
+            this.btnInventoryConsumables20.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryConsumables20.TabIndex = 9;
+            this.btnInventoryConsumables20.TabStop = false;
+            this.btnInventoryConsumables20.UseVisualStyleBackColor = false;
+            // 
+            // btnInventoryConsumables01
+            // 
+            this.btnInventoryConsumables01.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables01.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryConsumables01.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables01.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables01.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryConsumables01.Location = new System.Drawing.Point(3, 107);
+            this.btnInventoryConsumables01.Name = "btnInventoryConsumables01";
+            this.btnInventoryConsumables01.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryConsumables01.TabIndex = 2;
+            this.btnInventoryConsumables01.TabStop = false;
+            this.btnInventoryConsumables01.UseVisualStyleBackColor = false;
+            // 
+            // btnInventoryConsumables11
+            // 
+            this.btnInventoryConsumables11.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryConsumables11.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables11.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryConsumables11.Location = new System.Drawing.Point(71, 107);
+            this.btnInventoryConsumables11.Name = "btnInventoryConsumables11";
+            this.btnInventoryConsumables11.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryConsumables11.TabIndex = 7;
+            this.btnInventoryConsumables11.TabStop = false;
+            this.btnInventoryConsumables11.UseVisualStyleBackColor = false;
+            // 
+            // btnInventoryConsumables21
+            // 
+            this.btnInventoryConsumables21.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryConsumables21.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryConsumables21.Location = new System.Drawing.Point(139, 107);
+            this.btnInventoryConsumables21.Name = "btnInventoryConsumables21";
+            this.btnInventoryConsumables21.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryConsumables21.TabIndex = 12;
+            this.btnInventoryConsumables21.TabStop = false;
+            this.btnInventoryConsumables21.UseVisualStyleBackColor = false;
+            // 
+            // btnInventoryConsumables30
+            // 
+            this.btnInventoryConsumables30.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables30.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryConsumables30.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables30.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables30.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryConsumables30.Location = new System.Drawing.Point(207, 3);
+            this.btnInventoryConsumables30.Name = "btnInventoryConsumables30";
+            this.btnInventoryConsumables30.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryConsumables30.TabIndex = 10;
+            this.btnInventoryConsumables30.TabStop = false;
+            this.btnInventoryConsumables30.UseVisualStyleBackColor = false;
+            // 
+            // btnInventoryConsumables40
+            // 
+            this.btnInventoryConsumables40.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables40.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryConsumables40.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables40.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables40.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryConsumables40.Location = new System.Drawing.Point(275, 3);
+            this.btnInventoryConsumables40.Name = "btnInventoryConsumables40";
+            this.btnInventoryConsumables40.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryConsumables40.TabIndex = 11;
+            this.btnInventoryConsumables40.TabStop = false;
+            this.btnInventoryConsumables40.UseVisualStyleBackColor = false;
+            // 
+            // btnInventoryConsumables41
+            // 
+            this.btnInventoryConsumables41.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables41.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryConsumables41.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables41.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables41.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryConsumables41.Location = new System.Drawing.Point(275, 107);
+            this.btnInventoryConsumables41.Name = "btnInventoryConsumables41";
+            this.btnInventoryConsumables41.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryConsumables41.TabIndex = 14;
+            this.btnInventoryConsumables41.TabStop = false;
+            this.btnInventoryConsumables41.UseVisualStyleBackColor = false;
+            // 
+            // btnInventoryConsumables31
+            // 
+            this.btnInventoryConsumables31.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables31.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryConsumables31.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables31.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryConsumables31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryConsumables31.Location = new System.Drawing.Point(207, 107);
+            this.btnInventoryConsumables31.Name = "btnInventoryConsumables31";
+            this.btnInventoryConsumables31.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryConsumables31.TabIndex = 13;
+            this.btnInventoryConsumables31.TabStop = false;
+            this.btnInventoryConsumables31.UseVisualStyleBackColor = false;
+            // 
+            // pbIconConsumablesHighlighted
+            // 
+            this.pbIconConsumablesHighlighted.BackColor = System.Drawing.Color.Transparent;
+            this.pbIconConsumablesHighlighted.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbIconConsumablesHighlighted.BackgroundImage")));
+            this.pbIconConsumablesHighlighted.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbIconConsumablesHighlighted.Location = new System.Drawing.Point(969, 102);
+            this.pbIconConsumablesHighlighted.Name = "pbIconConsumablesHighlighted";
+            this.pbIconConsumablesHighlighted.Size = new System.Drawing.Size(64, 27);
+            this.pbIconConsumablesHighlighted.TabIndex = 42;
+            this.pbIconConsumablesHighlighted.TabStop = false;
+            this.pbIconConsumablesHighlighted.Tag = "consumables";
+            this.pbIconConsumablesHighlighted.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InventoryCategoryChange);
+            // 
+            // pbIconDemonPowers
+            // 
+            this.pbIconDemonPowers.BackColor = System.Drawing.Color.Transparent;
+            this.pbIconDemonPowers.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbIconDemonPowers.BackgroundImage")));
+            this.pbIconDemonPowers.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbIconDemonPowers.Location = new System.Drawing.Point(1035, 102);
+            this.pbIconDemonPowers.Name = "pbIconDemonPowers";
+            this.pbIconDemonPowers.Size = new System.Drawing.Size(64, 27);
+            this.pbIconDemonPowers.TabIndex = 43;
+            this.pbIconDemonPowers.TabStop = false;
+            this.pbIconDemonPowers.Tag = "demonPowers";
+            this.pbIconDemonPowers.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InventoryCategoryChange);
+            // 
+            // pbIconDemonPowersHighlighted
+            // 
+            this.pbIconDemonPowersHighlighted.BackColor = System.Drawing.Color.Transparent;
+            this.pbIconDemonPowersHighlighted.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbIconDemonPowersHighlighted.BackgroundImage")));
+            this.pbIconDemonPowersHighlighted.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbIconDemonPowersHighlighted.Location = new System.Drawing.Point(1035, 102);
+            this.pbIconDemonPowersHighlighted.Name = "pbIconDemonPowersHighlighted";
+            this.pbIconDemonPowersHighlighted.Size = new System.Drawing.Size(64, 27);
+            this.pbIconDemonPowersHighlighted.TabIndex = 44;
+            this.pbIconDemonPowersHighlighted.TabStop = false;
+            this.pbIconDemonPowersHighlighted.Tag = "demonPowers";
+            this.pbIconDemonPowersHighlighted.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InventoryCategoryChange);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1384,6 +1859,9 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.pbIconDemonPowersHighlighted);
+            this.Controls.Add(this.pbIconDemonPowers);
+            this.Controls.Add(this.pbIconConsumablesHighlighted);
             this.Controls.Add(this.pnlHoverTextWeapon);
             this.Controls.Add(this.pnlHoverTextOutfit);
             this.Controls.Add(this.pnlHoverTextCard);
@@ -1411,6 +1889,8 @@
             this.Controls.Add(this.pnlEquippedWeaponAttacks);
             this.Controls.Add(this.pnlEquippedWeaponAttacksSecondary);
             this.Controls.Add(this.btnEquippedOutfit);
+            this.Controls.Add(this.tcInventoryDemonPowers);
+            this.Controls.Add(this.tcInventoryConsumables);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -1443,6 +1923,15 @@
             this.pnlHoverTextOutfit.ResumeLayout(false);
             this.pnlStats.ResumeLayout(false);
             this.pnlStats.PerformLayout();
+            this.tcInventoryDemonPowers.ResumeLayout(false);
+            this.tbInventoryDemonPowersPage1.ResumeLayout(false);
+            this.tlpInventoryDemonPowers.ResumeLayout(false);
+            this.tcInventoryConsumables.ResumeLayout(false);
+            this.tbInventoryConsumablesPage1.ResumeLayout(false);
+            this.tlpInventoryConsumables.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumablesHighlighted)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconDemonPowers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconDemonPowersHighlighted)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1541,6 +2030,35 @@
         private System.Windows.Forms.Button btnAttackSecondary1;
         private System.Windows.Forms.Button btnAttackSecondary2;
         private System.Windows.Forms.Button btnAttackSecondary3;
+        private System.Windows.Forms.TabControl tcInventoryDemonPowers;
+        private System.Windows.Forms.TabPage tbInventoryDemonPowersPage1;
+        private System.Windows.Forms.TableLayoutPanel tlpInventoryDemonPowers;
+        private System.Windows.Forms.Button btnInventoryDemonPowers00;
+        private System.Windows.Forms.Button btnInventoryDemonPowers10;
+        private System.Windows.Forms.Button btnInventoryDemonPowers20;
+        private System.Windows.Forms.Button btnInventoryDemonPowers01;
+        private System.Windows.Forms.Button btnInventoryDemonPowers11;
+        private System.Windows.Forms.Button btnInventoryDemonPowers21;
+        private System.Windows.Forms.Button btnInventoryDemonPowers30;
+        private System.Windows.Forms.Button btnInventoryDemonPowers40;
+        private System.Windows.Forms.Button btnInventoryDemonPowers41;
+        private System.Windows.Forms.Button btnInventoryDemonPowers31;
+        private System.Windows.Forms.TabControl tcInventoryConsumables;
+        private System.Windows.Forms.TabPage tbInventoryConsumablesPage1;
+        private System.Windows.Forms.TableLayoutPanel tlpInventoryConsumables;
+        private System.Windows.Forms.Button btnInventoryConsumables00;
+        private System.Windows.Forms.Button btnInventoryConsumables10;
+        private System.Windows.Forms.Button btnInventoryConsumables20;
+        private System.Windows.Forms.Button btnInventoryConsumables01;
+        private System.Windows.Forms.Button btnInventoryConsumables11;
+        private System.Windows.Forms.Button btnInventoryConsumables21;
+        private System.Windows.Forms.Button btnInventoryConsumables30;
+        private System.Windows.Forms.Button btnInventoryConsumables40;
+        private System.Windows.Forms.Button btnInventoryConsumables41;
+        private System.Windows.Forms.Button btnInventoryConsumables31;
+        private System.Windows.Forms.PictureBox pbIconConsumablesHighlighted;
+        private System.Windows.Forms.PictureBox pbIconDemonPowers;
+        private System.Windows.Forms.PictureBox pbIconDemonPowersHighlighted;
 
     }
 }
