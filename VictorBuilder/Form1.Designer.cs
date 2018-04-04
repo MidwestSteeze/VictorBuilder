@@ -1487,6 +1487,9 @@
             this.btnInventoryDemonPowers00.TabIndex = 1;
             this.btnInventoryDemonPowers00.TabStop = false;
             this.btnInventoryDemonPowers00.UseVisualStyleBackColor = false;
+            this.btnInventoryDemonPowers00.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryDemonPowers00.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryDemonPowers00.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryDemonPowers10
             // 
@@ -1501,6 +1504,9 @@
             this.btnInventoryDemonPowers10.TabIndex = 6;
             this.btnInventoryDemonPowers10.TabStop = false;
             this.btnInventoryDemonPowers10.UseVisualStyleBackColor = false;
+            this.btnInventoryDemonPowers10.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryDemonPowers10.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryDemonPowers10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryDemonPowers20
             // 
@@ -1515,6 +1521,9 @@
             this.btnInventoryDemonPowers20.TabIndex = 9;
             this.btnInventoryDemonPowers20.TabStop = false;
             this.btnInventoryDemonPowers20.UseVisualStyleBackColor = false;
+            this.btnInventoryDemonPowers20.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryDemonPowers20.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryDemonPowers20.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryDemonPowers01
             // 
@@ -1529,6 +1538,9 @@
             this.btnInventoryDemonPowers01.TabIndex = 2;
             this.btnInventoryDemonPowers01.TabStop = false;
             this.btnInventoryDemonPowers01.UseVisualStyleBackColor = false;
+            this.btnInventoryDemonPowers01.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryDemonPowers01.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryDemonPowers01.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryDemonPowers11
             // 
@@ -1543,6 +1555,9 @@
             this.btnInventoryDemonPowers11.TabIndex = 7;
             this.btnInventoryDemonPowers11.TabStop = false;
             this.btnInventoryDemonPowers11.UseVisualStyleBackColor = false;
+            this.btnInventoryDemonPowers11.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryDemonPowers11.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryDemonPowers11.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryDemonPowers21
             // 
@@ -1557,6 +1572,9 @@
             this.btnInventoryDemonPowers21.TabIndex = 12;
             this.btnInventoryDemonPowers21.TabStop = false;
             this.btnInventoryDemonPowers21.UseVisualStyleBackColor = false;
+            this.btnInventoryDemonPowers21.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryDemonPowers21.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryDemonPowers21.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryDemonPowers30
             // 
@@ -1571,6 +1589,9 @@
             this.btnInventoryDemonPowers30.TabIndex = 10;
             this.btnInventoryDemonPowers30.TabStop = false;
             this.btnInventoryDemonPowers30.UseVisualStyleBackColor = false;
+            this.btnInventoryDemonPowers30.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryDemonPowers30.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryDemonPowers30.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryDemonPowers40
             // 
@@ -1585,6 +1606,9 @@
             this.btnInventoryDemonPowers40.TabIndex = 11;
             this.btnInventoryDemonPowers40.TabStop = false;
             this.btnInventoryDemonPowers40.UseVisualStyleBackColor = false;
+            this.btnInventoryDemonPowers40.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryDemonPowers40.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryDemonPowers40.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryDemonPowers41
             // 
@@ -1599,6 +1623,9 @@
             this.btnInventoryDemonPowers41.TabIndex = 14;
             this.btnInventoryDemonPowers41.TabStop = false;
             this.btnInventoryDemonPowers41.UseVisualStyleBackColor = false;
+            this.btnInventoryDemonPowers41.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryDemonPowers41.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryDemonPowers41.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryDemonPowers31
             // 
@@ -1613,6 +1640,9 @@
             this.btnInventoryDemonPowers31.TabIndex = 13;
             this.btnInventoryDemonPowers31.TabStop = false;
             this.btnInventoryDemonPowers31.UseVisualStyleBackColor = false;
+            this.btnInventoryDemonPowers31.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryDemonPowers31.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryDemonPowers31.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // tcInventoryConsumables
             // 
@@ -1685,6 +1715,9 @@
             this.btnInventoryConsumables00.TabIndex = 1;
             this.btnInventoryConsumables00.TabStop = false;
             this.btnInventoryConsumables00.UseVisualStyleBackColor = false;
+            this.btnInventoryConsumables00.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryConsumables00.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryConsumables00.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryConsumables10
             // 
@@ -1699,6 +1732,9 @@
             this.btnInventoryConsumables10.TabIndex = 6;
             this.btnInventoryConsumables10.TabStop = false;
             this.btnInventoryConsumables10.UseVisualStyleBackColor = false;
+            this.btnInventoryConsumables10.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryConsumables10.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryConsumables10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryConsumables20
             // 
@@ -1713,6 +1749,9 @@
             this.btnInventoryConsumables20.TabIndex = 9;
             this.btnInventoryConsumables20.TabStop = false;
             this.btnInventoryConsumables20.UseVisualStyleBackColor = false;
+            this.btnInventoryConsumables20.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryConsumables20.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryConsumables20.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryConsumables01
             // 
@@ -1727,6 +1766,9 @@
             this.btnInventoryConsumables01.TabIndex = 2;
             this.btnInventoryConsumables01.TabStop = false;
             this.btnInventoryConsumables01.UseVisualStyleBackColor = false;
+            this.btnInventoryConsumables01.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryConsumables01.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryConsumables01.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryConsumables11
             // 
@@ -1741,6 +1783,9 @@
             this.btnInventoryConsumables11.TabIndex = 7;
             this.btnInventoryConsumables11.TabStop = false;
             this.btnInventoryConsumables11.UseVisualStyleBackColor = false;
+            this.btnInventoryConsumables11.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryConsumables11.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryConsumables11.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryConsumables21
             // 
@@ -1755,6 +1800,9 @@
             this.btnInventoryConsumables21.TabIndex = 12;
             this.btnInventoryConsumables21.TabStop = false;
             this.btnInventoryConsumables21.UseVisualStyleBackColor = false;
+            this.btnInventoryConsumables21.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryConsumables21.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryConsumables21.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryConsumables30
             // 
@@ -1769,6 +1817,9 @@
             this.btnInventoryConsumables30.TabIndex = 10;
             this.btnInventoryConsumables30.TabStop = false;
             this.btnInventoryConsumables30.UseVisualStyleBackColor = false;
+            this.btnInventoryConsumables30.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryConsumables30.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryConsumables30.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryConsumables40
             // 
@@ -1783,6 +1834,9 @@
             this.btnInventoryConsumables40.TabIndex = 11;
             this.btnInventoryConsumables40.TabStop = false;
             this.btnInventoryConsumables40.UseVisualStyleBackColor = false;
+            this.btnInventoryConsumables40.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryConsumables40.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryConsumables40.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryConsumables41
             // 
@@ -1797,6 +1851,9 @@
             this.btnInventoryConsumables41.TabIndex = 14;
             this.btnInventoryConsumables41.TabStop = false;
             this.btnInventoryConsumables41.UseVisualStyleBackColor = false;
+            this.btnInventoryConsumables41.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryConsumables41.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryConsumables41.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryConsumables31
             // 
@@ -1811,6 +1868,9 @@
             this.btnInventoryConsumables31.TabIndex = 13;
             this.btnInventoryConsumables31.TabStop = false;
             this.btnInventoryConsumables31.UseVisualStyleBackColor = false;
+            this.btnInventoryConsumables31.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryConsumables31.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryConsumables31.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // pbIconConsumablesHighlighted
             // 
