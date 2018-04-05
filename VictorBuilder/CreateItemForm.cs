@@ -344,7 +344,7 @@ namespace VictorBuilder
                         while (reader.Read())
                         {
                             newItemTags.name = reader[1].ToString();
-                            newItemTags.image = reader[2].ToString();
+                            newItemTags.imageURL = reader[2].ToString();
 
                             Enum.TryParse(reader[4].ToString(), out modifier);
                             newItemTags.weaponTags.prefix = new Affix("", modifier, (int)reader[3], reader[5].ToString());
@@ -510,7 +510,7 @@ namespace VictorBuilder
 
                         //Fill card object of current row in the database
                         card.name = reader[0].ToString();
-                        card.image = reader[11].ToString();
+                        card.imageURL = reader[11].ToString();
 
                         Enum.TryParse(cboCardRarity.SelectedItem.ToString(), out rarity);
                         card.rarity = rarity;

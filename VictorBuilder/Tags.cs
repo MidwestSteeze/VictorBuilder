@@ -32,7 +32,8 @@ namespace VictorBuilder
         public string listBoxDisplay { get; set; }
         public ItemType itemType;
         public RarityType rarity;
-        public string image;
+        public string imageURL;
+        public string imageHoverTextURL;
         public WeaponTags weaponTags;
         public CardTags cardTags;
         public OutfitTags outfitTags;
@@ -50,23 +51,32 @@ namespace VictorBuilder
             description = aDescription;
         }
 
-        public Tags(ItemType aItemType, RarityType aRarityType, string aName, string aDescription, string aImage, WeaponTags aWeaponTags)
+        public Tags(ItemType aItemType, RarityType aRarityType, string aName, string aImageURL, string aImageHoverTextURL)
+        {
+            itemType = aItemType;
+            rarity = aRarityType;
+            name = aName;
+            imageURL = aImageURL;
+            imageHoverTextURL = aImageHoverTextURL;
+        }
+
+        public Tags(ItemType aItemType, RarityType aRarityType, string aName, string aDescription, string aImageURL, WeaponTags aWeaponTags)
         {
             itemType = aItemType;
             rarity = aRarityType;
             name = aName;
             description = aDescription;
-            image = aImage;
+            imageURL = aImageURL;
             weaponTags = aWeaponTags;
         }
 
-        public Tags(ItemType aItemType, RarityType aRarityType, string aName, string aDescription, string aImage, CardTags aCardTags)
+        public Tags(ItemType aItemType, RarityType aRarityType, string aName, string aDescription, string aImageURL, CardTags aCardTags)
         {
             itemType = aItemType;
             rarity = aRarityType;
             name = aName;
             description = aDescription;
-            image = aImage;
+            imageURL = aImageURL;
             cardTags = aCardTags;
 
             //Populate the Tags.Description based on the cards affixes

@@ -79,6 +79,7 @@ namespace VictorBuilder
             //Prevent flicker on button highlight changes
             this.DoubleBuffered = true;
 
+            PreloadDemonPowers();
             PreloadOutfits();
 
             //Build the list of equipped item controls so we can iterate through it when Saving/Importing a build
@@ -595,7 +596,7 @@ namespace VictorBuilder
                     if ((totalCardPoints + slotTags.cardTags.points) <= maximumCardPoints)
                     {
                         //Empty card slot found; copy the card into this equippable card slot
-                        equippedCard.BackgroundImage = Image.FromFile(urlCards + slotTags.image);
+                        equippedCard.BackgroundImage = Image.FromFile(urlCards + slotTags.imageURL);
                         equippedCard.Tag = slotTags;
 
                         itemEquipped = true;
@@ -616,7 +617,7 @@ namespace VictorBuilder
             if (secondarySlot)
             {
                 //Copy item to secondary slot
-                btnEquippedConsumableSecondary.BackgroundImage = Image.FromFile(urlConsumables + slotTags.image);
+                btnEquippedConsumableSecondary.BackgroundImage = Image.FromFile(urlConsumables + slotTags.imageURL);
                 btnEquippedConsumableSecondary.Tag = slotTags;
 
                 itemEquipped = true;
@@ -624,7 +625,7 @@ namespace VictorBuilder
             else
             {
                 //Copy item to primary slot
-                btnEquippedConsumable.BackgroundImage = Image.FromFile(urlConsumables + slotTags.image);
+                btnEquippedConsumable.BackgroundImage = Image.FromFile(urlConsumables + slotTags.imageURL);
                 btnEquippedConsumable.Tag = slotTags;
 
                 itemEquipped = true;
@@ -636,7 +637,7 @@ namespace VictorBuilder
             if (secondarySlot)
             {
                 //Copy item to secondary slot
-                btnEquippedDemonPowerSecondary.BackgroundImage = Image.FromFile(urlDemonPowers + slotTags.image);
+                btnEquippedDemonPowerSecondary.BackgroundImage = Image.FromFile(urlDemonPowers + slotTags.imageURL);
                 btnEquippedDemonPowerSecondary.Tag = slotTags;
 
                 itemEquipped = true;
@@ -644,7 +645,7 @@ namespace VictorBuilder
             else
             {
                 //Copy item to primary slot
-                btnEquippedDemonPower.BackgroundImage = Image.FromFile(urlDemonPowers + slotTags.image);
+                btnEquippedDemonPower.BackgroundImage = Image.FromFile(urlDemonPowers + slotTags.imageURL);
                 btnEquippedDemonPower.Tag = slotTags;
 
                 itemEquipped = true;
@@ -665,7 +666,7 @@ namespace VictorBuilder
             if (secondarySlot)
             {
                 //Copy item to secondary slot
-                btnEquippedWeaponSecondary.BackgroundImage = Image.FromFile(urlWeapons + slotTags.image);
+                btnEquippedWeaponSecondary.BackgroundImage = Image.FromFile(urlWeapons + slotTags.imageURL);
                 btnEquippedWeaponSecondary.Tag = slotTags;
 
                 //Show the attack icons for the new weapon
@@ -682,7 +683,7 @@ namespace VictorBuilder
             else
             {
                 //Copy item to primary slot
-                btnEquippedWeapon.BackgroundImage = Image.FromFile(urlWeapons + slotTags.image);
+                btnEquippedWeapon.BackgroundImage = Image.FromFile(urlWeapons + slotTags.imageURL);
                 btnEquippedWeapon.Tag = slotTags;
 
                 //Show the attack icons for the new weapon
@@ -909,6 +910,7 @@ namespace VictorBuilder
         {
             //Hide all panels; we'll conditionally show the correct one after this
             pnlHoverTextWeapon.Visible = false;
+            pnlHoverTextDemonPower.Visible = false;
             pnlHoverTextCard.Visible = false;
             pnlHoverTextOutfit.Visible = false;
 
@@ -930,8 +932,10 @@ namespace VictorBuilder
                         break;
                     //case Tags.ItemType.Consumable:
                     //    break;
-                    //case Tags.ItemType.DemonPower:
-                    //    break;
+                    case Tags.ItemType.DemonPower:
+                        pnlHoverTextDemonPower.BackgroundImage = Image.FromFile(urlDemonPowers + slotTags.imageHoverTextURL);
+                        pnlHoverTextDemonPower.Visible = true;
+                        break;
                     //case Tags.ItemType.Empty:
                     //    break;
                     case Tags.ItemType.Outfit:
@@ -1100,8 +1104,8 @@ namespace VictorBuilder
         { 
             //Hide all inventory tabs
             tcInventoryWeapons.Visible = false;
-            //tcInventoryConsumables.Visible = false;
-            //tcInventoryDemonPowers.Visible = false;
+            tcInventoryConsumables.Visible = false;
+            tcInventoryDemonPowers.Visible = false;
             tcInventoryCards.Visible = false;
             tcInventoryOther.Visible = false;
 
@@ -1110,6 +1114,14 @@ namespace VictorBuilder
             {
                 case "weapons":
                     tcInventoryWeapons.Visible = true;
+                    break;
+
+                case "consumables":
+                    tcInventoryConsumables.Visible = true;
+                    break;
+
+                case "demonPowers":
+                    tcInventoryDemonPowers.Visible = true;
                     break;
 
                 case "cards":
@@ -1133,69 +1145,106 @@ namespace VictorBuilder
             ChangeInventoryPage(selected.Tag.ToString());
 
             //Hide all images showing the selected icon since we'll be resetting it next
-            pbIconWeapons.Visible = false;
+            pbIconWeapons.Visible = true;
             pbIconWeaponsHighlighted.Visible = false;
-            pbIconConsumables.Visible = false;
+            pbIconConsumables.Visible = true;
             pbIconConsumablesHighlighted.Visible = false;
-            pbIconDemonPowers.Visible = false;
+            pbIconDemonPowers.Visible = true;
             pbIconDemonPowersHighlighted.Visible = false;
-            pbIconCards.Visible = false;
+            pbIconCards.Visible = true;
             pbIconCardsHighlighted.Visible = false;
-            pbIconOther.Visible = false;
+            pbIconOther.Visible = true;
             pbIconOtherHighlighted.Visible = false;
 
             //Determine which icon was selected and highlight it while showing the others as normal
             switch (selected.Tag.ToString())
             {
                 case "weapons":
+                    pbIconWeapons.Visible = false;
                     pbIconWeaponsHighlighted.Visible = true;
-                    pbIconConsumables.Visible = true;
-                    pbIconDemonPowers.Visible = true;
-                    pbIconCards.Visible = true;
-                    pbIconOther.Visible = true;
 
                     lblInventoryHeader.Text = "Weapons";
                     break;
                 case "consumables":
+                    pbIconConsumables.Visible = false;
                     pbIconConsumablesHighlighted.Visible = true;
-                    pbIconWeapons.Visible = true;
-                    pbIconDemonPowers.Visible = true;
-                    pbIconCards.Visible = true;
-                    pbIconOther.Visible = true;
 
                     lblInventoryHeader.Text = "Consumables";
                     break;
                 case "demonPowers":
+                    pbIconDemonPowers.Visible = false;
                     pbIconDemonPowersHighlighted.Visible = true;
-                    pbIconWeapons.Visible = true;
-                    pbIconConsumables.Visible = true;
-                    pbIconCards.Visible = true;
-                    pbIconOther.Visible = true;
 
 					lblInventoryHeader.Text = "Demon Powers";
                     break;
                 case "cards":
+                    pbIconCards.Visible = false;
                     pbIconCardsHighlighted.Visible = true;
-                    pbIconWeapons.Visible = true;
-                    pbIconConsumables.Visible = true;
-                    pbIconDemonPowers.Visible = true;
-                    pbIconOther.Visible = true;
 
                     lblInventoryHeader.Text = "Destiny Cards";
                     break;
                 case "other":
+                    pbIconOther.Visible = false;
                     pbIconOtherHighlighted.Visible = true;
-                    pbIconWeapons.Visible = true;
-                    pbIconConsumables.Visible = true;
-                    pbIconDemonPowers.Visible = true;
-                    pbIconCards.Visible = true;
 
                     lblInventoryHeader.Text = "Other";
                     break;
                 default:
                     break;
-            }
-            
+            }            
+        }
+
+        private void PreloadDemonPowers()
+        {
+            Tags demonPower;
+
+            demonPower = new Tags(Tags.ItemType.DemonPower, Tags.RarityType.Legendary, "Berserk", "berserk.png", "berserk_hovertext.png");
+            btnInventoryDemonPowers00.Tag = demonPower;
+            btnInventoryDemonPowers00.BackgroundImage = Image.FromFile(urlDemonPowers + demonPower.imageURL);
+
+            demonPower = new Tags(Tags.ItemType.DemonPower, Tags.RarityType.Legendary, "Blink", "blink.png", "blink_hovertext.png");
+            btnInventoryDemonPowers10.Tag = demonPower;
+            btnInventoryDemonPowers10.BackgroundImage = Image.FromFile(urlDemonPowers + demonPower.imageURL);
+
+            demonPower = new Tags(Tags.ItemType.DemonPower, Tags.RarityType.Legendary, "Boomerang", "boomerang.png", "boomerang_hovertext.png");
+            btnInventoryDemonPowers20.Tag = demonPower;
+            btnInventoryDemonPowers20.BackgroundImage = Image.FromFile(urlDemonPowers + demonPower.imageURL);
+
+            demonPower = new Tags(Tags.ItemType.DemonPower, Tags.RarityType.Legendary, "Dark Mist", "darkmist.png", "darkmist_hovertext.png");
+            btnInventoryDemonPowers30.Tag = demonPower;
+            btnInventoryDemonPowers30.BackgroundImage = Image.FromFile(urlDemonPowers + demonPower.imageURL);
+
+            demonPower = new Tags(Tags.ItemType.DemonPower, Tags.RarityType.Legendary, "Diamond", "diamond.png", "diamond_hovertext.png");
+            btnInventoryDemonPowers40.Tag = demonPower;
+            btnInventoryDemonPowers40.BackgroundImage = Image.FromFile(urlDemonPowers + demonPower.imageURL);
+
+            demonPower = new Tags(Tags.ItemType.DemonPower, Tags.RarityType.Legendary, "Meteor", "meteor.png", "meteor_hovertext.png");
+            btnInventoryDemonPowers01.Tag = demonPower;
+            btnInventoryDemonPowers01.BackgroundImage = Image.FromFile(urlDemonPowers + demonPower.imageURL);
+
+            demonPower = new Tags(Tags.ItemType.DemonPower, Tags.RarityType.Legendary, "Pull", "pull.png", "pull_hovertext.png");
+            btnInventoryDemonPowers11.Tag = demonPower;
+            btnInventoryDemonPowers11.BackgroundImage = Image.FromFile(urlDemonPowers + demonPower.imageURL);
+
+            demonPower = new Tags(Tags.ItemType.DemonPower, Tags.RarityType.Legendary, "Purging Flame", "purgingflame.png", "purgingflame_hovertext.png");
+            btnInventoryDemonPowers21.Tag = demonPower;
+            btnInventoryDemonPowers21.BackgroundImage = Image.FromFile(urlDemonPowers + demonPower.imageURL);
+
+            demonPower = new Tags(Tags.ItemType.DemonPower, Tags.RarityType.Legendary, "Sanguine Aura", "sanguineaura.png", "sanguineaura_hovertext.png");
+            btnInventoryDemonPowers31.Tag = demonPower;
+            btnInventoryDemonPowers31.BackgroundImage = Image.FromFile(urlDemonPowers + demonPower.imageURL);
+
+            demonPower = new Tags(Tags.ItemType.DemonPower, Tags.RarityType.Legendary, "Shockwave", "shockwave.png", "shockwave_hovertext.png");
+            btnInventoryDemonPowers41.Tag = demonPower;
+            btnInventoryDemonPowers41.BackgroundImage = Image.FromFile(urlDemonPowers + demonPower.imageURL);
+
+            demonPower = new Tags(Tags.ItemType.DemonPower, Tags.RarityType.Legendary, "Sunray", "sunray.png", "sunray_hovertext.png");
+            btnInventoryDemonPowers02.Tag = demonPower;
+            btnInventoryDemonPowers02.BackgroundImage = Image.FromFile(urlDemonPowers + demonPower.imageURL);
+
+            demonPower = new Tags(Tags.ItemType.DemonPower, Tags.RarityType.Legendary, "Time Bubble", "timebubble.png", "timebubble_hovertext.png");
+            btnInventoryDemonPowers12.Tag = demonPower;
+            btnInventoryDemonPowers12.BackgroundImage = Image.FromFile(urlDemonPowers + demonPower.imageURL);
         }
 
         private void PreloadOutfits()
@@ -1364,7 +1413,7 @@ namespace VictorBuilder
                 //Assign the new item to the new inventory slot
                 try
                 {
-                    inventorySlot.BackgroundImage = Image.FromFile(urlFilePath + newItemTags.image);
+                    inventorySlot.BackgroundImage = Image.FromFile(urlFilePath + newItemTags.imageURL);
                 }
                 catch (FileNotFoundException e)
                 {

@@ -123,6 +123,8 @@
             this.tcInventoryDemonPowers = new System.Windows.Forms.TabControl();
             this.tbInventoryDemonPowersPage1 = new System.Windows.Forms.TabPage();
             this.tlpInventoryDemonPowers = new System.Windows.Forms.TableLayoutPanel();
+            this.btnInventoryDemonPowers12 = new System.Windows.Forms.Button();
+            this.btnInventoryDemonPowers02 = new System.Windows.Forms.Button();
             this.btnInventoryDemonPowers00 = new System.Windows.Forms.Button();
             this.btnInventoryDemonPowers10 = new System.Windows.Forms.Button();
             this.btnInventoryDemonPowers20 = new System.Windows.Forms.Button();
@@ -153,6 +155,7 @@
             this.btnEquippedDemonPower = new System.Windows.Forms.Button();
             this.btnEquippedConsumableSecondary = new System.Windows.Forms.Button();
             this.btnEquippedConsumable = new System.Windows.Forms.Button();
+            this.pnlHoverTextDemonPower = new System.Windows.Forms.Panel();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
@@ -1453,6 +1456,8 @@
             this.tlpInventoryDemonPowers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpInventoryDemonPowers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpInventoryDemonPowers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpInventoryDemonPowers.Controls.Add(this.btnInventoryDemonPowers12, 1, 2);
+            this.tlpInventoryDemonPowers.Controls.Add(this.btnInventoryDemonPowers02, 0, 2);
             this.tlpInventoryDemonPowers.Controls.Add(this.btnInventoryDemonPowers00, 0, 0);
             this.tlpInventoryDemonPowers.Controls.Add(this.btnInventoryDemonPowers10, 1, 0);
             this.tlpInventoryDemonPowers.Controls.Add(this.btnInventoryDemonPowers20, 2, 0);
@@ -1475,6 +1480,40 @@
             this.tlpInventoryDemonPowers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpInventoryDemonPowers.Size = new System.Drawing.Size(340, 520);
             this.tlpInventoryDemonPowers.TabIndex = 23;
+            // 
+            // btnInventoryDemonPowers12
+            // 
+            this.btnInventoryDemonPowers12.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryDemonPowers12.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers12.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryDemonPowers12.Location = new System.Drawing.Point(71, 211);
+            this.btnInventoryDemonPowers12.Name = "btnInventoryDemonPowers12";
+            this.btnInventoryDemonPowers12.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryDemonPowers12.TabIndex = 16;
+            this.btnInventoryDemonPowers12.TabStop = false;
+            this.btnInventoryDemonPowers12.UseVisualStyleBackColor = false;
+            this.btnInventoryDemonPowers12.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryDemonPowers12.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryDemonPowers12.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
+            // 
+            // btnInventoryDemonPowers02
+            // 
+            this.btnInventoryDemonPowers02.BackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers02.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryDemonPowers02.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers02.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInventoryDemonPowers02.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryDemonPowers02.Location = new System.Drawing.Point(3, 211);
+            this.btnInventoryDemonPowers02.Name = "btnInventoryDemonPowers02";
+            this.btnInventoryDemonPowers02.Size = new System.Drawing.Size(62, 98);
+            this.btnInventoryDemonPowers02.TabIndex = 15;
+            this.btnInventoryDemonPowers02.TabStop = false;
+            this.btnInventoryDemonPowers02.UseVisualStyleBackColor = false;
+            this.btnInventoryDemonPowers02.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
+            this.btnInventoryDemonPowers02.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            this.btnInventoryDemonPowers02.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnInventoryDemonPowers00
             // 
@@ -1987,6 +2026,16 @@
             this.btnEquippedConsumable.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
             this.btnEquippedConsumable.MouseUp += new System.Windows.Forms.MouseEventHandler(this.EquippedItem_MouseUp);
             // 
+            // pnlHoverTextDemonPower
+            // 
+            this.pnlHoverTextDemonPower.BackColor = System.Drawing.Color.Transparent;
+            this.pnlHoverTextDemonPower.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pnlHoverTextDemonPower.Location = new System.Drawing.Point(239, 226);
+            this.pnlHoverTextDemonPower.Name = "pnlHoverTextDemonPower";
+            this.pnlHoverTextDemonPower.Size = new System.Drawing.Size(343, 200);
+            this.pnlHoverTextDemonPower.TabIndex = 49;
+            this.pnlHoverTextDemonPower.Visible = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1995,6 +2044,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.pnlHoverTextDemonPower);
             this.Controls.Add(this.btnEquippedConsumable);
             this.Controls.Add(this.btnEquippedConsumableSecondary);
             this.Controls.Add(this.btnEquippedDemonPower);
@@ -2203,6 +2253,9 @@
         private System.Windows.Forms.Button btnEquippedDemonPower;
         private System.Windows.Forms.Button btnEquippedConsumableSecondary;
         private System.Windows.Forms.Button btnEquippedConsumable;
+        private System.Windows.Forms.Button btnInventoryDemonPowers12;
+        private System.Windows.Forms.Button btnInventoryDemonPowers02;
+        private System.Windows.Forms.Panel pnlHoverTextDemonPower;
 
     }
 }
