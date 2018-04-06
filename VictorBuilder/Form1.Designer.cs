@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            this.btnInventoryWeapons10 = new System.Windows.Forms.Button();
-            this.btnInventoryWeapons00 = new System.Windows.Forms.Button();
             this.btnEquippedWeapon = new System.Windows.Forms.Button();
             this.btnEquippedWeaponSecondary = new System.Windows.Forms.Button();
             this.pnlEquippedCards = new System.Windows.Forms.Panel();
@@ -157,7 +155,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbIconCardsHighlighted)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconOther)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconOtherHighlighted)).BeginInit();
-            this.tlpInventoryWeapons.SuspendLayout();
             this.tbInventoryWeaponsPage1.SuspendLayout();
             this.tcInventoryWeapons.SuspendLayout();
             this.tcInventoryCards.SuspendLayout();
@@ -184,42 +181,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbIconDemonPowersHighlighted)).BeginInit();
             this.pnlHoverTextConsumable.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnInventoryWeapons10
-            // 
-            this.btnInventoryWeapons10.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryWeapons10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnInventoryWeapons10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryWeapons10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryWeapons10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryWeapons10.Location = new System.Drawing.Point(70, 3);
-            this.btnInventoryWeapons10.Name = "btnInventoryWeapons10";
-            this.btnInventoryWeapons10.Size = new System.Drawing.Size(61, 98);
-            this.btnInventoryWeapons10.TabIndex = 6;
-            this.btnInventoryWeapons10.TabStop = false;
-            this.btnInventoryWeapons10.UseVisualStyleBackColor = false;
-            this.btnInventoryWeapons10.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryWeapons10.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryWeapons10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
-            // 
-            // btnInventoryWeapons00
-            // 
-            this.btnInventoryWeapons00.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryWeapons00.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnInventoryWeapons00.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnInventoryWeapons00.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryWeapons00.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryWeapons00.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryWeapons00.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnInventoryWeapons00.Location = new System.Drawing.Point(3, 3);
-            this.btnInventoryWeapons00.Name = "btnInventoryWeapons00";
-            this.btnInventoryWeapons00.Size = new System.Drawing.Size(61, 98);
-            this.btnInventoryWeapons00.TabIndex = 1;
-            this.btnInventoryWeapons00.TabStop = false;
-            this.btnInventoryWeapons00.UseVisualStyleBackColor = false;
-            this.btnInventoryWeapons00.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryWeapons00.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryWeapons00.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // btnEquippedWeapon
             // 
@@ -599,8 +560,6 @@
             this.tlpInventoryWeapons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpInventoryWeapons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpInventoryWeapons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons00, 0, 0);
-            this.tlpInventoryWeapons.Controls.Add(this.btnInventoryWeapons10, 1, 0);
             this.tlpInventoryWeapons.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tlpInventoryWeapons.Location = new System.Drawing.Point(0, 0);
             this.tlpInventoryWeapons.Margin = new System.Windows.Forms.Padding(0);
@@ -1948,7 +1907,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbIconCardsHighlighted)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconOther)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconOtherHighlighted)).EndInit();
-            this.tlpInventoryWeapons.ResumeLayout(false);
             this.tbInventoryWeaponsPage1.ResumeLayout(false);
             this.tcInventoryWeapons.ResumeLayout(false);
             this.tcInventoryCards.ResumeLayout(false);
@@ -1982,8 +1940,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnInventoryWeapons00;
-        private System.Windows.Forms.Button btnInventoryWeapons10;
         private System.Windows.Forms.Button btnEquippedWeapon;
         private System.Windows.Forms.Button btnEquippedWeaponSecondary;
         private System.Windows.Forms.Panel pnlEquippedCards;
