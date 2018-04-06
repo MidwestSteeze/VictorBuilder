@@ -733,7 +733,7 @@
             this.lblHoverTextWeaponCritMulti.Location = new System.Drawing.Point(280, 44);
             this.lblHoverTextWeaponCritMulti.Margin = new System.Windows.Forms.Padding(0);
             this.lblHoverTextWeaponCritMulti.Name = "lblHoverTextWeaponCritMulti";
-            this.lblHoverTextWeaponCritMulti.Size = new System.Drawing.Size(47, 17);
+            this.lblHoverTextWeaponCritMulti.Size = new System.Drawing.Size(60, 17);
             this.lblHoverTextWeaponCritMulti.TabIndex = 5;
             this.lblHoverTextWeaponCritMulti.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -745,7 +745,7 @@
             this.lblHoverTextWeaponCritChance.Location = new System.Drawing.Point(212, 44);
             this.lblHoverTextWeaponCritChance.Margin = new System.Windows.Forms.Padding(0);
             this.lblHoverTextWeaponCritChance.Name = "lblHoverTextWeaponCritChance";
-            this.lblHoverTextWeaponCritChance.Size = new System.Drawing.Size(40, 17);
+            this.lblHoverTextWeaponCritChance.Size = new System.Drawing.Size(60, 17);
             this.lblHoverTextWeaponCritChance.TabIndex = 4;
             this.lblHoverTextWeaponCritChance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
