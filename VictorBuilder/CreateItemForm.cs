@@ -300,7 +300,7 @@ namespace VictorBuilder
                     OleDbDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        Enum.TryParse(reader[0].ToString(), out wpnType);
+                        Enum.TryParse(reader[0].ToString().Replace(" ", ""), out wpnType);
                         Enum.TryParse(reader[1].ToString(), out wpnRarity);
                         wpnDmgMin = (int)reader[2];
                         wpnDmgMax = (int)reader[3];
