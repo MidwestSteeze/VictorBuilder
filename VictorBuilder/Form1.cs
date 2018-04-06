@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace VictorBuilder
         Tags.OutfitTags outfitTags;
         Tags newItemTags;
         List<Button> equippedItemControls;
+        string connectionString = Properties.Settings.Default.ItemsConnectionString;
 
         //Global variables
         string urlAttacks = "..\\..\\images\\attacks\\";
@@ -79,6 +81,7 @@ namespace VictorBuilder
             //Prevent flicker on button highlight changes
             this.DoubleBuffered = true;
 
+            PreloadConsumables();
             PreloadDemonPowers();
             PreloadOutfits();
 
@@ -910,6 +913,7 @@ namespace VictorBuilder
         {
             //Hide all panels; we'll conditionally show the correct one after this
             pnlHoverTextWeapon.Visible = false;
+            pnlHoverTextConsumable.Visible = false;
             pnlHoverTextDemonPower.Visible = false;
             pnlHoverTextCard.Visible = false;
             pnlHoverTextOutfit.Visible = false;
@@ -930,8 +934,15 @@ namespace VictorBuilder
 
                         pnlHoverTextCard.Visible = true;
                         break;
-                    //case Tags.ItemType.Consumable:
-                    //    break;
+                    case Tags.ItemType.Consumable:
+                        //TEXT
+                        //LINE 1 (name)
+                        lblHoverTextConsumableName.Text = slotTags.name;
+                        //LINE 2 (description)
+                        lblHoverTextConsumableDescription.Text = slotTags.description;
+
+                        pnlHoverTextConsumable.Visible = true;
+                        break;
                     case Tags.ItemType.DemonPower:
                         pnlHoverTextDemonPower.BackgroundImage = Image.FromFile(urlDemonPowers + slotTags.imageHoverTextURL);
                         pnlHoverTextDemonPower.Visible = true;
@@ -1192,6 +1203,83 @@ namespace VictorBuilder
                 default:
                     break;
             }            
+        }
+
+        private void PreloadConsumables()
+        {
+            TabPage inventory;
+            TableLayoutPanel inventorySlots;
+            List<Tags> consumables;
+            Tags itemFromDb;
+
+            //Query the database for all consumables
+            consumables = new List<Tags>();
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                //Query the Consumables table for a list of all consumables
+                string consumablesQuery = "SELECT * FROM Consumables;";
+
+                OleDbCommand command = new OleDbCommand(consumablesQuery, connection);
+
+                try
+                {
+                    connection.Open();
+                    OleDbDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        itemFromDb = new Tags(Tags.ItemType.Consumable, Tags.RarityType.Common, reader[0].ToString(), reader[1].ToString());
+                        itemFromDb.imageURL = reader[2].ToString();
+                        //Swap out stored new-line characters in the database for one that will get processed by the IDE
+                        itemFromDb.description = itemFromDb.description.Replace("/r/n", Environment.NewLine);
+                        consumables.Add(itemFromDb);
+                    }
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+                Console.ReadLine();
+            }
+
+            //TODOSSG this is duplicate logic found in AddNewItemToInventory, find a way to combine these
+            foreach (Tags consumable in consumables)
+	        {
+                //Get the child controls of the consumables tab control
+                inventory = tcInventoryConsumables.SelectedTab;
+                inventorySlots = (TableLayoutPanel)inventory.Controls[inventory.Controls.Count - 1];
+
+                if (inventorySlots.Controls.Count < 25)
+                {
+                    //Create a new button and add it to the Inventory
+                    Button inventorySlot = CreateNewInventorySlot();
+
+                    //Assign the new item to the new inventory slot
+                    try
+                    {
+                        inventorySlot.BackgroundImage = Image.FromFile(urlConsumables + consumable.imageURL);
+                    }
+                    catch (FileNotFoundException e)
+                    {
+                        inventorySlot.BackgroundImage = Image.FromFile(urlImageNotFound);
+                    }
+
+                    inventorySlot.Tag = consumable;
+
+                    inventorySlots.Controls.Add(inventorySlot);
+                    //itemLoaded = true;
+                }
+                else
+                {
+                    //We didn't find an empty slot, need to create a new TabPage with a TableLayoutPanel and a new button to hold this new item
+                    //TODO                
+                }
+            }
         }
 
         private void PreloadDemonPowers()
