@@ -456,6 +456,7 @@
             this.lblInventoryHeader.Name = "lblInventoryHeader";
             this.lblInventoryHeader.Size = new System.Drawing.Size(293, 20);
             this.lblInventoryHeader.TabIndex = 11;
+            this.lblInventoryHeader.Text = "Weapons";
             this.lblInventoryHeader.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblDestinyPoints
@@ -648,6 +649,7 @@
             this.tcInventoryCards.SelectedIndex = 0;
             this.tcInventoryCards.Size = new System.Drawing.Size(350, 549);
             this.tcInventoryCards.TabIndex = 24;
+            this.tcInventoryCards.Visible = false;
             // 
             // tbInventoryCardsPage1
             // 
@@ -1084,6 +1086,7 @@
             this.tcInventoryOther.SelectedIndex = 0;
             this.tcInventoryOther.Size = new System.Drawing.Size(350, 549);
             this.tcInventoryOther.TabIndex = 33;
+            this.tcInventoryOther.Visible = false;
             // 
             // tbInventoryOtherPage1
             // 
@@ -1427,6 +1430,7 @@
             this.tcInventoryDemonPowers.SelectedIndex = 0;
             this.tcInventoryDemonPowers.Size = new System.Drawing.Size(350, 549);
             this.tcInventoryDemonPowers.TabIndex = 40;
+            this.tcInventoryDemonPowers.Visible = false;
             // 
             // tbInventoryDemonPowersPage1
             // 
@@ -1691,6 +1695,7 @@
             this.tcInventoryConsumables.SelectedIndex = 0;
             this.tcInventoryConsumables.Size = new System.Drawing.Size(350, 549);
             this.tcInventoryConsumables.TabIndex = 41;
+            this.tcInventoryConsumables.Visible = false;
             // 
             // tbInventoryConsumablesPage1
             // 
@@ -1737,6 +1742,7 @@
             this.pbIconConsumablesHighlighted.TabIndex = 42;
             this.pbIconConsumablesHighlighted.TabStop = false;
             this.pbIconConsumablesHighlighted.Tag = "consumables";
+            this.pbIconConsumablesHighlighted.Visible = false;
             this.pbIconConsumablesHighlighted.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InventoryCategoryChange);
             // 
             // pbIconDemonPowers
@@ -1763,6 +1769,7 @@
             this.pbIconDemonPowersHighlighted.TabIndex = 44;
             this.pbIconDemonPowersHighlighted.TabStop = false;
             this.pbIconDemonPowersHighlighted.Tag = "demonPowers";
+            this.pbIconDemonPowersHighlighted.Visible = false;
             this.pbIconDemonPowersHighlighted.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InventoryCategoryChange);
             // 
             // btnEquippedDemonPowerSecondary
@@ -1890,7 +1897,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1280, 720);
             this.Controls.Add(this.pnlHoverTextDemonPower);
-			this.Controls.Add(this.pnlHoverTextConsumable);
+            this.Controls.Add(this.pnlHoverTextConsumable);
             this.Controls.Add(this.btnEquippedConsumable);
             this.Controls.Add(this.btnEquippedConsumableSecondary);
             this.Controls.Add(this.btnEquippedDemonPower);

@@ -17,11 +17,6 @@ namespace VictorBuilder
     public partial class frmMain : Form
     {
         //Global objects
-        Tags.WeaponTags weaponTags;
-        Tags.WeaponTags.AttackTags attackTags1;
-        Tags.WeaponTags.AttackTags attackTags2;
-        Tags.WeaponTags.AttackTags attackTags3;
-        Tags.CardTags cardTags;
         Tags.OutfitTags outfitTags;
         Tags newItemTags;
         List<Button> equippedItemControls;
@@ -99,51 +94,9 @@ namespace VictorBuilder
             tcInventoryCards.Region = new Region(new RectangleF(tbInventoryCardsPage1.Left, tbInventoryCardsPage1.Top, tbInventoryCardsPage1.Width, tbInventoryCardsPage1.Height));
             tcInventoryOther.Region = new Region(new RectangleF(tbInventoryOtherPage1.Left, tbInventoryOtherPage1.Top, tbInventoryOtherPage1.Width, tbInventoryOtherPage1.Height));
 
-            //START Temporary OnLoad logic
-            attackTags1 = new Tags.WeaponTags.AttackTags("Sword Hack", "..\\..\\images\\attacks\\Sword_Hack.png", "..\\..\\images\\attacks\\Sword_Hack_HoverText.png");
-            attackTags2 = new Tags.WeaponTags.AttackTags("Slash", "..\\..\\images\\attacks\\Sword_Slash.png", "..\\..\\images\\attacks\\Sword_Slash_HoverText.png");
-            attackTags3 = new Tags.WeaponTags.AttackTags("Dash", "..\\..\\images\\attacks\\Sword_Dash.png", "..\\..\\images\\attacks\\Sword_Dash_HoverText.png");            
-            weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Sword, Tags.WeaponTags.WeaponDistance.Melee, 44, 75, 0, 35, 100, attackTags1, attackTags2, attackTags3);
-
-            btnInventoryWeapons00.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Legendary, "Storm", "Attack speed increased by 25%" + Environment.NewLine + "Critical chance increased by 15%" + Environment.NewLine + "Critical hits create ball lightnings", "sword.png", weaponTags);
-            btnInventoryWeapons00.BackgroundImage = Image.FromFile("..\\..\\images\\weapons\\sword.png");
-
-            attackTags1 = new Tags.WeaponTags.AttackTags("Reap", "..\\..\\images\\attacks\\Scythe_Reap.png", "..\\..\\images\\attacks\\Scythe_Reap_HoverText.png");
-            attackTags2 = new Tags.WeaponTags.AttackTags("Shockwave", "..\\..\\images\\attacks\\Scythe_Shockwave.png", "..\\..\\images\\attacks\\Scythe_Shockwave_HoverText.png");
-            attackTags3 = new Tags.WeaponTags.AttackTags("Whirlwind", "..\\..\\images\\attacks\\Scythe_Whirlwind.png", "..\\..\\images\\attacks\\Scythe_Whirlwind_HoverText.png");
-            weaponTags = new Tags.WeaponTags(Tags.WeaponTags.WeaponType.Scythe, Tags.WeaponTags.WeaponDistance.Melee, 10, 190, 10, 15, 100, attackTags1, attackTags2, attackTags3);
-            btnInventoryWeapons10.Tag = FillItemTags(Tags.ItemType.Weapon, Tags.RarityType.Rare, "Vengeance", "Damage increased by 32% when health is below 50%" + Environment.NewLine + "Gain 10.0% of max health on crit (5 sec. cooldown)" + Environment.NewLine + "Triggers a Meteor storm when your health drops below 40%. Cannot trigger more than once every 60 seconds", "scythe.png", weaponTags);
-            btnInventoryWeapons10.BackgroundImage = Image.FromFile("..\\..\\images\\weapons\\scythe.png");
-
-            cardTags = new Tags.CardTags(2);
-            cardTags.prefix = new Affix("The Warrior", Affix.Modifier.Damage, 10, "+#% Damage");
-            btnInventoryCards00.Tag = FillItemTags(Tags.ItemType.Card, Tags.RarityType.Common, "The Sun", "", "thesun2.png" , cardTags);
-            btnInventoryCards00.BackgroundImage = Image.FromFile("..\\..\\images\\cards\\thesun2.png");
-
-            // Inventory page display
-            lblInventoryHeader.Text = "Destiny Cards";
-            tcInventoryWeapons.Visible = false;
-            tcInventoryCards.Visible = false;
-            tcInventoryOther.Visible = true;
-            pbIconWeapons.Visible = true;
-            pbIconWeaponsHighlighted.Visible = false;
-            pbIconConsumables.Visible = true;
-            pbIconConsumablesHighlighted.Visible = false;
-            pbIconDemonPowers.Visible = true;
-            pbIconDemonPowersHighlighted.Visible = false;
-            pbIconCardsHighlighted.Visible = false;
-            pbIconOther.Visible = false;
-            pbIconOtherHighlighted.Visible = true;
-
-            btnEquippedWeapon.Tag = btnInventoryWeapons00.Tag;
-            btnEquippedWeapon.BackgroundImage = btnInventoryWeapons00.BackgroundImage;
-            CalculateStats((Tags)btnEquippedWeapon.Tag);
-
-            btnEquippedWeaponSecondary.Tag = btnInventoryWeapons10.Tag;
-            btnEquippedWeaponSecondary.BackgroundImage = btnInventoryWeapons10.BackgroundImage;
-            CalculateStats((Tags)btnEquippedWeaponSecondary.Tag, true);
-
             lblEquippedDestinyPoints.Text = totalCardPoints.ToString() + "/" + maximumCardPoints.ToString();
+
+            //START Temporary OnLoad logic
             //END Temporary OnLoad logic
         }
 
@@ -409,20 +362,23 @@ namespace VictorBuilder
                     slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 4);
                     break;
                 case Tags.WeaponTags.WeaponType.Rapier:
-                    //Flurry (weapon base damage * cards * ?)
-                    //?-? --> ?-?
-                    //slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
-                    //slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                    //Flurry (weapon base damage * cards)
+                    //48-72 --> 48-72
+                    //61-91 --> 61-91
+                    slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                    slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
 
-                    //Charge (weapon base damage * cards * ?)
-                    //?-? --> ?-?
-                    //slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
-                    //slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
+                    //Charge (weapon base damage * cards * 2.5) //TODO rounded down?
+                    //48-72 --> 120-180
+                    //61-91 --> 152-227
+                    slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 2.5));
+                    slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 2.5));
 
-                    //Coup De Grace (weapon base damage * cards * ?)
-                    //?-? --> ?-?
-                    //slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.496);
-                    //slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.497);
+                    //Coup De Grace (weapon base damage * cards * 3)
+                    //48-72 --> 144-216
+                    //61-91 --> 183-273
+                    slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 3);
+                    slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 3);
                     break;
                 case Tags.WeaponTags.WeaponType.Sword:
                     //Sword Hack (weapon base damage * cards)
@@ -671,6 +627,7 @@ namespace VictorBuilder
         {
             //Copy item to outfit slot
             this.BackgroundImage = Image.FromFile(urlBackgrounds + slotTags.outfitTags.urlOutfitBackgroundImage);
+            btnEquippedOutfit.BackgroundImage = Image.FromFile(urlOutfits + slotTags.imageURL);
             btnEquippedOutfit.Tag = slotTags;
             itemEquipped = true;
             CalculateStats(slotTags);
@@ -1087,9 +1044,10 @@ namespace VictorBuilder
             return new Tags(aItemType, aRarityType, aName, aDescription, aImage, aCardTags);
         }
 
-        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType, string aName, string aDescription, Tags.OutfitTags aOutfitTags)
+        private Tags FillItemTags(Tags.ItemType aItemType, Tags.RarityType aRarityType, string aName, string aDescription, string aImage, 
+                                  Tags.OutfitTags aOutfitTags)
         {
-            return new Tags(aItemType, aRarityType, aName, aDescription, aOutfitTags);
+            return new Tags(aItemType, aRarityType, aName, aDescription, aImage, aOutfitTags);
         }
 
         private void ResizeFont(Control.ControlCollection coll, float scaleFactor)
@@ -1349,35 +1307,42 @@ namespace VictorBuilder
 
         private void PreloadOutfits()
         {
+            Tags defaultOutfit;
+
             outfitTags = new Tags.OutfitTags(30, "adventurer.png");
-            btnInventoryOther00.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Adventurer's Outfit", "Increases the Destiny slots by 1.  Increases maximum Overdrive by 2,000.  Increases Overdrive gain by 30%.", outfitTags);
+            defaultOutfit = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Adventurer's Outfit", "Increases the Destiny slots by 1.  Increases maximum Overdrive by 2,000.  Increases Overdrive gain by 30%.", "adventurer.png", outfitTags);
+            btnInventoryOther00.Tag = defaultOutfit;
             btnInventoryOther00.BackgroundImage = Image.FromFile(urlOutfits + "adventurer.png");
 
             outfitTags = new Tags.OutfitTags(50, "cavalier.png");
-            btnInventoryOther10.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Cavalier's Outfit", "You gain 180 Overdrive every second, but attacks no longer grant Overdrive.", outfitTags);
+            btnInventoryOther10.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Cavalier's Outfit", "You gain 180 Overdrive every second, but attacks no longer grant Overdrive.", "cavalier.png", outfitTags);
             btnInventoryOther10.BackgroundImage = Image.FromFile(urlOutfits + "cavalier.png");
 
             outfitTags = new Tags.OutfitTags(70, "highlander.png");
-            btnInventoryOther20.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Highlander's Outfit", "You gain 300 Overdrive when you use a weapon special attack, but attacks no longer grant Overdrive." + Environment.NewLine + "Reduces weapon cooldowns by 15%.", outfitTags);
+            btnInventoryOther20.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Highlander's Outfit", "You gain 300 Overdrive when you use a weapon special attack, but attacks no longer grant Overdrive." + Environment.NewLine + "Reduces weapon cooldowns by 15%.", "highlander.png", outfitTags);
             btnInventoryOther20.BackgroundImage = Image.FromFile(urlOutfits + "highlander.png");
 
             outfitTags = new Tags.OutfitTags(80, "hunter.png");
-            btnInventoryOther30.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Hunter's Outfit", "Gain 200% of the damage taken as Overdrive.", outfitTags);
+            btnInventoryOther30.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Hunter's Outfit", "Gain 200% of the damage taken as Overdrive.", "hunter.png", outfitTags);
             btnInventoryOther30.BackgroundImage = Image.FromFile(urlOutfits + "hunter.png");
 
-            //outfitTags = new Tags.OutfitTags(150, "vanguard.png");
-            //btnInventoryOther30.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Vanguard's Outfit", "High Armor.  Increases maximum Overdrive by 2,000.  Overdrive doesn't diminish outside of combat but Overdrive gain is decreased by 10%.", outfitTags);
-            //btnInventoryOther30.BackgroundImage = Image.FromFile(urlOutfits + "vanguard.png");
+            outfitTags = new Tags.OutfitTags(150, "vanguard.png");
+            btnInventoryOther40.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Vanguard's Outfit", "High Armor.  Increases maximum Overdrive by 2,000.  Overdrive doesn't diminish outside of combat but Overdrive gain is decreased by 10%.", "vanguard.png", outfitTags);
+            btnInventoryOther40.BackgroundImage = Image.FromFile(urlOutfits + "vanguard.png");
 
             outfitTags = new Tags.OutfitTags(70, "vigilante.png");
             outfitTags.critChance = 10;
-            btnInventoryOther40.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Vigilante's Outfit", "Critical hits grant 300% more Overdrive.  Normal attacks no longer grant Overdrive.", outfitTags);
-            btnInventoryOther40.BackgroundImage = Image.FromFile(urlOutfits + "vigilante.png");
+            btnInventoryOther01.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Vigilante's Outfit", "Critical hits grant 300% more Overdrive.  Normal attacks no longer grant Overdrive.", "vigilante.png", outfitTags);
+            btnInventoryOther01.BackgroundImage = Image.FromFile(urlOutfits + "vigilante.png");
 
             outfitTags = new Tags.OutfitTags(100, "zealot.png");
             outfitTags.health = 1000;
-            btnInventoryOther01.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Zealot's Outfit", "High Armor.  Increases Health by 1,000.", outfitTags);
-            btnInventoryOther01.BackgroundImage = Image.FromFile(urlOutfits + "zealot.png");
+            btnInventoryOther11.Tag = FillItemTags(Tags.ItemType.Outfit, Tags.RarityType.Legendary, "Zealot's Outfit", "High Armor.  Increases Health by 1,000.", "zealot.png", outfitTags);
+            btnInventoryOther11.BackgroundImage = Image.FromFile(urlOutfits + "zealot.png");
+
+            //Equip the default outfit (since we can't not have an outfit equipped)
+            btnEquippedOutfit.BackgroundImage = Image.FromFile(urlOutfits + defaultOutfit.imageURL);
+            btnEquippedOutfit.Tag = defaultOutfit;
         }
 
         /***************************
@@ -1647,7 +1612,6 @@ namespace VictorBuilder
             XmlNodeList items;
             Button slot;
             bool itemEquipped = false;
-            Tags slotTags;
 
             //Open the file dialog to prompt the user where to pick their build file to load
             OpenFileDialog loadBuildDialog = new OpenFileDialog();

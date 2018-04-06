@@ -94,12 +94,13 @@ namespace VictorBuilder
             }
         }
 
-        public Tags(ItemType aItemType, RarityType aRarityType, string aName, string aDescription, OutfitTags aOutfitTags)
+        public Tags(ItemType aItemType, RarityType aRarityType, string aName, string aDescription, string aImageURL, OutfitTags aOutfitTags)
         {
             itemType = aItemType;
             rarity = aRarityType;
             name = aName;
             description = aDescription;
+            imageURL = aImageURL;
             outfitTags = aOutfitTags;
         }
 
