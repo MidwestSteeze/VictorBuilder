@@ -978,6 +978,9 @@ namespace VictorBuilder
                     default:
                         break;
                 }
+                
+                //Bring the panel to the front (so it doesn't hide behind other controls
+                pnlEquippedWeaponAttacksSecondary.BringToFront();
             }
             else
             {
@@ -1002,6 +1005,9 @@ namespace VictorBuilder
                     default:
                         break;
                 }
+
+                //Bring the panel to the front (so it doesn't hide behind other controls
+                pnlEquippedWeaponAttacks.BringToFront();
             }
 
         }
@@ -1013,10 +1019,16 @@ namespace VictorBuilder
             if (slot.Name.Contains("Secondary"))
             {
                 pnlAttackSecondaryHoverText.Visible = false;
+                
+                //Send the panel to the back so it doesn't block other controls
+                pnlEquippedWeaponAttacksSecondary.SendToBack();
             }
             else
             {
                 pnlAttackHoverText.Visible = false;
+
+                //Send the panel to the back so it doesn't block other controls
+                pnlEquippedWeaponAttacks.SendToBack();
             }
         }
 
@@ -1533,10 +1545,10 @@ namespace VictorBuilder
             equippedItemControls.Add(btnEquippedOutfit);
             equippedItemControls.Add(btnEquippedWeapon);
             equippedItemControls.Add(btnEquippedWeaponSecondary);
-            //equippedItemControls.Add(btnEquippedConsumable);
-            //equippedItemControls.Add(btnEquippedConsumableSecondary);
-            //equippedItemControls.Add(btnEquippedDemonPower);
-            //equippedItemControls.Add(btnEquippedDemonPowerSecondary);
+            equippedItemControls.Add(btnEquippedConsumable);
+            equippedItemControls.Add(btnEquippedConsumableSecondary);
+            equippedItemControls.Add(btnEquippedDemonPower);
+            equippedItemControls.Add(btnEquippedDemonPowerSecondary);
         }
 
         //Generate xml of the current build and open a Save File Dialog so the user can specify where to save their build
@@ -1646,12 +1658,26 @@ namespace VictorBuilder
                         case Tags.ItemType.Card:
                             EquipCard(slot, item, ref itemEquipped);
                             break;
-                        //case Tags.ItemType.Consumable:
-                        //    slot.BackgroundImage = Image.FromFile(urlConsumables + item.image);
-                        //    break;
-                        //case Tags.ItemType.DemonPower:
-                        //    slot.BackgroundImage = Image.FromFile(urlDemonPowers + item.image);
-                        //    break;
+                        case Tags.ItemType.Consumable:
+                            if (slot.Name.Contains("Secondary"))
+                            {
+                                EquipConsumable(slot, item, true, ref itemEquipped);
+                            }
+                            else
+                            {
+                                EquipConsumable(slot, item, false, ref itemEquipped);
+                            }                            
+                            break;
+                        case Tags.ItemType.DemonPower:
+                            if (slot.Name.Contains("Secondary"))
+                            {
+                                EquipDemonPower(slot, item, true, ref itemEquipped);
+                            }
+                            else
+                            {
+                                EquipDemonPower(slot, item, false, ref itemEquipped);
+                            }                            
+                            break;
                         //case Tags.ItemType.Empty:
                         //    break;
                         case Tags.ItemType.Outfit:
