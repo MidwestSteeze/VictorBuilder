@@ -198,13 +198,24 @@ namespace VictorBuilder
 
         private void btnCreateWeapon_Click(object sender, EventArgs e)
         {
+            if ((cboWeaponRarity.SelectedItem == null) || (cboType.SelectedItem == null))
+            {
+                MessageBox.Show("Please specify a Weapon Type and Rarity.", "Create Weapon");
+                return;
+            }
+
+            if ((cboWeaponRarity.SelectedItem == "Legendary") && (lstLegendaries.SelectedItem == null))
+            {
+                MessageBox.Show("Please select a Legendary Weapon.", "Create Weapon");
+                return;
+            }
+
             //Find the base item in the database (type and rarity) and calculate on the affixes (if applicable)
             GetWeaponFromTable();
             CalculateStats();
 
             //Return to the main form
-            this.DialogResult = DialogResult.OK;
-            
+            this.DialogResult = DialogResult.OK;            
         }
 
         private void GetWeaponFromTable()
@@ -562,6 +573,12 @@ namespace VictorBuilder
 
         private void btnCreateCard_Click(object sender, EventArgs e)
         {
+            if ((cboCardRarity.SelectedItem == null) || (lstCards.SelectedItem == null))
+            {
+                MessageBox.Show("Please specify a Rarity and select a Destiny Card.", "Create Destiny Card");
+                return;
+            }
+
             Tags.CardTags.DivineWicked divineWicked;
 
             //Pull the item from the list box and combine on the other stats (divine/wicked affix, etc)
