@@ -97,6 +97,7 @@ namespace VictorBuilder
             lblEquippedDestinyPoints.Text = totalCardPoints.ToString() + "/" + maximumCardPoints.ToString();
 
             //START Temporary OnLoad logic
+            LoadBuild("C:\\Users\\grams_s\\Documents\\Visual Studio 2012\\Projects\\VictorBuilder\\SavedBuild.xml");
             //END Temporary OnLoad logic
         }
 
@@ -1619,12 +1620,6 @@ namespace VictorBuilder
 
         private void btnLoadBuild_Click(object sender, EventArgs e)
         {
-            Tags item;
-            XmlDocument build;
-            XmlNodeList items;
-            Button slot;
-            bool itemEquipped = false;
-
             //Open the file dialog to prompt the user where to pick their build file to load
             OpenFileDialog loadBuildDialog = new OpenFileDialog();
             loadBuildDialog.Filter = "Xml files (*.xml)|*.xml|All files (*.*)|*.*";
@@ -1632,70 +1627,81 @@ namespace VictorBuilder
 
             if (loadBuildDialog.ShowDialog() == DialogResult.OK)
             {
-                ClearEquippedItems();
+                LoadBuild(loadBuildDialog.FileName);
+            }
+        }
 
-                //Load the build into an xml document for further processing
-                build = new XmlDocument();
-                build.Load(loadBuildDialog.FileName);
+        private void LoadBuild(string fileName)
+        {
+            Tags item;
+            XmlDocument build;
+            XmlNodeList items;
+            Button slot;
+            bool itemEquipped = false;
 
-                //Process all <item> nodes
-                items = build.SelectNodes("Build/Items/Item");
+            ClearEquippedItems();
 
-                //Create an instance of the XmlSerializer specifying type and namespace
-                XmlSerializer serializer = new XmlSerializer(typeof(Tags));
+            //Load the build into an xml document for further processing
+            build = new XmlDocument();
+            build.Load(fileName);
 
-                //Loop through every item and load them into their corresponding control
-                foreach (XmlNode importItem in items)
+            //Process all <item> nodes
+            items = build.SelectNodes("Build/Items/Item");
+
+            //Create an instance of the XmlSerializer specifying type and namespace
+            XmlSerializer serializer = new XmlSerializer(typeof(Tags));
+
+            //Loop through every item and load them into their corresponding control
+            foreach (XmlNode importItem in items)
+            {
+                //Deserialize the imported item in xml format to an object
+                item = (Tags)serializer.Deserialize(new XmlNodeReader(importItem.SelectSingleNode("Tags")));
+
+                //Assign the imported item to its corresponding control (setting the Tag and Image properties)   
+                slot = Controls.Find(importItem.SelectSingleNode("Control").InnerText, true).First() as Button;
+
+                switch (item.itemType)
                 {
-                    //Deserialize the imported item in xml format to an object
-                    item = (Tags)serializer.Deserialize(new XmlNodeReader(importItem.SelectSingleNode("Tags")));
-
-                    //Assign the imported item to its corresponding control (setting the Tag and Image properties)   
-                    slot = Controls.Find(importItem.SelectSingleNode("Control").InnerText, true).First() as Button;
-
-                    switch (item.itemType)
-                    {
-                        case Tags.ItemType.Card:
-                            EquipCard(slot, item, ref itemEquipped);
-                            break;
-                        case Tags.ItemType.Consumable:
-                            if (slot.Name.Contains("Secondary"))
-                            {
-                                EquipConsumable(slot, item, true, ref itemEquipped);
-                            }
-                            else
-                            {
-                                EquipConsumable(slot, item, false, ref itemEquipped);
-                            }                            
-                            break;
-                        case Tags.ItemType.DemonPower:
-                            if (slot.Name.Contains("Secondary"))
-                            {
-                                EquipDemonPower(slot, item, true, ref itemEquipped);
-                            }
-                            else
-                            {
-                                EquipDemonPower(slot, item, false, ref itemEquipped);
-                            }                            
-                            break;
-                        //case Tags.ItemType.Empty:
-                        //    break;
-                        case Tags.ItemType.Outfit:
-                            EquipOutfit(slot, item, ref itemEquipped);
-                            break;
-                        case Tags.ItemType.Weapon:
-                            if (slot.Name.Contains("Secondary"))
-                            {
-                                EquipWeapon(slot, item, true, ref itemEquipped);
-                            }
-                            else
-                            {
-                                EquipWeapon(slot, item, false, ref itemEquipped);
-                            }                            
-                            break;
-                        default:
-                            break;
-                    }
+                    case Tags.ItemType.Card:
+                        EquipCard(slot, item, ref itemEquipped);
+                        break;
+                    case Tags.ItemType.Consumable:
+                        if (slot.Name.Contains("Secondary"))
+                        {
+                            EquipConsumable(slot, item, true, ref itemEquipped);
+                        }
+                        else
+                        {
+                            EquipConsumable(slot, item, false, ref itemEquipped);
+                        }
+                        break;
+                    case Tags.ItemType.DemonPower:
+                        if (slot.Name.Contains("Secondary"))
+                        {
+                            EquipDemonPower(slot, item, true, ref itemEquipped);
+                        }
+                        else
+                        {
+                            EquipDemonPower(slot, item, false, ref itemEquipped);
+                        }
+                        break;
+                    //case Tags.ItemType.Empty:
+                    //    break;
+                    case Tags.ItemType.Outfit:
+                        EquipOutfit(slot, item, ref itemEquipped);
+                        break;
+                    case Tags.ItemType.Weapon:
+                        if (slot.Name.Contains("Secondary"))
+                        {
+                            EquipWeapon(slot, item, true, ref itemEquipped);
+                        }
+                        else
+                        {
+                            EquipWeapon(slot, item, false, ref itemEquipped);
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }
         }
