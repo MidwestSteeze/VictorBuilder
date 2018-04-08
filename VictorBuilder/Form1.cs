@@ -543,8 +543,6 @@ namespace VictorBuilder
                 case Tags.ItemType.DemonPower:
                     EquipDemonPower(slot, slotTags, secondarySlot, ref itemEquipped);
                     break;
-                case Tags.ItemType.Empty:
-                    break;
                 case Tags.ItemType.Outfit:
                     EquipOutfit(slot, slotTags, ref itemEquipped);
                     break;
@@ -562,7 +560,7 @@ namespace VictorBuilder
             foreach (Button equippedCard in pnlEquippedCards.Controls)
             {
                 //Check if the card slot is empty
-                if ((Tags)equippedCard.Tag == null)
+                if ((Tags)equippedCard.Tag == null && equippedCard.Enabled)
                 {
                     //Only equip the card if we have enough available Destiny Points to do so
                     if ((totalCardPoints + slotTags.cardTags.points) <= maximumCardPoints)
@@ -631,6 +629,21 @@ namespace VictorBuilder
             btnEquippedOutfit.BackgroundImage = Image.FromFile(urlOutfits + slotTags.imageURL);
             btnEquippedOutfit.Tag = slotTags;
             itemEquipped = true;
+
+            //Adjust equippable card slots if the Adventurer Outfit has been equipped
+            if (slotTags.name == "Adventurer's Outfit")
+            {
+                btnEquippedCard7.Enabled = true;
+            }
+            else
+            {
+                btnEquippedCard7.Enabled = false;
+
+                //Remove the card from the slot, if one exists
+                bool itemUnequipped = false;
+                UnequipCard(btnEquippedCard7, (Tags)btnEquippedCard7.Tag, ref itemUnequipped);
+            }
+
             CalculateStats(slotTags);
         }
 
@@ -698,10 +711,6 @@ namespace VictorBuilder
                 case Tags.ItemType.DemonPower:
                     UnequipDemonPower(slot, slotTags, ref itemUnequipped);
                     break;
-                case Tags.ItemType.Empty:
-                    break;
-                case Tags.ItemType.Outfit:
-                    break;
                 case Tags.ItemType.Weapon:
                     UnequipWeapon(slot, slotTags, slot.Name.Contains("Secondary"), ref itemUnequipped);
                     break;
@@ -717,7 +726,11 @@ namespace VictorBuilder
             slot.Tag = null;
 
             itemUnequipped = true;
-            CalculateStats(slotTags);
+
+            if (slotTags != null)
+            {
+                CalculateStats(slotTags);   
+            }
         }
 
         private void UnequipConsumable(Button slot, Tags slotTags, ref bool itemUnequipped)
@@ -917,8 +930,6 @@ namespace VictorBuilder
                         pnlHoverTextDemonPower.BackgroundImage = Image.FromFile(urlDemonPowers + slotTags.imageHoverTextURL);
                         pnlHoverTextDemonPower.Visible = true;
                         break;
-                    //case Tags.ItemType.Empty:
-                    //    break;
                     case Tags.ItemType.Outfit:
                         //TEXT
                         //LINE 1 (name)
@@ -1463,14 +1474,6 @@ namespace VictorBuilder
                     inventoryCategory = tcInventoryCards;
                     urlFilePath = urlCards;
                     break;
-                //case Tags.ItemType.Consumable:
-                //    break;
-                //case Tags.ItemType.DemonPower:
-                //    break;
-                //case Tags.ItemType.Empty:
-                //    break;
-                //case Tags.ItemType.Outfit:
-                //    break;
                 case Tags.ItemType.Weapon:
                     inventoryCategory = tcInventoryWeapons;
                     urlFilePath = urlWeapons;
@@ -1685,8 +1688,6 @@ namespace VictorBuilder
                             EquipDemonPower(slot, item, false, ref itemEquipped);
                         }
                         break;
-                    //case Tags.ItemType.Empty:
-                    //    break;
                     case Tags.ItemType.Outfit:
                         EquipOutfit(slot, item, ref itemEquipped);
                         break;
