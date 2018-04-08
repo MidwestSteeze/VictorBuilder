@@ -62,7 +62,6 @@
             this.tcInventoryCards = new System.Windows.Forms.TabControl();
             this.tbInventoryCardsPage1 = new System.Windows.Forms.TabPage();
             this.tlpInventoryCards = new System.Windows.Forms.TableLayoutPanel();
-            this.btnInventoryCards00 = new System.Windows.Forms.Button();
             this.lblArmorPenetrationSecondary = new System.Windows.Forms.Label();
             this.lblDamageSecondary = new System.Windows.Forms.Label();
             this.lblCritChanceSecondary = new System.Windows.Forms.Label();
@@ -159,7 +158,6 @@
             this.tcInventoryWeapons.SuspendLayout();
             this.tcInventoryCards.SuspendLayout();
             this.tbInventoryCardsPage1.SuspendLayout();
-            this.tlpInventoryCards.SuspendLayout();
             this.pnlHoverTextWeapon.SuspendLayout();
             this.pnlHoverTextCard.SuspendLayout();
             this.pnlEquippedWeaponAttacks.SuspendLayout();
@@ -631,7 +629,6 @@
             this.tlpInventoryCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpInventoryCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpInventoryCards.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpInventoryCards.Controls.Add(this.btnInventoryCards00, 0, 0);
             this.tlpInventoryCards.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tlpInventoryCards.Location = new System.Drawing.Point(0, 0);
             this.tlpInventoryCards.Margin = new System.Windows.Forms.Padding(0);
@@ -644,25 +641,6 @@
             this.tlpInventoryCards.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpInventoryCards.Size = new System.Drawing.Size(340, 520);
             this.tlpInventoryCards.TabIndex = 23;
-            // 
-            // btnInventoryCards00
-            // 
-            this.btnInventoryCards00.BackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryCards00.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnInventoryCards00.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnInventoryCards00.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryCards00.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInventoryCards00.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventoryCards00.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnInventoryCards00.Location = new System.Drawing.Point(3, 3);
-            this.btnInventoryCards00.Name = "btnInventoryCards00";
-            this.btnInventoryCards00.Size = new System.Drawing.Size(61, 98);
-            this.btnInventoryCards00.TabIndex = 1;
-            this.btnInventoryCards00.TabStop = false;
-            this.btnInventoryCards00.UseVisualStyleBackColor = false;
-            this.btnInventoryCards00.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            this.btnInventoryCards00.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
-            this.btnInventoryCards00.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
             // 
             // lblArmorPenetrationSecondary
             // 
@@ -1911,7 +1889,6 @@
             this.tcInventoryWeapons.ResumeLayout(false);
             this.tcInventoryCards.ResumeLayout(false);
             this.tbInventoryCardsPage1.ResumeLayout(false);
-            this.tlpInventoryCards.ResumeLayout(false);
             this.pnlHoverTextWeapon.ResumeLayout(false);
             this.pnlHoverTextCard.ResumeLayout(false);
             this.pnlEquippedWeaponAttacks.ResumeLayout(false);
@@ -1966,7 +1943,6 @@
         private System.Windows.Forms.TabControl tcInventoryCards;
         private System.Windows.Forms.TabPage tbInventoryCardsPage1;
         private System.Windows.Forms.TableLayoutPanel tlpInventoryCards;
-        private System.Windows.Forms.Button btnInventoryCards00;
         private System.Windows.Forms.Button btnEquippedCard2;
         private System.Windows.Forms.Button btnEquippedCard1;
         private System.Windows.Forms.Button btnEquippedCard4;
