@@ -1237,38 +1237,13 @@ namespace VictorBuilder
                 Console.ReadLine();
             }
 
-            //TODOSSG this is duplicate logic found in AddNewItemToInventory, find a way to combine these
             foreach (Tags consumable in consumables)
 	        {
                 //Get the child controls of the consumables tab control
                 inventory = tcInventoryConsumables.SelectedTab;
                 inventorySlots = (TableLayoutPanel)inventory.Controls[inventory.Controls.Count - 1];
 
-                if (inventorySlots.Controls.Count < 25)
-                {
-                    //Create a new button and add it to the Inventory
-                    Button inventorySlot = CreateNewInventorySlot();
-
-                    //Assign the new item to the new inventory slot
-                    try
-                    {
-                        inventorySlot.BackgroundImage = Image.FromFile(urlConsumables + consumable.imageURL);
-                    }
-                    catch (FileNotFoundException e)
-                    {
-                        inventorySlot.BackgroundImage = Image.FromFile(urlImageNotFound);
-                    }
-
-                    inventorySlot.Tag = consumable;
-
-                    inventorySlots.Controls.Add(inventorySlot);
-                    //itemLoaded = true;
-                }
-                else
-                {
-                    //We didn't find an empty slot, need to create a new TabPage with a TableLayoutPanel and a new button to hold this new item
-                    //TODO                
-                }
+                AddItemToInventorySlot(inventorySlots, consumable, urlConsumables, "btnInventoryConsumable"); 
             }
         }
 
@@ -1460,7 +1435,6 @@ namespace VictorBuilder
             TabControl inventoryCategory;
             TabPage inventory;
             TableLayoutPanel inventorySlots;
-            bool itemLoaded = false;
             string urlFilePath = string.Empty;
             string controlName;
 
@@ -1485,6 +1459,11 @@ namespace VictorBuilder
             inventory = inventoryCategory.SelectedTab;
             inventorySlots = (TableLayoutPanel)inventory.Controls[inventory.Controls.Count - 1];
 
+            AddItemToInventorySlot(inventorySlots, newItemTags, urlFilePath, controlName);
+        }
+
+        private void AddItemToInventorySlot(TableLayoutPanel inventorySlots, Tags itemTags, string urlFilePath, string controlName)
+        {
             if (inventorySlots.Controls.Count < 25)
             {
                 //Create a new button and add it to the Inventory
@@ -1493,7 +1472,7 @@ namespace VictorBuilder
                 //Assign the new item to the new inventory slot
                 try
                 {
-                    inventorySlot.BackgroundImage = Image.FromFile(urlFilePath + newItemTags.imageURL);
+                    inventorySlot.BackgroundImage = Image.FromFile(urlFilePath + itemTags.imageURL);
                 }
                 catch (FileNotFoundException e)
                 {
@@ -1501,10 +1480,9 @@ namespace VictorBuilder
                 }
 
                 inventorySlot.Name = controlName + (inventorySlots.Controls.Count + 1);
-                inventorySlot.Tag = newItemTags;
+                inventorySlot.Tag = itemTags;
 
                 inventorySlots.Controls.Add(inventorySlot);
-                itemLoaded = true;
             }
             else
             {
