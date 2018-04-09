@@ -42,11 +42,13 @@ namespace VictorBuilder
 
         private void cboRarity_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tcWeaponMods.Enabled = true;
             switch (cboWeaponRarity.SelectedItem.ToString())
             {
                 case "Common":                    
                     tcWeaponMods.SelectedTab = tpAffixes;
+                    //Enable affix lists
+                    lstPrefixes.Enabled = true;
+                    lstSuffixes.Enabled = true;
                     //Allow a third affix to be added
                     lstThirdAffix.Enabled = true;
                     //Clear the selected affixes (since Common weapons can only have 1)
@@ -56,6 +58,9 @@ namespace VictorBuilder
                 case "Uncommon":
                 case "Rare":
                     tcWeaponMods.SelectedTab = tpAffixes;
+                    //Enable affix lists
+                    lstPrefixes.Enabled = true;
+                    lstSuffixes.Enabled = true;
                     //Allow a third affix to be added
                     lstThirdAffix.Enabled = true;
                     break;
