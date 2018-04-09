@@ -278,10 +278,6 @@ namespace VictorBuilder
 
         private void CalculateWeaponSkills(Tags slotTags)
         {
-            //Prefix the attack image urls with the full relative filepath
-            slotTags.weaponTags.attack1.attackImageURL = urlAttacks + slotTags.weaponTags.attack1.attackImageURL;
-            slotTags.weaponTags.attack1.attackImageHoverTextURL = urlAttacks + slotTags.weaponTags.attack1.attackImageHoverTextURL;
-
             //We have our weapon base mods set  (ie. dmg, armor pen, crit, etc)
             // and we have our modifiers from cards set
             // plug those into the calculations based on the calc used for attack1/attack2/attack3 (need to store these in db i think...)
