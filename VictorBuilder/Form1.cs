@@ -1466,6 +1466,7 @@ namespace VictorBuilder
             TableLayoutPanel inventorySlots;
             bool itemLoaded = false;
             string urlFilePath = string.Empty;
+            string controlName;
 
             //Determine which item category we created a new item for
             switch (newItemTags.itemType)
@@ -1473,10 +1474,12 @@ namespace VictorBuilder
                 case Tags.ItemType.Card:
                     inventoryCategory = tcInventoryCards;
                     urlFilePath = urlCards;
+                    controlName = "btnInventoryCard";
                     break;
                 case Tags.ItemType.Weapon:
                     inventoryCategory = tcInventoryWeapons;
                     urlFilePath = urlWeapons;
+                    controlName = "btnInventoryWeapon";
                     break;
                 default:
                     throw new Exception("No item type found for " + newItemTags.itemType);
@@ -1501,6 +1504,7 @@ namespace VictorBuilder
                     inventorySlot.BackgroundImage = Image.FromFile(urlImageNotFound);
                 }
 
+                inventorySlot.Name = controlName + (inventorySlots.Controls.Count + 1);
                 inventorySlot.Tag = newItemTags;
 
                 inventorySlots.Controls.Add(inventorySlot);
@@ -1570,43 +1574,26 @@ namespace VictorBuilder
                 build.LoadXml("<Build></Build>");
                 XmlElement root = build.DocumentElement;
                 XmlElement items = build.CreateElement("Items");
-                XmlElement item;
-                XmlElement itemTags = build.CreateElement("ItemTags");
-                Tags slotTags;
 
                 //Add what will be the collection of Items underneath the root node of the xml document
                 root.AppendChild(items);
 
                 try
                 {
-                    foreach (Button equippedItemControl in equippedItemControls)  //TODO the last control is overwriting the previously written one
-                    {
-                        //Generate xml for the item if the current slot has an item equipped within it
-                        if (equippedItemControl.Tag != null)
-                        {
-                            //Serialize the current item into an xml string to be appended to the build doc
-                            slotTags = (Tags)equippedItemControl.Tag;
-                            XmlSerializer serializer = new XmlSerializer(slotTags.GetType());
+                    //Save equipped items
+                    XmlElement equippedElement = build.CreateElement("Equipped");
+                    items.AppendChild(equippedElement);
+                    SaveItems(equippedItemControls, ref build, ref equippedElement);
 
-                            //Create a new item, so we don't overwrite the last one
-                            item = build.CreateElement("Item");
+                    //Save items in the Weapons inventory
+                    XmlElement inventoryWeaponsElement = build.CreateElement("InventoryWeapons");
+                    items.AppendChild(inventoryWeaponsElement);
+                    SaveItems(tlpInventoryWeapons.Controls, ref build, ref inventoryWeaponsElement);
 
-							//Add the name of the control that this item belongs to for referencing when importing a build
-                            item.InnerXml = "<Control>" + equippedItemControl.Name + "</Control>";
-
-                            //Auto-generate the xml for the item by utilizing an XML serializer
-                            using (StringWriter writer = new StringWriter())
-                            {
-                                serializer.Serialize(writer, equippedItemControl.Tag);
-                                itemTags.InnerXml = writer.ToString();
-
-                                item.AppendChild(itemTags.SelectSingleNode("Tags"));
-
-                                //Add the item to the list of items in the build
-                                items.AppendChild(item);
-                            }
-                        }
-                    }
+                    //Save items in the Cards inventory
+                    XmlElement inventoryCardsElement = build.CreateElement("InventoryCards");
+                    items.AppendChild(inventoryCardsElement);
+                    SaveItems(tlpInventoryCards.Controls, ref build, ref inventoryCardsElement);
                 }
                 //if invalid cast, ignore and move on to the next control
                 catch (Exception ex)
@@ -1619,6 +1606,55 @@ namespace VictorBuilder
                 System.IO.File.WriteAllText(saveBuildDialog.FileName, build.OuterXml);
                 MessageBox.Show("Build saved.");
             }            
+        }
+
+        private void SaveItems(List<Button> ItemControls, ref XmlDocument build, ref XmlElement categoryElement)
+        {
+            foreach (Button itemControl in ItemControls)
+            {
+                SaveItem(itemControl, ref build, ref categoryElement);
+            }
+        }
+
+        private void SaveItems(TableLayoutControlCollection ItemControls, ref XmlDocument build, ref XmlElement categoryElement)
+        {
+            foreach (Button itemControl in ItemControls)
+            {
+                SaveItem(itemControl, ref build, ref categoryElement);
+            }
+        }
+
+        private void SaveItem(Button itemControl, ref XmlDocument build, ref XmlElement categoryElement)
+        {
+            Tags slotTags;
+            XmlElement item;
+            XmlElement itemTags = build.CreateElement("ItemTags");
+
+            //Generate xml for the item if the current slot has an item equipped within it
+            if (itemControl.Tag != null)
+            {
+                //Serialize the current item into an xml string to be appended to the build doc
+                slotTags = (Tags)itemControl.Tag;
+                XmlSerializer serializer = new XmlSerializer(slotTags.GetType());
+
+                //Create a new item, so we don't overwrite the last one
+                item = build.CreateElement("Item");
+
+                //Add the name of the control that this item belongs to for referencing when importing a build
+                item.InnerXml = "<Control>" + itemControl.Name + "</Control>";
+
+                //Auto-generate the xml for the item by utilizing an XML serializer
+                using (StringWriter writer = new StringWriter())
+                {
+                    serializer.Serialize(writer, itemControl.Tag);
+                    itemTags.InnerXml = writer.ToString();
+
+                    item.AppendChild(itemTags.SelectSingleNode("Tags"));
+
+                    //Add the item to the list of items in the build
+                    categoryElement.AppendChild(item);
+                }
+            }
         }
 
         private void btnLoadBuild_Click(object sender, EventArgs e)
@@ -1636,11 +1672,8 @@ namespace VictorBuilder
 
         private void LoadBuild(string fileName)
         {
-            Tags item;
             XmlDocument build;
             XmlNodeList items;
-            Button slot;
-            bool itemEquipped = false;
 
             ClearEquippedItems();
 
@@ -1648,63 +1681,126 @@ namespace VictorBuilder
             build = new XmlDocument();
             build.Load(fileName);
 
-            //Process all <item> nodes
-            items = build.SelectNodes("Build/Items/Item");
-
             //Create an instance of the XmlSerializer specifying type and namespace
             XmlSerializer serializer = new XmlSerializer(typeof(Tags));
+
+            //Load Equipped items
+            items = build.SelectNodes("Build/Items/Equipped/Item");
+            LoadEquippedItems(serializer, items);
+            
+            //Load items that were stored in the Weapons inventory
+            items = build.SelectNodes("Build/Items/InventoryWeapons/Item");
+            LoadInventoryItems(serializer, items, tlpInventoryWeapons);
+
+            //Load items that were stored in the Cards inventory
+            items = build.SelectNodes("Build/Items/InventoryCards/Item");
+            LoadInventoryItems(serializer, items, tlpInventoryCards);
+        }
+
+        private void LoadEquippedItems(XmlSerializer serializer, XmlNodeList items)
+        {
+            //Loop through every item and load them into their corresponding control
+            foreach (XmlNode importItem in items)
+            {
+                LoadEquippedItem(serializer, importItem); 
+            }
+        }
+
+        private void LoadInventoryItems(XmlSerializer serializer, XmlNodeList items, TableLayoutPanel tlpInventory)
+        {
+            //Clear all current inventory slots since we're loading in a fresh build
+            tlpInventory.Controls.Clear();
 
             //Loop through every item and load them into their corresponding control
             foreach (XmlNode importItem in items)
             {
-                //Deserialize the imported item in xml format to an object
-                item = (Tags)serializer.Deserialize(new XmlNodeReader(importItem.SelectSingleNode("Tags")));
-
-                //Assign the imported item to its corresponding control (setting the Tag and Image properties)   
-                slot = Controls.Find(importItem.SelectSingleNode("Control").InnerText, true).First() as Button;
-
-                switch (item.itemType)
-                {
-                    case Tags.ItemType.Card:
-                        EquipCard(slot, item, ref itemEquipped);
-                        break;
-                    case Tags.ItemType.Consumable:
-                        if (slot.Name.Contains("Secondary"))
-                        {
-                            EquipConsumable(slot, item, true, ref itemEquipped);
-                        }
-                        else
-                        {
-                            EquipConsumable(slot, item, false, ref itemEquipped);
-                        }
-                        break;
-                    case Tags.ItemType.DemonPower:
-                        if (slot.Name.Contains("Secondary"))
-                        {
-                            EquipDemonPower(slot, item, true, ref itemEquipped);
-                        }
-                        else
-                        {
-                            EquipDemonPower(slot, item, false, ref itemEquipped);
-                        }
-                        break;
-                    case Tags.ItemType.Outfit:
-                        EquipOutfit(slot, item, ref itemEquipped);
-                        break;
-                    case Tags.ItemType.Weapon:
-                        if (slot.Name.Contains("Secondary"))
-                        {
-                            EquipWeapon(slot, item, true, ref itemEquipped);
-                        }
-                        else
-                        {
-                            EquipWeapon(slot, item, false, ref itemEquipped);
-                        }
-                        break;
-                    default:
-                        break;
-                }
+                LoadInventoryItem(serializer, importItem, tlpInventory);
             }
+        }
+
+        private void LoadEquippedItem(XmlSerializer serializer, XmlNode importItem)
+        {
+            Tags item;
+            Button slot;
+            bool itemEquipped = false;
+
+            //Deserialize the imported item in xml format to an object
+            item = (Tags)serializer.Deserialize(new XmlNodeReader(importItem.SelectSingleNode("Tags")));
+
+            //Assign the imported item to its corresponding control (setting the Tag and Image properties)   
+            slot = Controls.Find(importItem.SelectSingleNode("Control").InnerText, true).First() as Button;
+
+            switch (item.itemType)
+            {
+                case Tags.ItemType.Card:
+                    EquipCard(slot, item, ref itemEquipped);
+                    break;
+                case Tags.ItemType.Consumable:
+                    if (slot.Name.Contains("Secondary"))
+                    {
+                        EquipConsumable(slot, item, true, ref itemEquipped);
+                    }
+                    else
+                    {
+                        EquipConsumable(slot, item, false, ref itemEquipped);
+                    }
+                    break;
+                case Tags.ItemType.DemonPower:
+                    if (slot.Name.Contains("Secondary"))
+                    {
+                        EquipDemonPower(slot, item, true, ref itemEquipped);
+                    }
+                    else
+                    {
+                        EquipDemonPower(slot, item, false, ref itemEquipped);
+                    }
+                    break;
+                case Tags.ItemType.Outfit:
+                    EquipOutfit(slot, item, ref itemEquipped);
+                    break;
+                case Tags.ItemType.Weapon:
+                    if (slot.Name.Contains("Secondary"))
+                    {
+                        EquipWeapon(slot, item, true, ref itemEquipped);
+                    }
+                    else
+                    {
+                        EquipWeapon(slot, item, false, ref itemEquipped);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void LoadInventoryItem(XmlSerializer serializer, XmlNode importItem, TableLayoutPanel tlpInventory)
+        {
+            Tags item;
+            Button slot;
+            bool itemLoaded = false;
+
+            //Deserialize the imported item in xml format to an object
+            item = (Tags)serializer.Deserialize(new XmlNodeReader(importItem.SelectSingleNode("Tags")));
+
+            //Create a new inventory slot to assign this item to
+            slot = CreateNewInventorySlot();
+            slot.Name = importItem.SelectSingleNode("Control").InnerText;
+            slot.Tag = item;
+
+            switch (item.itemType)
+            {
+                case Tags.ItemType.Card:
+                    slot.BackgroundImage = Image.FromFile(urlCards + item.imageURL);
+                    break;
+                case Tags.ItemType.Weapon:
+                    slot.BackgroundImage = Image.FromFile(urlWeapons + item.imageURL);
+                    break;
+                default:
+                    break;
+            }
+
+            //Add the imported item to the inventory
+            tlpInventory.Controls.Add(slot);
         }
 
         private void ClearEquippedItems()
