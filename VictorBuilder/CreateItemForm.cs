@@ -611,42 +611,38 @@ namespace VictorBuilder
 
 		private void PopulateItemDescription(ref Tags itemTags, Affix prefix, Affix suffix, Affix thirdAffix)
 		{
-					if (prefix != null)
-                    {
-                        itemTags.description = prefix.listBoxDisplay;
-                        if (itemTags.itemType == Tags.ItemType.Weapon)
-                        {
-                            itemTags.name = prefix.name + " " + itemTags.weaponTags.weaponType.ToString();
-						}
-                    }
-                    else if (itemTags.itemType == Tags.ItemType.Weapon)
-                    {
-                        itemTags.name = itemTags.weaponTags.weaponType.ToString();
-                    }
+			if (prefix != null)
+            {
+                itemTags.description = prefix.listBoxDisplay;
+                if (itemTags.itemType == Tags.ItemType.Weapon)
+                {
+                    itemTags.name = itemTags.name.Insert(0, prefix.name + " ");
+				}
+            }
 
-                    if (suffix != null)
-                    {
-                        if (itemTags.description != string.Empty)
-                        {
-                            itemTags.description += Environment.NewLine;
-                        }
+            if (suffix != null)
+            {
+                if (itemTags.description != string.Empty)
+                {
+                    itemTags.description += Environment.NewLine;
+                }
 
-                        itemTags.description += suffix.listBoxDisplay;
-                        if (itemTags.itemType == Tags.ItemType.Weapon)
-						{
-                            itemTags.name += " " + itemTags.weaponTags.suffix.name;
-						}
-                    }
+                itemTags.description += suffix.listBoxDisplay;
+                if (itemTags.itemType == Tags.ItemType.Weapon)
+				{
+                    itemTags.name += " " + itemTags.weaponTags.suffix.name;
+				}
+            }
 
-                    if (thirdAffix != null)
-                    {
-                        if (itemTags.description != string.Empty)
-                        {
-                            itemTags.description += Environment.NewLine;
-                        }
+            if (thirdAffix != null)
+            {
+                if (itemTags.description != string.Empty)
+                {
+                    itemTags.description += Environment.NewLine;
+                }
 
-                        itemTags.description += thirdAffix.listBoxDisplay;
-                    }			
+                itemTags.description += thirdAffix.listBoxDisplay;
+            }			
 		}
     }
 }
