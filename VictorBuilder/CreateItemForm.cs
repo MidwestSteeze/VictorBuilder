@@ -47,8 +47,11 @@ namespace VictorBuilder
             {
                 case "Common":                    
                     tcWeaponMods.SelectedTab = tpAffixes;
-                    //Don't allow a third affix to be added
-                    lstThirdAffix.Enabled = false;
+                    //Allow a third affix to be added
+                    lstThirdAffix.Enabled = true;
+                    //Clear the selected affixes (since Common weapons can only have 1)
+                    lstPrefixes.ClearSelected();
+                    lstSuffixes.ClearSelected();
                     break;
                 case "Uncommon":
                 case "Rare":
@@ -644,5 +647,27 @@ namespace VictorBuilder
                 itemTags.description += thirdAffix.listBoxDisplay;
             }			
 		}
+
+        private void lstPrefixes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListBox tmp = (ListBox)sender;
+
+            //Only allow 1 affix for Common weapon types by clearing the selected suffix, if there is one, and we just selected a prefix
+            if ((cboWeaponRarity.SelectedItem.ToString() == "Common") && (lstPrefixes.SelectedIndex > -1) && (lstSuffixes.SelectedIndex > -1))
+            {
+                lstSuffixes.ClearSelected();
+            }
+        }
+
+        private void lstSuffixes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListBox tmp = (ListBox)sender;
+
+            //Only allow 1 affix for Common weapon types by clearing the selected prefix, if there is one, and we just selected a suffix
+            if ((cboWeaponRarity.SelectedItem.ToString() == "Common") && (lstSuffixes.SelectedIndex > -1) && (lstPrefixes.SelectedIndex > -1))
+            {
+                lstPrefixes.ClearSelected();
+            }
+        }
     }
 }

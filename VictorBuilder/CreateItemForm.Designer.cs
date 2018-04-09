@@ -164,6 +164,7 @@
             this.lstSuffixes.Name = "lstSuffixes";
             this.lstSuffixes.Size = new System.Drawing.Size(337, 95);
             this.lstSuffixes.TabIndex = 11;
+            this.lstSuffixes.SelectedIndexChanged += new System.EventHandler(this.lstSuffixes_SelectedIndexChanged);
             // 
             // lstPrefixes
             // 
@@ -172,6 +173,7 @@
             this.lstPrefixes.Name = "lstPrefixes";
             this.lstPrefixes.Size = new System.Drawing.Size(338, 95);
             this.lstPrefixes.TabIndex = 10;
+            this.lstPrefixes.SelectedIndexChanged += new System.EventHandler(this.lstPrefixes_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -546,6 +548,7 @@
             this.tableAdapterManager.AttacksTableAdapter = null;
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CardsTableAdapter = null;
+            this.tableAdapterManager.ConsumablesTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = VictorBuilder.ItemsDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.WeaponsLegendaryTableAdapter = null;
             this.tableAdapterManager.WeaponsTableAdapter = this.weaponsTableAdapter;
