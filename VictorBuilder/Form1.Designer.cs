@@ -699,16 +699,16 @@
             this.pnlHoverTextWeapon.Controls.Add(this.lblHoverTextWeaponName);
             this.pnlHoverTextWeapon.Location = new System.Drawing.Point(239, 270);
             this.pnlHoverTextWeapon.Name = "pnlHoverTextWeapon";
-            this.pnlHoverTextWeapon.Size = new System.Drawing.Size(350, 169);
+            this.pnlHoverTextWeapon.Size = new System.Drawing.Size(350, 180);
             this.pnlHoverTextWeapon.TabIndex = 29;
             this.pnlHoverTextWeapon.Visible = false;
             // 
             // lblHoverTextWeaponCritMulti
             // 
             this.lblHoverTextWeaponCritMulti.BackColor = System.Drawing.Color.Transparent;
-            this.lblHoverTextWeaponCritMulti.Font = new System.Drawing.Font("Copperplate Gothic Light", 10F, System.Drawing.FontStyle.Bold);
+            this.lblHoverTextWeaponCritMulti.Font = new System.Drawing.Font("Copperplate Gothic Light", 9F, System.Drawing.FontStyle.Bold);
             this.lblHoverTextWeaponCritMulti.ForeColor = System.Drawing.Color.White;
-            this.lblHoverTextWeaponCritMulti.Location = new System.Drawing.Point(280, 44);
+            this.lblHoverTextWeaponCritMulti.Location = new System.Drawing.Point(280, 48);
             this.lblHoverTextWeaponCritMulti.Margin = new System.Windows.Forms.Padding(0);
             this.lblHoverTextWeaponCritMulti.Name = "lblHoverTextWeaponCritMulti";
             this.lblHoverTextWeaponCritMulti.Size = new System.Drawing.Size(60, 17);
@@ -718,9 +718,9 @@
             // lblHoverTextWeaponCritChance
             // 
             this.lblHoverTextWeaponCritChance.BackColor = System.Drawing.Color.Transparent;
-            this.lblHoverTextWeaponCritChance.Font = new System.Drawing.Font("Copperplate Gothic Light", 10F, System.Drawing.FontStyle.Bold);
+            this.lblHoverTextWeaponCritChance.Font = new System.Drawing.Font("Copperplate Gothic Light", 9F, System.Drawing.FontStyle.Bold);
             this.lblHoverTextWeaponCritChance.ForeColor = System.Drawing.Color.White;
-            this.lblHoverTextWeaponCritChance.Location = new System.Drawing.Point(212, 44);
+            this.lblHoverTextWeaponCritChance.Location = new System.Drawing.Point(212, 48);
             this.lblHoverTextWeaponCritChance.Margin = new System.Windows.Forms.Padding(0);
             this.lblHoverTextWeaponCritChance.Name = "lblHoverTextWeaponCritChance";
             this.lblHoverTextWeaponCritChance.Size = new System.Drawing.Size(60, 17);
@@ -730,9 +730,9 @@
             // lblHoverTextWeaponArmorPenetration
             // 
             this.lblHoverTextWeaponArmorPenetration.BackColor = System.Drawing.Color.Transparent;
-            this.lblHoverTextWeaponArmorPenetration.Font = new System.Drawing.Font("Copperplate Gothic Light", 10F, System.Drawing.FontStyle.Bold);
+            this.lblHoverTextWeaponArmorPenetration.Font = new System.Drawing.Font("Copperplate Gothic Light", 9F, System.Drawing.FontStyle.Bold);
             this.lblHoverTextWeaponArmorPenetration.ForeColor = System.Drawing.Color.White;
-            this.lblHoverTextWeaponArmorPenetration.Location = new System.Drawing.Point(144, 44);
+            this.lblHoverTextWeaponArmorPenetration.Location = new System.Drawing.Point(144, 48);
             this.lblHoverTextWeaponArmorPenetration.Margin = new System.Windows.Forms.Padding(0);
             this.lblHoverTextWeaponArmorPenetration.Name = "lblHoverTextWeaponArmorPenetration";
             this.lblHoverTextWeaponArmorPenetration.Size = new System.Drawing.Size(45, 17);
@@ -742,9 +742,9 @@
             // lblHoverTextWeaponDamage
             // 
             this.lblHoverTextWeaponDamage.BackColor = System.Drawing.Color.Transparent;
-            this.lblHoverTextWeaponDamage.Font = new System.Drawing.Font("Copperplate Gothic Light", 10F, System.Drawing.FontStyle.Bold);
+            this.lblHoverTextWeaponDamage.Font = new System.Drawing.Font("Copperplate Gothic Light", 9F, System.Drawing.FontStyle.Bold);
             this.lblHoverTextWeaponDamage.ForeColor = System.Drawing.Color.White;
-            this.lblHoverTextWeaponDamage.Location = new System.Drawing.Point(47, 44);
+            this.lblHoverTextWeaponDamage.Location = new System.Drawing.Point(47, 48);
             this.lblHoverTextWeaponDamage.Margin = new System.Windows.Forms.Padding(0);
             this.lblHoverTextWeaponDamage.Name = "lblHoverTextWeaponDamage";
             this.lblHoverTextWeaponDamage.Size = new System.Drawing.Size(68, 17);
@@ -758,20 +758,20 @@
             this.lblHoverTextWeaponDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(181)))), ((int)(((byte)(18)))));
             this.lblHoverTextWeaponDescription.Location = new System.Drawing.Point(5, 74);
             this.lblHoverTextWeaponDescription.Name = "lblHoverTextWeaponDescription";
-            this.lblHoverTextWeaponDescription.Size = new System.Drawing.Size(334, 77);
+            this.lblHoverTextWeaponDescription.Size = new System.Drawing.Size(334, 100);
             this.lblHoverTextWeaponDescription.TabIndex = 1;
             this.lblHoverTextWeaponDescription.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblHoverTextWeaponName
             // 
             this.lblHoverTextWeaponName.BackColor = System.Drawing.Color.Transparent;
-            this.lblHoverTextWeaponName.Font = new System.Drawing.Font("Copperplate Gothic Light", 12F, System.Drawing.FontStyle.Bold);
+            this.lblHoverTextWeaponName.Font = new System.Drawing.Font("Copperplate Gothic Light", 9F, System.Drawing.FontStyle.Bold);
             this.lblHoverTextWeaponName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(181)))), ((int)(((byte)(18)))));
             this.lblHoverTextWeaponName.Location = new System.Drawing.Point(5, 12);
             this.lblHoverTextWeaponName.Name = "lblHoverTextWeaponName";
-            this.lblHoverTextWeaponName.Size = new System.Drawing.Size(334, 14);
+            this.lblHoverTextWeaponName.Size = new System.Drawing.Size(334, 24);
             this.lblHoverTextWeaponName.TabIndex = 0;
-            this.lblHoverTextWeaponName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblHoverTextWeaponName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlHoverTextCard
             // 
