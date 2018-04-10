@@ -862,7 +862,7 @@ namespace VictorBuilder
         }
 
         //Will call a subproc to highlight the item being hovered and show hover text
-        private void Inventory_MouseHover(object sender, EventArgs e)
+        private void Item_MouseHover(object sender, EventArgs e)
         {
             Button slot = (Button)sender;
             Tags slotTags = (Tags)slot.Tag;
@@ -877,7 +877,7 @@ namespace VictorBuilder
         }
 
         //Will call a subproc to unhighlight the item that was being hovered and hide hover text
-        private void Inventory_MouseLeave(object sender, EventArgs e)
+        private void Item_MouseLeave(object sender, EventArgs e)
         {
             Button slot = (Button)sender;
             Tags slotTags = (Tags)slot.Tag;
@@ -1508,8 +1508,8 @@ namespace VictorBuilder
             //inventorySlot.TabIndex = 1;
             inventorySlot.TabStop = false;
             inventorySlot.UseVisualStyleBackColor = false;
-            inventorySlot.MouseLeave += new System.EventHandler(this.Inventory_MouseLeave);
-            inventorySlot.MouseHover += new System.EventHandler(this.Inventory_MouseHover);
+            inventorySlot.MouseLeave += new System.EventHandler(this.Item_MouseLeave);
+            inventorySlot.MouseHover += new System.EventHandler(this.Item_MouseHover);
             inventorySlot.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
 
             return inventorySlot;
