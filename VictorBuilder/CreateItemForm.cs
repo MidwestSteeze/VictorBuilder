@@ -674,5 +674,10 @@ namespace VictorBuilder
                 lstPrefixes.ClearSelected();
             }
         }
+
+        private void btnClearWeaponThirdAffix_Click(object sender, EventArgs e)
+        {
+            lstThirdAffix.ClearSelected();
+        }
     }
 }

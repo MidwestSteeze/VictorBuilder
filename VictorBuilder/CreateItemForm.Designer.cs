@@ -33,6 +33,7 @@
             this.btnCreateWeapon = new System.Windows.Forms.Button();
             this.tcWeaponMods = new System.Windows.Forms.TabControl();
             this.tpAffixes = new System.Windows.Forms.TabPage();
+            this.btnClearWeaponThirdAffix = new System.Windows.Forms.Button();
             this.lstThirdAffix = new System.Windows.Forms.ListBox();
             this.lblThirdAffix = new System.Windows.Forms.Label();
             this.lstSuffixes = new System.Windows.Forms.ListBox();
@@ -113,6 +114,7 @@
             // 
             this.tpAffixes.AutoScroll = true;
             this.tpAffixes.BackColor = System.Drawing.Color.Black;
+            this.tpAffixes.Controls.Add(this.btnClearWeaponThirdAffix);
             this.tpAffixes.Controls.Add(this.lstThirdAffix);
             this.tpAffixes.Controls.Add(this.lblThirdAffix);
             this.tpAffixes.Controls.Add(this.lstSuffixes);
@@ -125,6 +127,18 @@
             this.tpAffixes.Size = new System.Drawing.Size(421, 373);
             this.tpAffixes.TabIndex = 0;
             this.tpAffixes.Text = "Affixes";
+            // 
+            // btnClearWeaponThirdAffix
+            // 
+            this.btnClearWeaponThirdAffix.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearWeaponThirdAffix.Location = new System.Drawing.Point(9, 246);
+            this.btnClearWeaponThirdAffix.Margin = new System.Windows.Forms.Padding(0);
+            this.btnClearWeaponThirdAffix.Name = "btnClearWeaponThirdAffix";
+            this.btnClearWeaponThirdAffix.Size = new System.Drawing.Size(50, 25);
+            this.btnClearWeaponThirdAffix.TabIndex = 14;
+            this.btnClearWeaponThirdAffix.Text = "(clear)";
+            this.btnClearWeaponThirdAffix.UseVisualStyleBackColor = true;
+            this.btnClearWeaponThirdAffix.Click += new System.EventHandler(this.btnClearWeaponThirdAffix_Click);
             // 
             // lstThirdAffix
             // 
@@ -484,5 +498,6 @@
         private System.Windows.Forms.Label lblCardDivineMods;
         private System.Windows.Forms.Label lblCardWickedMods;
         private System.Windows.Forms.Button btnCreateCard;
+        private System.Windows.Forms.Button btnClearWeaponThirdAffix;
     }
 }
