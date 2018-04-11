@@ -1455,9 +1455,9 @@ namespace VictorBuilder
                     throw new Exception("No item type found for " + newItemTags.itemType);
             }
 
-            //Get the child controls of the inventory category we're going to add this new item into
-            inventory = inventoryCategory.SelectedTab;
-            inventorySlots = (TableLayoutPanel)inventory.Controls[inventory.Controls.Count - 1];
+            //Get the child controls of the inventory category we're going to add this new item into (add to the back; ie. last page of all pages)
+            inventory = inventoryCategory.TabPages[inventoryCategory.TabPages.Count - 1];
+            inventorySlots = (TableLayoutPanel)inventory.Controls[0];
 
             AddItemToInventorySlot(inventorySlots, newItemTags, urlFilePath, controlName);
         }
@@ -1486,8 +1486,35 @@ namespace VictorBuilder
             }
             else
             {
-                //We didn't find an empty slot, need to create a new TabPage with a TableLayoutPanel and a new button to hold this new item
-                //TODO                
+                //No empty slots remain in the current tab; create a new TabPage with a TableLayoutPanel and a new button to hold this new item
+                // Create a TabPage and add it to the current TabControl
+                TabControl tbControl = (TabControl)inventorySlots.Parent.Parent;
+                TabPage tbPage = CreateInventoryTabPage();
+                tbControl.TabPages.Add(tbPage);
+
+                //Create a TableLayoutPanel to hold/organize the inventory items and add to the new TabPage
+                TableLayoutPanel tlpPanel = CreateInventoryTableLayoutPanel();
+                tbPage.Controls.Add(tlpPanel);
+
+                //Create a button which will be the slot in the inventory to store the item and add it to the new TableLayoutPanel
+                Button inventorySlot = CreateNewInventorySlot();
+
+                //Assign the new item to the new inventory slot
+                try
+                {
+                    inventorySlot.BackgroundImage = Image.FromFile(urlFilePath + itemTags.imageURL);
+                }
+                catch (FileNotFoundException e)
+                {
+                    inventorySlot.BackgroundImage = Image.FromFile(urlImageNotFound);
+                }
+
+                inventorySlot.Name = controlName + (inventorySlots.Controls.Count + 1);
+                inventorySlot.Tag = itemTags;
+                tlpPanel.Controls.Add(inventorySlot);
+
+                //Set focus to the new tab page, where the item was added, so the user can see the new item
+                tbControl.SelectedTab = tbPage;
             }
         }
 
@@ -1513,6 +1540,49 @@ namespace VictorBuilder
             inventorySlot.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
 
             return inventorySlot;
+        }
+
+        private TabPage CreateInventoryTabPage()
+        {
+            TabPage tbPage = new TabPage();
+
+            tbPage.BackColor = System.Drawing.Color.Transparent;
+            tbPage.BackgroundImage = Properties.Resources.img_ui_inventory;
+            tbPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            tbPage.Location = new System.Drawing.Point(4, 22);
+            tbPage.Margin = new System.Windows.Forms.Padding(0);
+            //tbPage.Name = "tbInventoryWeaponsPage1";
+            tbPage.Size = new System.Drawing.Size(342, 523);
+            //tbPage.TabIndex = 0;
+
+            return tbPage;
+        }
+
+        private TableLayoutPanel CreateInventoryTableLayoutPanel()
+        {
+            TableLayoutPanel tlpPanel = new TableLayoutPanel();
+
+            this.tlpInventoryWeapons.BackColor = System.Drawing.Color.Transparent;
+            this.tlpInventoryWeapons.ColumnCount = 5;
+            this.tlpInventoryWeapons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpInventoryWeapons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpInventoryWeapons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpInventoryWeapons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpInventoryWeapons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpInventoryWeapons.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.tlpInventoryWeapons.Location = new System.Drawing.Point(0, 0);
+            this.tlpInventoryWeapons.Margin = new System.Windows.Forms.Padding(0);
+            //this.tlpInventoryWeapons.Name = "tlpInventoryWeapons";
+            this.tlpInventoryWeapons.RowCount = 5;
+            this.tlpInventoryWeapons.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpInventoryWeapons.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpInventoryWeapons.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpInventoryWeapons.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpInventoryWeapons.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpInventoryWeapons.Size = new System.Drawing.Size(340, 520);
+            //this.tlpInventoryWeapons.TabIndex = 23;
+
+            return tlpPanel;
         }
 
         private void BuildListOfEquippedItems()
@@ -1562,12 +1632,12 @@ namespace VictorBuilder
                     //Save items in the Weapons inventory
                     XmlElement inventoryWeaponsElement = build.CreateElement("InventoryWeapons");
                     items.AppendChild(inventoryWeaponsElement);
-                    SaveItems(tlpInventoryWeapons.Controls, ref build, ref inventoryWeaponsElement);
+                    SaveItems(tcInventoryWeapons, ref build, ref inventoryWeaponsElement);
 
                     //Save items in the Cards inventory
                     XmlElement inventoryCardsElement = build.CreateElement("InventoryCards");
                     items.AppendChild(inventoryCardsElement);
-                    SaveItems(tlpInventoryCards.Controls, ref build, ref inventoryCardsElement);
+                    SaveItems(tcInventoryCards, ref build, ref inventoryCardsElement);
                 }
                 //if invalid cast, ignore and move on to the next control
                 catch (Exception ex)
@@ -1590,11 +1660,20 @@ namespace VictorBuilder
             }
         }
 
-        private void SaveItems(TableLayoutControlCollection ItemControls, ref XmlDocument build, ref XmlElement categoryElement)
+        private void SaveItems(TabControl tcInventory, ref XmlDocument build, ref XmlElement categoryElement)
         {
-            foreach (Button itemControl in ItemControls)
+            TableLayoutPanel tlpInventory;
+
+            //Loop through every tab, in case there are multiples, to ensure all items are saved
+            foreach (TabPage page in tcInventory.Controls)
             {
-                SaveItem(itemControl, ref build, ref categoryElement);
+                tlpInventory = (TableLayoutPanel)page.Controls[0];
+
+                //Within the current tab and its TableLayoutPanel, loop through every Button control which is an inventory slot and save it
+                foreach (Button itemControl in tlpInventory.Controls)
+                {
+                    SaveItem(itemControl, ref build, ref categoryElement);
+                }
             }
         }
 
@@ -1650,6 +1729,7 @@ namespace VictorBuilder
             XmlNodeList items;
 
             ClearEquippedItems();
+            ClearInventory();
 
             //Load the build into an xml document for further processing
             build = new XmlDocument();
@@ -1664,11 +1744,11 @@ namespace VictorBuilder
             
             //Load items that were stored in the Weapons inventory
             items = build.SelectNodes("Build/Items/InventoryWeapons/Item");
-            LoadInventoryItems(serializer, items, tlpInventoryWeapons);
+            LoadInventoryItems(serializer, items, tcInventoryWeapons);
 
             //Load items that were stored in the Cards inventory
             items = build.SelectNodes("Build/Items/InventoryCards/Item");
-            LoadInventoryItems(serializer, items, tlpInventoryCards);
+            LoadInventoryItems(serializer, items, tcInventoryCards);
         }
 
         private void LoadEquippedItems(XmlSerializer serializer, XmlNodeList items)
@@ -1680,16 +1760,34 @@ namespace VictorBuilder
             }
         }
 
-        private void LoadInventoryItems(XmlSerializer serializer, XmlNodeList items, TableLayoutPanel tlpInventory)
+        private void LoadInventoryItems(XmlSerializer serializer, XmlNodeList items, TabControl tcInventory)
         {
-            //Clear all current inventory slots since we're loading in a fresh build
-            tlpInventory.Controls.Clear();
+            TabPage tbInventory;
+            TableLayoutPanel tlpInventory;
 
             //Loop through every item and load them into their corresponding control
             foreach (XmlNode importItem in items)
             {
+                tlpInventory = (TableLayoutPanel)tcInventory.SelectedTab.Controls[0];
+
+                if (tlpInventory.Controls.Count == 25)
+                {
+                    //Create an additional TabPage and TableLayoutPanel to hold the inventory items
+                    tbInventory = CreateInventoryTabPage();
+                    tcInventory.TabPages.Add(tbInventory);
+
+                    tlpInventory = CreateInventoryTableLayoutPanel();
+                    tbInventory.Controls.Add(tlpInventory);
+
+                    //Increment the selected tab so that we start filling the newly added tab
+                    //tcInventory.SelectedIndex = tcInventory.SelectedIndex + 1;
+                    tcInventory.SelectedTab = tbInventory;
+                }
                 LoadInventoryItem(serializer, importItem, tlpInventory);
             }
+
+            //Now that we're done cycling through all the items, set the focused tab to the first one
+            tcInventory.SelectedIndex = 0;
         }
 
         private void LoadEquippedItem(XmlSerializer serializer, XmlNode importItem)
@@ -1799,6 +1897,86 @@ namespace VictorBuilder
             //Clear the card points label
             totalCardPoints = 0;
             lblEquippedDestinyPoints.Text = totalCardPoints.ToString() + "/" + maximumCardPoints.ToString();
+        }
+
+        private void ClearInventory()
+        {
+            TableLayoutPanel tlp;
+
+            //Remove any extra tab pages that exist in the Weapons and Cards inventories
+            while (tcInventoryWeapons.Controls.Count > 1)
+            {
+                tcInventoryWeapons.TabPages.RemoveAt(tcInventoryWeapons.TabPages.Count - 1);
+            }
+
+            while (tcInventoryCards.Controls.Count > 1)
+            {
+                tcInventoryCards.TabPages.RemoveAt(tcInventoryCards.TabPages.Count - 1);
+            }
+
+            //Remove all stored items from the first Weapons/Cards inventory pages since we're keeping those single remaining tabs
+            tlpInventoryWeapons.Controls.Clear();
+            tlpInventoryCards.Controls.Clear();
+        }
+
+        private void btnInventoryPreviousPage_Click(object sender, EventArgs e)
+        {
+            TabControl tc;
+
+            //Get the currently visible TabControl and navigate to the next page; this looks at all child controls on the form
+            foreach (Control control in this.Controls)
+            {
+                try
+                {
+                    tc = (TabControl)control;
+
+                    if (tc.Visible)
+                    {
+                        if (tc.SelectedIndex > 0)
+                        {
+                            tc.SelectedIndex = tc.SelectedIndex - 1;
+                        }
+
+                        //Already at the first page, so stop processing
+                        break;
+                    }
+                }
+                catch (InvalidCastException)
+                {
+                    //Not a TabControl control, move onto the next one
+                    continue;
+                }
+            }
+        }
+
+        private void btnInventoryNextPage_Click(object sender, EventArgs e)
+        {
+            TabControl tc;
+
+            //Get the currently visible TabControl and navigate to the next page; this looks at all child controls on the form
+            foreach (Control control in this.Controls)
+            {
+                try
+	            {
+                    tc = (TabControl)control;
+
+                    if (tc.Visible)
+                    {
+                        if (tc.SelectedIndex < tc.TabCount - 1)
+                        {
+                            tc.SelectedIndex = tc.SelectedIndex + 1;
+                        }
+
+                        //Already at the last page, so stop processing
+                        break;
+                    }
+	            }
+	            catch (InvalidCastException)
+	            {
+		            //Not a TabControl control, move onto the next one
+                    continue;
+	            }
+            }
         }
     }
 }
