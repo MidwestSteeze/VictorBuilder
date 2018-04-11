@@ -1464,6 +1464,9 @@ namespace VictorBuilder
 
         private void AddItemToInventorySlot(TableLayoutPanel inventorySlots, Tags itemTags, string urlFilePath, string controlName)
         {
+            TabControl tc;
+            int additionalTabsControlCount = 0;
+
             if (inventorySlots.Controls.Count < 25)
             {
                 //Create a new button and add it to the Inventory
@@ -1479,9 +1482,15 @@ namespace VictorBuilder
                     inventorySlot.BackgroundImage = Image.FromFile(urlImageNotFound);
                 }
 
-                inventorySlot.Name = controlName + (inventorySlots.Controls.Count + 1);
-                inventorySlot.Tag = itemTags;
+                //Get the total inventory slots count since we can't create a control with the same name as one that already exists
+                tc = (TabControl)inventorySlots.Parent.Parent;
+                if (tc.TabPages.Count > 1)
+                {
+                    additionalTabsControlCount = (tc.TabPages.Count - 1) * 25;   
+                }
 
+                inventorySlot.Name = controlName + ((inventorySlots.Controls.Count + 1) + (additionalTabsControlCount));
+                inventorySlot.Tag = itemTags;
                 inventorySlots.Controls.Add(inventorySlot);
             }
             else
@@ -1562,25 +1571,25 @@ namespace VictorBuilder
         {
             TableLayoutPanel tlpPanel = new TableLayoutPanel();
 
-            this.tlpInventoryWeapons.BackColor = System.Drawing.Color.Transparent;
-            this.tlpInventoryWeapons.ColumnCount = 5;
-            this.tlpInventoryWeapons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpInventoryWeapons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpInventoryWeapons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpInventoryWeapons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpInventoryWeapons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpInventoryWeapons.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-            this.tlpInventoryWeapons.Location = new System.Drawing.Point(0, 0);
-            this.tlpInventoryWeapons.Margin = new System.Windows.Forms.Padding(0);
-            //this.tlpInventoryWeapons.Name = "tlpInventoryWeapons";
-            this.tlpInventoryWeapons.RowCount = 5;
-            this.tlpInventoryWeapons.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpInventoryWeapons.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpInventoryWeapons.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpInventoryWeapons.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpInventoryWeapons.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpInventoryWeapons.Size = new System.Drawing.Size(340, 520);
-            //this.tlpInventoryWeapons.TabIndex = 23;
+            tlpPanel.BackColor = System.Drawing.Color.Transparent;
+            tlpPanel.ColumnCount = 5;
+            tlpPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            tlpPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            tlpPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            tlpPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            tlpPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            tlpPanel.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            tlpPanel.Location = new System.Drawing.Point(0, 0);
+            tlpPanel.Margin = new System.Windows.Forms.Padding(0);
+            //tlpPanel.Name = "tlpInventoryWeapons";
+            tlpPanel.RowCount = 5;
+            tlpPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tlpPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tlpPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tlpPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tlpPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tlpPanel.Size = new System.Drawing.Size(340, 520);
+            //tlpPanel.TabIndex = 23;
 
             return tlpPanel;
         }
