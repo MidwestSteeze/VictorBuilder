@@ -101,6 +101,16 @@ namespace VictorBuilder
             //END Temporary OnLoad logic
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams handleParam = base.CreateParams;
+                handleParam.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED       
+                return handleParam;
+            }
+        }
+
         //Calculate and update stats along top bar
         private void CalculateStats(Tags slotTags, bool secondarySlot = false)
         {
