@@ -1829,21 +1829,26 @@
             // 
             // btnInventoryPreviousPage
             // 
-            this.btnInventoryPreviousPage.Location = new System.Drawing.Point(994, 665);
+            this.btnInventoryPreviousPage.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btnInventoryPreviousPage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnInventoryPreviousPage.BackgroundImage")));
+            this.btnInventoryPreviousPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryPreviousPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryPreviousPage.Location = new System.Drawing.Point(998, 660);
             this.btnInventoryPreviousPage.Name = "btnInventoryPreviousPage";
-            this.btnInventoryPreviousPage.Size = new System.Drawing.Size(47, 23);
+            this.btnInventoryPreviousPage.Size = new System.Drawing.Size(37, 19);
             this.btnInventoryPreviousPage.TabIndex = 51;
-            this.btnInventoryPreviousPage.Text = "<<";
-            this.btnInventoryPreviousPage.UseVisualStyleBackColor = true;
+            this.btnInventoryPreviousPage.UseVisualStyleBackColor = false;
             this.btnInventoryPreviousPage.Click += new System.EventHandler(this.btnInventoryPreviousPage_Click);
             // 
             // btnInventoryNextPage
             // 
-            this.btnInventoryNextPage.Location = new System.Drawing.Point(1100, 665);
+            this.btnInventoryNextPage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnInventoryNextPage.BackgroundImage")));
+            this.btnInventoryNextPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInventoryNextPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventoryNextPage.Location = new System.Drawing.Point(1104, 660);
             this.btnInventoryNextPage.Name = "btnInventoryNextPage";
-            this.btnInventoryNextPage.Size = new System.Drawing.Size(47, 23);
+            this.btnInventoryNextPage.Size = new System.Drawing.Size(37, 19);
             this.btnInventoryNextPage.TabIndex = 52;
-            this.btnInventoryNextPage.Text = ">>";
             this.btnInventoryNextPage.UseVisualStyleBackColor = true;
             this.btnInventoryNextPage.Click += new System.EventHandler(this.btnInventoryNextPage_Click);
             // 
