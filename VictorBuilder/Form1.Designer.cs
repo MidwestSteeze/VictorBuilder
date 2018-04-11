@@ -885,7 +885,7 @@
             // 
             // lblAttackStats1
             // 
-            this.lblAttackStats1.Font = new System.Drawing.Font("Copperplate Gothic Light", 8F, System.Drawing.FontStyle.Bold);
+            this.lblAttackStats1.Font = new System.Drawing.Font("Copperplate Gothic Light", 8F);
             this.lblAttackStats1.ForeColor = System.Drawing.Color.White;
             this.lblAttackStats1.Location = new System.Drawing.Point(5, 5);
             this.lblAttackStats1.Name = "lblAttackStats1";
@@ -894,7 +894,7 @@
             // 
             // lblAttackStats2
             // 
-            this.lblAttackStats2.Font = new System.Drawing.Font("Copperplate Gothic Light", 8F, System.Drawing.FontStyle.Bold);
+            this.lblAttackStats2.Font = new System.Drawing.Font("Copperplate Gothic Light", 8F);
             this.lblAttackStats2.ForeColor = System.Drawing.Color.White;
             this.lblAttackStats2.Location = new System.Drawing.Point(5, 25);
             this.lblAttackStats2.Name = "lblAttackStats2";
@@ -903,7 +903,7 @@
             // 
             // lblAttackStats3
             // 
-            this.lblAttackStats3.Font = new System.Drawing.Font("Copperplate Gothic Light", 8F, System.Drawing.FontStyle.Bold);
+            this.lblAttackStats3.Font = new System.Drawing.Font("Copperplate Gothic Light", 8F);
             this.lblAttackStats3.ForeColor = System.Drawing.Color.White;
             this.lblAttackStats3.Location = new System.Drawing.Point(5, 45);
             this.lblAttackStats3.Name = "lblAttackStats3";
@@ -981,7 +981,7 @@
             // 
             // lblAttackStatsSecondary1
             // 
-            this.lblAttackStatsSecondary1.Font = new System.Drawing.Font("Copperplate Gothic Light", 8F, System.Drawing.FontStyle.Bold);
+            this.lblAttackStatsSecondary1.Font = new System.Drawing.Font("Copperplate Gothic Light", 8F);
             this.lblAttackStatsSecondary1.ForeColor = System.Drawing.Color.White;
             this.lblAttackStatsSecondary1.Location = new System.Drawing.Point(5, 5);
             this.lblAttackStatsSecondary1.Name = "lblAttackStatsSecondary1";
@@ -990,7 +990,7 @@
             // 
             // lblAttackStatsSecondary2
             // 
-            this.lblAttackStatsSecondary2.Font = new System.Drawing.Font("Copperplate Gothic Light", 8F, System.Drawing.FontStyle.Bold);
+            this.lblAttackStatsSecondary2.Font = new System.Drawing.Font("Copperplate Gothic Light", 8F);
             this.lblAttackStatsSecondary2.ForeColor = System.Drawing.Color.White;
             this.lblAttackStatsSecondary2.Location = new System.Drawing.Point(5, 25);
             this.lblAttackStatsSecondary2.Name = "lblAttackStatsSecondary2";
@@ -999,7 +999,7 @@
             // 
             // lblAttackStatsSecondary3
             // 
-            this.lblAttackStatsSecondary3.Font = new System.Drawing.Font("Copperplate Gothic Light", 8F, System.Drawing.FontStyle.Bold);
+            this.lblAttackStatsSecondary3.Font = new System.Drawing.Font("Copperplate Gothic Light", 8F);
             this.lblAttackStatsSecondary3.ForeColor = System.Drawing.Color.White;
             this.lblAttackStatsSecondary3.Location = new System.Drawing.Point(5, 45);
             this.lblAttackStatsSecondary3.Name = "lblAttackStatsSecondary3";
