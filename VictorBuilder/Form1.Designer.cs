@@ -148,6 +148,7 @@
             this.lblHoverTextConsumableName = new System.Windows.Forms.Label();
             this.btnInventoryPreviousPage = new System.Windows.Forms.Button();
             this.btnInventoryNextPage = new System.Windows.Forms.Button();
+            this.lblInventoryPageCount = new System.Windows.Forms.Label();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
@@ -1852,6 +1853,18 @@
             this.btnInventoryNextPage.UseVisualStyleBackColor = true;
             this.btnInventoryNextPage.Click += new System.EventHandler(this.btnInventoryNextPage_Click);
             // 
+            // lblInventoryPageCount
+            // 
+            this.lblInventoryPageCount.AutoSize = true;
+            this.lblInventoryPageCount.BackColor = System.Drawing.Color.Black;
+            this.lblInventoryPageCount.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInventoryPageCount.ForeColor = System.Drawing.Color.Turquoise;
+            this.lblInventoryPageCount.Location = new System.Drawing.Point(1053, 660);
+            this.lblInventoryPageCount.Name = "lblInventoryPageCount";
+            this.lblInventoryPageCount.Size = new System.Drawing.Size(36, 19);
+            this.lblInventoryPageCount.TabIndex = 53;
+            this.lblInventoryPageCount.Text = "1/1";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1860,6 +1873,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.lblInventoryPageCount);
             this.Controls.Add(this.btnInventoryNextPage);
             this.Controls.Add(this.btnInventoryPreviousPage);
             this.Controls.Add(this.pnlHoverTextDemonPower);
@@ -2065,6 +2079,7 @@
         private System.Windows.Forms.Label lblHoverTextConsumableName;
         private System.Windows.Forms.Button btnInventoryPreviousPage;
         private System.Windows.Forms.Button btnInventoryNextPage;
+        private System.Windows.Forms.Label lblInventoryPageCount;
 
     }
 }

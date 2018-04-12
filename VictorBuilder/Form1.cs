@@ -1125,22 +1125,27 @@ namespace VictorBuilder
             {
                 case "weapons":
                     tcInventoryWeapons.Visible = true;
+                    UpdatePageCount(tcInventoryWeapons);
                     break;
 
                 case "consumables":
                     tcInventoryConsumables.Visible = true;
+                    UpdatePageCount(tcInventoryConsumables);
                     break;
 
                 case "demonPowers":
                     tcInventoryDemonPowers.Visible = true;
+                    UpdatePageCount(tcInventoryDemonPowers);
                     break;
 
                 case "cards":
                     tcInventoryCards.Visible = true;
+                    UpdatePageCount(tcInventoryCards);
                     break;
 
                 case "other":
                     tcInventoryOther.Visible = true;
+                    UpdatePageCount(tcInventoryOther);
                     break;
                 default:
                     break;
@@ -1534,6 +1539,7 @@ namespace VictorBuilder
 
                 //Set focus to the new tab page, where the item was added, so the user can see the new item
                 tbControl.SelectedTab = tbPage;
+                UpdatePageCount(tbControl);
             }
         }
 
@@ -1807,6 +1813,7 @@ namespace VictorBuilder
 
             //Now that we're done cycling through all the items, set the focused tab to the first one
             tcInventory.SelectedIndex = 0;
+            UpdatePageCount(tcInventory);
         }
 
         private void LoadEquippedItem(XmlSerializer serializer, XmlNode importItem)
@@ -1954,6 +1961,7 @@ namespace VictorBuilder
                         if (tc.SelectedIndex > 0)
                         {
                             tc.SelectedIndex = tc.SelectedIndex - 1;
+                            UpdatePageCount(tc);
                         }
 
                         //Already at the first page, so stop processing
@@ -1984,6 +1992,7 @@ namespace VictorBuilder
                         if (tc.SelectedIndex < tc.TabCount - 1)
                         {
                             tc.SelectedIndex = tc.SelectedIndex + 1;
+                            UpdatePageCount(tc);
                         }
 
                         //Already at the last page, so stop processing
@@ -1996,6 +2005,12 @@ namespace VictorBuilder
                     continue;
 	            }
             }
+        }
+
+        private void UpdatePageCount(TabControl tc)
+        {
+            //Update the displayed page counter
+            lblInventoryPageCount.Text = (tc.SelectedIndex + 1).ToString() + "/" + tc.TabPages.Count.ToString();
         }
     }
 }
