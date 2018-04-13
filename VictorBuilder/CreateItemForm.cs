@@ -151,7 +151,7 @@ namespace VictorBuilder
             lstCardDivineMods.Items.Add(new Affix("", Affix.Modifier.None, 32, "Gain Regeneration for 10 sec. when below #% health. (30 sec. cooldown)"));
             lstCardDivineMods.Items.Add(new Affix("", Affix.Modifier.None, 250, "Gain # health when the overdrive is filled."));
             lstCardDivineMods.Items.Add(new Affix("", Affix.Modifier.None, 0, "Remove negative status on kill (10 second cooldown)"));
-            lstCardDivineMods.Items.Add(new Affix("", Affix.Modifier.None, -1, "100 Lightning damage against attacking distance fighters (#% probability)"));
+            lstCardDivineMods.Items.Add(new Affix("", Affix.Modifier.None, 22, "300 Lightning damage against attacking distance fighters (#% probability)"));
             lstCardDivineMods.Items.Add(new Affix("", Affix.Modifier.None, 25, "#% Chance to get additional drop from chests."));
             lstCardDivineMods.Items.Add(new Affix("", Affix.Modifier.None, 50, "#% chance to negate a critical hit"));
             lstCardDivineMods.Items.Add(new Affix("", Affix.Modifier.None, 20, "+#% damage when your health is above 90%"));
@@ -162,8 +162,8 @@ namespace VictorBuilder
             lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 0, "Inflict Bleeding on crit (15% chance) *Bleeding: Deals 2% of max health, but no more than 100 every second. Bleeding cannot kill the target."));
             lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 0, "-30% duration of negative conditions"));
             lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 0, "Gain speed for 7 sec. on kill (20 sec. cooldown)"));
-            lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, -1, "Gain #% of maximum overdrive on overkill"));
-            lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, -1, "Receive Brutality when overdrive is filled (#% probability)"));
+            lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 4, "Gain #% of maximum overdrive on overkill")); //TODO 3.90% but param is integer
+            lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 29, "Receive Brutality when overdrive is filled (#% probability)"));
             lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 0, "Receive focus for 10 seconds after a Overkill (30 second cooldown)"));
             lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 0, "Increased range of Evasive Roll"));
         }
