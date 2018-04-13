@@ -149,6 +149,7 @@
             this.btnInventoryPreviousPage = new System.Windows.Forms.Button();
             this.btnInventoryNextPage = new System.Windows.Forms.Button();
             this.lblInventoryPageCount = new System.Windows.Forms.Label();
+            this.btnClearBuild = new System.Windows.Forms.Button();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
@@ -1869,6 +1870,18 @@
             this.lblInventoryPageCount.TabIndex = 53;
             this.lblInventoryPageCount.Text = "1/1";
             // 
+            // btnClearBuild
+            // 
+            this.btnClearBuild.BackColor = System.Drawing.Color.Black;
+            this.btnClearBuild.ForeColor = System.Drawing.Color.White;
+            this.btnClearBuild.Location = new System.Drawing.Point(256, 23);
+            this.btnClearBuild.Name = "btnClearBuild";
+            this.btnClearBuild.Size = new System.Drawing.Size(75, 23);
+            this.btnClearBuild.TabIndex = 54;
+            this.btnClearBuild.Text = "Clear Build";
+            this.btnClearBuild.UseVisualStyleBackColor = false;
+            this.btnClearBuild.Click += new System.EventHandler(this.btnClearBuild_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1877,6 +1890,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.btnClearBuild);
             this.Controls.Add(this.lblInventoryPageCount);
             this.Controls.Add(this.btnInventoryNextPage);
             this.Controls.Add(this.btnInventoryPreviousPage);
@@ -2084,6 +2098,7 @@
         private System.Windows.Forms.Button btnInventoryPreviousPage;
         private System.Windows.Forms.Button btnInventoryNextPage;
         private System.Windows.Forms.Label lblInventoryPageCount;
+        private System.Windows.Forms.Button btnClearBuild;
 
     }
 }

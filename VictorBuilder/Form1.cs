@@ -1920,9 +1920,12 @@ namespace VictorBuilder
             //Clear equipped item slots
             foreach (Button item in equippedItemControls)
             {
-                //Clear the slot's displayed image and tag value
-                item.BackgroundImage = null;
-                item.Tag = null;
+                if (item != btnEquippedOutfit)
+                {
+                    //Clear the slot's displayed image and tag value
+                    item.BackgroundImage = null;
+                    item.Tag = null;                    
+                }
             }
 
             //Reset stats and skills (sub-calls from the following call)
@@ -1957,6 +1960,8 @@ namespace VictorBuilder
             //Remove all stored items from the first Weapons/Cards inventory pages since we're keeping those single remaining tabs
             tlpInventoryWeapons.Controls.Clear();
             tlpInventoryCards.Controls.Clear();
+
+            UpdatePageCount(tcVisible);
         }
 
         private void btnInventoryPreviousPage_Click(object sender, EventArgs e)
@@ -1983,6 +1988,19 @@ namespace VictorBuilder
         {
             //Update the displayed page counter
             lblInventoryPageCount.Text = (tc.SelectedIndex + 1).ToString() + "/" + tc.TabPages.Count.ToString();
+        }
+
+        private void btnClearBuild_Click(object sender, EventArgs e)
+        {
+            //Prompt user to ensure they want to clear the build
+            DialogResult dgResult = MessageBox.Show("Are you sure you want to clear the build", "Clear Build", MessageBoxButtons.YesNo);
+
+            if (dgResult == DialogResult.Yes)
+            {
+                //Clear all items from Equipped and Inventory controls
+                ClearEquippedItems();
+                ClearInventory();
+            }
         }
     }
 }
