@@ -23,6 +23,7 @@ namespace VictorBuilder
         List<Button> equippedItemControls;
         AppSettingsReader reader;
         string connectionString = Properties.Settings.Default.ItemsConnectionString;
+        TabControl tcVisible;
 
         //Global variables
         string urlAttacks = "..\\..\\images\\attacks\\";
@@ -99,6 +100,8 @@ namespace VictorBuilder
             tcInventoryDemonPowers.Region = new Region(new RectangleF(tbInventoryDemonPowersPage1.Left, tbInventoryDemonPowersPage1.Top, tbInventoryDemonPowersPage1.Width, tbInventoryDemonPowersPage1.Height));
             tcInventoryCards.Region = new Region(new RectangleF(tbInventoryCardsPage1.Left, tbInventoryCardsPage1.Top, tbInventoryCardsPage1.Width, tbInventoryCardsPage1.Height));
             tcInventoryOther.Region = new Region(new RectangleF(tbInventoryOtherPage1.Left, tbInventoryOtherPage1.Top, tbInventoryOtherPage1.Width, tbInventoryOtherPage1.Height));
+            //Defaulting the initial visible Inventory tab to Weapons
+			tcVisible = tcInventoryWeapons;
 
             lblEquippedDestinyPoints.Text = totalCardPoints.ToString() + "/" + maximumCardPoints.ToString();
 
@@ -1131,31 +1134,34 @@ namespace VictorBuilder
             {
                 case "weapons":
                     tcInventoryWeapons.Visible = true;
-                    UpdatePageCount(tcInventoryWeapons);
+                    tcVisible = tcInventoryWeapons;
                     break;
 
                 case "consumables":
                     tcInventoryConsumables.Visible = true;
-                    UpdatePageCount(tcInventoryConsumables);
+                    tcVisible = tcInventoryConsumables;
                     break;
 
                 case "demonPowers":
                     tcInventoryDemonPowers.Visible = true;
-                    UpdatePageCount(tcInventoryDemonPowers);
+                    tcVisible = tcInventoryDemonPowers;
                     break;
 
                 case "cards":
                     tcInventoryCards.Visible = true;
-                    UpdatePageCount(tcInventoryCards);
+                    tcVisible = tcInventoryCards;
                     break;
 
                 case "other":
                     tcInventoryOther.Visible = true;
-                    UpdatePageCount(tcInventoryOther);
+                    tcVisible = tcInventoryOther;
                     break;
                 default:
                     break;
             }
+
+            //Update the page count for the newly visible Inventory
+            UpdatePageCount(tcVisible);
         }
 
         //Event handler for category header button mouse click to adjust the highlight of the selected category header button
@@ -1518,9 +1524,9 @@ namespace VictorBuilder
             {
                 //No empty slots remain in the current tab; create a new TabPage with a TableLayoutPanel and a new button to hold this new item
                 // Create a TabPage and add it to the current TabControl
-                TabControl tbControl = (TabControl)inventorySlots.Parent.Parent;
+                TabControl tcInventory = (TabControl)inventorySlots.Parent.Parent;
                 TabPage tbPage = CreateInventoryTabPage();
-                tbControl.TabPages.Add(tbPage);
+                tcInventory.TabPages.Add(tbPage);
 
                 //Create a TableLayoutPanel to hold/organize the inventory items and add to the new TabPage
                 TableLayoutPanel tlpPanel = CreateInventoryTableLayoutPanel();
@@ -1544,8 +1550,8 @@ namespace VictorBuilder
                 tlpPanel.Controls.Add(inventorySlot);
 
                 //Set focus to the new tab page, where the item was added, so the user can see the new item
-                tbControl.SelectedTab = tbPage;
-                UpdatePageCount(tbControl);
+                tcInventory.SelectedTab = tbPage;
+                UpdatePageCount(tcInventory);
             }
         }
 
@@ -1780,6 +1786,9 @@ namespace VictorBuilder
             //Load items that were stored in the Cards inventory
             items = build.SelectNodes("Build/Items/InventoryCards/Item");
             LoadInventoryItems(serializer, items, tcInventoryCards);
+
+            //Update the page count for the currently visible TabControl
+            UpdatePageCount(tcVisible);
         }
 
         private void LoadEquippedItems(XmlSerializer serializer, XmlNodeList items)
@@ -1819,7 +1828,6 @@ namespace VictorBuilder
 
             //Now that we're done cycling through all the items, set the focused tab to the first one
             tcInventory.SelectedIndex = 0;
-            UpdatePageCount(tcInventory);
         }
 
         private void LoadEquippedItem(XmlSerializer serializer, XmlNode importItem)
@@ -1953,63 +1961,21 @@ namespace VictorBuilder
 
         private void btnInventoryPreviousPage_Click(object sender, EventArgs e)
         {
-            TabControl tc;
-
-            //Get the currently visible TabControl and navigate to the next page; this looks at all child controls on the form
-            foreach (Control control in this.Controls)
+            //Navigate the currently visible Inventory to the previous page
+            if (tcVisible.SelectedIndex > 0)
             {
-                try
-                {
-                    tc = (TabControl)control;
-
-                    if (tc.Visible)
-                    {
-                        if (tc.SelectedIndex > 0)
-                        {
-                            tc.SelectedIndex = tc.SelectedIndex - 1;
-                            UpdatePageCount(tc);
-                        }
-
-                        //Already at the first page, so stop processing
-                        break;
-                    }
-                }
-                catch (InvalidCastException)
-                {
-                    //Not a TabControl control, move onto the next one
-                    continue;
-                }
+                tcVisible.SelectedIndex = tcVisible.SelectedIndex - 1;
+                UpdatePageCount(tcVisible);
             }
         }
 
         private void btnInventoryNextPage_Click(object sender, EventArgs e)
         {
-            TabControl tc;
-
-            //Get the currently visible TabControl and navigate to the next page; this looks at all child controls on the form
-            foreach (Control control in this.Controls)
+            //Navigate the currently visible Inventory to the next page
+            if (tcVisible.SelectedIndex < tcVisible.TabCount - 1)
             {
-                try
-	            {
-                    tc = (TabControl)control;
-
-                    if (tc.Visible)
-                    {
-                        if (tc.SelectedIndex < tc.TabCount - 1)
-                        {
-                            tc.SelectedIndex = tc.SelectedIndex + 1;
-                            UpdatePageCount(tc);
-                        }
-
-                        //Already at the last page, so stop processing
-                        break;
-                    }
-	            }
-	            catch (InvalidCastException)
-	            {
-		            //Not a TabControl control, move onto the next one
-                    continue;
-	            }
+                tcVisible.SelectedIndex = tcVisible.SelectedIndex + 1;
+                UpdatePageCount(tcVisible);
             }
         }
 
