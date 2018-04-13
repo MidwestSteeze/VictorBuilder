@@ -97,7 +97,7 @@ namespace VictorBuilder
             lblEquippedDestinyPoints.Text = totalCardPoints.ToString() + "/" + maximumCardPoints.ToString();
 
             //START Temporary OnLoad logic
-            LoadBuild("C:\\Users\\grams_s\\Documents\\Visual Studio 2012\\Projects\\VictorBuilder\\SavedBuild.xml");
+            //LoadBuild("C:\\Users\\grams_s\\Documents\\Visual Studio 2012\\Projects\\VictorBuilder\\SavedBuild.xml");
             //END Temporary OnLoad logic
         }
 

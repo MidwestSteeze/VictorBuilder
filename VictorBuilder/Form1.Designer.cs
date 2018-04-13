@@ -1323,22 +1323,26 @@
             // 
             // btnSaveBuild
             // 
+            this.btnSaveBuild.BackColor = System.Drawing.Color.Black;
+            this.btnSaveBuild.ForeColor = System.Drawing.Color.White;
             this.btnSaveBuild.Location = new System.Drawing.Point(62, 35);
             this.btnSaveBuild.Name = "btnSaveBuild";
             this.btnSaveBuild.Size = new System.Drawing.Size(75, 23);
             this.btnSaveBuild.TabIndex = 37;
-            this.btnSaveBuild.Text = "Save Build...";
-            this.btnSaveBuild.UseVisualStyleBackColor = true;
+            this.btnSaveBuild.Text = "Save Build";
+            this.btnSaveBuild.UseVisualStyleBackColor = false;
             this.btnSaveBuild.Click += new System.EventHandler(this.btnSaveBuild_Click);
             // 
             // btnLoadBuild
             // 
+            this.btnLoadBuild.BackColor = System.Drawing.Color.Black;
+            this.btnLoadBuild.ForeColor = System.Drawing.Color.White;
             this.btnLoadBuild.Location = new System.Drawing.Point(62, 11);
             this.btnLoadBuild.Name = "btnLoadBuild";
             this.btnLoadBuild.Size = new System.Drawing.Size(75, 23);
             this.btnLoadBuild.TabIndex = 38;
             this.btnLoadBuild.Text = "Load Build";
-            this.btnLoadBuild.UseVisualStyleBackColor = true;
+            this.btnLoadBuild.UseVisualStyleBackColor = false;
             this.btnLoadBuild.Click += new System.EventHandler(this.btnLoadBuild_Click);
             // 
             // pnlStats
