@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
@@ -20,6 +21,7 @@ namespace VictorBuilder
         Tags.OutfitTags outfitTags;
         Tags newItemTags;
         List<Button> equippedItemControls;
+        AppSettingsReader reader;
         string connectionString = Properties.Settings.Default.ItemsConnectionString;
 
         //Global variables
@@ -72,6 +74,10 @@ namespace VictorBuilder
         public frmMain()
         {
             InitializeComponent();
+
+            //Get the version number from the App.Config
+            reader = new AppSettingsReader();
+            this.Text += " " + reader.GetValue("version", typeof(string));
 
             //Prevent flicker on button highlight changes
             this.DoubleBuffered = true;
