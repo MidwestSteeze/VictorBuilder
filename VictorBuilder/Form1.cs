@@ -297,164 +297,167 @@ namespace VictorBuilder
 
         private void CalculateWeaponSkills(Tags slotTags)
         {
-            //We have our weapon base mods set  (ie. dmg, armor pen, crit, etc)
-            // and we have our modifiers from cards set
-            // plug those into the calculations based on the calc used for attack1/attack2/attack3 (need to store these in db i think...)
-            switch (slotTags.weaponTags.weaponType)
+            if (slotTags != null)
             {
-                case Tags.WeaponTags.WeaponType.Hammer:
-                    //Pound (weapon base damage * cards)
-                    //121-161 --> 121-161
-                    slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
-                    slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                //We have our weapon base mods set  (ie. dmg, armor pen, crit, etc)
+                // and we have our modifiers from cards set
+                // plug those into the calculations based on the calc used for attack1/attack2/attack3 (need to store these in db i think...)
+                switch (slotTags.weaponTags.weaponType)
+                {
+                    case Tags.WeaponTags.WeaponType.Hammer:
+                        //Pound (weapon base damage * cards)
+                        //121-161 --> 121-161
+                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
 
-                    //Crush (weapon base damage * cards * 5)
-                    //121-161 --> 605-805
-                    //131-175 --> 655-875
-                    slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
-                    slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
+                        //Crush (weapon base damage * cards * 5)
+                        //121-161 --> 605-805
+                        //131-175 --> 655-875
+                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
+                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
 
-                    //Smash (weapon base damage * cards * 2.5)
-                    //121-161 --> 302-402
-                    //131-175 --> 327-437
-                    slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.496);
-                    slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.497);
-                    break;
-                case Tags.WeaponTags.WeaponType.HandMortar:
-                    //Bouncing Betty (weapon base damage * cards)
-                    //49-157 --> 49-157
-                    //32-104 --> 32-104
-                    slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0));
-                    slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0));
+                        //Smash (weapon base damage * cards * 2.5)
+                        //121-161 --> 302-402
+                        //131-175 --> 327-437
+                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.496);
+                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.497);
+                        break;
+                    case Tags.WeaponTags.WeaponType.HandMortar:
+                        //Bouncing Betty (weapon base damage * cards)
+                        //49-157 --> 49-157
+                        //32-104 --> 32-104
+                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0));
+                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0));
 
-                    //Fire Lake (weapon base damage * cards)
-                    //49-157 --> 49-157
-                    //32-104 --> 32-104
-                    slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0));
-                    slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0));
+                        //Fire Lake (weapon base damage * cards)
+                        //49-157 --> 49-157
+                        //32-104 --> 32-104
+                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0));
+                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0));
 
-                    //Explosive Jump (weapon base damage * cards * .75) //TODO rounded down?
-                    //49-157 --> 36-117
-                    //32-104 --> 24-78
-                    slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * .75);
-                    slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * .75);
-                    break;
-                case Tags.WeaponTags.WeaponType.Shotgun:
-                    //Fire (weapon base damage * cards)
-                    //44-89 --> 44-89
-                    //55-111 --> 55-111
-                    slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0));
-                    slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0));
+                        //Explosive Jump (weapon base damage * cards * .75) //TODO rounded down?
+                        //49-157 --> 36-117
+                        //32-104 --> 24-78
+                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * .75);
+                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * .75);
+                        break;
+                    case Tags.WeaponTags.WeaponType.Shotgun:
+                        //Fire (weapon base damage * cards)
+                        //44-89 --> 44-89
+                        //55-111 --> 55-111
+                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0));
+                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0));
 
-                    //Aimed Shot (weapon base damage * cards * 3)
-                    //44-89 --> 132-267
-                    //55-111 --> 165-333
-                    slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 3);
-                    slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 3);
+                        //Aimed Shot (weapon base damage * cards * 3)
+                        //44-89 --> 132-267
+                        //55-111 --> 165-333
+                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 3);
+                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 3);
 
-                    //Point-Blank Shot (weapon base damage * cards * 2)
-                    //44-89 --> 88-178
-                    //55-111 --> 110-222
-                    slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 2);
-                    slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 2);
-                    break;
-                case Tags.WeaponTags.WeaponType.LightningGun:
-                    //Shock (weapon base damage * cards / 5)
-                    //75-102 --> 15-20
-                    //104-141 --> 20-28
-                    slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) / 5);
-                    slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) / 5);
+                        //Point-Blank Shot (weapon base damage * cards * 2)
+                        //44-89 --> 88-178
+                        //55-111 --> 110-222
+                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 2);
+                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 2);
+                        break;
+                    case Tags.WeaponTags.WeaponType.LightningGun:
+                        //Shock (weapon base damage * cards / 5)
+                        //75-102 --> 15-20
+                        //104-141 --> 20-28
+                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) / 5);
+                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) / 5);
 
-                    //Ball Lightning (weapon base damage * cards * 1.2) //TODO rounded down?
-                    //75-102 --> 90-122
-                    //104-141 --> 124-169
-                    slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 1.2);
-                    slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 1.2);
+                        //Ball Lightning (weapon base damage * cards * 1.2) //TODO rounded down?
+                        //75-102 --> 90-122
+                        //104-141 --> 124-169
+                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 1.2);
+                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 1.2);
 
-                    //Lightning Trap (weapon base damage * cards * 4)
-                    //75-102 --> 300-408
-                    //104-141 --> 416-564
-                    slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 4);
-                    slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 4);
-                    break;
-                case Tags.WeaponTags.WeaponType.Rapier:
-                    //Flurry (weapon base damage * cards)
-                    //48-72 --> 48-72
-                    //61-91 --> 61-91
-                    slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
-                    slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                        //Lightning Trap (weapon base damage * cards * 4)
+                        //75-102 --> 300-408
+                        //104-141 --> 416-564
+                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 4);
+                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 4);
+                        break;
+                    case Tags.WeaponTags.WeaponType.Rapier:
+                        //Flurry (weapon base damage * cards)
+                        //48-72 --> 48-72
+                        //61-91 --> 61-91
+                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
 
-                    //Charge (weapon base damage * cards * 2.5) //TODO rounded down?
-                    //48-72 --> 120-180
-                    //61-91 --> 152-227
-                    slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 2.5));
-                    slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 2.5));
+                        //Charge (weapon base damage * cards * 2.5) //TODO rounded down?
+                        //48-72 --> 120-180
+                        //61-91 --> 152-227
+                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 2.5));
+                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 2.5));
 
-                    //Coup De Grace (weapon base damage * cards * 3)
-                    //48-72 --> 144-216
-                    //61-91 --> 183-273
-                    slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 3);
-                    slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 3);
-                    break;
-                case Tags.WeaponTags.WeaponType.Sword:
-                    //Sword Hack (weapon base damage * cards)
-                    //46-84 --> 46-84
-                    slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
-                    slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                        //Coup De Grace (weapon base damage * cards * 3)
+                        //48-72 --> 144-216
+                        //61-91 --> 183-273
+                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 3);
+                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 3);
+                        break;
+                    case Tags.WeaponTags.WeaponType.Sword:
+                        //Sword Hack (weapon base damage * cards)
+                        //46-84 --> 46-84
+                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
 
-                    //Slash (weapon base damage * cards * 4)
-                    //46-84  --> 184-344
-                    //57-108 --> 228-432
-                    slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 4);
-                    slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 4);
+                        //Slash (weapon base damage * cards * 4)
+                        //46-84  --> 184-344
+                        //57-108 --> 228-432
+                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 4);
+                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 4);
 
-                    //Dash (weapon base damage * cards * 2)
-                    //46-84  --> 92-172
-                    //57-108 --> 114-216
-                    slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2);
-                    slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2);
-                    break;
-                case Tags.WeaponTags.WeaponType.Scythe:
-                    //Reap (weapon base damage * cards)
-                    //20-203 --> 20-203
-                    slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
-                    slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                        //Dash (weapon base damage * cards * 2)
+                        //46-84  --> 92-172
+                        //57-108 --> 114-216
+                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2);
+                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2);
+                        break;
+                    case Tags.WeaponTags.WeaponType.Scythe:
+                        //Reap (weapon base damage * cards)
+                        //20-203 --> 20-203
+                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
 
-                    //Shockwave (no damage)
-                    slotTags.weaponTags.attack2.attackDmgMin = 0;
-                    slotTags.weaponTags.attack2.attackDmgMax = 0;
+                        //Shockwave (no damage)
+                        slotTags.weaponTags.attack2.attackDmgMin = 0;
+                        slotTags.weaponTags.attack2.attackDmgMax = 0;
 
-                    //Whirlwind (weapon base damage * cards)
-                    //20-203 --> 20-203
-                    //16-161 --> 16-161
-                    slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
-                    slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
-                    break;
-                case Tags.WeaponTags.WeaponType.Tome:
-                    //Magic Missiles (weapon base damage * cards * 1.45)
-                    //24-40 --> 35-58
-                    //33-55 --> 48-80
-                    slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 1.45);
-                    slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 1.45);
+                        //Whirlwind (weapon base damage * cards)
+                        //20-203 --> 20-203
+                        //16-161 --> 16-161
+                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                        break;
+                    case Tags.WeaponTags.WeaponType.Tome:
+                        //Magic Missiles (weapon base damage * cards * 1.45)
+                        //24-40 --> 35-58
+                        //33-55 --> 48-80
+                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 1.45);
+                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 1.45);
 
-                    //Dimension Wave (weapon base damage * cards * 1.165)
-                    //24-40 --> 28-47
-                    //33-55 --> 38-64
-                    slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 1.165);
-                    slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 1.165);
+                        //Dimension Wave (weapon base damage * cards * 1.165)
+                        //24-40 --> 28-47
+                        //33-55 --> 38-64
+                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 1.165);
+                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 1.165);
 
-                    //Singularity Orb (weapon base damage * cards * 6.6)
-                    //24-40 --> 158-264
-                    //33-55 --> 218-364
-                    slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 6.6);
-                    slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 6.6);
-                    break;
-                default:
-                    break;
+                        //Singularity Orb (weapon base damage * cards * 6.6)
+                        //24-40 --> 158-264
+                        //33-55 --> 218-364
+                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 6.6);
+                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 6.6);
+                        break;
+                    default:
+                        break;
+                }
+
+                //Update the labels that display these values beside each equipped weapon slot
+                UpdateSkillLabels();
             }
-
-            //Update the labels that display these values beside each equipped weapon slot
-            UpdateSkillLabels();
         }
 
         private void UpdateStatLabels()
