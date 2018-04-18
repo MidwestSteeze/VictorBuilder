@@ -199,7 +199,8 @@ namespace VictorBuilder
                     OleDbDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        lstLegendaries.Items.Add(reader[1].ToString());
+                        //Add the legendary wepaon Name and Special Stat description to the list box
+                        lstLegendaries.Items.Add(reader[1].ToString() + " | " + reader[9].ToString().Replace("/r/n", " | "));
                     }
                     reader.Close();
                 }
@@ -362,9 +363,10 @@ namespace VictorBuilder
                 if (newItemTags.rarity == Tags.RarityType.Legendary)
                 {
                     #region SetLegendaryAffixesAndProperties
+					//Substring the selection of lstLegendaries to just pull the Name (the list box is showing the Name and Special Stat description for the user to see)
                     string weaponLegendaryQuery = "SELECT * FROM WeaponsLegendary WHERE "
                          + "Type = '" + cboType.SelectedItem + "'" 
-                         + "AND WeaponName = '" + lstLegendaries.SelectedItem + "';";
+                         + "AND WeaponName = '" + lstLegendaries.SelectedItem.ToString().Substring(0, lstLegendaries.SelectedItem.ToString().IndexOf(" | ")) + "';";
 
                     command = new OleDbCommand(weaponLegendaryQuery, connection);
 
