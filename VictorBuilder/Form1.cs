@@ -580,11 +580,19 @@ namespace VictorBuilder
 
         private void EquipCard(Button slot, Tags slotTags, ref bool itemEquipped)
         {
-            //go through all card slots in the group of equippable card slots until you find an empty one
+            bool isUniqueEquipped = false;
+
+            if (slotTags.cardTags.unique)
+            {
+				//Check if we already have this unique card equipped
+                isUniqueEquipped = IsUniqueCardEquipped(slotTags.name);
+            }
+
+            //Go through all card slots in the group of equippable card slots until you find an empty one
             foreach (Button equippedCard in pnlEquippedCards.Controls)
             {
                 //Check if the card slot is empty
-                if ((Tags)equippedCard.Tag == null && equippedCard.Enabled)
+                if ((Tags)equippedCard.Tag == null && equippedCard.Enabled && (!isUniqueEquipped))
                 {
                     //Only equip the card if we have enough available Destiny Points to do so
                     if ((totalCardPoints + slotTags.cardTags.points) <= maximumCardPoints)
@@ -604,6 +612,25 @@ namespace VictorBuilder
                     }
                 }
             }
+        }
+
+        private bool IsUniqueCardEquipped(string cardName)
+        {
+            bool alreadyEquipped = false;
+
+            //Loop through all cards and ensure we're not trying to equip a unique card that's already equipped
+            foreach (Button equippedCard in pnlEquippedCards.Controls)
+            {
+                Tags equippedTags = (Tags)equippedCard.Tag;
+
+                if ((equippedTags != null) && (cardName == equippedTags.name))
+                {
+                    alreadyEquipped = true;
+                    break;
+                }                
+            }
+
+            return alreadyEquipped;
         }
 
         private void EquipConsumable(Button slot, Tags slotTags, bool secondarySlot, ref bool itemEquipped)
