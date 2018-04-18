@@ -259,6 +259,7 @@ namespace VictorBuilder
         {
             None,
             Health,
+            HealthPercent,
             Armor,
             ArmorPenetration,
             CritChance,

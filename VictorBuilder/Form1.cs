@@ -58,6 +58,7 @@ namespace VictorBuilder
         int modifierIncRangedDamage = 0;
         int modifierFlatHealthCards = 0;
         int modifierFlatHealthOutfit = 0;
+        double modifierPercentHealthCards = 0.0;
         int modifierFlatArmorCards = 0;
         int modifierFlatArmorOutfit = 0;
         int modifierFlatArmorPenetration = 0;
@@ -182,6 +183,7 @@ namespace VictorBuilder
             modifierIncRangedDamage = 0;
 
             modifierFlatHealthCards = 0;
+            modifierPercentHealthCards = 0.0;
             modifierFlatArmorCards = 0;
             modifierFlatArmorPenetration = 0;
             modifierFlatArmorPenetrationSecondary = 0;
@@ -216,6 +218,10 @@ namespace VictorBuilder
                             {
                                 case Affix.Modifier.Health:
                                     modifierFlatHealthCards += affix.value;
+                                    break;
+
+                                case Affix.Modifier.HealthPercent:
+                                    modifierPercentHealthCards += (double)affix.value;
                                     break;
 
                                 case Affix.Modifier.Armor:
@@ -462,7 +468,7 @@ namespace VictorBuilder
 
         private void UpdateStatLabels()
         {
-            lblHealth.Text = string.Format("{0:n0}", BaseHealth + modifierFlatHealthCards + modifierFlatHealthOutfit);
+            lblHealth.Text = string.Format("{0:n0}", ((BaseHealth + modifierFlatHealthCards + modifierFlatHealthOutfit) * ((100 + modifierPercentHealthCards) / 100.0)));
             lblArmor.Text = string.Format("{0:n0}", BaseArmor + modifierFlatArmorCards + modifierFlatArmorOutfit);
 
             if (btnEquippedWeapon.Tag != null)
