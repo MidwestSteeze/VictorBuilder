@@ -1522,6 +1522,7 @@ namespace VictorBuilder
                 inventorySlot.Name = controlName + ((inventorySlots.Controls.Count + 1) + (additionalTabsControlCount));
                 inventorySlot.Tag = itemTags;
                 inventorySlots.Controls.Add(inventorySlot);
+                inventorySlots.Refresh();
             }
             else
             {
@@ -1551,6 +1552,7 @@ namespace VictorBuilder
                 inventorySlot.Name = controlName + (inventorySlots.Controls.Count + 1);
                 inventorySlot.Tag = itemTags;
                 tlpPanel.Controls.Add(inventorySlot);
+                tlpPanel.Refresh();
 
                 //Set focus to the new tab page, where the item was added, so the user can see the new item
                 tcInventory.SelectedTab = tbPage;
@@ -1575,6 +1577,7 @@ namespace VictorBuilder
             //inventorySlot.TabIndex = 1;
             inventorySlot.TabStop = false;
             inventorySlot.UseVisualStyleBackColor = false;
+            inventorySlot.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Item_KeyUp);
             inventorySlot.MouseLeave += new System.EventHandler(this.Item_MouseLeave);
             inventorySlot.MouseHover += new System.EventHandler(this.Item_MouseHover);
             inventorySlot.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Inventory_MouseUp);
@@ -2003,6 +2006,33 @@ namespace VictorBuilder
                 //Clear all items from Equipped and Inventory controls
                 ClearEquippedItems();
                 ClearInventory();
+            }
+        }
+
+        private void Item_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                //Determine which inventory category we're in
+                Button slot = (Button)sender;
+                TableLayoutPanel tlp = (TableLayoutPanel)slot.Parent;
+
+                //Loop through all slots within the inventory and remove the specific one the user selected to delete
+                foreach (Button inventorySlot in tlp.Controls)
+                {
+                    if (inventorySlot.Name == slot.Name)
+                    {
+                        //Find the control's index in the collection of all child controls and remove it from there
+                        int column = tlp.GetPositionFromControl(inventorySlot).Column;
+                        int row = tlp.GetPositionFromControl(inventorySlot).Row;
+                        int index = (row * (row + 1)) + column;
+
+                        tlp.Controls.RemoveAt(index);
+                        break;
+                    }
+                }
+
+                tlp.Refresh();
             }
         }
     }
