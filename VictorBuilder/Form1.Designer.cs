@@ -786,7 +786,7 @@
             this.pnlHoverTextCard.Controls.Add(this.lblHoverTextCardName);
             this.pnlHoverTextCard.Location = new System.Drawing.Point(239, 270);
             this.pnlHoverTextCard.Name = "pnlHoverTextCard";
-            this.pnlHoverTextCard.Size = new System.Drawing.Size(343, 171);
+            this.pnlHoverTextCard.Size = new System.Drawing.Size(343, 190);
             this.pnlHoverTextCard.TabIndex = 30;
             this.pnlHoverTextCard.Visible = false;
             // 
@@ -795,7 +795,7 @@
             this.lblHoverTextCardPoints.BackColor = System.Drawing.Color.Transparent;
             this.lblHoverTextCardPoints.Font = new System.Drawing.Font("Copperplate Gothic Light", 10F, System.Drawing.FontStyle.Bold);
             this.lblHoverTextCardPoints.ForeColor = System.Drawing.Color.White;
-            this.lblHoverTextCardPoints.Location = new System.Drawing.Point(168, 40);
+            this.lblHoverTextCardPoints.Location = new System.Drawing.Point(168, 45);
             this.lblHoverTextCardPoints.Margin = new System.Windows.Forms.Padding(0);
             this.lblHoverTextCardPoints.Name = "lblHoverTextCardPoints";
             this.lblHoverTextCardPoints.Size = new System.Drawing.Size(67, 17);
@@ -809,7 +809,7 @@
             this.lblHoverTextCardDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(181)))), ((int)(((byte)(18)))));
             this.lblHoverTextCardDescription.Location = new System.Drawing.Point(5, 74);
             this.lblHoverTextCardDescription.Name = "lblHoverTextCardDescription";
-            this.lblHoverTextCardDescription.Size = new System.Drawing.Size(334, 77);
+            this.lblHoverTextCardDescription.Size = new System.Drawing.Size(334, 110);
             this.lblHoverTextCardDescription.TabIndex = 1;
             this.lblHoverTextCardDescription.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 

@@ -42,6 +42,16 @@ namespace VictorBuilder
 
         private void cboRarity_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+			lstPrefixes.ClearSelected();
+			lstSuffixes.ClearSelected();
+			lstThirdAffix.ClearSelected();
+			lstLegendaries.ClearSelected();
+			lstPrefixes.Enabled = false;
+			lstSuffixes.Enabled = false;
+			lstThirdAffix.Enabled = false;
+			lstLegendaries.Enabled = false;
+
             switch (cboWeaponRarity.SelectedItem.ToString())
             {
                 case "Common":                    
@@ -66,6 +76,8 @@ namespace VictorBuilder
                     break;
                 case "Legendary":
                     tcWeaponMods.SelectedTab = tpLegendaries;
+                    //Enable list of legendary weapons to pick from
+                    lstLegendaries.Enabled = true;
                     break;
                 default:
                     break;
@@ -158,14 +170,14 @@ namespace VictorBuilder
             lstCardDivineMods.Items.Add(new Affix("", Affix.Modifier.None, 24, "+# Armor Penetration"));
 
             lstCardWickedMods.DisplayMember = "listBoxDisplay";
-            lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 0, "Inflict Cripple on crit (40% chance) *Cripple: Movement speed is decreased by 66%."));
-            lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 0, "Inflict Bleeding on crit (15% chance) *Bleeding: Deals 2% of max health, but no more than 100 every second. Bleeding cannot kill the target."));
+            lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 0, "Inflict Cripple on crit (40% chance)" + Environment.NewLine + "*Cripple: Movement speed is decreased by 66%."));
+            lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 0, "Inflict Bleeding on crit (15% chance)" + Environment.NewLine + "*Bleeding: Deals 2% of max health, but no more than 100 every second. Bleeding cannot kill the target."));
             lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 0, "-30% duration of negative conditions"));
             lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 0, "Gain speed for 7 sec. on kill (20 sec. cooldown)"));
             lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 4, "Gain #% of maximum overdrive on overkill")); //TODO 3.90% but param is integer
             lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 29, "Receive Brutality when overdrive is filled (#% probability)"));
-            lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 0, "Receive focus for 10 seconds after a Overkill (30 second cooldown)"));
-            lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 0, "Increased range of Evasive Roll"));
+            lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 0, "Receive Focus for 10 seconds after an Overkill (30 second cooldown)"));
+            lstCardWickedMods.Items.Add(new Affix("", Affix.Modifier.None, 0, "Increased Dodge distance"));
         }
 
         private void FillLegendaryWeaponsList()
@@ -366,12 +378,12 @@ namespace VictorBuilder
                             newItemTags.imageURL = reader[2].ToString();
 
                             Enum.TryParse(reader[4].ToString(), out modifier);
-                            newItemTags.weaponTags.prefix = new Affix("", modifier, (int)reader[3], reader[5].ToString());
+                            newItemTags.weaponTags.prefix = new Affix("", modifier, (int)reader[3], reader[5].ToString().Replace("/r/n", Environment.NewLine));
 
                             Enum.TryParse(reader[7].ToString(), out modifier);
-                            newItemTags.weaponTags.suffix = new Affix("", modifier, (int)reader[6], reader[8].ToString());
+                            newItemTags.weaponTags.suffix = new Affix("", modifier, (int)reader[6], reader[8].ToString().Replace("/r/n", Environment.NewLine));
 
-                            newItemTags.weaponTags.specialStat = reader[9].ToString();
+                            newItemTags.weaponTags.specialStat = reader[9].ToString().Replace("/r/n", Environment.NewLine);
                         }
 
                         newItemTags.description = newItemTags.weaponTags.prefix.listBoxDisplay + Environment.NewLine + newItemTags.weaponTags.suffix.listBoxDisplay + Environment.NewLine + newItemTags.weaponTags.specialStat;
@@ -538,12 +550,12 @@ namespace VictorBuilder
                         cardTags.points = (int)reader[5];
 
                         Enum.TryParse(reader[2].ToString(), out modifier);
-                        cardTags.prefix = new Affix("", modifier, (int)reader[3], reader[4].ToString());
+                        cardTags.prefix = new Affix("", modifier, (int)reader[3], reader[4].ToString().Replace("/r/n", Environment.NewLine));
 
                         Enum.TryParse(reader[6].ToString(), out modifier);
                         try
                         {
-                            cardTags.suffix = new Affix("", modifier, (int)reader[7], reader[8].ToString());
+                            cardTags.suffix = new Affix("", modifier, (int)reader[7], reader[8].ToString().Replace("/r/n", Environment.NewLine));
                         }
                         catch (Exception)
                         {
@@ -558,7 +570,7 @@ namespace VictorBuilder
                         PopulateItemDescription(ref card, card.cardTags.prefix, card.cardTags.suffix, card.cardTags.thirdAffix);
 
                         //Update the list box display value we'll use to show the card to the user
-                        card.listBoxDisplay = card.name + " | " + card.description;
+                        card.listBoxDisplay = card.name + " | " + card.description.Replace("\r\n", " | ");
 
                         //Store the card in the listbox of all available cards to create from
                         lstCards.Items.Add(card);
@@ -602,16 +614,20 @@ namespace VictorBuilder
                 case Tags.CardTags.DivineWicked.Divine:
                     newItemTags.cardTags.thirdAffix = (Affix)lstCardDivineMods.SelectedItem;
                     newItemTags.name = newItemTags.name.Insert(0, "Divine ");
+
+                    //Re-populate the description to add on the Divine affix text
+                    PopulateItemDescription(ref newItemTags, newItemTags.cardTags.prefix, newItemTags.cardTags.suffix, newItemTags.cardTags.thirdAffix);
                     break;
                 case Tags.CardTags.DivineWicked.Wicked:
                     newItemTags.cardTags.thirdAffix = (Affix)lstCardWickedMods.SelectedItem;
                     newItemTags.name = newItemTags.name.Insert(0, "Wicked ");
+
+                    //Re-populate the description to add on the Wicked affix text
+                    PopulateItemDescription(ref newItemTags, newItemTags.cardTags.prefix, newItemTags.cardTags.suffix, newItemTags.cardTags.thirdAffix);
                     break;
                 default:
                     break;
             }
-
-			PopulateItemDescription(ref newItemTags, newItemTags.cardTags.prefix, newItemTags.cardTags.suffix, newItemTags.cardTags.thirdAffix);
 
             //Return to the main form
             this.DialogResult = DialogResult.OK;
@@ -621,7 +637,7 @@ namespace VictorBuilder
 		{
 			if (prefix != null)
             {
-                itemTags.description = prefix.listBoxDisplay;
+                itemTags.description = prefix.description;
                 if (itemTags.itemType == Tags.ItemType.Weapon)
                 {
                     itemTags.name = itemTags.name.Insert(0, prefix.name + " ");
@@ -635,7 +651,8 @@ namespace VictorBuilder
                     itemTags.description += Environment.NewLine;
                 }
 
-                itemTags.description += suffix.listBoxDisplay;
+                itemTags.description += suffix.description;
+
                 if (itemTags.itemType == Tags.ItemType.Weapon)
 				{
                     itemTags.name += " " + itemTags.weaponTags.suffix.name;
@@ -649,7 +666,7 @@ namespace VictorBuilder
                     itemTags.description += Environment.NewLine;
                 }
 
-                itemTags.description += thirdAffix.listBoxDisplay;
+                itemTags.description += thirdAffix.description;
             }			
 		}
 

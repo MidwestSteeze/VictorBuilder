@@ -219,6 +219,7 @@
             // 
             // lstLegendaries
             // 
+            this.lstLegendaries.Enabled = false;
             this.lstLegendaries.FormattingEnabled = true;
             this.lstLegendaries.Location = new System.Drawing.Point(77, 6);
             this.lstLegendaries.Name = "lstLegendaries";

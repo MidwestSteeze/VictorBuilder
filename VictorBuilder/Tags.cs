@@ -281,8 +281,8 @@ namespace VictorBuilder
             name = aName;
             modifier = aModifier;
             value = aValue;
-            description = aDescription;
-            listBoxDisplay = aDescription.Replace("#", value.ToString());
+            description = aDescription.Replace("#", value.ToString());
+            listBoxDisplay = description.Replace("\r\n", " | ");
         }
     }
 }
