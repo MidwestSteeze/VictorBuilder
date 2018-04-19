@@ -266,11 +266,18 @@ namespace VictorBuilder
             CritMulti,
             Damage,
             MeleeDamage,
-            RangedDamage
+            RangedDamage,
+            Specific
+        }
+
+        public enum ModifierSpecific
+        { 
+            DestinyCards
         }
 
         public string name;
         public Modifier modifier;
+        public ModifierSpecific modifierSpecific;
         public int value;
         public string description;
         public string listBoxDisplay { get; set; }

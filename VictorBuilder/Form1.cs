@@ -67,6 +67,8 @@ namespace VictorBuilder
         int modifierFlatCritChanceSecondary = 0;
         int modifierFlatCritMulti = 0;
         int modifierFlatCritMultiSecondary = 0;
+        //Special stat modifiers (a running total from cards, otufit, etc) for calculating purposes
+        int modifierCardPoints = 0;
 
         //Other running totals
         int totalCardPoints = 0;
@@ -176,22 +178,10 @@ namespace VictorBuilder
         }
 
         private void CalculateStatsFromEquippedCards()
-        { 
-            //Default the running total modifiers before we re-calc them
-            modifierIncDamage = 0;
-            modifierIncMeleeDamage = 0;
-            modifierIncRangedDamage = 0;
+        {
+            //Clear/reset all running-total modifier variables (ie. modifierIncreasedDamage, etc) so we can recalc them from the cards
+            ResetModifiersAndTotals();
 
-            modifierFlatHealthCards = 0;
-            modifierPercentHealthCards = 0.0;
-            modifierFlatArmorCards = 0;
-            modifierFlatArmorPenetration = 0;
-            modifierFlatArmorPenetrationSecondary = 0;
-            modifierFlatCritChance = 0;
-            modifierFlatCritChanceSecondary = 0;
-            modifierFlatCritMulti = 0;
-            modifierFlatCritMultiSecondary = 0;  
-            
             totalCardPoints = 0;
 
             //Loop through all cards
@@ -273,6 +263,10 @@ namespace VictorBuilder
                                     modifierIncRangedDamage += affix.value;
                                     break;
 
+                                case Affix.Modifier.Specific:
+                                    CalculateSpecificModifier(affix);
+                                    break;
+
                                 default:
                                     break;
                             }
@@ -285,6 +279,42 @@ namespace VictorBuilder
             UpdateStatLabels();
             UpdateSkillLabels();
             lblEquippedDestinyPoints.Text = totalCardPoints.ToString() + "/" + maximumCardPoints.ToString();
+        }
+
+        private void ResetModifiersAndTotals()
+        {
+            //Default the running total modifiers before we re-calc them
+            modifierIncDamage = 0;
+            modifierIncMeleeDamage = 0;
+            modifierIncRangedDamage = 0;
+
+            modifierFlatHealthCards = 0;
+            modifierPercentHealthCards = 0.0;
+            modifierFlatArmorCards = 0;
+            modifierFlatArmorPenetration = 0;
+            modifierFlatArmorPenetrationSecondary = 0;
+            modifierFlatCritChance = 0;
+            modifierFlatCritChanceSecondary = 0;
+            modifierFlatCritMulti = 0;
+            modifierFlatCritMultiSecondary = 0;
+
+            //Special modifiers
+            modifierCardPoints = 0;
+
+            //Reset non-zero variables
+            maximumCardPoints = 24;
+        }
+
+        private void CalculateSpecificModifier(Affix affix)
+        {
+            switch (affix.modifierSpecific)
+            {
+                case Affix.ModifierSpecific.DestinyCards:
+                    maximumCardPoints += affix.value;
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void CalculateStatsFromOutfit(Tags slotTags)

@@ -515,6 +515,7 @@ namespace VictorBuilder
             Tags card = new Tags();
             Tags.RarityType rarity;
             Affix.Modifier modifier;
+            Affix.ModifierSpecific modifierSpecific;
 
             //Clear the list box so we can refill it with new data
             lstCards.Items.Clear();
@@ -543,7 +544,7 @@ namespace VictorBuilder
 
                         //Fill card object of current row in the database
                         card.name = reader[0].ToString();
-                        card.imageURL = reader[11].ToString();
+                        card.imageURL = reader[12].ToString();
 
                         Enum.TryParse(cboCardRarity.SelectedItem.ToString(), out rarity);
                         card.rarity = rarity;
@@ -557,15 +558,22 @@ namespace VictorBuilder
                         Enum.TryParse(reader[6].ToString(), out modifier);
                         try
                         {
-                            cardTags.suffix = new Affix("", modifier, (int)reader[7], reader[8].ToString().Replace("/r/n", Environment.NewLine));
+                            cardTags.suffix = new Affix("", modifier, (int)reader[8], reader[9].ToString().Replace("/r/n", Environment.NewLine));
+                            
+                            if (modifier == Affix.Modifier.Specific)
+                            {
+                                //We have a specific modifier (ie. +Destiny Card Points, Increased Rapier Charge damage, etc); capture that data
+                                Enum.TryParse(reader[7].ToString(), out modifierSpecific);
+                                cardTags.suffix.modifierSpecific = modifierSpecific;
+                            }
                         }
                         catch (Exception)
                         {
                             //No secondary mod for this card, let suffix = null and continue on
                         }
 
-                        cardTags.unique = (bool)reader[9];
-                        cardTags.conditional = (bool)reader[10];
+                        cardTags.unique = (bool)reader[10];
+                        cardTags.conditional = (bool)reader[11];
                         card.cardTags = cardTags;
 
                         //Update the description of the card by combining its base affixes (prefix and suffix)
