@@ -563,8 +563,14 @@ namespace VictorBuilder
                             if (modifier == Affix.Modifier.Specific)
                             {
                                 //We have a specific modifier (ie. +Destiny Card Points, Increased Rapier Charge damage, etc); capture that data
-                                Enum.TryParse(reader[7].ToString(), out modifierSpecific);
-                                cardTags.suffix.modifierSpecific = modifierSpecific;
+                                if (Enum.TryParse(reader[7].ToString(), out modifierSpecific))
+                                {
+                                    cardTags.suffix.modifierSpecific = modifierSpecific;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No Affix.ModifierSpecific enum found that matches '" + reader[7].ToString() + "'.  Either add the enum or fix the value in the database.");
+                                }
                             }
                         }
                         catch (Exception)

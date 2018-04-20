@@ -272,7 +272,9 @@ namespace VictorBuilder
 
         public enum ModifierSpecific
         { 
-            DestinyCards
+            AttackHammerEnemyFullHealth,
+            AttackRapierCharge,
+            DestinyPoints
         }
 
         public string name;
@@ -293,4 +295,18 @@ namespace VictorBuilder
             listBoxDisplay = description.Replace("\r\n", " | ");
         }
     }
+
+    //public class Buff
+    //{
+    //    public string modifierName;
+    //    public int value;
+
+    //    public Buff() { }
+
+    //    public Buff(string aModifierName, int aValue)
+    //    {
+    //        modifierName = aModifierName;
+    //        value = aValue;
+    //    }
+    //}
 }

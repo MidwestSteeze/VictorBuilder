@@ -67,8 +67,9 @@ namespace VictorBuilder
         int modifierFlatCritChanceSecondary = 0;
         int modifierFlatCritMulti = 0;
         int modifierFlatCritMultiSecondary = 0;
-        //Special stat modifiers (a running total from cards, otufit, etc) for calculating purposes
-        int modifierCardPoints = 0;
+        //Special stat modifiers
+        int modifierAttackRapierCharge = 0;
+        int modifierAttackHammerEnemyFullHealth = 0;
 
         //Other running totals
         int totalCardPoints = 0;
@@ -89,6 +90,7 @@ namespace VictorBuilder
             PreloadConsumables();
             PreloadDemonPowers();
             PreloadOutfits();
+            //PopulateBuffTags();
 
             //Build the list of equipped item controls so we can iterate through it when Saving/Importing a build
             BuildListOfEquippedItems();
@@ -109,7 +111,7 @@ namespace VictorBuilder
             lblEquippedDestinyPoints.Text = totalCardPoints.ToString() + "/" + maximumCardPoints.ToString();
 
             //START Temporary OnLoad logic
-            //LoadBuild("C:\\Users\\grams_s\\Documents\\Visual Studio 2012\\Projects\\VictorBuilder\\SavedBuild.xml");
+            LoadBuild("C:\\Users\\grams_s\\Documents\\Visual Studio 2012\\Projects\\VictorBuilder\\tmp.xml");
             //END Temporary OnLoad logic
         }
 
@@ -141,6 +143,9 @@ namespace VictorBuilder
             {
                 //We added or removed a card and we have at least one weapon equipped, so recalc stats considering all cards
                 CalculateStatsFromEquippedCards();
+
+                //Update global modifiers based on the selected buffs incase we equipped/unequipped a card that ties with a buff checkbox
+                //UpdateBuffs();
 
                 //Recalculate all weapon attacks incase we changed a weapon/card/modifiers that affect each attack's damages
                 CalculateWeaponSkills((Tags)btnEquippedWeapon.Tag);
@@ -299,7 +304,8 @@ namespace VictorBuilder
             modifierFlatCritMultiSecondary = 0;
 
             //Special modifiers
-            modifierCardPoints = 0;
+            modifierAttackRapierCharge = 0;
+            modifierAttackHammerEnemyFullHealth = 0;
 
             //Reset non-zero variables
             maximumCardPoints = 24;
@@ -309,7 +315,13 @@ namespace VictorBuilder
         {
             switch (affix.modifierSpecific)
             {
-                case Affix.ModifierSpecific.DestinyCards:
+                case Affix.ModifierSpecific.AttackHammerEnemyFullHealth:
+                    modifierAttackHammerEnemyFullHealth += affix.value;
+                    break;
+                case Affix.ModifierSpecific.AttackRapierCharge:
+                    modifierAttackRapierCharge += affix.value;
+                    break;
+                case Affix.ModifierSpecific.DestinyPoints:
                     maximumCardPoints += affix.value;
                     break;
                 default:
@@ -341,22 +353,31 @@ namespace VictorBuilder
                 switch (slotTags.weaponTags.weaponType)
                 {
                     case Tags.WeaponTags.WeaponType.Hammer:
+                        //Keep an additional total for Hammer-specific attack bonus
+                        int buffIncDamage = 0;
+
+ 						//The Smith card
+                        if (chkEnemyFullHealth.Checked)
+                        {
+                            buffIncDamage += modifierAttackHammerEnemyFullHealth;
+                        }
+
                         //Pound (weapon base damage * cards)
                         //121-161 --> 121-161
-                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
-                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage + buffIncDamage) / 100.0));
+                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage + buffIncDamage) / 100.0));
 
                         //Crush (weapon base damage * cards * 5)
                         //121-161 --> 605-805
                         //131-175 --> 655-875
-                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
-                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 5);
+                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage + buffIncDamage) / 100.0) * 5);
+                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage + buffIncDamage) / 100.0) * 5);
 
                         //Smash (weapon base damage * cards * 2.5)
                         //121-161 --> 302-402
                         //131-175 --> 327-437
-                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.496);
-                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2.497);
+                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage + buffIncDamage) / 100.0)) * 2.496);
+                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage + buffIncDamage) / 100.0)) * 2.497);
                         break;
                     case Tags.WeaponTags.WeaponType.HandMortar:
                         //Bouncing Betty (weapon base damage * cards)
@@ -425,8 +446,8 @@ namespace VictorBuilder
                         //Charge (weapon base damage * cards * 2.5) //TODO rounded down?
                         //48-72 --> 120-180
                         //61-91 --> 152-227
-                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 2.5));
-                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0) * 2.5));
+                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage + modifierAttackRapierCharge) / 100.0) * 2.5));
+                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage + modifierAttackRapierCharge) / 100.0) * 2.5));
 
                         //Coup De Grace (weapon base damage * cards * 3)
                         //48-72 --> 144-216
@@ -2097,6 +2118,70 @@ namespace VictorBuilder
 
                 tlp.Refresh();
             }
+        }
+
+        //private void PopulateBuffTags()
+        //{
+        //    chkEnemyFullHealth.Tag = new Buff("modifierIncDamage", modifierAttackHammerEnemyFullHealth);
+        //}
+
+        //private void UpdateBuffs()
+        //{
+        //    Buff buffTags;
+
+        //    //Loop through all buff toggles and update the global variables
+        //    foreach (CheckBox chkBox in grpBuffs.Controls)
+        //    {
+        //        if (chkBox.Checked)
+        //        {
+        //            buffTags = (Buff)chkBox.Tag;
+
+        //            switch (buffTags.modifierName)
+        //            {
+        //                //case "modifierAttackHammerEnemyFullHealth":
+        //                //    //Only update for the buff if we have an item equipped that uses this specific stat modifier
+        //                //    if (modifierAttackHammerEnemyFullHealth > 0)
+        //                //    {
+        //                //        UpdateBuff(chkBox, ref modifierIncDamage, buffTags.value);                                
+        //                //    }
+        //                //    break;
+        //                default:
+        //                    break;
+        //            }
+        //        }
+        //    }
+        //}
+
+        //private void UpdateBuff(CheckBox chkBox, ref int globalModifier, int value)
+        //{
+        //    UpdateGlobalModifier(chkBox, ref globalModifier, value);
+
+        //    //Recalculate all weapon attacks to account for the buff that was just toggled
+        //    CalculateWeaponSkills((Tags)btnEquippedWeapon.Tag);
+        //    CalculateWeaponSkills((Tags)btnEquippedWeaponSecondary.Tag);
+
+        //    //Recalculate all stats
+        //    UpdateStatLabels();
+        //}
+
+        //private void UpdateGlobalModifier(CheckBox chkBuff, ref int globalModifier, int value)
+        //{
+        //    //Update the modifier running total for which the toggled buff/debuff affects
+        //    if (chkBuff.Checked)
+        //    {
+        //        globalModifier += value;
+        //    }
+        //    else
+        //    {
+        //        globalModifier -= value;
+        //    }
+        //}
+
+        private void chkEnemyFullHealth_CheckedChanged(object sender, EventArgs e)
+        {
+            //Recalculate all weapon attacks since we toggled a buff that should apply if we have its corresponding item equipped (The Smith card)
+            CalculateWeaponSkills((Tags)btnEquippedWeapon.Tag);
+            CalculateWeaponSkills((Tags)btnEquippedWeaponSecondary.Tag);
         }
     }
 }

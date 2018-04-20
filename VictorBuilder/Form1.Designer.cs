@@ -150,6 +150,8 @@
             this.btnInventoryNextPage = new System.Windows.Forms.Button();
             this.lblInventoryPageCount = new System.Windows.Forms.Label();
             this.btnClearBuild = new System.Windows.Forms.Button();
+            this.grpBuffs = new System.Windows.Forms.GroupBox();
+            this.chkEnemyFullHealth = new System.Windows.Forms.CheckBox();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
@@ -182,6 +184,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbIconDemonPowers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconDemonPowersHighlighted)).BeginInit();
             this.pnlHoverTextConsumable.SuspendLayout();
+            this.grpBuffs.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnEquippedWeapon
@@ -1882,6 +1885,29 @@
             this.btnClearBuild.UseVisualStyleBackColor = false;
             this.btnClearBuild.Click += new System.EventHandler(this.btnClearBuild_Click);
             // 
+            // grpBuffs
+            // 
+            this.grpBuffs.BackColor = System.Drawing.Color.Transparent;
+            this.grpBuffs.Controls.Add(this.chkEnemyFullHealth);
+            this.grpBuffs.ForeColor = System.Drawing.Color.White;
+            this.grpBuffs.Location = new System.Drawing.Point(22, 645);
+            this.grpBuffs.Name = "grpBuffs";
+            this.grpBuffs.Size = new System.Drawing.Size(332, 63);
+            this.grpBuffs.TabIndex = 55;
+            this.grpBuffs.TabStop = false;
+            this.grpBuffs.Text = "Buffs/Debuffs";
+            // 
+            // chkEnemyFullHealth
+            // 
+            this.chkEnemyFullHealth.AutoSize = true;
+            this.chkEnemyFullHealth.Location = new System.Drawing.Point(31, 29);
+            this.chkEnemyFullHealth.Name = "chkEnemyFullHealth";
+            this.chkEnemyFullHealth.Size = new System.Drawing.Size(111, 17);
+            this.chkEnemyFullHealth.TabIndex = 0;
+            this.chkEnemyFullHealth.Text = "Enemy Full Health";
+            this.chkEnemyFullHealth.UseVisualStyleBackColor = true;
+            this.chkEnemyFullHealth.CheckedChanged += new System.EventHandler(this.chkEnemyFullHealth_CheckedChanged);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1890,6 +1916,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.grpBuffs);
             this.Controls.Add(this.btnClearBuild);
             this.Controls.Add(this.lblInventoryPageCount);
             this.Controls.Add(this.btnInventoryNextPage);
@@ -1971,6 +1998,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbIconDemonPowers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconDemonPowersHighlighted)).EndInit();
             this.pnlHoverTextConsumable.ResumeLayout(false);
+            this.grpBuffs.ResumeLayout(false);
+            this.grpBuffs.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2099,6 +2128,8 @@
         private System.Windows.Forms.Button btnInventoryNextPage;
         private System.Windows.Forms.Label lblInventoryPageCount;
         private System.Windows.Forms.Button btnClearBuild;
+        private System.Windows.Forms.GroupBox grpBuffs;
+        private System.Windows.Forms.CheckBox chkEnemyFullHealth;
 
     }
 }
