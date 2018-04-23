@@ -151,7 +151,8 @@
             this.lblInventoryPageCount = new System.Windows.Forms.Label();
             this.btnClearBuild = new System.Windows.Forms.Button();
             this.grpBuffs = new System.Windows.Forms.GroupBox();
-            this.chkEnemyFullHealth = new System.Windows.Forms.CheckBox();
+            this.chkBuffFocus = new System.Windows.Forms.CheckBox();
+            this.chkBuffEnemyFullHealth = new System.Windows.Forms.CheckBox();
             this.grpQuickBuilds = new System.Windows.Forms.GroupBox();
             this.txtQuickBuild4 = new System.Windows.Forms.TextBox();
             this.btnQuickBuild4 = new System.Windows.Forms.Button();
@@ -161,6 +162,10 @@
             this.btnQuickBuild2 = new System.Windows.Forms.Button();
             this.txtQuickBuild1 = new System.Windows.Forms.TextBox();
             this.btnQuickBuild1 = new System.Windows.Forms.Button();
+            this.chkBuffBrutality = new System.Windows.Forms.CheckBox();
+            this.chkBuffMight = new System.Windows.Forms.CheckBox();
+            this.chkBuffEnemyElectrocuted = new System.Windows.Forms.CheckBox();
+            this.chkBuffFrailty = new System.Windows.Forms.CheckBox();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
@@ -1898,7 +1903,12 @@
             // grpBuffs
             // 
             this.grpBuffs.BackColor = System.Drawing.Color.Transparent;
-            this.grpBuffs.Controls.Add(this.chkEnemyFullHealth);
+            this.grpBuffs.Controls.Add(this.chkBuffFrailty);
+            this.grpBuffs.Controls.Add(this.chkBuffEnemyElectrocuted);
+            this.grpBuffs.Controls.Add(this.chkBuffMight);
+            this.grpBuffs.Controls.Add(this.chkBuffBrutality);
+            this.grpBuffs.Controls.Add(this.chkBuffFocus);
+            this.grpBuffs.Controls.Add(this.chkBuffEnemyFullHealth);
             this.grpBuffs.ForeColor = System.Drawing.Color.White;
             this.grpBuffs.Location = new System.Drawing.Point(22, 645);
             this.grpBuffs.Name = "grpBuffs";
@@ -1907,16 +1917,27 @@
             this.grpBuffs.TabStop = false;
             this.grpBuffs.Text = "Buffs/Debuffs";
             // 
-            // chkEnemyFullHealth
+            // chkBuffFocus
             // 
-            this.chkEnemyFullHealth.AutoSize = true;
-            this.chkEnemyFullHealth.Location = new System.Drawing.Point(31, 29);
-            this.chkEnemyFullHealth.Name = "chkEnemyFullHealth";
-            this.chkEnemyFullHealth.Size = new System.Drawing.Size(111, 17);
-            this.chkEnemyFullHealth.TabIndex = 0;
-            this.chkEnemyFullHealth.Text = "Enemy Full Health";
-            this.chkEnemyFullHealth.UseVisualStyleBackColor = true;
-            this.chkEnemyFullHealth.CheckedChanged += new System.EventHandler(this.chkEnemyFullHealth_CheckedChanged);
+            this.chkBuffFocus.AutoSize = true;
+            this.chkBuffFocus.Location = new System.Drawing.Point(137, 38);
+            this.chkBuffFocus.Name = "chkBuffFocus";
+            this.chkBuffFocus.Size = new System.Drawing.Size(55, 17);
+            this.chkBuffFocus.TabIndex = 1;
+            this.chkBuffFocus.Text = "Focus";
+            this.chkBuffFocus.UseVisualStyleBackColor = true;
+            this.chkBuffFocus.CheckedChanged += new System.EventHandler(this.chkBuffFocus_CheckedChanged);
+            // 
+            // chkBuffEnemyFullHealth
+            // 
+            this.chkBuffEnemyFullHealth.AutoSize = true;
+            this.chkBuffEnemyFullHealth.Location = new System.Drawing.Point(206, 29);
+            this.chkBuffEnemyFullHealth.Name = "chkBuffEnemyFullHealth";
+            this.chkBuffEnemyFullHealth.Size = new System.Drawing.Size(111, 17);
+            this.chkBuffEnemyFullHealth.TabIndex = 0;
+            this.chkBuffEnemyFullHealth.Text = "Enemy Full Health";
+            this.chkBuffEnemyFullHealth.UseVisualStyleBackColor = true;
+            this.chkBuffEnemyFullHealth.CheckedChanged += new System.EventHandler(this.chkEnemyFullHealth_CheckedChanged);
             // 
             // grpQuickBuilds
             // 
@@ -2028,6 +2049,50 @@
             this.btnQuickBuild1.Text = "Load";
             this.btnQuickBuild1.UseVisualStyleBackColor = false;
             this.btnQuickBuild1.Click += new System.EventHandler(this.btnQuickBuild1_Click);
+            // 
+            // chkBuffBrutality
+            // 
+            this.chkBuffBrutality.AutoSize = true;
+            this.chkBuffBrutality.Location = new System.Drawing.Point(137, 14);
+            this.chkBuffBrutality.Name = "chkBuffBrutality";
+            this.chkBuffBrutality.Size = new System.Drawing.Size(63, 17);
+            this.chkBuffBrutality.TabIndex = 2;
+            this.chkBuffBrutality.Text = "Brutality";
+            this.chkBuffBrutality.UseVisualStyleBackColor = true;
+            this.chkBuffBrutality.CheckedChanged += new System.EventHandler(this.chkBuffBrutality_CheckedChanged);
+            // 
+            // chkBuffMight
+            // 
+            this.chkBuffMight.AutoSize = true;
+            this.chkBuffMight.Location = new System.Drawing.Point(79, 15);
+            this.chkBuffMight.Name = "chkBuffMight";
+            this.chkBuffMight.Size = new System.Drawing.Size(52, 17);
+            this.chkBuffMight.TabIndex = 3;
+            this.chkBuffMight.Text = "Might";
+            this.chkBuffMight.UseVisualStyleBackColor = true;
+            this.chkBuffMight.CheckedChanged += new System.EventHandler(this.chkBuffMight_CheckedChanged);
+            // 
+            // chkBuffEnemyElectrocuted
+            // 
+            this.chkBuffEnemyElectrocuted.AutoSize = true;
+            this.chkBuffEnemyElectrocuted.Location = new System.Drawing.Point(9, 38);
+            this.chkBuffEnemyElectrocuted.Name = "chkBuffEnemyElectrocuted";
+            this.chkBuffEnemyElectrocuted.Size = new System.Drawing.Size(131, 17);
+            this.chkBuffEnemyElectrocuted.TabIndex = 4;
+            this.chkBuffEnemyElectrocuted.Text = "Enemy is Electrocuted";
+            this.chkBuffEnemyElectrocuted.UseVisualStyleBackColor = true;
+            this.chkBuffEnemyElectrocuted.CheckedChanged += new System.EventHandler(this.chkBuffEnemyElectrocuted_CheckedChanged);
+            // 
+            // chkBuffFrailty
+            // 
+            this.chkBuffFrailty.AutoSize = true;
+            this.chkBuffFrailty.Location = new System.Drawing.Point(10, 14);
+            this.chkBuffFrailty.Name = "chkBuffFrailty";
+            this.chkBuffFrailty.Size = new System.Drawing.Size(53, 17);
+            this.chkBuffFrailty.TabIndex = 5;
+            this.chkBuffFrailty.Text = "Frailty";
+            this.chkBuffFrailty.UseVisualStyleBackColor = true;
+            this.chkBuffFrailty.CheckedChanged += new System.EventHandler(this.chkBuffFrailty_CheckedChanged);
             // 
             // frmMain
             // 
@@ -2253,7 +2318,7 @@
         private System.Windows.Forms.Label lblInventoryPageCount;
         private System.Windows.Forms.Button btnClearBuild;
         private System.Windows.Forms.GroupBox grpBuffs;
-        private System.Windows.Forms.CheckBox chkEnemyFullHealth;
+        private System.Windows.Forms.CheckBox chkBuffEnemyFullHealth;
         private System.Windows.Forms.GroupBox grpQuickBuilds;
         private System.Windows.Forms.Button btnQuickBuild1;
         private System.Windows.Forms.TextBox txtQuickBuild1;
@@ -2263,6 +2328,11 @@
         private System.Windows.Forms.Button btnQuickBuild4;
         private System.Windows.Forms.TextBox txtQuickBuild3;
         private System.Windows.Forms.Button btnQuickBuild3;
+        private System.Windows.Forms.CheckBox chkBuffFocus;
+        private System.Windows.Forms.CheckBox chkBuffBrutality;
+        private System.Windows.Forms.CheckBox chkBuffMight;
+        private System.Windows.Forms.CheckBox chkBuffEnemyElectrocuted;
+        private System.Windows.Forms.CheckBox chkBuffFrailty;
 
     }
 }

@@ -55,6 +55,7 @@ namespace VictorBuilder
 
         //Stat modifiers (a runnning total from cards, outfit, etc) for calculating purposes
         int modifierIncDamage = 0;
+        int modifierMoreDamage = 0;
         int modifierIncMeleeDamage = 0;
         int modifierIncRangedDamage = 0;
         int modifierFlatHealthCards = 0;
@@ -91,7 +92,7 @@ namespace VictorBuilder
             PreloadConsumables();
             PreloadDemonPowers();
             PreloadOutfits();
-            //PopulateBuffTags();
+            PopulateBuffTags();
             PopulateQuickBuilds();
 
             //Build the list of equipped item controls so we can iterate through it when Saving/Importing a build
@@ -134,31 +135,19 @@ namespace VictorBuilder
             if (slotTags.weaponTags != null)
             {
                 CalculateStatsFromWeaponChange(slotTags, secondarySlot);
-
-                //With the new weapon in place, add on the card mods
-                CalculateStatsFromEquippedCards();
-
-                //Recalculate all weapon attacks incase we changed a weapon/card/modifiers that affect each attack's damages
-                CalculateWeaponSkills(slotTags);
             }
             else if (slotTags.cardTags != null && (btnEquippedWeapon.Tag != null || btnEquippedWeaponSecondary.Tag != null))
             {
-                //We added or removed a card and we have at least one weapon equipped, so recalc stats considering all cards
-                CalculateStatsFromEquippedCards();
-
-                //Update global modifiers based on the selected buffs incase we equipped/unequipped a card that ties with a buff checkbox
-                //UpdateBuffs();
-
-                //Recalculate all weapon attacks incase we changed a weapon/card/modifiers that affect each attack's damages
-                CalculateWeaponSkills((Tags)btnEquippedWeapon.Tag);
-                CalculateWeaponSkills((Tags)btnEquippedWeaponSecondary.Tag);
+                //CalcEquippedCards and UpdateBuffs below are taking care of what needs to be done here
             }
             else if (slotTags.outfitTags != null)
             {
-                CalculateStatsFromEquippedCards();
-
                 CalculateStatsFromOutfit(slotTags);
             }
+
+            CalculateStatsFromEquippedCards();
+            //Apply any enabled buffs; this then recalcs all weapon skills/stats as well
+            UpdateBuffs();
         }
 
         private void CalculateStatsFromWeaponChange(Tags slotTags, bool secondarySlot)
@@ -181,7 +170,7 @@ namespace VictorBuilder
                 BaseCritMulti = slotTags.weaponTags.critMulti;
             }
 
-            UpdateStatLabels();
+            UpdateStatLabels();  //TODO can possibly remove, being called in a subproc of UpdateBuffs from CalculateStats
         }
 
         private void CalculateStatsFromEquippedCards()
@@ -294,6 +283,7 @@ namespace VictorBuilder
             modifierIncDamage = 0;
             modifierIncMeleeDamage = 0;
             modifierIncRangedDamage = 0;
+            modifierMoreDamage = 0;
 
             modifierFlatHealthCards = 0;
             modifierPercentHealthCards = 0.0;
@@ -342,7 +332,7 @@ namespace VictorBuilder
             modifierFlatCritChance += slotTags.outfitTags.critChance;
             modifierFlatCritChanceSecondary += slotTags.outfitTags.critChance;
 
-            UpdateStatLabels();
+            UpdateStatLabels();  //TODO can possibly remove, being called in a subproc of UpdateBuffs from CalculateStats
         }
 
         private void CalculateWeaponSkills(Tags slotTags)
@@ -359,127 +349,127 @@ namespace VictorBuilder
                         int buffIncDamage = 0;
 
  						//The Smith card
-                        if (chkEnemyFullHealth.Checked)
+                        if (chkBuffEnemyFullHealth.Checked)
                         {
                             buffIncDamage += modifierAttackHammerEnemyFullHealth;
                         }
 
                         //Pound (weapon base damage * cards)
                         //121-161 --> 121-161
-                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage + buffIncDamage) / 100.0));
-                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage + buffIncDamage) / 100.0));
+                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage + buffIncDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)));
+                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage + buffIncDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)));
 
                         //Crush (weapon base damage * cards * 5)
                         //121-161 --> 605-805
                         //131-175 --> 655-875
-                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage + buffIncDamage) / 100.0) * 5);
-                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage + buffIncDamage) / 100.0) * 5);
+                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage + buffIncDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 5);
+                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage + buffIncDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 5);
 
                         //Smash (weapon base damage * cards * 2.5)
                         //121-161 --> 302-402
                         //131-175 --> 327-437
-                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage + buffIncDamage) / 100.0)) * 2.496);
-                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage + buffIncDamage) / 100.0)) * 2.497);
+                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage + buffIncDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 2.496);
+                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage + buffIncDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 2.497);
                         break;
                     case Tags.WeaponTags.WeaponType.HandMortar:
                         //Bouncing Betty (weapon base damage * cards)
                         //49-157 --> 49-157
                         //32-104 --> 32-104
-                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0));
-                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0));
+                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)));
+                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)));
 
                         //Fire Lake (weapon base damage * cards)
                         //49-157 --> 49-157
                         //32-104 --> 32-104
-                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0));
-                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0));
+                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)));
+                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)));
 
                         //Explosive Jump (weapon base damage * cards * .75) //TODO rounded down?
                         //49-157 --> 36-117
                         //32-104 --> 24-78
-                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * .75);
-                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * .75);
+                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * .75);
+                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * .75);
                         break;
                     case Tags.WeaponTags.WeaponType.Shotgun:
                         //Fire (weapon base damage * cards)
                         //44-89 --> 44-89
                         //55-111 --> 55-111
-                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0));
-                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0));
+                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)));
+                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)));
 
                         //Aimed Shot (weapon base damage * cards * 3)
                         //44-89 --> 132-267
                         //55-111 --> 165-333
-                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 3);
-                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 3);
+                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 3);
+                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 3);
 
                         //Point-Blank Shot (weapon base damage * cards * 2)
                         //44-89 --> 88-178
                         //55-111 --> 110-222
-                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 2);
-                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 2);
+                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 2);
+                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 2);
                         break;
                     case Tags.WeaponTags.WeaponType.LightningGun:
                         //Shock (weapon base damage * cards / 5)
                         //75-102 --> 15-20
                         //104-141 --> 20-28
-                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) / 5);
-                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) / 5);
+                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) / 5);
+                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) / 5);
 
                         //Ball Lightning (weapon base damage * cards * 1.2) //TODO rounded down?
                         //75-102 --> 90-122
                         //104-141 --> 124-169
-                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 1.2);
-                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 1.2);
+                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 1.2);
+                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 1.2);
 
                         //Lightning Trap (weapon base damage * cards * 4)
                         //75-102 --> 300-408
                         //104-141 --> 416-564
-                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 4);
-                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 4);
+                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 4);
+                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 4);
                         break;
                     case Tags.WeaponTags.WeaponType.Rapier:
                         //Flurry (weapon base damage * cards)
                         //48-72 --> 48-72
                         //61-91 --> 61-91
-                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
-                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)));
+                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)));
 
                         //Charge (weapon base damage * cards * 2.5) //TODO rounded down?
                         //48-72 --> 120-180
                         //61-91 --> 152-227
-                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage + modifierAttackRapierCharge) / 100.0) * 2.5));
-                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage + modifierAttackRapierCharge) / 100.0) * 2.5));
+                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage + modifierAttackRapierCharge) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 2.5);
+                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage + modifierAttackRapierCharge) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 2.5);
 
                         //Coup De Grace (weapon base damage * cards * 3)
                         //48-72 --> 144-216
                         //61-91 --> 183-273
-                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 3);
-                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 3);
+                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 3);
+                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 3);
                         break;
                     case Tags.WeaponTags.WeaponType.Sword:
                         //Sword Hack (weapon base damage * cards)
                         //46-84 --> 46-84
-                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
-                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)));
+                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)));
 
                         //Slash (weapon base damage * cards * 4)
                         //46-84  --> 184-344
                         //57-108 --> 228-432
-                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 4);
-                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 4);
+                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 4);
+                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 4);
 
                         //Dash (weapon base damage * cards * 2)
                         //46-84  --> 92-172
                         //57-108 --> 114-216
-                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2);
-                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * 2);
+                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 2);
+                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 2);
                         break;
                     case Tags.WeaponTags.WeaponType.Scythe:
                         //Reap (weapon base damage * cards)
                         //20-203 --> 20-203
-                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
-                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)));
+                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)));
 
                         //Shockwave (no damage)
                         slotTags.weaponTags.attack2.attackDmgMin = 0;
@@ -488,27 +478,27 @@ namespace VictorBuilder
                         //Whirlwind (weapon base damage * cards)
                         //20-203 --> 20-203
                         //16-161 --> 16-161
-                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round(slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
-                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round(slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0));
+                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)));
+                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)));
                         break;
                     case Tags.WeaponTags.WeaponType.Tome:
                         //Magic Missiles (weapon base damage * cards * 1.45)
                         //24-40 --> 35-58
                         //33-55 --> 48-80
-                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 1.45);
-                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 1.45);
+                        slotTags.weaponTags.attack1.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 1.45);
+                        slotTags.weaponTags.attack1.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 1.45);
 
                         //Dimension Wave (weapon base damage * cards * 1.165)
                         //24-40 --> 28-47
                         //33-55 --> 38-64
-                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 1.165);
-                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 1.165);
+                        slotTags.weaponTags.attack2.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 1.165);
+                        slotTags.weaponTags.attack2.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 1.165);
 
                         //Singularity Orb (weapon base damage * cards * 6.6)
                         //24-40 --> 158-264
                         //33-55 --> 218-364
-                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 6.6);
-                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * 6.6);
+                        slotTags.weaponTags.attack3.attackDmgMin = (int)Math.Round((slotTags.weaponTags.dmgMin * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 6.6);
+                        slotTags.weaponTags.attack3.attackDmgMax = (int)Math.Round((slotTags.weaponTags.dmgMax * (1 + (modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0)) * 6.6);
                         break;
                     default:
                         break;
@@ -529,11 +519,11 @@ namespace VictorBuilder
                 //Add on the proper damage modifier(s) depending on the weapon type (ie. melee vs. ranged)
                 if (((Tags)btnEquippedWeapon.Tag).weaponTags.weaponDistance == Tags.WeaponTags.WeaponDistance.Melee)
                 {
-                    lblDamage.Text = Math.Round(BaseDmgMin * (1 + ((modifierIncDamage + modifierIncMeleeDamage) / 100.0))).ToString() + "-" + Math.Round(BaseDmgMax * (1 + ((modifierIncDamage + modifierIncMeleeDamage) / 100.0))).ToString();
+                    lblDamage.Text = Math.Round(BaseDmgMin * (1 + ((modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0))).ToString() + "-" + Math.Round(BaseDmgMax * (1 + ((modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0))).ToString();
                 }
                 if (((Tags)btnEquippedWeapon.Tag).weaponTags.weaponDistance == Tags.WeaponTags.WeaponDistance.Ranged)
                 {
-                    lblDamage.Text = Math.Round(BaseDmgMin * (1 + ((modifierIncDamage + modifierIncRangedDamage) / 100.0))).ToString() + "-" + Math.Round(BaseDmgMax * (1 + ((modifierIncDamage + modifierIncRangedDamage) / 100.0))).ToString();
+                    lblDamage.Text = Math.Round(BaseDmgMin * (1 + ((modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0))).ToString() + "-" + Math.Round(BaseDmgMax * (1 + ((modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0))).ToString();
                 }
 
                 lblArmorPenetration.Text = (BaseArmorPenetration + modifierFlatArmorPenetration).ToString();
@@ -546,11 +536,11 @@ namespace VictorBuilder
                 //Add on the proper damage modifier(s) depending on the weapon type (ie. melee vs. ranged)
                 if (((Tags)btnEquippedWeaponSecondary.Tag).weaponTags.weaponDistance == Tags.WeaponTags.WeaponDistance.Melee)
                 {
-                    lblDamageSecondary.Text = Math.Round(BaseDmgMinSecondary * (1 + ((modifierIncDamage + modifierIncMeleeDamage) / 100.0))).ToString() + "-" + Math.Round(BaseDmgMaxSecondary * (1 + ((modifierIncDamage + modifierIncMeleeDamage) / 100.0))).ToString();
+                    lblDamageSecondary.Text = Math.Round(BaseDmgMinSecondary * (1 + ((modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0))).ToString() + "-" + Math.Round(BaseDmgMaxSecondary * (1 + ((modifierIncDamage + modifierIncMeleeDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0))).ToString();
                 }
                 if (((Tags)btnEquippedWeaponSecondary.Tag).weaponTags.weaponDistance == Tags.WeaponTags.WeaponDistance.Ranged)
                 {
-                    lblDamageSecondary.Text = Math.Round(BaseDmgMinSecondary * (1 + ((modifierIncDamage + modifierIncRangedDamage) / 100.0))).ToString() + "-" + Math.Round(BaseDmgMaxSecondary * (1 + ((modifierIncDamage + modifierIncRangedDamage) / 100.0))).ToString();
+                    lblDamageSecondary.Text = Math.Round(BaseDmgMinSecondary * (1 + ((modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0))).ToString() + "-" + Math.Round(BaseDmgMaxSecondary * (1 + ((modifierIncDamage + modifierIncRangedDamage) / 100.0)) * (1 + (modifierMoreDamage / 100.0))).ToString();
                 }
 
                 lblArmorPenetrationSecondary.Text = (BaseArmorPenetrationSecondary + modifierFlatArmorPenetrationSecondary).ToString();
@@ -2122,68 +2112,75 @@ namespace VictorBuilder
             }
         }
 
-        //private void PopulateBuffTags()
-        //{
-        //    chkEnemyFullHealth.Tag = new Buff("modifierIncDamage", modifierAttackHammerEnemyFullHealth);
-        //}
-
-        //private void UpdateBuffs()
-        //{
-        //    Buff buffTags;
-
-        //    //Loop through all buff toggles and update the global variables
-        //    foreach (CheckBox chkBox in grpBuffs.Controls)
-        //    {
-        //        if (chkBox.Checked)
-        //        {
-        //            buffTags = (Buff)chkBox.Tag;
-
-        //            switch (buffTags.modifierName)
-        //            {
-        //                //case "modifierAttackHammerEnemyFullHealth":
-        //                //    //Only update for the buff if we have an item equipped that uses this specific stat modifier
-        //                //    if (modifierAttackHammerEnemyFullHealth > 0)
-        //                //    {
-        //                //        UpdateBuff(chkBox, ref modifierIncDamage, buffTags.value);                                
-        //                //    }
-        //                //    break;
-        //                default:
-        //                    break;
-        //            }
-        //        }
-        //    }
-        //}
-
-        //private void UpdateBuff(CheckBox chkBox, ref int globalModifier, int value)
-        //{
-        //    UpdateGlobalModifier(chkBox, ref globalModifier, value);
-
-        //    //Recalculate all weapon attacks to account for the buff that was just toggled
-        //    CalculateWeaponSkills((Tags)btnEquippedWeapon.Tag);
-        //    CalculateWeaponSkills((Tags)btnEquippedWeaponSecondary.Tag);
-
-        //    //Recalculate all stats
-        //    UpdateStatLabels();
-        //}
-
-        //private void UpdateGlobalModifier(CheckBox chkBuff, ref int globalModifier, int value)
-        //{
-        //    //Update the modifier running total for which the toggled buff/debuff affects
-        //    if (chkBuff.Checked)
-        //    {
-        //        globalModifier += value;
-        //    }
-        //    else
-        //    {
-        //        globalModifier -= value;
-        //    }
-        //}
-
-        private void chkEnemyFullHealth_CheckedChanged(object sender, EventArgs e)
+        private void PopulateBuffTags()
         {
-            //Recalculate all weapon attacks since we toggled a buff that should apply if we have its corresponding item equipped (The Smith card)
+            chkBuffBrutality.Tag = new Buff("Brutality", 50);
+            chkBuffEnemyElectrocuted.Tag = new Buff("EnemyElectrocuted", 20);
+            chkBuffFocus.Tag = new Buff("Focus", 20);
+            chkBuffFrailty.Tag = new Buff("Frailty", 100);
+            chkBuffMight.Tag = new Buff("Might", 100);
+        }
+
+        private void UpdateBuffs()
+        {
+            Buff buffTags;
+
+            //Loop through all buff toggles and update the global variables
+            foreach (CheckBox chkBox in grpBuffs.Controls)
+            {
+                if (chkBox.Checked)
+                {
+                    buffTags = (Buff)chkBox.Tag;
+
+                    switch (buffTags.modifierName)
+                    {
+                        case "Brutality":
+                            UpdateBuff(chkBox, ref modifierIncDamage, buffTags.value);
+                            break;
+                        case "EnemyElectrocuted":
+                            UpdateBuff(chkBox, ref modifierIncDamage, buffTags.value);
+                            break;
+                        case "Focus":
+                            UpdateBuff(chkBox, ref modifierFlatCritChance, buffTags.value);
+                            UpdateBuff(chkBox, ref modifierFlatCritChanceSecondary, buffTags.value);
+                            break;
+                        case "Frailty":
+                            UpdateBuff(chkBox, ref modifierMoreDamage, buffTags.value);
+                            break;
+                        case "Might":
+                            UpdateBuff(chkBox, ref modifierFlatCritMulti, buffTags.value);
+                            UpdateBuff(chkBox, ref modifierFlatCritMultiSecondary, buffTags.value);
+                            break;
+                        default:
+                            break;
+                    }	
+                }
+            }
+
+            //Now, with all global modifiers updated with the buffs applied accordingly, recalc the weapon skills and stat labels
             CalculateWeaponSkills((Tags)btnEquippedWeapon.Tag);
             CalculateWeaponSkills((Tags)btnEquippedWeaponSecondary.Tag);
+
+            //Recalculate all stats
+            UpdateStatLabels();
+        }
+
+        private void UpdateBuff(CheckBox chkBox, ref int globalModifier, int value)
+        {
+            UpdateGlobalModifier(chkBox, ref globalModifier, value);
+        }
+
+        private void UpdateGlobalModifier(CheckBox chkBuff, ref int globalModifier, int value)
+        {
+            //Update the modifier running total for which the toggled buff/debuff affects
+            if (chkBuff.Checked)
+            {
+                globalModifier += value;
+            }
+            else
+            {
+                globalModifier -= value;
+            }
         }
 
         private void CreateQuickBuildsFile()
@@ -2319,6 +2316,87 @@ namespace VictorBuilder
         private void btnQuickBuild4_Click(object sender, EventArgs e)
         {
             LoadQuickBuild(txtQuickBuild4.Tag.ToString());
+        }
+
+        //private bool IsCardEquipped(string itemName)
+        //{
+        //    Tags cardTags;
+        //    bool cardEquipped = false;
+
+        //    foreach (Button card in pnlEquippedCards.Controls)
+        //    {
+        //        cardTags = (Tags)card.Tag;
+
+        //        if (cardTags.name == itemName)
+        //        {
+        //            cardEquipped = true;
+        //            break;
+        //        }
+        //    }
+
+        //    return cardEquipped;
+        //}
+
+        private void RecalcStatsFromBuffChange()
+        {
+            CalculateWeaponSkills((Tags)btnEquippedWeapon.Tag);
+            CalculateWeaponSkills((Tags)btnEquippedWeaponSecondary.Tag);
+
+            UpdateStatLabels();        
+        }
+
+        private void chkEnemyFullHealth_CheckedChanged(object sender, EventArgs e)
+        {
+            //Recalculate all weapon attacks since we toggled a buff that should apply if we have its corresponding item equipped (The Smith card)
+            CalculateWeaponSkills((Tags)btnEquippedWeapon.Tag);
+            CalculateWeaponSkills((Tags)btnEquippedWeaponSecondary.Tag);
+        }
+
+        private void chkBuffBrutality_CheckedChanged(object sender, EventArgs e)
+        {
+            //Brutality: Damage increased by 50%
+            UpdateBuff(chkBuffBrutality, ref modifierIncDamage, 50);
+
+            //Now, with all global modifiers updated with the buffs applied accordingly, recalc the weapon skills and stat labels
+            RecalcStatsFromBuffChange();
+        }
+
+        private void chkBuffEnemyElectrocuted_CheckedChanged(object sender, EventArgs e)
+        {
+            //20% increaed damage vs. Electrocuted foes (The Lightning card)
+            UpdateBuff(chkBuffEnemyElectrocuted, ref modifierIncDamage, 20);
+
+            //Now, with all global modifiers updated with the buffs applied accordingly, recalc the weapon skills and stat labels
+            RecalcStatsFromBuffChange();
+        }
+
+        private void chkBuffFocus_CheckedChanged(object sender, EventArgs e)
+        {
+            //Focus: Critical Strike chance is increased by 20%
+            UpdateBuff(chkBuffFocus, ref modifierFlatCritChance, 20);
+            UpdateBuff(chkBuffFocus, ref modifierFlatCritChanceSecondary, 20);
+
+            //Now, with all global modifiers updated with the buffs applied accordingly, recalc the weapon skills and stat labels
+            RecalcStatsFromBuffChange();
+        }
+
+        private void chkBuffFrailty_CheckedChanged(object sender, EventArgs e)
+        {
+            //Frailty: 100% more damage with your next attack (The Cannon card)
+            UpdateBuff(chkBuffFrailty, ref modifierMoreDamage, 100);
+
+            //Now, with all global modifiers updated with the buffs applied accordingly, recalc the weapon skills and stat labels
+            RecalcStatsFromBuffChange();
+        }
+
+        private void chkBuffMight_CheckedChanged(object sender, EventArgs e)
+        {
+            //Might: Critical damage is increased by 100%  (The Cannon card)
+            UpdateBuff(chkBuffMight, ref modifierFlatCritMulti, 100);
+            UpdateBuff(chkBuffMight, ref modifierFlatCritMultiSecondary, 100);
+
+            //Now, with all global modifiers updated with the buffs applied accordingly, recalc the weapon skills and stat labels
+            RecalcStatsFromBuffChange();
         }
     }
 }

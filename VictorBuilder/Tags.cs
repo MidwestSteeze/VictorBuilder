@@ -296,17 +296,17 @@ namespace VictorBuilder
         }
     }
 
-    //public class Buff
-    //{
-    //    public string modifierName;
-    //    public int value;
+    public class Buff
+    {
+        public string modifierName;
+        public int value;
 
-    //    public Buff() { }
+        public Buff() { }
 
-    //    public Buff(string aModifierName, int aValue)
-    //    {
-    //        modifierName = aModifierName;
-    //        value = aValue;
-    //    }
-    //}
+        public Buff(string aModifierName, int aValue)
+        {
+            modifierName = aModifierName;
+            value = aValue;
+        }
+    }
 }
