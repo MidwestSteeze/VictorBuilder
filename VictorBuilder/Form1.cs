@@ -2186,6 +2186,38 @@ namespace VictorBuilder
             CalculateWeaponSkills((Tags)btnEquippedWeaponSecondary.Tag);
         }
 
+        private void CreateQuickBuildsFile()
+        {
+            //Create objects that'll make up the xml of the build
+            XmlDocument builds = new XmlDocument();
+            builds.LoadXml("<Builds></Builds>");
+            XmlElement root = builds.DocumentElement;
+            XmlElement build;
+            XmlElement quickBuildSlot;
+            XmlElement fileName;
+            XmlElement fileNameWithPath;
+
+            for (int i = 0; i < 4; i++)
+            {
+                build = builds.CreateElement("Build");
+                quickBuildSlot = builds.CreateElement("QuickBuildSlot");
+                quickBuildSlot.InnerText = "txtQuickBuild" + (i + 1).ToString();
+                fileName = builds.CreateElement("FileName");
+                fileNameWithPath = builds.CreateElement("FileNameWithPath");
+
+                //Piece together the xml for each individual quick build
+                build.AppendChild(quickBuildSlot);
+                build.AppendChild(fileName);
+                build.AppendChild(fileNameWithPath);
+
+                //Add the quick build to the list of builds
+                root.AppendChild(build);
+            }
+
+            //Save the xml to the file
+            System.IO.File.WriteAllText(Application.StartupPath + "\\" + QUICK_BUILDS_FILE_NAME, builds.OuterXml);
+        }
+
         private void PopulateQuickBuilds()
         { 
             TextBox txtQuickBuild;
@@ -2195,8 +2227,16 @@ namespace VictorBuilder
             XmlNodeList buildList;
 
             builds = new XmlDocument();
-            builds.Load(QUICK_BUILDS_FILE_NAME); //Application.StartupPath + "\\" + 
-            //TODO if file not found, create a blank one and store it for use
+
+            try
+            {
+                builds.Load(QUICK_BUILDS_FILE_NAME);
+            }
+            catch (FileNotFoundException e)
+            {
+                //File not found, create a blank one and store it for use
+                CreateQuickBuildsFile();
+            }
 
             //Get the list of all builds
             buildList = builds.SelectNodes("Builds/Build");
