@@ -34,6 +34,7 @@ namespace VictorBuilder
         string urlDemonPowers = "..\\..\\images\\demonpowers\\";
         string urlWeapons = "..\\..\\images\\weapons\\";
         string urlImageNotFound = "..\\..\\images\\imagenotfound.png";
+        const string QUICK_BUILDS_FILE_NAME = "QuickBuilds.xml";
 
         //Base stat values
         int BaseHealth = 4000; //TODO - whats base life at max lvl?
@@ -91,6 +92,7 @@ namespace VictorBuilder
             PreloadDemonPowers();
             PreloadOutfits();
             //PopulateBuffTags();
+            PopulateQuickBuilds();
 
             //Build the list of equipped item controls so we can iterate through it when Saving/Importing a build
             BuildListOfEquippedItems();
@@ -2083,7 +2085,7 @@ namespace VictorBuilder
         private void btnClearBuild_Click(object sender, EventArgs e)
         {
             //Prompt user to ensure they want to clear the build
-            DialogResult dgResult = MessageBox.Show("Are you sure you want to clear the build", "Clear Build", MessageBoxButtons.YesNo);
+            DialogResult dgResult = MessageBox.Show("Are you sure you want to clear this build?", "Clear Build", MessageBoxButtons.YesNo);
 
             if (dgResult == DialogResult.Yes)
             {
@@ -2182,6 +2184,101 @@ namespace VictorBuilder
             //Recalculate all weapon attacks since we toggled a buff that should apply if we have its corresponding item equipped (The Smith card)
             CalculateWeaponSkills((Tags)btnEquippedWeapon.Tag);
             CalculateWeaponSkills((Tags)btnEquippedWeaponSecondary.Tag);
+        }
+
+        private void PopulateQuickBuilds()
+        { 
+            TextBox txtQuickBuild;
+
+            //Load the Quick Builds xml file into a doc object
+            XmlDocument builds;
+            XmlNodeList buildList;
+
+            builds = new XmlDocument();
+            builds.Load(QUICK_BUILDS_FILE_NAME); //Application.StartupPath + "\\" + 
+            //TODO if file not found, create a blank one and store it for use
+
+            //Get the list of all builds
+            buildList = builds.SelectNodes("Builds/Build");
+
+            foreach (XmlNode build in buildList)
+            {
+                txtQuickBuild = (TextBox)grpQuickBuilds.Controls.Find(build.SelectSingleNode("QuickBuildSlot").InnerText, false).First();
+                txtQuickBuild.Text = build.SelectSingleNode("FileName").InnerText.Substring(0, build.SelectSingleNode("FileName").InnerText.IndexOf(".xml"));
+                txtQuickBuild.Tag = build.SelectSingleNode("FileNameWithPath").InnerText;
+            }
+        }
+
+        private void StoreQuickBuild(object sender, EventArgs e)
+        {
+            TextBox txtBox = (TextBox)sender;
+
+            //Open a load file dialog at the application's filepath to let the user pick which build they want stored in this slot
+            OpenFileDialog storeBuildDialog = new OpenFileDialog();
+            storeBuildDialog.Filter = "Xml files (*.xml)|*.xml|All files (*.*)|*.*";
+            storeBuildDialog.Title = "Select a build to store...";
+
+            //On OK, display the filename in the text box and store the full filepath for use when its corresponding Load button is clicked
+            if (storeBuildDialog.ShowDialog() == DialogResult.OK)
+            {
+                txtBox.Text = storeBuildDialog.SafeFileName.Substring(0, storeBuildDialog.SafeFileName.IndexOf(".xml"));
+                txtBox.Tag = storeBuildDialog.FileName;
+
+                //Add the build to the list of builds to fill the Quick Build slots on application start
+                SaveQuickBuildToList(txtBox.Name, storeBuildDialog.SafeFileName, storeBuildDialog.FileName);
+            }
+        }
+
+        private void SaveQuickBuildToList(string quickBuildSlot, string fileName, string fileNameWithPath)
+        {
+            XmlDocument builds;
+            XmlNode build;
+
+            //Load QuickBuilds.xml into a doc object so we can replace the build
+            builds = new XmlDocument();
+            builds.Load(QUICK_BUILDS_FILE_NAME);
+
+            //Get the specific build we're updating
+            build = builds.SelectSingleNode("Builds/Build[QuickBuildSlot='" + quickBuildSlot + "']");
+
+            build.SelectSingleNode("FileName").InnerText = fileName;
+            build.SelectSingleNode("FileNameWithPath").InnerText = fileNameWithPath;
+
+            //Save the updated Quick Builds list back to the xml file
+            System.IO.File.WriteAllText(QUICK_BUILDS_FILE_NAME, builds.OuterXml);
+            MessageBox.Show("Quick Builds list updated.");
+        }
+
+        private void LoadQuickBuild(string fileNameWithPath)
+        {
+            //Prompt the user asking if they're sure they want to load this build
+            DialogResult dgResult = MessageBox.Show("Are you sure you want to load this build? ", "Quick-load Build", MessageBoxButtons.YesNo);
+
+            if (dgResult == DialogResult.Yes)
+            {
+                //Using the filename from the textbox, find the build and load it
+                LoadBuild(fileNameWithPath);
+            }            
+        }
+
+        private void btnQuickBuild1_Click(object sender, EventArgs e)
+        {
+            LoadQuickBuild(txtQuickBuild1.Tag.ToString());
+        }
+
+        private void btnQuickBuild2_Click(object sender, EventArgs e)
+        {
+            LoadQuickBuild(txtQuickBuild2.Tag.ToString());
+        }
+
+        private void btnQuickBuild3_Click(object sender, EventArgs e)
+        {
+            LoadQuickBuild(txtQuickBuild3.Tag.ToString());
+        }
+
+        private void btnQuickBuild4_Click(object sender, EventArgs e)
+        {
+            LoadQuickBuild(txtQuickBuild4.Tag.ToString());
         }
     }
 }
