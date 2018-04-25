@@ -151,6 +151,10 @@
             this.lblInventoryPageCount = new System.Windows.Forms.Label();
             this.btnClearBuild = new System.Windows.Forms.Button();
             this.grpBuffs = new System.Windows.Forms.GroupBox();
+            this.chkBuffFrailty = new System.Windows.Forms.CheckBox();
+            this.chkBuffEnemyElectrocuted = new System.Windows.Forms.CheckBox();
+            this.chkBuffMight = new System.Windows.Forms.CheckBox();
+            this.chkBuffBrutality = new System.Windows.Forms.CheckBox();
             this.chkBuffFocus = new System.Windows.Forms.CheckBox();
             this.chkBuffEnemyFullHealth = new System.Windows.Forms.CheckBox();
             this.grpQuickBuilds = new System.Windows.Forms.GroupBox();
@@ -162,10 +166,8 @@
             this.btnQuickBuild2 = new System.Windows.Forms.Button();
             this.txtQuickBuild1 = new System.Windows.Forms.TextBox();
             this.btnQuickBuild1 = new System.Windows.Forms.Button();
-            this.chkBuffBrutality = new System.Windows.Forms.CheckBox();
-            this.chkBuffMight = new System.Windows.Forms.CheckBox();
-            this.chkBuffEnemyElectrocuted = new System.Windows.Forms.CheckBox();
-            this.chkBuffFrailty = new System.Windows.Forms.CheckBox();
+            this.chkActivateDemonPower = new System.Windows.Forms.CheckBox();
+            this.chkActivateDemonPowerSecondary = new System.Windows.Forms.CheckBox();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
@@ -1917,6 +1919,50 @@
             this.grpBuffs.TabStop = false;
             this.grpBuffs.Text = "Buffs/Debuffs";
             // 
+            // chkBuffFrailty
+            // 
+            this.chkBuffFrailty.AutoSize = true;
+            this.chkBuffFrailty.Location = new System.Drawing.Point(10, 14);
+            this.chkBuffFrailty.Name = "chkBuffFrailty";
+            this.chkBuffFrailty.Size = new System.Drawing.Size(53, 17);
+            this.chkBuffFrailty.TabIndex = 5;
+            this.chkBuffFrailty.Text = "Frailty";
+            this.chkBuffFrailty.UseVisualStyleBackColor = true;
+            this.chkBuffFrailty.CheckedChanged += new System.EventHandler(this.chkBuffFrailty_CheckedChanged);
+            // 
+            // chkBuffEnemyElectrocuted
+            // 
+            this.chkBuffEnemyElectrocuted.AutoSize = true;
+            this.chkBuffEnemyElectrocuted.Location = new System.Drawing.Point(9, 38);
+            this.chkBuffEnemyElectrocuted.Name = "chkBuffEnemyElectrocuted";
+            this.chkBuffEnemyElectrocuted.Size = new System.Drawing.Size(131, 17);
+            this.chkBuffEnemyElectrocuted.TabIndex = 4;
+            this.chkBuffEnemyElectrocuted.Text = "Enemy is Electrocuted";
+            this.chkBuffEnemyElectrocuted.UseVisualStyleBackColor = true;
+            this.chkBuffEnemyElectrocuted.CheckedChanged += new System.EventHandler(this.chkBuffEnemyElectrocuted_CheckedChanged);
+            // 
+            // chkBuffMight
+            // 
+            this.chkBuffMight.AutoSize = true;
+            this.chkBuffMight.Location = new System.Drawing.Point(79, 15);
+            this.chkBuffMight.Name = "chkBuffMight";
+            this.chkBuffMight.Size = new System.Drawing.Size(52, 17);
+            this.chkBuffMight.TabIndex = 3;
+            this.chkBuffMight.Text = "Might";
+            this.chkBuffMight.UseVisualStyleBackColor = true;
+            this.chkBuffMight.CheckedChanged += new System.EventHandler(this.chkBuffMight_CheckedChanged);
+            // 
+            // chkBuffBrutality
+            // 
+            this.chkBuffBrutality.AutoSize = true;
+            this.chkBuffBrutality.Location = new System.Drawing.Point(137, 14);
+            this.chkBuffBrutality.Name = "chkBuffBrutality";
+            this.chkBuffBrutality.Size = new System.Drawing.Size(63, 17);
+            this.chkBuffBrutality.TabIndex = 2;
+            this.chkBuffBrutality.Text = "Brutality";
+            this.chkBuffBrutality.UseVisualStyleBackColor = true;
+            this.chkBuffBrutality.CheckedChanged += new System.EventHandler(this.chkBuffBrutality_CheckedChanged);
+            // 
             // chkBuffFocus
             // 
             this.chkBuffFocus.AutoSize = true;
@@ -1951,7 +1997,7 @@
             this.grpQuickBuilds.Controls.Add(this.txtQuickBuild1);
             this.grpQuickBuilds.Controls.Add(this.btnQuickBuild1);
             this.grpQuickBuilds.ForeColor = System.Drawing.Color.White;
-            this.grpQuickBuilds.Location = new System.Drawing.Point(739, 516);
+            this.grpQuickBuilds.Location = new System.Drawing.Point(739, 564);
             this.grpQuickBuilds.Name = "grpQuickBuilds";
             this.grpQuickBuilds.Size = new System.Drawing.Size(145, 145);
             this.grpQuickBuilds.TabIndex = 56;
@@ -2050,49 +2096,31 @@
             this.btnQuickBuild1.UseVisualStyleBackColor = false;
             this.btnQuickBuild1.Click += new System.EventHandler(this.btnQuickBuild1_Click);
             // 
-            // chkBuffBrutality
+            // chkActivateDemonPower
             // 
-            this.chkBuffBrutality.AutoSize = true;
-            this.chkBuffBrutality.Location = new System.Drawing.Point(137, 14);
-            this.chkBuffBrutality.Name = "chkBuffBrutality";
-            this.chkBuffBrutality.Size = new System.Drawing.Size(63, 17);
-            this.chkBuffBrutality.TabIndex = 2;
-            this.chkBuffBrutality.Text = "Brutality";
-            this.chkBuffBrutality.UseVisualStyleBackColor = true;
-            this.chkBuffBrutality.CheckedChanged += new System.EventHandler(this.chkBuffBrutality_CheckedChanged);
+            this.chkActivateDemonPower.AutoSize = true;
+            this.chkActivateDemonPower.BackColor = System.Drawing.Color.Transparent;
+            this.chkActivateDemonPower.ForeColor = System.Drawing.Color.White;
+            this.chkActivateDemonPower.Location = new System.Drawing.Point(60, 516);
+            this.chkActivateDemonPower.Name = "chkActivateDemonPower";
+            this.chkActivateDemonPower.Size = new System.Drawing.Size(65, 17);
+            this.chkActivateDemonPower.TabIndex = 57;
+            this.chkActivateDemonPower.Text = "Activate";
+            this.chkActivateDemonPower.UseVisualStyleBackColor = false;
+            this.chkActivateDemonPower.CheckedChanged += new System.EventHandler(this.chkActivateDemonPower_CheckedChanged);
             // 
-            // chkBuffMight
+            // chkActivateDemonPowerSecondary
             // 
-            this.chkBuffMight.AutoSize = true;
-            this.chkBuffMight.Location = new System.Drawing.Point(79, 15);
-            this.chkBuffMight.Name = "chkBuffMight";
-            this.chkBuffMight.Size = new System.Drawing.Size(52, 17);
-            this.chkBuffMight.TabIndex = 3;
-            this.chkBuffMight.Text = "Might";
-            this.chkBuffMight.UseVisualStyleBackColor = true;
-            this.chkBuffMight.CheckedChanged += new System.EventHandler(this.chkBuffMight_CheckedChanged);
-            // 
-            // chkBuffEnemyElectrocuted
-            // 
-            this.chkBuffEnemyElectrocuted.AutoSize = true;
-            this.chkBuffEnemyElectrocuted.Location = new System.Drawing.Point(9, 38);
-            this.chkBuffEnemyElectrocuted.Name = "chkBuffEnemyElectrocuted";
-            this.chkBuffEnemyElectrocuted.Size = new System.Drawing.Size(131, 17);
-            this.chkBuffEnemyElectrocuted.TabIndex = 4;
-            this.chkBuffEnemyElectrocuted.Text = "Enemy is Electrocuted";
-            this.chkBuffEnemyElectrocuted.UseVisualStyleBackColor = true;
-            this.chkBuffEnemyElectrocuted.CheckedChanged += new System.EventHandler(this.chkBuffEnemyElectrocuted_CheckedChanged);
-            // 
-            // chkBuffFrailty
-            // 
-            this.chkBuffFrailty.AutoSize = true;
-            this.chkBuffFrailty.Location = new System.Drawing.Point(10, 14);
-            this.chkBuffFrailty.Name = "chkBuffFrailty";
-            this.chkBuffFrailty.Size = new System.Drawing.Size(53, 17);
-            this.chkBuffFrailty.TabIndex = 5;
-            this.chkBuffFrailty.Text = "Frailty";
-            this.chkBuffFrailty.UseVisualStyleBackColor = true;
-            this.chkBuffFrailty.CheckedChanged += new System.EventHandler(this.chkBuffFrailty_CheckedChanged);
+            this.chkActivateDemonPowerSecondary.AutoSize = true;
+            this.chkActivateDemonPowerSecondary.BackColor = System.Drawing.Color.Transparent;
+            this.chkActivateDemonPowerSecondary.ForeColor = System.Drawing.Color.White;
+            this.chkActivateDemonPowerSecondary.Location = new System.Drawing.Point(723, 516);
+            this.chkActivateDemonPowerSecondary.Name = "chkActivateDemonPowerSecondary";
+            this.chkActivateDemonPowerSecondary.Size = new System.Drawing.Size(65, 17);
+            this.chkActivateDemonPowerSecondary.TabIndex = 58;
+            this.chkActivateDemonPowerSecondary.Text = "Activate";
+            this.chkActivateDemonPowerSecondary.UseVisualStyleBackColor = false;
+            this.chkActivateDemonPowerSecondary.CheckedChanged += new System.EventHandler(this.chkActivateDemonPowerSecondary_CheckedChanged);
             // 
             // frmMain
             // 
@@ -2102,6 +2130,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.chkActivateDemonPowerSecondary);
+            this.Controls.Add(this.chkActivateDemonPower);
             this.Controls.Add(this.grpQuickBuilds);
             this.Controls.Add(this.grpBuffs);
             this.Controls.Add(this.btnClearBuild);
@@ -2333,6 +2363,8 @@
         private System.Windows.Forms.CheckBox chkBuffMight;
         private System.Windows.Forms.CheckBox chkBuffEnemyElectrocuted;
         private System.Windows.Forms.CheckBox chkBuffFrailty;
+        private System.Windows.Forms.CheckBox chkActivateDemonPower;
+        private System.Windows.Forms.CheckBox chkActivateDemonPowerSecondary;
 
     }
 }

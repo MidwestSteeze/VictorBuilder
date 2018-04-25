@@ -700,19 +700,39 @@ namespace VictorBuilder
         {
             if (secondarySlot)
             {
-                //Copy item to secondary slot
-                btnEquippedDemonPowerSecondary.BackgroundImage = Image.FromFile(urlDemonPowers + slotTags.imageURL);
-                btnEquippedDemonPowerSecondary.Tag = slotTags;
+                //Don't re-equip the item into the same slot if the same one is already equipped
+                if (!IsAlreadyEquipped(slotTags, (Tags)btnEquippedDemonPowerSecondary.Tag))
+                {
+                    //De-activate the Demon Power since we're switching to a different one; this will then remove the applied buff as well
+                    if (chkActivateDemonPowerSecondary.Checked)
+                    {
+                        chkActivateDemonPowerSecondary.Checked = false;
+                    }
 
-                itemEquipped = true;
+                    //Copy item to secondary slot
+                    btnEquippedDemonPowerSecondary.BackgroundImage = Image.FromFile(urlDemonPowers + slotTags.imageURL);
+                    btnEquippedDemonPowerSecondary.Tag = slotTags;
+
+                    itemEquipped = true;
+                }
             }
             else
             {
-                //Copy item to primary slot
-                btnEquippedDemonPower.BackgroundImage = Image.FromFile(urlDemonPowers + slotTags.imageURL);
-                btnEquippedDemonPower.Tag = slotTags;
+                //Don't re-equip the item if the same one is already equipped
+                if (!IsAlreadyEquipped(slotTags, (Tags)btnEquippedDemonPower.Tag))
+                {
+                    //De-activate the Demon Power since we're switching to a different one; this will then remove the applied buff as well
+                    if (chkActivateDemonPower.Checked)
+                    {
+                        chkActivateDemonPower.Checked = false;
+                    }
 
-                itemEquipped = true;
+                    //Copy item to primary slot
+                    btnEquippedDemonPower.BackgroundImage = Image.FromFile(urlDemonPowers + slotTags.imageURL);
+                    btnEquippedDemonPower.Tag = slotTags;
+
+                    itemEquipped = true;
+                }
             }
         }
 
@@ -779,6 +799,18 @@ namespace VictorBuilder
             }
         }
 
+        private bool IsAlreadyEquipped(Tags itemToEquip, Tags itemEquipped)
+        {
+            if ((itemEquipped != null) && (itemToEquip.name == itemEquipped.name))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         #endregion
         /********************************
          * END Equip item logic *
@@ -836,8 +868,24 @@ namespace VictorBuilder
             itemUnequipped = true;
         }
 
-        private void UnequipDemonPower(Button slot, Tags slotTags, ref bool itemUnequipped)
+        private void UnequipDemonPower(Button slot, Tags slotTags, ref bool itemUnequipped)  //TODO equip berserk in both and activate both, then unequip both
         {
+            //De-activate the Demon Power since we're unequipping it; this will remove the applied buff as well
+            if (slot.Name.Contains("Secondary"))
+            {
+                if (chkActivateDemonPowerSecondary.Checked)
+                {
+                    chkActivateDemonPowerSecondary.Checked = false;   
+                }
+            }
+            else
+            {
+                if (chkActivateDemonPower.Checked)
+                {
+                    chkActivateDemonPower.Checked = false;
+                }
+            }
+
             //Remove the equipped demon power from the slot
             slot.BackgroundImage = null;
             slot.Tag = null;
@@ -1942,10 +1990,14 @@ namespace VictorBuilder
                 case Tags.ItemType.DemonPower:
                     if (slot.Name.Contains("Secondary"))
                     {
+						//De-activate the Demon Power before equipping the new one
+                        chkActivateDemonPowerSecondary.Checked = false;
                         EquipDemonPower(slot, item, true, ref itemEquipped);
                     }
                     else
                     {
+						//De-activate the Demon Power before equipping the new one
+                        chkActivateDemonPower.Checked = false;
                         EquipDemonPower(slot, item, false, ref itemEquipped);
                     }
                     break;
@@ -2397,6 +2449,71 @@ namespace VictorBuilder
 
             //Now, with all global modifiers updated with the buffs applied accordingly, recalc the weapon skills and stat labels
             RecalcStatsFromBuffChange();
+        }
+
+        private void ActivateDemonPower(CheckBox chkDemonPower, Button demonPower)
+        {
+            Tags dpTags;
+            bool activatedInOtherSlot = false;
+
+            dpTags = (Tags)demonPower.Tag;
+
+            if (dpTags != null)
+            {
+                //Ensure this Demon Power isn't already activated in the other slot
+                if (chkDemonPower.Name.Contains("Secondary"))
+                {
+                    //Check the primary slot
+                    activatedInOtherSlot = ((btnEquippedDemonPower.Tag != null) &&
+                                            (((Tags)btnEquippedDemonPower.Tag).name == dpTags.name) && 
+                                             (chkActivateDemonPower.Checked));
+                }
+                else
+                {
+                    //Check the secondary slot
+                    activatedInOtherSlot = ((btnEquippedDemonPowerSecondary.Tag != null) &&
+                                            (((Tags)btnEquippedDemonPowerSecondary.Tag).name == dpTags.name) &&
+                                             (chkActivateDemonPowerSecondary.Checked));
+                }
+            }
+
+            //Only update the buff if this Demon Power isn't already activated in the other slot
+            if (!activatedInOtherSlot)
+            {
+                //Analyze the Tag value of the toggled demon power to activate/deactivate it
+                if (dpTags != null)
+                {
+                    switch (dpTags.name)
+                    {
+                        case "Berserk":
+                            //110% more damage and 20% crit chance
+                            UpdateBuff(chkDemonPower, ref modifierMoreDamage, 110);
+                            UpdateBuff(chkDemonPower, ref modifierFlatCritChance, 20);
+                            UpdateBuff(chkDemonPower, ref modifierFlatCritChanceSecondary, 20);
+                            break;
+                        case "Blink":
+                            //TODO Accelerated Speed; what are these calcs?
+                            break;
+                        case "Sanguine Aura":
+                            UpdateBuff(chkDemonPower, ref modifierFlatArmorOutfit, 100);
+                            break;
+                        default:
+                            break;
+                    }
+
+                    RecalcStatsFromBuffChange();
+                }
+            }
+        }
+
+        private void chkActivateDemonPower_CheckedChanged(object sender, EventArgs e)
+        {
+            ActivateDemonPower(chkActivateDemonPower, btnEquippedDemonPower);
+        }
+
+        private void chkActivateDemonPowerSecondary_CheckedChanged(object sender, EventArgs e)
+        {
+            ActivateDemonPower(chkActivateDemonPowerSecondary, btnEquippedDemonPowerSecondary);
         }
     }
 }
