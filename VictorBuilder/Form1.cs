@@ -2556,14 +2556,11 @@ namespace VictorBuilder
                                             (((Tags)btnEquippedDemonPowerSecondary.Tag).name == dpTags.name) &&
                                              (chkActivateDemonPowerSecondary.Checked));
                 }
-            }
 
-            //Only update the buff if this Demon Power isn't already activated in the other slot
-            if (!activatedInOtherSlot)
-            {
-                //Analyze the Tag value of the toggled demon power to activate/deactivate it
-                if (dpTags != null)
+                //Only update the buff if this Demon Power isn't already activated in the other slot
+                if (!activatedInOtherSlot)
                 {
+                    //Analyze the Tag value of the toggled demon power to activate/deactivate it
                     switch (dpTags.name)
                     {
                         case "Berserk":
