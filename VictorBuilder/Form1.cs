@@ -21,6 +21,7 @@ namespace VictorBuilder
         Tags.OutfitTags outfitTags;
         Tags newItemTags;
         List<Button> equippedItemControls;
+        List<CheckBox> buffControls;
         AppSettingsReader reader;
         string connectionString = Properties.Settings.Default.ItemsConnectionString;
         TabControl tcVisible;
@@ -95,8 +96,9 @@ namespace VictorBuilder
             PopulateBuffTags();
             PopulateQuickBuilds();
 
-            //Build the list of equipped item controls so we can iterate through it when Saving/Importing a build
+            //Build the list of equipped item and buff controls so we can iterate through it when Saving/Importing a build
             BuildListOfEquippedItems();
+            BuildListOfBuffs();
 
             //Scale the app at startup to half its original size
             //SizeF factor = new SizeF(scaleFactor, scaleFactor);
@@ -1770,6 +1772,16 @@ namespace VictorBuilder
             equippedItemControls.Add(btnEquippedDemonPowerSecondary);
         }
 
+        private void BuildListOfBuffs()
+        { 
+            buffControls = new List<CheckBox>();
+
+            foreach (CheckBox buff in grpBuffs.Controls)
+	        {
+		        buffControls.Add(buff);
+	        }
+        }
+
         //Generate xml of the current build and open a Save File Dialog so the user can specify where to save their build
         private void btnSaveBuild_Click(object sender, EventArgs e)
         {
@@ -1805,6 +1817,11 @@ namespace VictorBuilder
                     XmlElement inventoryCardsElement = build.CreateElement("InventoryCards");
                     items.AppendChild(inventoryCardsElement);
                     SaveItems(tcInventoryCards, ref build, ref inventoryCardsElement);
+
+                    //Save buffs
+                    //XmlElement buffsElement = build.CreateElement("Buffs");
+                    //items.AppendChild(buffsElement);
+                    //SaveBuffs(grpBuffs.Controls, ref build, ref buffsElement);
                 }
                 //if invalid cast, ignore and move on to the next control
                 catch (Exception ex)
@@ -1863,6 +1880,19 @@ namespace VictorBuilder
                 //Add the name of the control that this item belongs to for referencing when importing a build
                 item.InnerXml = "<Control>" + itemControl.Name + "</Control>";
 
+                //Save the Demon Power's Activated status
+                if (itemControl.Name.Contains("DemonPower"))
+                {
+                    if (itemControl.Name.Contains("Secondary"))
+                    {
+                        item.InnerXml += "<Activated>" + chkActivateDemonPowerSecondary.Checked.ToString() + "</Activated>";
+                    }
+                    else
+                    {
+                        item.InnerXml += "<Activated>" + chkActivateDemonPower.Checked.ToString() + "</Activated>";
+                    }
+                }
+
                 //Auto-generate the xml for the item by utilizing an XML serializer
                 using (StringWriter writer = new StringWriter())
                 {
@@ -1873,6 +1903,47 @@ namespace VictorBuilder
 
                     //Add the item to the list of items in the build
                     categoryElement.AppendChild(item);
+                }
+            }
+        }
+
+        private void SaveBuffs(Control.ControlCollection BuffControls, ref XmlDocument build, ref XmlElement categoryElement)
+        {
+            foreach (CheckBox buffControl in BuffControls)
+            {
+                SaveBuff(buffControl, ref build, ref categoryElement);
+            }
+        }
+
+        private void SaveBuff(CheckBox buffControl, ref XmlDocument build, ref XmlElement categoryElement)
+        {
+            Tags slotTags;
+            XmlElement buff;
+            XmlElement buffTags = build.CreateElement("Tags");
+
+            //Generate xml for the buff
+            if (buffControl.Tag != null)
+            {
+                //Serialize the current buff into an xml string to be appended to the build doc
+                slotTags = (Tags)buffControl.Tag;
+                XmlSerializer serializer = new XmlSerializer(slotTags.GetType());
+
+                //Create a new buff, so we don't overwrite the last one
+                buff = build.CreateElement("Buff");
+
+                //Add the name of the control that this item belongs to for referencing when importing a build
+                buff.InnerXml = "<Control>" + buffControl.Name + "</Control>";
+
+                //Auto-generate the xml for the item by utilizing an XML serializer
+                using (StringWriter writer = new StringWriter())
+                {
+                    serializer.Serialize(writer, buffControl.Tag);
+                    buffTags.InnerXml = writer.ToString();
+
+                    buff.AppendChild(buffTags.SelectSingleNode("Tags"));
+
+                    //Add the item to the list of items in the build
+                    categoryElement.AppendChild(buff);
                 }
             }
         }
@@ -1990,15 +2061,15 @@ namespace VictorBuilder
                 case Tags.ItemType.DemonPower:
                     if (slot.Name.Contains("Secondary"))
                     {
-						//De-activate the Demon Power before equipping the new one
-                        chkActivateDemonPowerSecondary.Checked = false;
                         EquipDemonPower(slot, item, true, ref itemEquipped);
+                        //With it now equipped, set the Activated state which will then apply the modifier
+                        chkActivateDemonPowerSecondary.Checked = Convert.ToBoolean(importItem.SelectSingleNode("Activated").InnerText);
                     }
                     else
                     {
-						//De-activate the Demon Power before equipping the new one
-                        chkActivateDemonPower.Checked = false;
                         EquipDemonPower(slot, item, false, ref itemEquipped);
+                        //With it now equipped, set the Activated state which will then apply the modifier
+                        chkActivateDemonPower.Checked = Convert.ToBoolean(importItem.SelectSingleNode("Activated").InnerText);
                     }
                     break;
                 case Tags.ItemType.Outfit:
@@ -2062,7 +2133,17 @@ namespace VictorBuilder
                 }
             }
 
-            //Reset stats and skills (sub-calls from the following call)
+            //Clear Activated Demon Powers
+            chkActivateDemonPower.Checked = false;
+            chkActivateDemonPowerSecondary.Checked = false;
+
+            //Clear any enabled buffs //TODO supress change events?
+            //foreach (CheckBox buff in grpBuffs.Controls)
+            //{
+            //    buff.Checked = false;
+            //}
+
+            //Clear equipped cards; this will also reset stats and skills as sub-calls from the following call
             CalculateStatsFromEquippedCards();
 
             //Hide the attack panels and reset the top-bar damage stats
