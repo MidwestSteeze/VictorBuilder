@@ -296,14 +296,14 @@ namespace VictorBuilder
         }
     }
 
-    public class Buff
+    public class BuffTags
     {
         public string modifierName;
         public int value;
 
-        public Buff() { }
+        public BuffTags() { }
 
-        public Buff(string aModifierName, int aValue)
+        public BuffTags(string aModifierName, int aValue)
         {
             modifierName = aModifierName;
             value = aValue;

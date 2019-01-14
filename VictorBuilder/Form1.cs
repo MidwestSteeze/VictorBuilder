@@ -148,6 +148,7 @@ namespace VictorBuilder
             }
 
             CalculateStatsFromEquippedCards();
+            ActivateDemonPowers();
             //Apply any enabled buffs; this then recalcs all weapon skills/stats as well
             UpdateBuffs();
         }
@@ -1819,9 +1820,9 @@ namespace VictorBuilder
                     SaveItems(tcInventoryCards, ref build, ref inventoryCardsElement);
 
                     //Save buffs
-                    //XmlElement buffsElement = build.CreateElement("Buffs");
-                    //items.AppendChild(buffsElement);
-                    //SaveBuffs(grpBuffs.Controls, ref build, ref buffsElement);
+                    XmlElement buffsElement = build.CreateElement("Buffs");
+                    root.AppendChild(buffsElement);
+                    SaveBuffs(grpBuffs.Controls, ref build, ref buffsElement);
                 }
                 //if invalid cast, ignore and move on to the next control
                 catch (Exception ex)
@@ -1917,7 +1918,7 @@ namespace VictorBuilder
 
         private void SaveBuff(CheckBox buffControl, ref XmlDocument build, ref XmlElement categoryElement)
         {
-            Tags slotTags;
+            BuffTags slotTags;
             XmlElement buff;
             XmlElement buffTags = build.CreateElement("Tags");
 
@@ -1925,7 +1926,7 @@ namespace VictorBuilder
             if (buffControl.Tag != null)
             {
                 //Serialize the current buff into an xml string to be appended to the build doc
-                slotTags = (Tags)buffControl.Tag;
+                slotTags = (BuffTags)buffControl.Tag;
                 XmlSerializer serializer = new XmlSerializer(slotTags.GetType());
 
                 //Create a new buff, so we don't overwrite the last one
@@ -1934,13 +1935,16 @@ namespace VictorBuilder
                 //Add the name of the control that this item belongs to for referencing when importing a build
                 buff.InnerXml = "<Control>" + buffControl.Name + "</Control>";
 
-                //Auto-generate the xml for the item by utilizing an XML serializer
+                //Save the Buff's Activated status
+                buff.InnerXml += "<Activated>" + buffControl.Checked.ToString() + "</Activated>";
+
+                //Auto-generate the xml for the buff by utilizing an XML serializer
                 using (StringWriter writer = new StringWriter())
                 {
                     serializer.Serialize(writer, buffControl.Tag);
                     buffTags.InnerXml = writer.ToString();
 
-                    buff.AppendChild(buffTags.SelectSingleNode("Tags"));
+                    buff.AppendChild(buffTags.SelectSingleNode("BuffTags"));
 
                     //Add the item to the list of items in the build
                     categoryElement.AppendChild(buff);
@@ -1975,6 +1979,7 @@ namespace VictorBuilder
 
             //Create an instance of the XmlSerializer specifying type and namespace
             XmlSerializer serializer = new XmlSerializer(typeof(Tags));
+            XmlSerializer buffSerializer = new XmlSerializer(typeof(BuffTags));
 
             //Load Equipped items
             items = build.SelectNodes("Build/Items/Equipped/Item");
@@ -1987,6 +1992,10 @@ namespace VictorBuilder
             //Load items that were stored in the Cards inventory
             items = build.SelectNodes("Build/Items/InventoryCards/Item");
             LoadInventoryItems(serializer, items, tcInventoryCards);
+
+            //Load buffs
+            items = build.SelectNodes("Build/Buffs/Buff");
+            LoadBuffs(buffSerializer, items, grpBuffs);
 
             //Update the page count for the currently visible TabControl
             UpdatePageCount(tcVisible);
@@ -2029,6 +2038,15 @@ namespace VictorBuilder
 
             //Now that we're done cycling through all the items, set the focused tab to the first one
             tcInventory.SelectedIndex = 0;
+        }
+
+        private void LoadBuffs(XmlSerializer serializer, XmlNodeList buffs, GroupBox buffControls)
+        {
+            //Loop through every buff and load it into its corresponding control
+            foreach (XmlNode importBuff in buffs)
+            {
+                LoadBuff(serializer, importBuff, buffControls);
+            }
         }
 
         private void LoadEquippedItem(XmlSerializer serializer, XmlNode importItem)
@@ -2119,6 +2137,21 @@ namespace VictorBuilder
             //Add the imported item to the inventory
             tlpInventory.Controls.Add(slot);
         }
+
+        private void LoadBuff(XmlSerializer serializer, XmlNode importBuff, GroupBox buffControls)
+        {
+            BuffTags buff;
+            CheckBox slot;
+            bool itemLoaded = false;
+
+            //Deserialize the imported buff in xml format to an object
+            buff = (BuffTags)serializer.Deserialize(new XmlNodeReader(importBuff.SelectSingleNode("BuffTags")));
+
+            //Assign the buff to its corresponding control
+            slot = (CheckBox)buffControls.Controls.Find(importBuff.SelectSingleNode("Control").InnerText, false).First();
+            slot.Checked = Convert.ToBoolean(importBuff.SelectSingleNode("Activated").InnerText);
+            slot.Tag = buff;      //TODO this may be redundant since we're populating all BuffTags for each buff checkbox on initial load of the program
+        }                         // also, if we change the program to auto-load the #1 quick build slot on program load, that'll negate the PopulateBuffTags() on Initialize() as well
 
         private void ClearEquippedItems()
         {
@@ -2247,23 +2280,23 @@ namespace VictorBuilder
 
         private void PopulateBuffTags()
         {
-            chkBuffBrutality.Tag = new Buff("Brutality", 50);
-            chkBuffEnemyElectrocuted.Tag = new Buff("EnemyElectrocuted", 20);
-            chkBuffFocus.Tag = new Buff("Focus", 20);
-            chkBuffFrailty.Tag = new Buff("Frailty", 100);
-            chkBuffMight.Tag = new Buff("Might", 100);
+            chkBuffBrutality.Tag = new BuffTags("Brutality", 50);
+            chkBuffEnemyElectrocuted.Tag = new BuffTags("EnemyElectrocuted", 20);
+            chkBuffFocus.Tag = new BuffTags("Focus", 20);
+            chkBuffFrailty.Tag = new BuffTags("Frailty", 100);
+            chkBuffMight.Tag = new BuffTags("Might", 100);
         }
 
         private void UpdateBuffs()
         {
-            Buff buffTags;
+            BuffTags buffTags;
 
             //Loop through all buff toggles and update the global variables
             foreach (CheckBox chkBox in grpBuffs.Controls)
             {
                 if (chkBox.Checked)
                 {
-                    buffTags = (Buff)chkBox.Tag;
+                    buffTags = (BuffTags)chkBox.Tag;
 
                     switch (buffTags.modifierName)
                     {
@@ -2532,7 +2565,14 @@ namespace VictorBuilder
             RecalcStatsFromBuffChange();
         }
 
-        private void ActivateDemonPower(CheckBox chkDemonPower, Button demonPower)
+        private void ActivateDemonPowers()
+        {
+            //Update the stat calculations based on each of the Demon Powers being activated or not
+            ActivateDemonPower(chkActivateDemonPower, btnEquippedDemonPower, null);
+            ActivateDemonPower(chkActivateDemonPowerSecondary, btnEquippedDemonPowerSecondary, null);
+        }
+
+        private void ActivateDemonPower(CheckBox chkDemonPower, Button demonPower, Control sender)
         {
             Tags dpTags;
             bool activatedInOtherSlot = false;
@@ -2560,23 +2600,27 @@ namespace VictorBuilder
                 //Only update the buff if this Demon Power isn't already activated in the other slot
                 if (!activatedInOtherSlot)
                 {
-                    //Analyze the Tag value of the toggled demon power to activate/deactivate it
-                    switch (dpTags.name)
+                    //Only recalc the modifier values if we directly toggled the buff via the Activate checkbox (ie. don't do this if we equipped a weapon and are manually calling to ActivateDemonPowers)
+                    if (sender != null && (sender.Name == chkActivateDemonPower.Name || sender.Name == chkActivateDemonPowerSecondary.Name))
                     {
-                        case "Berserk":
-                            //110% more damage and 20% crit chance
-                            UpdateBuff(chkDemonPower, ref modifierMoreDamage, 110);
-                            UpdateBuff(chkDemonPower, ref modifierFlatCritChance, 20);
-                            UpdateBuff(chkDemonPower, ref modifierFlatCritChanceSecondary, 20);
-                            break;
-                        case "Blink":
-                            //TODO Accelerated Speed; what are these calcs?
-                            break;
-                        case "Sanguine Aura":
-                            UpdateBuff(chkDemonPower, ref modifierFlatArmorOutfit, 100);
-                            break;
-                        default:
-                            break;
+                        //Analyze the Tag value of the toggled demon power to activate/deactivate it
+                        switch (dpTags.name)
+                        {
+                            case "Berserk":
+                                //110% more damage and 20% crit chance
+                                UpdateBuff(chkDemonPower, ref modifierMoreDamage, 110);
+                                UpdateBuff(chkDemonPower, ref modifierFlatCritChance, 20);
+                                UpdateBuff(chkDemonPower, ref modifierFlatCritChanceSecondary, 20);
+                                break;
+                            case "Blink":
+                                //TODO Accelerated Speed; what are these calcs?
+                                break;
+                            case "Sanguine Aura":
+                                UpdateBuff(chkDemonPower, ref modifierFlatArmorOutfit, 100);
+                                break;
+                            default:
+                                break;
+                        }
                     }
 
                     RecalcStatsFromBuffChange();
@@ -2586,12 +2630,12 @@ namespace VictorBuilder
 
         private void chkActivateDemonPower_CheckedChanged(object sender, EventArgs e)
         {
-            ActivateDemonPower(chkActivateDemonPower, btnEquippedDemonPower);
+            ActivateDemonPower(chkActivateDemonPower, btnEquippedDemonPower, (Control)sender);
         }
 
         private void chkActivateDemonPowerSecondary_CheckedChanged(object sender, EventArgs e)
         {
-            ActivateDemonPower(chkActivateDemonPowerSecondary, btnEquippedDemonPowerSecondary);
+            ActivateDemonPower(chkActivateDemonPowerSecondary, btnEquippedDemonPowerSecondary, (Control)sender);
         }
     }
 }
