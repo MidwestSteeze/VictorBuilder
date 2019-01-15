@@ -2155,6 +2155,17 @@ namespace VictorBuilder
 
         private void ClearEquippedItems()
         {
+            //Clear Activated Demon Powers
+            if (chkActivateDemonPower.Checked)
+            {
+                chkActivateDemonPower.Checked = false;
+            }
+
+            if (chkActivateDemonPowerSecondary.Checked)
+            {
+                chkActivateDemonPowerSecondary.Checked = false;
+            }
+
             //Clear equipped item slots
             foreach (Button item in equippedItemControls)
             {
@@ -2165,10 +2176,6 @@ namespace VictorBuilder
                     item.Tag = null;                    
                 }
             }
-
-            //Clear Activated Demon Powers
-            chkActivateDemonPower.Checked = false;
-            chkActivateDemonPowerSecondary.Checked = false;
 
             //Clear any enabled buffs //TODO supress change events?
             //foreach (CheckBox buff in grpBuffs.Controls)
@@ -2212,6 +2219,20 @@ namespace VictorBuilder
             UpdatePageCount(tcVisible);
         }
 
+        private void ClearBuffs()
+        {
+            //Clear equipped item slots
+            foreach (CheckBox item in grpBuffs.Controls)
+            {
+                //Only set the checked flag to false if we were true, or a change event will fire and end up skewing the modifier value one too many
+                // (ie. increaseddmgmodifier=0%, but if this check wasn't in place then UpdateBuff would fire and set increaseddmgmodifier=-50%)
+                if (item.Checked)
+                {
+                    item.Checked = false;
+                }
+            }        
+        }
+
         private void btnInventoryPreviousPage_Click(object sender, EventArgs e)
         {
             //Navigate the currently visible Inventory to the previous page
@@ -2246,6 +2267,7 @@ namespace VictorBuilder
             if (dgResult == DialogResult.Yes)
             {
                 //Clear all items from Equipped and Inventory controls
+                ClearBuffs();                
                 ClearEquippedItems();
                 ClearInventory();
             }
