@@ -9,6 +9,8 @@
  - CARDS: pictures of missing cards (greed, justice, theacrobat, thedevil, theguardian, theoak, thesaint)
  - WPNS/CALCS: weapon dps calculations (ie. how to compare lightning gun vs. hammer?)
  - BUG/TEST: does CalculateStatsFromEquippedCards reset all modifiers (including ones from buffs and not re-apply them?)
+ - Updated saved build xml if xml is adjusted due to new features/functionality (ie. added Demon Power and its Activated property, added Buffs, etc)
+	- if node not found, create it and set it to a default value
 ----------BETA----------
  - all white weapon image options on createitem popup (ignoring rarity)
  - weapon/card stat chance compare (ie. swapping in THIS card changes THESE stats by THIS much)
