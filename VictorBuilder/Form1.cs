@@ -27,14 +27,14 @@ namespace VictorBuilder
         TabControl tcVisible;
 
         //Global variables
-        string urlAttacks = "..\\..\\images\\attacks\\";
-        string urlBackgrounds = "..\\..\\images\\backgrounds\\";
-        string urlOutfits = "..\\..\\images\\outfits\\";
-        string urlCards = "..\\..\\images\\cards\\";
-        string urlConsumables = "..\\..\\images\\consumables\\";
-        string urlDemonPowers = "..\\..\\images\\demonpowers\\";
-        string urlWeapons = "..\\..\\images\\weapons\\";
-        string urlImageNotFound = "..\\..\\images\\imagenotfound.png";
+        string urlAttacks = System.IO.Path.Combine(Application.StartupPath, "images\\attacks\\");
+        string urlBackgrounds = System.IO.Path.Combine(Application.StartupPath, "images\\backgrounds\\");
+        string urlOutfits = System.IO.Path.Combine(Application.StartupPath, "images\\outfits\\");
+        string urlCards = System.IO.Path.Combine(Application.StartupPath, "images\\cards\\");
+        string urlConsumables = System.IO.Path.Combine(Application.StartupPath, "images\\consumables\\");
+        string urlDemonPowers = System.IO.Path.Combine(Application.StartupPath, "images\\demonpowers\\");
+        string urlWeapons = System.IO.Path.Combine(Application.StartupPath, "images\\weapons\\");
+        string urlImageNotFound = System.IO.Path.Combine(Application.StartupPath, "images\\imagenotfound.png");
         const string QUICK_BUILDS_FILE_NAME = "QuickBuilds.xml";
 
         //Base stat values
@@ -83,6 +83,12 @@ namespace VictorBuilder
         {
             InitializeComponent();
 
+            #if DEBUG  //Required for releasing with access to the .mdb (https://social.msdn.microsoft.com/Forums/vstudio/en-US/1232ca01-ab14-43f8-b0d6-a158cdacbc94/compiling-application-into-an-exe-file-with-an-ms-access-database?forum=vbgeneral)
+            //DON'T SET DATADIRECTORY, IT WILL ASSUME THE EXE DIRECTORY (https://social.msdn.microsoft.com/Forums/windows/en-US/5b608862-a6c3-431a-af1b-298dd5a91e6a/access-database-and-clickonce?forum=winformssetup)
+            #else
+                AppDomain.CurrentDomain.SetData("DataDirectory", AppDomain.CurrentDomain.BaseDirectory);
+            #endif
+
             //Get the version number from the App.Config
             reader = new AppSettingsReader();
             this.Text += " " + reader.GetValue("version", typeof(string));
@@ -115,9 +121,10 @@ namespace VictorBuilder
 
             lblEquippedDestinyPoints.Text = totalCardPoints.ToString() + "/" + maximumCardPoints.ToString();
 
-            //START Temporary OnLoad logic
-            LoadBuild("C:\\Users\\grams_s\\Documents\\Visual Studio 2012\\Projects\\VictorBuilder\\tmp.xml");
-            //END Temporary OnLoad logic
+            //Temporary OnLoad logic for development
+            #if DEBUG
+                LoadBuild(AppDomain.CurrentDomain.BaseDirectory + "\\tmp.xml");
+            #endif
         }
 
         protected override CreateParams CreateParams
@@ -1399,8 +1406,7 @@ namespace VictorBuilder
                 //Get the child controls of the consumables tab control
                 inventory = tcInventoryConsumables.SelectedTab;
                 inventorySlots = (TableLayoutPanel)inventory.Controls[inventory.Controls.Count - 1];
-
-                AddItemToInventorySlot(inventorySlots, consumable, urlConsumables, "btnInventoryConsumable"); 
+                AddItemToInventorySlot(inventorySlots, consumable, urlConsumables, "btnInventoryConsumable");
             }
         }
 
@@ -2429,8 +2435,17 @@ namespace VictorBuilder
             foreach (XmlNode build in buildList)
             {
                 txtQuickBuild = (TextBox)grpQuickBuilds.Controls.Find(build.SelectSingleNode("QuickBuildSlot").InnerText, false).First();
-                txtQuickBuild.Text = build.SelectSingleNode("FileName").InnerText.Substring(0, build.SelectSingleNode("FileName").InnerText.IndexOf(".xml"));
-                txtQuickBuild.Tag = build.SelectSingleNode("FileNameWithPath").InnerText;
+
+                try
+                {
+                    txtQuickBuild.Text = build.SelectSingleNode("FileName").InnerText.Substring(0, build.SelectSingleNode("FileName").InnerText.IndexOf(".xml"));
+                    txtQuickBuild.Tag = build.SelectSingleNode("FileNameWithPath").InnerText;
+                }
+                catch (ArgumentOutOfRangeException e)
+                {
+                    MessageBox.Show("No QuickBuild file found to load in to slot " + txtQuickBuild.Name + ".");  //TODOSSG chane this to write to a debug log to not annoy users
+                    //throw;
+                }
             }
         }
 
