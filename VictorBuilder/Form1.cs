@@ -2443,7 +2443,7 @@ namespace VictorBuilder
                 }
                 catch (ArgumentOutOfRangeException e)
                 {
-                    MessageBox.Show("No QuickBuild file found to load in to slot " + txtQuickBuild.Name + ".");  //TODOSSG chane this to write to a debug log to not annoy users
+                    //TODOSSG write to a debug log that build xml file was not found to load into the QuickBuild slot
                     //throw;
                 }
             }
