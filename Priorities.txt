@@ -1,5 +1,8 @@
+Git Releasing Notes:
+ - update verison number in VS before publish
+ - manually drag/drop the published setup.exe into each Git release when creating one
 ----------ALPHA----------  
-  - DPS/BUFFS: show buff icons available from items (with enable/disable toggle and stat recalc)
+ - DPS/BUFFS: show buff icons available from items (with enable/disable toggle and stat recalc)
 	- legendary weapons: dmg by #% when health is below 50%, dmg by #% when overdrive is full, dmg by #% when health is above 90%)
 	- affixes from CreateItem: %dmg vs essences/gargoyles/skeletons/spiders/vampires/wraiths, %dmg when overdrive is full, %dmg when health is above 90%, %dmg when health is below 50%
 	- cards: %crit dmg with swords, +armor pen per equipped Wicked card, %dmg vs enemies below 50%hp, %shotgun damage on split timed attacks, +armor while carrying a hammer, %dmg per stack of Arcane Power, Enraged (100% more dmg on next hit), shockwave deals #% base dmg, %dmg when health is above 90%
@@ -11,6 +14,7 @@
  - BUG/TEST: does CalculateStatsFromEquippedCards reset all modifiers (including ones from buffs and not re-apply them?)
  - Updated saved build xml if xml is adjusted due to new features/functionality (ie. added Demon Power and its Activated property, added Buffs, etc)
 	- if node not found, create it and set it to a default value
+ - move Save/Load build option into the UI and force a common file location (add note to users to manually move their build xml files into the newly defined directory)
 ----------BETA----------
  - all white weapon image options on createitem popup (ignoring rarity)
  - weapon/card stat chance compare (ie. swapping in THIS card changes THESE stats by THIS much)

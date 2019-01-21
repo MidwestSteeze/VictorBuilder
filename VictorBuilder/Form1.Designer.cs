@@ -168,6 +168,10 @@
             this.btnQuickBuild1 = new System.Windows.Forms.Button();
             this.chkActivateDemonPower = new System.Windows.Forms.CheckBox();
             this.chkActivateDemonPowerSecondary = new System.Windows.Forms.CheckBox();
+            this.btnStoreQuickBuild1 = new System.Windows.Forms.Button();
+            this.btnStoreQuickBuild2 = new System.Windows.Forms.Button();
+            this.btnStoreQuickBuild3 = new System.Windows.Forms.Button();
+            this.btnStoreQuickBuild4 = new System.Windows.Forms.Button();
             this.pnlEquippedCards.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconConsumables)).BeginInit();
@@ -1988,6 +1992,10 @@
             // grpQuickBuilds
             // 
             this.grpQuickBuilds.BackColor = System.Drawing.Color.Black;
+            this.grpQuickBuilds.Controls.Add(this.btnStoreQuickBuild4);
+            this.grpQuickBuilds.Controls.Add(this.btnStoreQuickBuild3);
+            this.grpQuickBuilds.Controls.Add(this.btnStoreQuickBuild2);
+            this.grpQuickBuilds.Controls.Add(this.btnStoreQuickBuild1);
             this.grpQuickBuilds.Controls.Add(this.txtQuickBuild4);
             this.grpQuickBuilds.Controls.Add(this.btnQuickBuild4);
             this.grpQuickBuilds.Controls.Add(this.txtQuickBuild3);
@@ -1997,29 +2005,28 @@
             this.grpQuickBuilds.Controls.Add(this.txtQuickBuild1);
             this.grpQuickBuilds.Controls.Add(this.btnQuickBuild1);
             this.grpQuickBuilds.ForeColor = System.Drawing.Color.White;
-            this.grpQuickBuilds.Location = new System.Drawing.Point(739, 564);
+            this.grpQuickBuilds.Location = new System.Drawing.Point(701, 564);
             this.grpQuickBuilds.Name = "grpQuickBuilds";
-            this.grpQuickBuilds.Size = new System.Drawing.Size(145, 145);
+            this.grpQuickBuilds.Size = new System.Drawing.Size(183, 145);
             this.grpQuickBuilds.TabIndex = 56;
             this.grpQuickBuilds.TabStop = false;
-            this.grpQuickBuilds.Text = "Builds";
+            this.grpQuickBuilds.Text = "Quick Builds";
             // 
             // txtQuickBuild4
             // 
             this.txtQuickBuild4.BackColor = System.Drawing.Color.Black;
             this.txtQuickBuild4.ForeColor = System.Drawing.Color.White;
-            this.txtQuickBuild4.Location = new System.Drawing.Point(5, 105);
+            this.txtQuickBuild4.Location = new System.Drawing.Point(15, 110);
             this.txtQuickBuild4.Name = "txtQuickBuild4";
             this.txtQuickBuild4.ReadOnly = true;
             this.txtQuickBuild4.Size = new System.Drawing.Size(85, 20);
             this.txtQuickBuild4.TabIndex = 8;
             this.txtQuickBuild4.Text = "(empty)";
-            this.txtQuickBuild4.DoubleClick += new System.EventHandler(this.StoreQuickBuild);
             // 
             // btnQuickBuild4
             // 
             this.btnQuickBuild4.BackColor = System.Drawing.Color.Black;
-            this.btnQuickBuild4.Location = new System.Drawing.Point(99, 105);
+            this.btnQuickBuild4.Location = new System.Drawing.Point(135, 110);
             this.btnQuickBuild4.Name = "btnQuickBuild4";
             this.btnQuickBuild4.Size = new System.Drawing.Size(40, 20);
             this.btnQuickBuild4.TabIndex = 7;
@@ -2031,18 +2038,17 @@
             // 
             this.txtQuickBuild3.BackColor = System.Drawing.Color.Black;
             this.txtQuickBuild3.ForeColor = System.Drawing.Color.White;
-            this.txtQuickBuild3.Location = new System.Drawing.Point(5, 77);
+            this.txtQuickBuild3.Location = new System.Drawing.Point(15, 80);
             this.txtQuickBuild3.Name = "txtQuickBuild3";
             this.txtQuickBuild3.ReadOnly = true;
             this.txtQuickBuild3.Size = new System.Drawing.Size(85, 20);
             this.txtQuickBuild3.TabIndex = 6;
             this.txtQuickBuild3.Text = "(empty)";
-            this.txtQuickBuild3.DoubleClick += new System.EventHandler(this.StoreQuickBuild);
             // 
             // btnQuickBuild3
             // 
             this.btnQuickBuild3.BackColor = System.Drawing.Color.Black;
-            this.btnQuickBuild3.Location = new System.Drawing.Point(99, 77);
+            this.btnQuickBuild3.Location = new System.Drawing.Point(135, 80);
             this.btnQuickBuild3.Name = "btnQuickBuild3";
             this.btnQuickBuild3.Size = new System.Drawing.Size(40, 20);
             this.btnQuickBuild3.TabIndex = 5;
@@ -2054,18 +2060,17 @@
             // 
             this.txtQuickBuild2.BackColor = System.Drawing.Color.Black;
             this.txtQuickBuild2.ForeColor = System.Drawing.Color.White;
-            this.txtQuickBuild2.Location = new System.Drawing.Point(5, 49);
+            this.txtQuickBuild2.Location = new System.Drawing.Point(15, 50);
             this.txtQuickBuild2.Name = "txtQuickBuild2";
             this.txtQuickBuild2.ReadOnly = true;
             this.txtQuickBuild2.Size = new System.Drawing.Size(85, 20);
             this.txtQuickBuild2.TabIndex = 4;
             this.txtQuickBuild2.Text = "(empty)";
-            this.txtQuickBuild2.DoubleClick += new System.EventHandler(this.StoreQuickBuild);
             // 
             // btnQuickBuild2
             // 
             this.btnQuickBuild2.BackColor = System.Drawing.Color.Black;
-            this.btnQuickBuild2.Location = new System.Drawing.Point(99, 48);
+            this.btnQuickBuild2.Location = new System.Drawing.Point(135, 50);
             this.btnQuickBuild2.Name = "btnQuickBuild2";
             this.btnQuickBuild2.Size = new System.Drawing.Size(40, 20);
             this.btnQuickBuild2.TabIndex = 3;
@@ -2077,18 +2082,17 @@
             // 
             this.txtQuickBuild1.BackColor = System.Drawing.Color.Black;
             this.txtQuickBuild1.ForeColor = System.Drawing.Color.White;
-            this.txtQuickBuild1.Location = new System.Drawing.Point(6, 21);
+            this.txtQuickBuild1.Location = new System.Drawing.Point(15, 20);
             this.txtQuickBuild1.Name = "txtQuickBuild1";
             this.txtQuickBuild1.ReadOnly = true;
             this.txtQuickBuild1.Size = new System.Drawing.Size(85, 20);
             this.txtQuickBuild1.TabIndex = 2;
             this.txtQuickBuild1.Text = "(empty)";
-            this.txtQuickBuild1.DoubleClick += new System.EventHandler(this.StoreQuickBuild);
             // 
             // btnQuickBuild1
             // 
             this.btnQuickBuild1.BackColor = System.Drawing.Color.Black;
-            this.btnQuickBuild1.Location = new System.Drawing.Point(100, 20);
+            this.btnQuickBuild1.Location = new System.Drawing.Point(135, 20);
             this.btnQuickBuild1.Name = "btnQuickBuild1";
             this.btnQuickBuild1.Size = new System.Drawing.Size(40, 20);
             this.btnQuickBuild1.TabIndex = 1;
@@ -2121,6 +2125,53 @@
             this.chkActivateDemonPowerSecondary.Text = "Activate";
             this.chkActivateDemonPowerSecondary.UseVisualStyleBackColor = false;
             this.chkActivateDemonPowerSecondary.CheckedChanged += new System.EventHandler(this.chkActivateDemonPowerSecondary_CheckedChanged);
+            // 
+            // btnStoreQuickBuild1
+            // 
+            this.btnStoreQuickBuild1.BackColor = System.Drawing.Color.Black;
+            this.btnStoreQuickBuild1.Location = new System.Drawing.Point(105, 20);
+            this.btnStoreQuickBuild1.Name = "btnStoreQuickBuild1";
+            this.btnStoreQuickBuild1.Size = new System.Drawing.Size(25, 20);
+            this.btnStoreQuickBuild1.TabIndex = 9;
+            this.btnStoreQuickBuild1.Tag = "txtQuickBuild1";
+            this.btnStoreQuickBuild1.Text = "...";
+            this.btnStoreQuickBuild1.UseVisualStyleBackColor = false;
+            this.btnStoreQuickBuild1.Click += new System.EventHandler(this.StoreQuickBuild);
+            // 
+            // btnStoreQuickBuild2
+            // 
+            this.btnStoreQuickBuild2.BackColor = System.Drawing.Color.Black;
+            this.btnStoreQuickBuild2.Location = new System.Drawing.Point(105, 50);
+            this.btnStoreQuickBuild2.Name = "btnStoreQuickBuild2";
+            this.btnStoreQuickBuild2.Size = new System.Drawing.Size(25, 20);
+            this.btnStoreQuickBuild2.TabIndex = 10;
+            this.btnStoreQuickBuild2.Tag = "txtQuickBuild2";
+            this.btnStoreQuickBuild2.Text = "...";
+            this.btnStoreQuickBuild2.UseVisualStyleBackColor = false;
+            this.btnStoreQuickBuild2.Click += new System.EventHandler(this.StoreQuickBuild);
+            // 
+            // btnStoreQuickBuild3
+            // 
+            this.btnStoreQuickBuild3.BackColor = System.Drawing.Color.Black;
+            this.btnStoreQuickBuild3.Location = new System.Drawing.Point(105, 80);
+            this.btnStoreQuickBuild3.Name = "btnStoreQuickBuild3";
+            this.btnStoreQuickBuild3.Size = new System.Drawing.Size(25, 20);
+            this.btnStoreQuickBuild3.TabIndex = 11;
+            this.btnStoreQuickBuild3.Tag = "txtQuickBuild3";
+            this.btnStoreQuickBuild3.Text = "...";
+            this.btnStoreQuickBuild3.UseVisualStyleBackColor = false;
+            this.btnStoreQuickBuild3.Click += new System.EventHandler(this.StoreQuickBuild);
+            // 
+            // btnStoreQuickBuild4
+            // 
+            this.btnStoreQuickBuild4.BackColor = System.Drawing.Color.Black;
+            this.btnStoreQuickBuild4.Location = new System.Drawing.Point(105, 110);
+            this.btnStoreQuickBuild4.Name = "btnStoreQuickBuild4";
+            this.btnStoreQuickBuild4.Size = new System.Drawing.Size(25, 20);
+            this.btnStoreQuickBuild4.TabIndex = 12;
+            this.btnStoreQuickBuild4.Tag = "txtQuickBuild4";
+            this.btnStoreQuickBuild4.Text = "...";
+            this.btnStoreQuickBuild4.UseVisualStyleBackColor = false;
             // 
             // frmMain
             // 
@@ -2365,6 +2416,10 @@
         private System.Windows.Forms.CheckBox chkBuffFrailty;
         private System.Windows.Forms.CheckBox chkActivateDemonPower;
         private System.Windows.Forms.CheckBox chkActivateDemonPowerSecondary;
+        private System.Windows.Forms.Button btnStoreQuickBuild1;
+        private System.Windows.Forms.Button btnStoreQuickBuild2;
+        private System.Windows.Forms.Button btnStoreQuickBuild3;
+        private System.Windows.Forms.Button btnStoreQuickBuild4;
 
     }
 }

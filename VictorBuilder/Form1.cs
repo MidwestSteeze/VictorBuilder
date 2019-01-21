@@ -2451,7 +2451,7 @@ namespace VictorBuilder
 
         private void StoreQuickBuild(object sender, EventArgs e)
         {
-            TextBox txtBox = (TextBox)sender;
+            Button btnStoreQuickBuild = (Button)sender;
 
             //Open a load file dialog at the application's filepath to let the user pick which build they want stored in this slot
             OpenFileDialog storeBuildDialog = new OpenFileDialog();
@@ -2461,11 +2461,12 @@ namespace VictorBuilder
             //On OK, display the filename in the text box and store the full filepath for use when its corresponding Load button is clicked
             if (storeBuildDialog.ShowDialog() == DialogResult.OK)
             {
-                txtBox.Text = storeBuildDialog.SafeFileName.Substring(0, storeBuildDialog.SafeFileName.IndexOf(".xml"));
-                txtBox.Tag = storeBuildDialog.FileName;
+                TextBox txtStoreQuickBuild = (TextBox)grpQuickBuilds.Controls.Find(btnStoreQuickBuild.Tag.ToString(), false).First();
+                txtStoreQuickBuild.Text = storeBuildDialog.SafeFileName.Substring(0, storeBuildDialog.SafeFileName.IndexOf(".xml"));
+                txtStoreQuickBuild.Tag = storeBuildDialog.FileName;
 
                 //Add the build to the list of builds to fill the Quick Build slots on application start
-                SaveQuickBuildToList(txtBox.Name, storeBuildDialog.SafeFileName, storeBuildDialog.FileName);
+                SaveQuickBuildToList(txtStoreQuickBuild.Name, storeBuildDialog.SafeFileName, storeBuildDialog.FileName);
             }
         }
 
