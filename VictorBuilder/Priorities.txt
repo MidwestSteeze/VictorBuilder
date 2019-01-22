@@ -28,6 +28,8 @@ Git Releasing Notes:
  - equip/uneqiup destiny cards doesn't update stat labels (ie. health, card count, etc) if you don't have a weapon equipped
  - equip Seer card, equip other cards to max points, unequip Seer card (what's the behavoir in-game for this?)
  - test your try/catches around Enum.TryParse in CreateItem; apparently it wont throw an exception but insteaed returns a boolean if it failed to parse?
+ - autoupdater so .exe download and re-install from GitHub is not necessary
+ - install-less version (may require move of Access db to xml to remove registry dependancies)
  ----------LAUNCH----------
  - add bottom legendary border to all demon power hovertext 
  - add expansion weapons

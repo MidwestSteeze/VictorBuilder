@@ -98,6 +98,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tags.cs" />
+    <Content Include="Priorities.txt" />
     <EmbeddedResource Include="CreateItemForm.resx">
       <DependentUpon>CreateItemForm.cs</DependentUpon>
     </EmbeddedResource>
