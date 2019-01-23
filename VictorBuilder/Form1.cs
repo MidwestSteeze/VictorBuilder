@@ -2183,12 +2183,6 @@ namespace VictorBuilder
                 }
             }
 
-            //Clear any enabled buffs //TODO supress change events?
-            //foreach (CheckBox buff in grpBuffs.Controls)
-            //{
-            //    buff.Checked = false;
-            //}
-
             //Clear equipped cards; this will also reset stats and skills as sub-calls from the following call
             CalculateStatsFromEquippedCards();
 
