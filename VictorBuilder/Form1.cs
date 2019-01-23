@@ -878,7 +878,7 @@ namespace VictorBuilder
             itemUnequipped = true;
         }
 
-        private void UnequipDemonPower(Button slot, Tags slotTags, ref bool itemUnequipped)  //TODO equip berserk in both and activate both, then unequip both
+        private void UnequipDemonPower(Button slot, Tags slotTags, ref bool itemUnequipped)
         {
             //De-activate the Demon Power since we're unequipping it; this will remove the applied buff as well
             if (slot.Name.Contains("Secondary"))
