@@ -2,6 +2,8 @@ Git Releasing Notes:
  - update verison number in VS before publish
  - manually drag/drop the published setup.exe into each Git release when creating one
 ----------ALPHA----------  
+ - BUG/TEST: does CalculateStatsFromEquippedCards reset all modifiers (including ones from buffs and not re-apply them?)
+ - add preset buttons to load all items for X rarity (weapons and cards)
  - DPS/BUFFS: show buff icons available from items (with enable/disable toggle and stat recalc)
 	- legendary weapons: dmg by #% when health is below 50%, dmg by #% when overdrive is full, dmg by #% when health is above 90%)
 	- affixes from CreateItem: %dmg vs essences/gargoyles/skeletons/spiders/vampires/wraiths, %dmg when overdrive is full, %dmg when health is above 90%, %dmg when health is below 50%
@@ -11,14 +13,12 @@ Git Releasing Notes:
  - UI: change UI of CreateItem to see mods better (and point values); almost like an item/card preview?
  - CARDS: pictures of missing cards (greed, justice, theacrobat, thedevil, theguardian, theoak, thesaint)
  - WPNS/CALCS: weapon dps calculations (ie. how to compare lightning gun vs. hammer?)
- - BUG/TEST: does CalculateStatsFromEquippedCards reset all modifiers (including ones from buffs and not re-apply them?)
- - Updated saved build xml if xml is adjusted due to new features/functionality (ie. added Demon Power and its Activated property, added Buffs, etc)
+ - Update saved build xml if xml is adjusted due to new features/functionality (ie. added Demon Power and its Activated property, added Buffs, etc)
 	- if node not found, create it and set it to a default value
  - move Save/Load build option into the UI and force a common file location (add note to users to manually move their build xml files into the newly defined directory)
 ----------BETA----------
  - all white weapon image options on createitem popup (ignoring rarity)
  - weapon/card stat chance compare (ie. swapping in THIS card changes THESE stats by THIS much)
- - add preset buttons to load all items for X rarity (weapons and cards)
  - enhance hover text to allow for different color borders/sizes of hover text panel depending on item rarity
    - OnHover, check slotTags.itemRarity; if rare then lblHoverText.FontColor=orange, if legendary=purple, etc
  - resize: add button with function to scale up to 1920x1080 and back to 1280x720

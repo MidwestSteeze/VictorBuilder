@@ -1,0 +1,522 @@
+<Build><Items><Equipped><Item><Control>btnEquippedOutfit</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Highlander's Outfit</name>
+  <description>You gain 300 Overdrive when you use a weapon special attack, but attacks no longer grant Overdrive.
+Reduces weapon cooldowns by 15%.</description>
+  <itemType>Outfit</itemType>
+  <rarity>Legendary</rarity>
+  <imageURL>highlander.png</imageURL>
+  <outfitTags>
+    <armor>70</armor>
+    <critChance>0</critChance>
+    <health>0</health>
+    <urlOutfitBackgroundImage>highlander.png</urlOutfitBackgroundImage>
+  </outfitTags>
+</Tags></Item><Item><Control>btnEquippedWeapon</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Efficient Hammer of the Fox</name>
+  <description>40% faster weapon skill cooldowns
+Attack cooldowns reduced by 2s. on overkill (1s. cooldown)
+Damaged increased by 44%, but decreases gold drops</description>
+  <itemType>Weapon</itemType>
+  <rarity>Rare</rarity>
+  <imageURL>hammer.png</imageURL>
+  <weaponTags>
+    <armorPenetration>0</armorPenetration>
+    <critChance>15</critChance>
+    <critMulti>100</critMulti>
+    <dmgMax>228</dmgMax>
+    <dmgMin>171</dmgMin>
+    <weaponDistance>Melee</weaponDistance>
+    <weaponType>Hammer</weaponType>
+    <attack1>
+      <attackName>Pound</attackName>
+      <attackImageURL>hammer_pound.png</attackImageURL>
+      <attackImageHoverTextURL>hammer_pound_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>901</attackDmgMin>
+      <attackDmgMax>1202</attackDmgMax>
+    </attack1>
+    <attack2>
+      <attackName>Crush</attackName>
+      <attackImageURL>hammer_crush.png</attackImageURL>
+      <attackImageHoverTextURL>hammer_crush_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>4506</attackDmgMin>
+      <attackDmgMax>6008</attackDmgMax>
+    </attack2>
+    <attack3>
+      <attackName>Smash</attackName>
+      <attackImageURL>hammer_smash.png</attackImageURL>
+      <attackImageHoverTextURL>hammer_smash_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>2249</attackDmgMin>
+      <attackDmgMax>3000</attackDmgMax>
+    </attack3>
+    <prefix>
+      <name>Efficient</name>
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>40</value>
+      <description>#% faster weapon skill cooldowns</description>
+      <listBoxDisplay>40% faster weapon skill cooldowns</listBoxDisplay>
+    </prefix>
+    <suffix>
+      <name>of the Fox</name>
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>0</value>
+      <description>Attack cooldowns reduced by 2s. on overkill (1s. cooldown)</description>
+      <listBoxDisplay>Attack cooldowns reduced by 2s. on overkill (1s. cooldown)</listBoxDisplay>
+    </suffix>
+    <thirdAffix>
+      <name>Cursed</name>
+      <modifier>Damage</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>44</value>
+      <description>Damaged increased by #%, but decreases gold drops</description>
+      <listBoxDisplay>Damaged increased by 44%, but decreases gold drops</listBoxDisplay>
+    </thirdAffix>
+  </weaponTags>
+</Tags></Item><Item><Control>btnEquippedWeaponSecondary</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Power Foil</name>
+  <description>Attack speed increased by 25%
+30% faster weapon skill cooldowns
+Grants additional Charge use without triggering a cooldown</description>
+  <itemType>Weapon</itemType>
+  <rarity>Legendary</rarity>
+  <imageURL>rapier_powerfoil.png</imageURL>
+  <weaponTags>
+    <armorPenetration>100</armorPenetration>
+    <critChance>10</critChance>
+    <critMulti>150</critMulti>
+    <dmgMax>72</dmgMax>
+    <dmgMin>48</dmgMin>
+    <weaponDistance>Melee</weaponDistance>
+    <weaponType>Rapier</weaponType>
+    <attack1>
+      <attackName>Flurry</attackName>
+      <attackImageURL>rapier_flurry.png</attackImageURL>
+      <attackImageHoverTextURL>rapier_flurry_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>253</attackDmgMin>
+      <attackDmgMax>379</attackDmgMax>
+    </attack1>
+    <attack2>
+      <attackName>Charge</attackName>
+      <attackImageURL>rapier_charge.png</attackImageURL>
+      <attackImageHoverTextURL>rapier_charge_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>632</attackDmgMin>
+      <attackDmgMax>949</attackDmgMax>
+    </attack2>
+    <attack3>
+      <attackName>Coup De Grace</attackName>
+      <attackImageURL>rapier_coupdegrace.png</attackImageURL>
+      <attackImageHoverTextURL>rapier_coupdegrace_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>759</attackDmgMin>
+      <attackDmgMax>1138</attackDmgMax>
+    </attack3>
+    <prefix>
+      <name />
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>25</value>
+      <description>Attack speed increased by #%</description>
+      <listBoxDisplay>Attack speed increased by 25%</listBoxDisplay>
+    </prefix>
+    <suffix>
+      <name />
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>30</value>
+      <description>#% faster weapon skill cooldowns</description>
+      <listBoxDisplay>30% faster weapon skill cooldowns</listBoxDisplay>
+    </suffix>
+    <specialStat>Grants additional Charge use without triggering a cooldown</specialStat>
+  </weaponTags>
+</Tags></Item><Item><Control>btnEquippedConsumable</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Ambrosia</name>
+  <description>Restores 100% health and refreshes the cooldowns of all attacks
+and Demon Powers</description>
+  <itemType>Consumable</itemType>
+  <rarity>Common</rarity>
+  <imageURL>ambrosia.png</imageURL>
+</Tags></Item><Item><Control>btnEquippedConsumableSecondary</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Superior Med Kit</name>
+  <description>Unlimited use.
+Restores 750 health and removes one negative effect.
+Heals extra 250 health if an effect is removed.</description>
+  <itemType>Consumable</itemType>
+  <rarity>Common</rarity>
+  <imageURL>superiormedkit.png</imageURL>
+</Tags></Item><Item><Control>btnEquippedDemonPower</Control><Activated>True</Activated><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Berserk</name>
+  <itemType>DemonPower</itemType>
+  <rarity>Legendary</rarity>
+  <imageURL>berserk.png</imageURL>
+  <imageHoverTextURL>berserk_hovertext.png</imageHoverTextURL>
+</Tags></Item><Item><Control>btnEquippedDemonPowerSecondary</Control><Activated>False</Activated><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Blink</name>
+  <itemType>DemonPower</itemType>
+  <rarity>Legendary</rarity>
+  <imageURL>blink.png</imageURL>
+  <imageHoverTextURL>blink_hovertext.png</imageHoverTextURL>
+</Tags></Item></Equipped><InventoryWeapons><Item><Control>btnInventoryWeapon2</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Power Foil</name>
+  <description>Attack speed increased by 25%
+30% faster weapon skill cooldowns
+Grants additional Charge use without triggering a cooldown</description>
+  <itemType>Weapon</itemType>
+  <rarity>Legendary</rarity>
+  <imageURL>rapier_powerfoil.png</imageURL>
+  <weaponTags>
+    <armorPenetration>100</armorPenetration>
+    <critChance>10</critChance>
+    <critMulti>150</critMulti>
+    <dmgMax>72</dmgMax>
+    <dmgMin>48</dmgMin>
+    <weaponDistance>Melee</weaponDistance>
+    <weaponType>Rapier</weaponType>
+    <attack1>
+      <attackName>Flurry</attackName>
+      <attackImageURL>rapier_flurry.png</attackImageURL>
+      <attackImageHoverTextURL>rapier_flurry_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>48</attackDmgMin>
+      <attackDmgMax>72</attackDmgMax>
+    </attack1>
+    <attack2>
+      <attackName>Charge</attackName>
+      <attackImageURL>rapier_charge.png</attackImageURL>
+      <attackImageHoverTextURL>rapier_charge_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>120</attackDmgMin>
+      <attackDmgMax>180</attackDmgMax>
+    </attack2>
+    <attack3>
+      <attackName>Coup De Grace</attackName>
+      <attackImageURL>rapier_coupdegrace.png</attackImageURL>
+      <attackImageHoverTextURL>rapier_coupdegrace_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>144</attackDmgMin>
+      <attackDmgMax>216</attackDmgMax>
+    </attack3>
+    <prefix>
+      <name />
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>25</value>
+      <description>Attack speed increased by #%</description>
+      <listBoxDisplay>Attack speed increased by 25%</listBoxDisplay>
+    </prefix>
+    <suffix>
+      <name />
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>30</value>
+      <description>#% faster weapon skill cooldowns</description>
+      <listBoxDisplay>30% faster weapon skill cooldowns</listBoxDisplay>
+    </suffix>
+    <specialStat>Grants additional Charge use without triggering a cooldown</specialStat>
+  </weaponTags>
+</Tags></Item><Item><Control>btnInventoryWeapon2</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Efficient Hammer of the Fox</name>
+  <description>40% faster weapon skill cooldowns
+Attack cooldowns reduced by 2s. on overkill (1s. cooldown)
+Damaged increased by 44%, but decreases gold drops</description>
+  <itemType>Weapon</itemType>
+  <rarity>Rare</rarity>
+  <imageURL>hammer.png</imageURL>
+  <weaponTags>
+    <armorPenetration>0</armorPenetration>
+    <critChance>15</critChance>
+    <critMulti>100</critMulti>
+    <dmgMax>228</dmgMax>
+    <dmgMin>171</dmgMin>
+    <weaponDistance>Melee</weaponDistance>
+    <weaponType>Hammer</weaponType>
+    <attack1>
+      <attackName>Pound</attackName>
+      <attackImageURL>hammer_pound.png</attackImageURL>
+      <attackImageHoverTextURL>hammer_pound_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>171</attackDmgMin>
+      <attackDmgMax>228</attackDmgMax>
+    </attack1>
+    <attack2>
+      <attackName>Crush</attackName>
+      <attackImageURL>hammer_crush.png</attackImageURL>
+      <attackImageHoverTextURL>hammer_crush_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>855</attackDmgMin>
+      <attackDmgMax>1140</attackDmgMax>
+    </attack2>
+    <attack3>
+      <attackName>Smash</attackName>
+      <attackImageURL>hammer_smash.png</attackImageURL>
+      <attackImageHoverTextURL>hammer_smash_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>427</attackDmgMin>
+      <attackDmgMax>569</attackDmgMax>
+    </attack3>
+    <prefix>
+      <name>Efficient</name>
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>40</value>
+      <description>#% faster weapon skill cooldowns</description>
+      <listBoxDisplay>40% faster weapon skill cooldowns</listBoxDisplay>
+    </prefix>
+    <suffix>
+      <name>of the Fox</name>
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>0</value>
+      <description>Attack cooldowns reduced by 2s. on overkill (1s. cooldown)</description>
+      <listBoxDisplay>Attack cooldowns reduced by 2s. on overkill (1s. cooldown)</listBoxDisplay>
+    </suffix>
+    <thirdAffix>
+      <name>Cursed</name>
+      <modifier>Damage</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>44</value>
+      <description>Damaged increased by #%, but decreases gold drops</description>
+      <listBoxDisplay>Damaged increased by 44%, but decreases gold drops</listBoxDisplay>
+    </thirdAffix>
+  </weaponTags>
+</Tags></Item><Item><Control>btnInventoryWeapon3</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Efficient Tome of the Fox</name>
+  <description>40% faster weapon skill cooldowns
+Attack cooldowns reduced by 2s. on overkill (1s. cooldown)
+Damaged increased by 44%, but decreases gold drops</description>
+  <itemType>Weapon</itemType>
+  <rarity>Rare</rarity>
+  <imageURL>tome.png</imageURL>
+  <weaponTags>
+    <armorPenetration>0</armorPenetration>
+    <critChance>11</critChance>
+    <critMulti>100</critMulti>
+    <dmgMax>58</dmgMax>
+    <dmgMin>35</dmgMin>
+    <weaponDistance>Ranged</weaponDistance>
+    <weaponType>Tome</weaponType>
+    <attack1>
+      <attackName>Magic Missiles</attackName>
+      <attackImageURL>tome_magicmissiles.png</attackImageURL>
+      <attackImageHoverTextURL>tome_magicmissiles_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>51</attackDmgMin>
+      <attackDmgMax>84</attackDmgMax>
+    </attack1>
+    <attack2>
+      <attackName>Dimension Wave</attackName>
+      <attackImageURL>tome_dimensionwave.png</attackImageURL>
+      <attackImageHoverTextURL>tome_dimensionwave_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>41</attackDmgMin>
+      <attackDmgMax>68</attackDmgMax>
+    </attack2>
+    <attack3>
+      <attackName>Singularity Orb</attackName>
+      <attackImageURL>tome_singularityorb.png</attackImageURL>
+      <attackImageHoverTextURL>tome_singularityorb_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>231</attackDmgMin>
+      <attackDmgMax>383</attackDmgMax>
+    </attack3>
+    <prefix>
+      <name>Efficient</name>
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>40</value>
+      <description>#% faster weapon skill cooldowns</description>
+      <listBoxDisplay>40% faster weapon skill cooldowns</listBoxDisplay>
+    </prefix>
+    <suffix>
+      <name>of the Fox</name>
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>0</value>
+      <description>Attack cooldowns reduced by 2s. on overkill (1s. cooldown)</description>
+      <listBoxDisplay>Attack cooldowns reduced by 2s. on overkill (1s. cooldown)</listBoxDisplay>
+    </suffix>
+    <thirdAffix>
+      <name>Cursed</name>
+      <modifier>Damage</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>44</value>
+      <description>Damaged increased by #%, but decreases gold drops</description>
+      <listBoxDisplay>Damaged increased by 44%, but decreases gold drops</listBoxDisplay>
+    </thirdAffix>
+  </weaponTags>
+</Tags></Item></InventoryWeapons><InventoryCards><Item><Control>btnInventoryCard2</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>The Warrior</name>
+  <description>20% increased Melee Damage</description>
+  <itemType>Card</itemType>
+  <rarity>Rare</rarity>
+  <imageURL>thewarrior5.png</imageURL>
+  <cardTags>
+    <prefix>
+      <name />
+      <modifier>MeleeDamage</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>20</value>
+      <description>#% increased Melee Damage</description>
+      <listBoxDisplay>20% increased Melee Damage</listBoxDisplay>
+    </prefix>
+    <points>5</points>
+    <unique>false</unique>
+    <conditional>false</conditional>
+    <divineWicked>None</divineWicked>
+  </cardTags>
+  <listBoxDisplay>The Warrior | 20% increased Melee Damage</listBoxDisplay>
+</Tags></Item><Item><Control>btnInventoryCard3</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Divine The Vampire</name>
+  <description>Adds 10% life steal with weapons
+Gain 250 health when the overdrive is filled.</description>
+  <itemType>Card</itemType>
+  <rarity>Rare</rarity>
+  <imageURL>thevampire4.png</imageURL>
+  <cardTags>
+    <prefix>
+      <name />
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>10</value>
+      <description>Adds #% life steal with weapons</description>
+      <listBoxDisplay>Adds 10% life steal with weapons</listBoxDisplay>
+    </prefix>
+    <thirdAffix>
+      <name />
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>250</value>
+      <description>Gain # health when the overdrive is filled.</description>
+      <listBoxDisplay>Gain 250 health when the overdrive is filled.</listBoxDisplay>
+    </thirdAffix>
+    <points>4</points>
+    <unique>false</unique>
+    <conditional>false</conditional>
+    <divineWicked>Divine</divineWicked>
+  </cardTags>
+  <listBoxDisplay>The Vampire | Adds 10% life steal with weapons</listBoxDisplay>
+</Tags></Item><Item><Control>btnInventoryCard4</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Wicked The Vampire</name>
+  <description>Adds 10% life steal with weapons
+Receive Brutality when overdrive is filled (29% probability)</description>
+  <itemType>Card</itemType>
+  <rarity>Rare</rarity>
+  <imageURL>thevampire4.png</imageURL>
+  <cardTags>
+    <prefix>
+      <name />
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>10</value>
+      <description>Adds #% life steal with weapons</description>
+      <listBoxDisplay>Adds 10% life steal with weapons</listBoxDisplay>
+    </prefix>
+    <thirdAffix>
+      <name />
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>29</value>
+      <description>Receive Brutality when overdrive is filled (#% probability)</description>
+      <listBoxDisplay>Receive Brutality when overdrive is filled (29% probability)</listBoxDisplay>
+    </thirdAffix>
+    <points>4</points>
+    <unique>false</unique>
+    <conditional>false</conditional>
+    <divineWicked>Wicked</divineWicked>
+  </cardTags>
+  <listBoxDisplay>The Vampire | Adds 10% life steal with weapons</listBoxDisplay>
+</Tags></Item><Item><Control>btnInventoryCard5</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>The Trio</name>
+  <description>Rapier Charge attack spawns two other charges on both sides
++20% Charge damage</description>
+  <itemType>Card</itemType>
+  <rarity>Legendary</rarity>
+  <imageURL>thetrio2.png</imageURL>
+  <cardTags>
+    <prefix>
+      <name />
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>0</value>
+      <description>Rapier Charge attack spawns two other charges on both sides</description>
+      <listBoxDisplay>Rapier Charge attack spawns two other charges on both sides</listBoxDisplay>
+    </prefix>
+    <suffix>
+      <name />
+      <modifier>Specific</modifier>
+      <modifierSpecific>AttackRapierCharge</modifierSpecific>
+      <value>20</value>
+      <description>+20% Charge damage</description>
+      <listBoxDisplay>+20% Charge damage</listBoxDisplay>
+    </suffix>
+    <points>2</points>
+    <unique>true</unique>
+    <conditional>false</conditional>
+    <divineWicked>None</divineWicked>
+  </cardTags>
+  <listBoxDisplay>The Trio | Rapier Charge attack spawns two other charges on both sides | +20% Charge damage</listBoxDisplay>
+</Tags></Item><Item><Control>btnInventoryCard5</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>The Smith</name>
+  <description>+100 armor while carrying a hammer
+Hammer attacks gain 30% damage bonus against foes at full health</description>
+  <itemType>Card</itemType>
+  <rarity>Legendary</rarity>
+  <imageURL>thesmith3.png</imageURL>
+  <cardTags>
+    <prefix>
+      <name />
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>100</value>
+      <description>+100 armor while carrying a hammer</description>
+      <listBoxDisplay>+100 armor while carrying a hammer</listBoxDisplay>
+    </prefix>
+    <suffix>
+      <name />
+      <modifier>Specific</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>30</value>
+      <description>Hammer attacks gain 30% damage bonus against foes at full health</description>
+      <listBoxDisplay>Hammer attacks gain 30% damage bonus against foes at full health</listBoxDisplay>
+    </suffix>
+    <points>3</points>
+    <unique>true</unique>
+    <conditional>false</conditional>
+    <divineWicked>None</divineWicked>
+  </cardTags>
+  <listBoxDisplay>The Smith | +100 armor while carrying a hammer | Hammer attacks gain 30% damage bonus against foes at full health</listBoxDisplay>
+</Tags></Item><Item><Control>btnInventoryCard6</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>The Seer</name>
+  <description>+4 destiny points.</description>
+  <itemType>Card</itemType>
+  <rarity>Legendary</rarity>
+  <imageURL>theseer0.png</imageURL>
+  <cardTags>
+    <prefix>
+      <name />
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>0</value>
+      <description />
+      <listBoxDisplay />
+    </prefix>
+    <suffix>
+      <name />
+      <modifier>Specific</modifier>
+      <modifierSpecific>DestinyPoints</modifierSpecific>
+      <value>4</value>
+      <description>+4 destiny points.</description>
+      <listBoxDisplay>+4 destiny points.</listBoxDisplay>
+    </suffix>
+    <points>0</points>
+    <unique>true</unique>
+    <conditional>false</conditional>
+    <divineWicked>None</divineWicked>
+  </cardTags>
+  <listBoxDisplay>The Seer | +4 destiny points.</listBoxDisplay>
+</Tags></Item></InventoryCards></Items><Buffs><Buff><Control>chkBuffFrailty</Control><Activated>True</Activated><BuffTags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <modifierName>Frailty</modifierName>
+  <value>100</value>
+</BuffTags></Buff><Buff><Control>chkBuffEnemyElectrocuted</Control><Activated>True</Activated><BuffTags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <modifierName>EnemyElectrocuted</modifierName>
+  <value>20</value>
+</BuffTags></Buff><Buff><Control>chkBuffMight</Control><Activated>True</Activated><BuffTags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <modifierName>Might</modifierName>
+  <value>100</value>
+</BuffTags></Buff><Buff><Control>chkBuffBrutality</Control><Activated>True</Activated><BuffTags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <modifierName>Brutality</modifierName>
+  <value>50</value>
+</BuffTags></Buff><Buff><Control>chkBuffFocus</Control><Activated>True</Activated><BuffTags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <modifierName>Focus</modifierName>
+  <value>20</value>
+</BuffTags></Buff></Buffs></Build>

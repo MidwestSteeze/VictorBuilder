@@ -1,0 +1,813 @@
+<Build>
+	<Items>
+		<Equipped>
+			<Item>
+				<Control>btnEquippedCard1</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Hope</name>
+					<description>Increases max HP by 1000</description>
+					<itemType>Card</itemType>
+					<rarity>Rare</rarity>
+					<imageURL>hope4.png</imageURL>
+					<cardTags>
+						<prefix>
+							<name />
+							<modifier>Health</modifier>
+							<value>1000</value>
+							<description>Increases max HP by #</description>
+							<listBoxDisplay>Increases max HP by 1000</listBoxDisplay>
+						</prefix>
+						<points>4</points>
+						<unique>false</unique>
+						<conditional>false</conditional>
+						<divineWicked>None</divineWicked>
+					</cardTags>
+					<listBoxDisplay>Hope | Increases max HP by 1000</listBoxDisplay>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnEquippedCard2</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Hope</name>
+					<description>Increases max HP by 1000</description>
+					<itemType>Card</itemType>
+					<rarity>Rare</rarity>
+					<imageURL>hope4.png</imageURL>
+					<cardTags>
+						<prefix>
+							<name />
+							<modifier>Health</modifier>
+							<value>1000</value>
+							<description>Increases max HP by #</description>
+							<listBoxDisplay>Increases max HP by 1000</listBoxDisplay>
+						</prefix>
+						<points>4</points>
+						<unique>false</unique>
+						<conditional>false</conditional>
+						<divineWicked>None</divineWicked>
+					</cardTags>
+					<listBoxDisplay>Hope | Increases max HP by 1000</listBoxDisplay>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnEquippedCard3</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Hope</name>
+					<description>Increases max HP by 1000</description>
+					<itemType>Card</itemType>
+					<rarity>Rare</rarity>
+					<imageURL>hope4.png</imageURL>
+					<cardTags>
+						<prefix>
+							<name />
+							<modifier>Health</modifier>
+							<value>1000</value>
+							<description>Increases max HP by #</description>
+							<listBoxDisplay>Increases max HP by 1000</listBoxDisplay>
+						</prefix>
+						<points>4</points>
+						<unique>false</unique>
+						<conditional>false</conditional>
+						<divineWicked>None</divineWicked>
+					</cardTags>
+					<listBoxDisplay>Hope | Increases max HP by 1000</listBoxDisplay>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnEquippedCard4</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Death</name>
+					<description>Increases Damage by 25%
+Lowers max HP by -10</description>
+					<itemType>Card</itemType>
+					<rarity>Rare</rarity>
+					<imageURL>death4.png</imageURL>
+					<cardTags>
+						<prefix>
+							<name />
+							<modifier>Damage</modifier>
+							<value>25</value>
+							<description>Increases Damage by #%</description>
+							<listBoxDisplay>Increases Damage by 25%</listBoxDisplay>
+						</prefix>
+						<suffix>
+							<name />
+							<modifier>Health</modifier>
+							<value>-10</value>
+							<description>Lowers max HP by #</description>
+							<listBoxDisplay>Lowers max HP by -10</listBoxDisplay>
+						</suffix>
+						<points>4</points>
+						<unique>false</unique>
+						<conditional>false</conditional>
+						<divineWicked>None</divineWicked>
+					</cardTags>
+					<listBoxDisplay>Death | Increases Damage by 25%
+Lowers max HP by -10</listBoxDisplay>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnEquippedCard5</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Death</name>
+					<description>Increases Damage by 25%
+Lowers max HP by -10</description>
+					<itemType>Card</itemType>
+					<rarity>Rare</rarity>
+					<imageURL>death4.png</imageURL>
+					<cardTags>
+						<prefix>
+							<name />
+							<modifier>Damage</modifier>
+							<value>25</value>
+							<description>Increases Damage by #%</description>
+							<listBoxDisplay>Increases Damage by 25%</listBoxDisplay>
+						</prefix>
+						<suffix>
+							<name />
+							<modifier>Health</modifier>
+							<value>-10</value>
+							<description>Lowers max HP by #</description>
+							<listBoxDisplay>Lowers max HP by -10</listBoxDisplay>
+						</suffix>
+						<points>4</points>
+						<unique>false</unique>
+						<conditional>false</conditional>
+						<divineWicked>None</divineWicked>
+					</cardTags>
+					<listBoxDisplay>Death | Increases Damage by 25%
+Lowers max HP by -10</listBoxDisplay>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnEquippedCard6</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Death</name>
+					<description>Increases Damage by 25%
+Lowers max HP by -10</description>
+					<itemType>Card</itemType>
+					<rarity>Rare</rarity>
+					<imageURL>death4.png</imageURL>
+					<cardTags>
+						<prefix>
+							<name />
+							<modifier>Damage</modifier>
+							<value>25</value>
+							<description>Increases Damage by #%</description>
+							<listBoxDisplay>Increases Damage by 25%</listBoxDisplay>
+						</prefix>
+						<suffix>
+							<name />
+							<modifier>Health</modifier>
+							<value>-10</value>
+							<description>Lowers max HP by #</description>
+							<listBoxDisplay>Lowers max HP by -10</listBoxDisplay>
+						</suffix>
+						<points>4</points>
+						<unique>false</unique>
+						<conditional>false</conditional>
+						<divineWicked>None</divineWicked>
+					</cardTags>
+					<listBoxDisplay>Death | Increases Damage by 25%
+Lowers max HP by -10</listBoxDisplay>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnEquippedOutfit</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Highlander's Outfit</name>
+					<description>You gain 300 Overdrive when you use a weapon special attack, but attacks no longer grant Overdrive.
+Reduces weapon cooldowns by 15%.</description>
+					<itemType>Outfit</itemType>
+					<rarity>Legendary</rarity>
+					<imageURL>highlander.png</imageURL>
+					<outfitTags>
+						<armor>70</armor>
+						<critChance>0</critChance>
+						<health>0</health>
+						<urlOutfitBackgroundImage>highlander.png</urlOutfitBackgroundImage>
+					</outfitTags>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnEquippedWeapon</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Devastating Hammer of the Duelist</name>
+					<description>24% increased damage
++68 armor penetration</description>
+					<itemType>Weapon</itemType>
+					<rarity>Rare</rarity>
+					<imageURL>hammer.png</imageURL>
+					<weaponTags>
+						<armorPenetration>68</armorPenetration>
+						<critChance>15</critChance>
+						<critMulti>100</critMulti>
+						<dmgMax>196</dmgMax>
+						<dmgMin>148</dmgMin>
+						<weaponDistance>Melee</weaponDistance>
+						<weaponType>Hammer</weaponType>
+						<attack1>
+							<attackName>Pound</attackName>
+							<attackImageURL>hammer_pound.png</attackImageURL>
+							<attackImageHoverTextURL>hammer_pound_hovertext.png</attackImageHoverTextURL>
+							<attackDmgMin>259</attackDmgMin>
+							<attackDmgMax>343</attackDmgMax>
+						</attack1>
+						<attack2>
+							<attackName>Crush</attackName>
+							<attackImageURL>hammer_crush.png</attackImageURL>
+							<attackImageHoverTextURL>hammer_crush_hovertext.png</attackImageHoverTextURL>
+							<attackDmgMin>1295</attackDmgMin>
+							<attackDmgMax>1715</attackDmgMax>
+						</attack2>
+						<attack3>
+							<attackName>Smash</attackName>
+							<attackImageURL>hammer_smash.png</attackImageURL>
+							<attackImageHoverTextURL>hammer_smash_hovertext.png</attackImageHoverTextURL>
+							<attackDmgMin>646</attackDmgMin>
+							<attackDmgMax>856</attackDmgMax>
+						</attack3>
+						<prefix>
+							<name>Devastating</name>
+							<modifier>Damage</modifier>
+							<value>24</value>
+							<description>#% increased damage</description>
+							<listBoxDisplay>24% increased damage</listBoxDisplay>
+						</prefix>
+						<suffix>
+							<name>of the Duelist</name>
+							<modifier>ArmorPenetration</modifier>
+							<value>68</value>
+							<description>+# armor penetration</description>
+							<listBoxDisplay>+68 armor penetration</listBoxDisplay>
+						</suffix>
+					</weaponTags>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnEquippedWeaponSecondary</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Shackles</name>
+					<description>Attack cooldowns reduced by 4sec on overkill (1sec cooldown)
++50 armor penetration
+Larger Daze area. Dash attack inflicts damage to all dazed enemies</description>
+					<itemType>Weapon</itemType>
+					<rarity>Legendary</rarity>
+					<imageURL>sword_shackles.png</imageURL>
+					<weaponTags>
+						<armorPenetration>50</armorPenetration>
+						<critChance>10</critChance>
+						<critMulti>100</critMulti>
+						<dmgMax>91</dmgMax>
+						<dmgMin>48</dmgMin>
+						<weaponDistance>Melee</weaponDistance>
+						<weaponType>Sword</weaponType>
+						<attack1>
+							<attackName>Sword Hack</attackName>
+							<attackImageURL>Sword_Hack.png</attackImageURL>
+							<attackImageHoverTextURL>Sword_Hack_HoverText.png</attackImageHoverTextURL>
+							<attackDmgMin>84</attackDmgMin>
+							<attackDmgMax>159</attackDmgMax>
+						</attack1>
+						<attack2>
+							<attackName>Slash</attackName>
+							<attackImageURL>Sword_Slash.png</attackImageURL>
+							<attackImageHoverTextURL>Sword_Slash_HoverText.png</attackImageHoverTextURL>
+							<attackDmgMin>336</attackDmgMin>
+							<attackDmgMax>637</attackDmgMax>
+						</attack2>
+						<attack3>
+							<attackName>Dash</attackName>
+							<attackImageURL>Sword_Dash.png</attackImageURL>
+							<attackImageHoverTextURL>Sword_Dash_HoverText.png</attackImageHoverTextURL>
+							<attackDmgMin>168</attackDmgMin>
+							<attackDmgMax>318</attackDmgMax>
+						</attack3>
+						<prefix>
+							<name />
+							<modifier>None</modifier>
+							<value>4</value>
+							<description>Attack cooldowns reduced by #sec on overkill (1sec cooldown)</description>
+							<listBoxDisplay>Attack cooldowns reduced by 4sec on overkill (1sec cooldown)</listBoxDisplay>
+						</prefix>
+						<suffix>
+							<name />
+							<modifier>ArmorPenetration</modifier>
+							<value>50</value>
+							<description>+# armor penetration</description>
+							<listBoxDisplay>+50 armor penetration</listBoxDisplay>
+						</suffix>
+						<specialStat>Larger Daze area. Dash attack inflicts damage to all dazed enemies</specialStat>
+					</weaponTags>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnEquippedConsumable</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Fire Bomb</name>
+					<description>Inflicts 500 damage to all enemies within 7m</description>
+					<itemType>Consumable</itemType>
+					<rarity>Common</rarity>
+					<imageURL>firebomb.png</imageURL>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnEquippedConsumableSecondary</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Lucky Rabbit's Foot</name>
+					<description>Unlimited use. Gives Luck for 5 sec.</description>
+					<itemType>Consumable</itemType>
+					<rarity>Common</rarity>
+					<imageURL>luckyrabbitsfoot.png</imageURL>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnEquippedDemonPower</Control>
+				<Activated>False</Activated>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Berserk</name>
+					<itemType>DemonPower</itemType>
+					<rarity>Legendary</rarity>
+					<imageURL>berserk.png</imageURL>
+					<imageHoverTextURL>berserk_hovertext.png</imageHoverTextURL>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnEquippedDemonPowerSecondary</Control>
+				<Activated>False</Activated>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Sunray</name>
+					<itemType>DemonPower</itemType>
+					<rarity>Legendary</rarity>
+					<imageURL>sunray.png</imageURL>
+					<imageHoverTextURL>sunray_hovertext.png</imageHoverTextURL>
+				</Tags>
+			</Item>
+		</Equipped>
+		<InventoryWeapons>
+			<Item>
+				<Control>btnInventoryWeapon1</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Shackles</name>
+					<description>Attack cooldowns reduced by 4sec on overkill (1sec cooldown)
++50 armor penetration
+Larger Daze area. Dash attack inflicts damage to all dazed enemies</description>
+					<itemType>Weapon</itemType>
+					<rarity>Legendary</rarity>
+					<imageURL>sword_shackles.png</imageURL>
+					<weaponTags>
+						<armorPenetration>50</armorPenetration>
+						<critChance>10</critChance>
+						<critMulti>100</critMulti>
+						<dmgMax>91</dmgMax>
+						<dmgMin>48</dmgMin>
+						<weaponDistance>Melee</weaponDistance>
+						<weaponType>Sword</weaponType>
+						<attack1>
+							<attackName>Sword Hack</attackName>
+							<attackImageURL>Sword_Hack.png</attackImageURL>
+							<attackImageHoverTextURL>Sword_Hack_HoverText.png</attackImageHoverTextURL>
+							<attackDmgMin>84</attackDmgMin>
+							<attackDmgMax>159</attackDmgMax>
+						</attack1>
+						<attack2>
+							<attackName>Slash</attackName>
+							<attackImageURL>Sword_Slash.png</attackImageURL>
+							<attackImageHoverTextURL>Sword_Slash_HoverText.png</attackImageHoverTextURL>
+							<attackDmgMin>336</attackDmgMin>
+							<attackDmgMax>637</attackDmgMax>
+						</attack2>
+						<attack3>
+							<attackName>Dash</attackName>
+							<attackImageURL>Sword_Dash.png</attackImageURL>
+							<attackImageHoverTextURL>Sword_Dash_HoverText.png</attackImageHoverTextURL>
+							<attackDmgMin>168</attackDmgMin>
+							<attackDmgMax>318</attackDmgMax>
+						</attack3>
+						<prefix>
+							<name />
+							<modifier>None</modifier>
+							<value>4</value>
+							<description>Attack cooldowns reduced by #sec on overkill (1sec cooldown)</description>
+							<listBoxDisplay>Attack cooldowns reduced by 4sec on overkill (1sec cooldown)</listBoxDisplay>
+						</prefix>
+						<suffix>
+							<name />
+							<modifier>ArmorPenetration</modifier>
+							<value>50</value>
+							<description>+# armor penetration</description>
+							<listBoxDisplay>+50 armor penetration</listBoxDisplay>
+						</suffix>
+						<specialStat>Larger Daze area. Dash attack inflicts damage to all dazed enemies</specialStat>
+					</weaponTags>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnInventoryWeapon2</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Devastating Hammer of the Duelist</name>
+					<description>24% increased damage
++68 armor penetration</description>
+					<itemType>Weapon</itemType>
+					<rarity>Rare</rarity>
+					<imageURL>hammer.png</imageURL>
+					<weaponTags>
+						<armorPenetration>68</armorPenetration>
+						<critChance>15</critChance>
+						<critMulti>100</critMulti>
+						<dmgMax>196</dmgMax>
+						<dmgMin>148</dmgMin>
+						<weaponDistance>Melee</weaponDistance>
+						<weaponType>Hammer</weaponType>
+						<attack1>
+							<attackName>Pound</attackName>
+							<attackImageURL>hammer_pound.png</attackImageURL>
+							<attackImageHoverTextURL>hammer_pound_hovertext.png</attackImageHoverTextURL>
+							<attackDmgMin>259</attackDmgMin>
+							<attackDmgMax>343</attackDmgMax>
+						</attack1>
+						<attack2>
+							<attackName>Crush</attackName>
+							<attackImageURL>hammer_crush.png</attackImageURL>
+							<attackImageHoverTextURL>hammer_crush_hovertext.png</attackImageHoverTextURL>
+							<attackDmgMin>1295</attackDmgMin>
+							<attackDmgMax>1715</attackDmgMax>
+						</attack2>
+						<attack3>
+							<attackName>Smash</attackName>
+							<attackImageURL>hammer_smash.png</attackImageURL>
+							<attackImageHoverTextURL>hammer_smash_hovertext.png</attackImageHoverTextURL>
+							<attackDmgMin>646</attackDmgMin>
+							<attackDmgMax>856</attackDmgMax>
+						</attack3>
+						<prefix>
+							<name>Devastating</name>
+							<modifier>Damage</modifier>
+							<value>24</value>
+							<description>#% increased damage</description>
+							<listBoxDisplay>24% increased damage</listBoxDisplay>
+						</prefix>
+						<suffix>
+							<name>of the Duelist</name>
+							<modifier>ArmorPenetration</modifier>
+							<value>68</value>
+							<description>+# armor penetration</description>
+							<listBoxDisplay>+68 armor penetration</listBoxDisplay>
+						</suffix>
+					</weaponTags>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnInventoryWeapon3</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Needle</name>
+					<description>Damage increased by 23% when overdrive meter is full
+Overdrive meter fills 125% faster
+Charge attack leaves a trail of fire</description>
+					<itemType>Weapon</itemType>
+					<rarity>Legendary</rarity>
+					<imageURL>rapier_needle.png</imageURL>
+					<weaponTags>
+						<armorPenetration>100</armorPenetration>
+						<critChance>10</critChance>
+						<critMulti>150</critMulti>
+						<dmgMax>72</dmgMax>
+						<dmgMin>48</dmgMin>
+						<weaponDistance>Melee</weaponDistance>
+						<weaponType>Rapier</weaponType>
+						<attack1>
+							<attackName>Flurry</attackName>
+							<attackImageURL>rapier_flurry.png</attackImageURL>
+							<attackImageHoverTextURL>rapier_flurry_hovertext.png</attackImageHoverTextURL>
+							<attackDmgMin>0</attackDmgMin>
+							<attackDmgMax>0</attackDmgMax>
+						</attack1>
+						<attack2>
+							<attackName>Charge</attackName>
+							<attackImageURL>rapier_charge.png</attackImageURL>
+							<attackImageHoverTextURL>rapier_charge_hovertext.png</attackImageHoverTextURL>
+							<attackDmgMin>0</attackDmgMin>
+							<attackDmgMax>0</attackDmgMax>
+						</attack2>
+						<attack3>
+							<attackName>Coup De Grace</attackName>
+							<attackImageURL>rapier_coupdegrace.png</attackImageURL>
+							<attackImageHoverTextURL>rapier_coupdegrace_hovertext.png</attackImageHoverTextURL>
+							<attackDmgMin>0</attackDmgMin>
+							<attackDmgMax>0</attackDmgMax>
+						</attack3>
+						<prefix>
+							<name />
+							<modifier>None</modifier>
+							<value>23</value>
+							<description>Damage increased by #% when overdrive meter is full</description>
+							<listBoxDisplay>Damage increased by 23% when overdrive meter is full</listBoxDisplay>
+						</prefix>
+						<suffix>
+							<name />
+							<modifier>None</modifier>
+							<value>125</value>
+							<description>Overdrive meter fills #% faster</description>
+							<listBoxDisplay>Overdrive meter fills 125% faster</listBoxDisplay>
+						</suffix>
+						<specialStat>Charge attack leaves a trail of fire</specialStat>
+					</weaponTags>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnInventoryWeapon4</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Skeleton Slayer Lightning Gun of Extraordinary Luck</name>
+					<description>0% increased damage against Skeletons
+While equipped, find better items</description>
+					<itemType>Weapon</itemType>
+					<rarity>Rare</rarity>
+					<imageURL>lightninggun.png</imageURL>
+					<weaponTags>
+						<armorPenetration>50</armorPenetration>
+						<critChance>10</critChance>
+						<critMulti>50</critMulti>
+						<dmgMax>108</dmgMax>
+						<dmgMin>80</dmgMin>
+						<weaponDistance>Ranged</weaponDistance>
+						<weaponType>LightningGun</weaponType>
+						<attack1>
+							<attackName>Shock</attackName>
+							<attackImageURL>lightninggun_shock.png</attackImageURL>
+							<attackImageHoverTextURL>lightninggun_shock_hovertext.png</attackImageHoverTextURL>
+							<attackDmgMin>0</attackDmgMin>
+							<attackDmgMax>0</attackDmgMax>
+						</attack1>
+						<attack2>
+							<attackName>Ball Lightning</attackName>
+							<attackImageURL>lightninggun_balllightning.png</attackImageURL>
+							<attackImageHoverTextURL>lightninggun_balllightning_hovertext.png</attackImageHoverTextURL>
+							<attackDmgMin>0</attackDmgMin>
+							<attackDmgMax>0</attackDmgMax>
+						</attack2>
+						<attack3>
+							<attackName>Lightning Trap</attackName>
+							<attackImageURL>lightninggun_lightningtrap.png</attackImageURL>
+							<attackImageHoverTextURL>lightninggun_lightningtrap_hovertext.png</attackImageHoverTextURL>
+							<attackDmgMin>0</attackDmgMin>
+							<attackDmgMax>0</attackDmgMax>
+						</attack3>
+						<prefix>
+							<name>Skeleton Slayer</name>
+							<modifier>None</modifier>
+							<value>0</value>
+							<description>#% increased damage against Skeletons</description>
+							<listBoxDisplay>0% increased damage against Skeletons</listBoxDisplay>
+						</prefix>
+						<suffix>
+							<name>of Extraordinary Luck</name>
+							<modifier>None</modifier>
+							<value>0</value>
+							<description>While equipped, find better items</description>
+							<listBoxDisplay>While equipped, find better items</listBoxDisplay>
+						</suffix>
+					</weaponTags>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnInventoryWeapon5</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Finger of Chaos</name>
+					<description>Critical damage increased by 70%
+While equipped: Find 40% more items
+The fourth and final Flurry attack unleashes a burst of projectiles that strike random foes. Enemies killed by those projectiles are turned into exploding chickens.</description>
+					<itemType>Weapon</itemType>
+					<rarity>Legendary</rarity>
+					<imageURL>rapier_fingerofchaos.png</imageURL>
+					<weaponTags>
+						<armorPenetration>100</armorPenetration>
+						<critChance>10</critChance>
+						<critMulti>220</critMulti>
+						<dmgMax>72</dmgMax>
+						<dmgMin>48</dmgMin>
+						<weaponDistance>Melee</weaponDistance>
+						<weaponType>Rapier</weaponType>
+						<attack1>
+							<attackName>Flurry</attackName>
+							<attackImageURL>rapier_flurry.png</attackImageURL>
+							<attackImageHoverTextURL>rapier_flurry_hovertext.png</attackImageHoverTextURL>
+							<attackDmgMin>0</attackDmgMin>
+							<attackDmgMax>0</attackDmgMax>
+						</attack1>
+						<attack2>
+							<attackName>Charge</attackName>
+							<attackImageURL>rapier_charge.png</attackImageURL>
+							<attackImageHoverTextURL>rapier_charge_hovertext.png</attackImageHoverTextURL>
+							<attackDmgMin>0</attackDmgMin>
+							<attackDmgMax>0</attackDmgMax>
+						</attack2>
+						<attack3>
+							<attackName>Coup De Grace</attackName>
+							<attackImageURL>rapier_coupdegrace.png</attackImageURL>
+							<attackImageHoverTextURL>rapier_coupdegrace_hovertext.png</attackImageHoverTextURL>
+							<attackDmgMin>0</attackDmgMin>
+							<attackDmgMax>0</attackDmgMax>
+						</attack3>
+						<prefix>
+							<name />
+							<modifier>CritMulti</modifier>
+							<value>70</value>
+							<description>Critical damage increased by #%</description>
+							<listBoxDisplay>Critical damage increased by 70%</listBoxDisplay>
+						</prefix>
+						<suffix>
+							<name />
+							<modifier>None</modifier>
+							<value>40</value>
+							<description>While equipped: Find #% more items</description>
+							<listBoxDisplay>While equipped: Find 40% more items</listBoxDisplay>
+						</suffix>
+						<specialStat>The fourth and final Flurry attack unleashes a burst of projectiles that strike random foes. Enemies killed by those projectiles are turned into exploding chickens.</specialStat>
+					</weaponTags>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnInventoryWeapon6</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Kladenets</name>
+					<description>Damage increased by 47% when health is above 90%
+Gain 5% of max health on crit (5.0sec cooldown)
+Stack Aether Charges when you deliver a critical hit./r/nAt 10 charges the Hack attack unleashes a powerful explosion that steals life from nearby enemies</description>
+					<itemType>Weapon</itemType>
+					<rarity>Legendary</rarity>
+					<imageURL>sword_kladenets.png</imageURL>
+					<weaponTags>
+						<armorPenetration>0</armorPenetration>
+						<critChance>10</critChance>
+						<critMulti>100</critMulti>
+						<dmgMax>134</dmgMax>
+						<dmgMin>71</dmgMin>
+						<weaponDistance>Melee</weaponDistance>
+						<weaponType>Sword</weaponType>
+						<attack1>
+							<attackName>Sword Hack</attackName>
+							<attackImageURL>Sword_Hack.png</attackImageURL>
+							<attackImageHoverTextURL>Sword_Hack_HoverText.png</attackImageHoverTextURL>
+							<attackDmgMin>0</attackDmgMin>
+							<attackDmgMax>0</attackDmgMax>
+						</attack1>
+						<attack2>
+							<attackName>Slash</attackName>
+							<attackImageURL>Sword_Slash.png</attackImageURL>
+							<attackImageHoverTextURL>Sword_Slash_HoverText.png</attackImageHoverTextURL>
+							<attackDmgMin>0</attackDmgMin>
+							<attackDmgMax>0</attackDmgMax>
+						</attack2>
+						<attack3>
+							<attackName>Dash</attackName>
+							<attackImageURL>Sword_Dash.png</attackImageURL>
+							<attackImageHoverTextURL>Sword_Dash_HoverText.png</attackImageHoverTextURL>
+							<attackDmgMin>0</attackDmgMin>
+							<attackDmgMax>0</attackDmgMax>
+						</attack3>
+						<prefix>
+							<name />
+							<modifier>Damage</modifier>
+							<value>47</value>
+							<description>Damage increased by #% when health is above 90%</description>
+							<listBoxDisplay>Damage increased by 47% when health is above 90%</listBoxDisplay>
+						</prefix>
+						<suffix>
+							<name />
+							<modifier>None</modifier>
+							<value>5</value>
+							<description>Gain #% of max health on crit (5.0sec cooldown)</description>
+							<listBoxDisplay>Gain 5% of max health on crit (5.0sec cooldown)</listBoxDisplay>
+						</suffix>
+						<specialStat>Stack Aether Charges when you deliver a critical hit./r/nAt 10 charges the Hack attack unleashes a powerful explosion that steals life from nearby enemies</specialStat>
+					</weaponTags>
+				</Tags>
+			</Item>
+		</InventoryWeapons>
+		<InventoryCards>
+			<Item>
+				<Control>btnInventoryCard1</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Death</name>
+					<description>Increases Damage by 25%
+Lowers max HP by -10</description>
+					<itemType>Card</itemType>
+					<rarity>Rare</rarity>
+					<imageURL>death4.png</imageURL>
+					<cardTags>
+						<prefix>
+							<name />
+							<modifier>Damage</modifier>
+							<value>25</value>
+							<description>Increases Damage by #%</description>
+							<listBoxDisplay>Increases Damage by 25%</listBoxDisplay>
+						</prefix>
+						<suffix>
+							<name />
+							<modifier>Health</modifier>
+							<value>-10</value>
+							<description>Lowers max HP by #</description>
+							<listBoxDisplay>Lowers max HP by -10</listBoxDisplay>
+						</suffix>
+						<points>4</points>
+						<unique>false</unique>
+						<conditional>false</conditional>
+						<divineWicked>None</divineWicked>
+					</cardTags>
+					<listBoxDisplay>Death | Increases Damage by 25%
+Lowers max HP by -10</listBoxDisplay>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnInventoryCard2</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Hope</name>
+					<description>Increases max HP by 1000</description>
+					<itemType>Card</itemType>
+					<rarity>Rare</rarity>
+					<imageURL>hope4.png</imageURL>
+					<cardTags>
+						<prefix>
+							<name />
+							<modifier>Health</modifier>
+							<value>1000</value>
+							<description>Increases max HP by #</description>
+							<listBoxDisplay>Increases max HP by 1000</listBoxDisplay>
+						</prefix>
+						<points>4</points>
+						<unique>false</unique>
+						<conditional>false</conditional>
+						<divineWicked>None</divineWicked>
+					</cardTags>
+					<listBoxDisplay>Hope | Increases max HP by 1000</listBoxDisplay>
+				</Tags>
+			</Item>
+			<Item>
+				<Control>btnInventoryCard3</Control>
+				<Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+					<name>Strength</name>
+					<description>Increases crit chance by 12%</description>
+					<itemType>Card</itemType>
+					<rarity>Legendary</rarity>
+					<imageURL>strength5.png</imageURL>
+					<cardTags>
+						<prefix>
+							<name />
+							<modifier>CritChance</modifier>
+							<value>12</value>
+							<description>Increases crit chance by #%</description>
+							<listBoxDisplay>Increases crit chance by 12%</listBoxDisplay>
+						</prefix>
+						<points>5</points>
+						<unique>false</unique>
+						<conditional>false</conditional>
+						<divineWicked>None</divineWicked>
+					</cardTags>
+					<listBoxDisplay>Strength | Increases crit chance by 12%</listBoxDisplay>
+				</Tags>
+			</Item>
+		</InventoryCards>
+	</Items>
+	<Buffs>
+		<Buff>
+			<Control>chkBuffFrailty</Control>
+			<Activated>True</Activated>
+			<BuffTags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+				<modifierName>Frailty</modifierName>
+				<value>100</value>
+			</BuffTags>
+		</Buff>
+		<Buff>
+			<Control>chkBuffEnemyElectrocuted</Control>
+			<Activated>True</Activated>
+			<BuffTags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+				<modifierName>EnemyElectrocuted</modifierName>
+				<value>20</value>
+			</BuffTags>
+		</Buff>
+		<Buff>
+			<Control>chkBuffMight</Control>
+			<Activated>True</Activated>
+			<BuffTags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+				<modifierName>Might</modifierName>
+				<value>100</value>
+			</BuffTags>
+		</Buff>
+		<Buff>
+			<Control>chkBuffBrutality</Control>
+			<Activated>True</Activated>
+			<BuffTags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+				<modifierName>Brutality</modifierName>
+				<value>50</value>
+			</BuffTags>
+		</Buff>
+		<Buff>
+			<Control>chkBuffFocus</Control>
+			<Activated>True</Activated>
+			<BuffTags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+				<modifierName>Focus</modifierName>
+				<value>20</value>
+			</BuffTags>
+		</Buff>
+	</Buffs>	
+</Build>

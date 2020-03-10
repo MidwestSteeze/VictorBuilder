@@ -1,0 +1,266 @@
+<Build><Items><Equipped><Item><Control>btnEquippedOutfit</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Vigilante's Outfit</name>
+  <description>Critical hits grant 300% more Overdrive.  Normal attacks no longer grant Overdrive.</description>
+  <itemType>Outfit</itemType>
+  <rarity>Legendary</rarity>
+  <imageURL>vigilante.png</imageURL>
+  <outfitTags>
+    <armor>70</armor>
+    <critChance>10</critChance>
+    <health>0</health>
+    <urlOutfitBackgroundImage>vigilante.png</urlOutfitBackgroundImage>
+  </outfitTags>
+</Tags></Item><Item><Control>btnEquippedWeapon</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Storm</name>
+  <description>Attack speed increased by 25%
+Critical chance increased by 25%
+Critical hits create ball lightnings</description>
+  <itemType>Weapon</itemType>
+  <rarity>Legendary</rarity>
+  <imageURL>sword_storm.png</imageURL>
+  <weaponTags>
+    <armorPenetration>0</armorPenetration>
+    <critChance>35</critChance>
+    <critMulti>100</critMulti>
+    <dmgMax>91</dmgMax>
+    <dmgMin>48</dmgMin>
+    <weaponDistance>Melee</weaponDistance>
+    <weaponType>Sword</weaponType>
+    <attack1>
+      <attackName>Sword Hack</attackName>
+      <attackImageURL>Sword_Hack.png</attackImageURL>
+      <attackImageHoverTextURL>Sword_Hack_HoverText.png</attackImageHoverTextURL>
+      <attackDmgMin>253</attackDmgMin>
+      <attackDmgMax>480</attackDmgMax>
+    </attack1>
+    <attack2>
+      <attackName>Slash</attackName>
+      <attackImageURL>Sword_Slash.png</attackImageURL>
+      <attackImageHoverTextURL>Sword_Slash_HoverText.png</attackImageHoverTextURL>
+      <attackDmgMin>1012</attackDmgMin>
+      <attackDmgMax>1918</attackDmgMax>
+    </attack2>
+    <attack3>
+      <attackName>Dash</attackName>
+      <attackImageURL>Sword_Dash.png</attackImageURL>
+      <attackImageHoverTextURL>Sword_Dash_HoverText.png</attackImageHoverTextURL>
+      <attackDmgMin>506</attackDmgMin>
+      <attackDmgMax>959</attackDmgMax>
+    </attack3>
+    <prefix>
+      <name />
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>25</value>
+      <description>Attack speed increased by #%</description>
+      <listBoxDisplay>Attack speed increased by 25%</listBoxDisplay>
+    </prefix>
+    <suffix>
+      <name />
+      <modifier>CritChance</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>25</value>
+      <description>Critical chance increased by #%</description>
+      <listBoxDisplay>Critical chance increased by 25%</listBoxDisplay>
+    </suffix>
+    <specialStat>Critical hits create ball lightnings</specialStat>
+  </weaponTags>
+</Tags></Item><Item><Control>btnEquippedWeaponSecondary</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Finger of Chaos</name>
+  <description>Critical damage increased by 70%
+While equipped: Find 40% more items
+The fourth and final Flurry attack unleashes a burst of projectiles that strike random foes. Enemies killed by those projectiles are turned into exploding chickens.</description>
+  <itemType>Weapon</itemType>
+  <rarity>Legendary</rarity>
+  <imageURL>rapier_fingerofchaos.png</imageURL>
+  <weaponTags>
+    <armorPenetration>100</armorPenetration>
+    <critChance>10</critChance>
+    <critMulti>220</critMulti>
+    <dmgMax>72</dmgMax>
+    <dmgMin>48</dmgMin>
+    <weaponDistance>Melee</weaponDistance>
+    <weaponType>Rapier</weaponType>
+    <attack1>
+      <attackName>Flurry</attackName>
+      <attackImageURL>rapier_flurry.png</attackImageURL>
+      <attackImageHoverTextURL>rapier_flurry_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>253</attackDmgMin>
+      <attackDmgMax>379</attackDmgMax>
+    </attack1>
+    <attack2>
+      <attackName>Charge</attackName>
+      <attackImageURL>rapier_charge.png</attackImageURL>
+      <attackImageHoverTextURL>rapier_charge_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>632</attackDmgMin>
+      <attackDmgMax>949</attackDmgMax>
+    </attack2>
+    <attack3>
+      <attackName>Coup De Grace</attackName>
+      <attackImageURL>rapier_coupdegrace.png</attackImageURL>
+      <attackImageHoverTextURL>rapier_coupdegrace_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>759</attackDmgMin>
+      <attackDmgMax>1138</attackDmgMax>
+    </attack3>
+    <prefix>
+      <name />
+      <modifier>CritMulti</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>70</value>
+      <description>Critical damage increased by #%</description>
+      <listBoxDisplay>Critical damage increased by 70%</listBoxDisplay>
+    </prefix>
+    <suffix>
+      <name />
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>40</value>
+      <description>While equipped: Find #% more items</description>
+      <listBoxDisplay>While equipped: Find 40% more items</listBoxDisplay>
+    </suffix>
+    <specialStat>The fourth and final Flurry attack unleashes a burst of projectiles that strike random foes. Enemies killed by those projectiles are turned into exploding chickens.</specialStat>
+  </weaponTags>
+</Tags></Item><Item><Control>btnEquippedConsumable</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Healing Potion</name>
+  <description>Restores 60% health</description>
+  <itemType>Consumable</itemType>
+  <rarity>Common</rarity>
+  <imageURL>healingpotion.png</imageURL>
+</Tags></Item><Item><Control>btnEquippedConsumableSecondary</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Vampire Blood</name>
+  <description>Gain 45% Life Steal for 45 sec</description>
+  <itemType>Consumable</itemType>
+  <rarity>Common</rarity>
+  <imageURL>vampireblood.png</imageURL>
+</Tags></Item><Item><Control>btnEquippedDemonPower</Control><Activated>True</Activated><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Berserk</name>
+  <itemType>DemonPower</itemType>
+  <rarity>Legendary</rarity>
+  <imageURL>berserk.png</imageURL>
+  <imageHoverTextURL>berserk_hovertext.png</imageHoverTextURL>
+</Tags></Item></Equipped><InventoryWeapons><Item><Control>btnInventoryWeapon1</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Storm</name>
+  <description>Attack speed increased by 25%
+Critical chance increased by 25%
+Critical hits create ball lightnings</description>
+  <itemType>Weapon</itemType>
+  <rarity>Legendary</rarity>
+  <imageURL>sword_storm.png</imageURL>
+  <weaponTags>
+    <armorPenetration>0</armorPenetration>
+    <critChance>35</critChance>
+    <critMulti>100</critMulti>
+    <dmgMax>91</dmgMax>
+    <dmgMin>48</dmgMin>
+    <weaponDistance>Melee</weaponDistance>
+    <weaponType>Sword</weaponType>
+    <attack1>
+      <attackName>Sword Hack</attackName>
+      <attackImageURL>Sword_Hack.png</attackImageURL>
+      <attackImageHoverTextURL>Sword_Hack_HoverText.png</attackImageHoverTextURL>
+      <attackDmgMin>48</attackDmgMin>
+      <attackDmgMax>91</attackDmgMax>
+    </attack1>
+    <attack2>
+      <attackName>Slash</attackName>
+      <attackImageURL>Sword_Slash.png</attackImageURL>
+      <attackImageHoverTextURL>Sword_Slash_HoverText.png</attackImageHoverTextURL>
+      <attackDmgMin>192</attackDmgMin>
+      <attackDmgMax>364</attackDmgMax>
+    </attack2>
+    <attack3>
+      <attackName>Dash</attackName>
+      <attackImageURL>Sword_Dash.png</attackImageURL>
+      <attackImageHoverTextURL>Sword_Dash_HoverText.png</attackImageHoverTextURL>
+      <attackDmgMin>96</attackDmgMin>
+      <attackDmgMax>182</attackDmgMax>
+    </attack3>
+    <prefix>
+      <name />
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>25</value>
+      <description>Attack speed increased by #%</description>
+      <listBoxDisplay>Attack speed increased by 25%</listBoxDisplay>
+    </prefix>
+    <suffix>
+      <name />
+      <modifier>CritChance</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>25</value>
+      <description>Critical chance increased by #%</description>
+      <listBoxDisplay>Critical chance increased by 25%</listBoxDisplay>
+    </suffix>
+    <specialStat>Critical hits create ball lightnings</specialStat>
+  </weaponTags>
+</Tags></Item><Item><Control>btnInventoryWeapon2</Control><Tags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>Finger of Chaos</name>
+  <description>Critical damage increased by 70%
+While equipped: Find 40% more items
+The fourth and final Flurry attack unleashes a burst of projectiles that strike random foes. Enemies killed by those projectiles are turned into exploding chickens.</description>
+  <itemType>Weapon</itemType>
+  <rarity>Legendary</rarity>
+  <imageURL>rapier_fingerofchaos.png</imageURL>
+  <weaponTags>
+    <armorPenetration>100</armorPenetration>
+    <critChance>10</critChance>
+    <critMulti>220</critMulti>
+    <dmgMax>72</dmgMax>
+    <dmgMin>48</dmgMin>
+    <weaponDistance>Melee</weaponDistance>
+    <weaponType>Rapier</weaponType>
+    <attack1>
+      <attackName>Flurry</attackName>
+      <attackImageURL>rapier_flurry.png</attackImageURL>
+      <attackImageHoverTextURL>rapier_flurry_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>48</attackDmgMin>
+      <attackDmgMax>72</attackDmgMax>
+    </attack1>
+    <attack2>
+      <attackName>Charge</attackName>
+      <attackImageURL>rapier_charge.png</attackImageURL>
+      <attackImageHoverTextURL>rapier_charge_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>120</attackDmgMin>
+      <attackDmgMax>180</attackDmgMax>
+    </attack2>
+    <attack3>
+      <attackName>Coup De Grace</attackName>
+      <attackImageURL>rapier_coupdegrace.png</attackImageURL>
+      <attackImageHoverTextURL>rapier_coupdegrace_hovertext.png</attackImageHoverTextURL>
+      <attackDmgMin>144</attackDmgMin>
+      <attackDmgMax>216</attackDmgMax>
+    </attack3>
+    <prefix>
+      <name />
+      <modifier>CritMulti</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>70</value>
+      <description>Critical damage increased by #%</description>
+      <listBoxDisplay>Critical damage increased by 70%</listBoxDisplay>
+    </prefix>
+    <suffix>
+      <name />
+      <modifier>None</modifier>
+      <modifierSpecific>AttackHammerEnemyFullHealth</modifierSpecific>
+      <value>40</value>
+      <description>While equipped: Find #% more items</description>
+      <listBoxDisplay>While equipped: Find 40% more items</listBoxDisplay>
+    </suffix>
+    <specialStat>The fourth and final Flurry attack unleashes a burst of projectiles that strike random foes. Enemies killed by those projectiles are turned into exploding chickens.</specialStat>
+  </weaponTags>
+</Tags></Item></InventoryWeapons><InventoryCards /></Items><Buffs><Buff><Control>chkBuffFrailty</Control><Activated>True</Activated><BuffTags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <modifierName>Frailty</modifierName>
+  <value>100</value>
+</BuffTags></Buff><Buff><Control>chkBuffEnemyElectrocuted</Control><Activated>True</Activated><BuffTags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <modifierName>EnemyElectrocuted</modifierName>
+  <value>20</value>
+</BuffTags></Buff><Buff><Control>chkBuffMight</Control><Activated>True</Activated><BuffTags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <modifierName>Might</modifierName>
+  <value>100</value>
+</BuffTags></Buff><Buff><Control>chkBuffBrutality</Control><Activated>True</Activated><BuffTags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <modifierName>Brutality</modifierName>
+  <value>50</value>
+</BuffTags></Buff><Buff><Control>chkBuffFocus</Control><Activated>True</Activated><BuffTags xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <modifierName>Focus</modifierName>
+  <value>20</value>
+</BuffTags></Buff></Buffs></Build>

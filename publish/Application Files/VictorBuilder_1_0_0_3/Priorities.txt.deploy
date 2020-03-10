@@ -1,0 +1,42 @@
+Git Releasing Notes:
+ - update verison number in VS before publish
+ - manually drag/drop the published setup.exe into each Git release when creating one
+----------ALPHA----------  
+ - BUG/TEST: does CalculateStatsFromEquippedCards reset all modifiers (including ones from buffs and not re-apply them?)
+ - add preset buttons to load all items for X rarity (weapons and cards)
+ - DPS/BUFFS: show buff icons available from items (with enable/disable toggle and stat recalc)
+	- legendary weapons: dmg by #% when health is below 50%, dmg by #% when overdrive is full, dmg by #% when health is above 90%)
+	- affixes from CreateItem: %dmg vs essences/gargoyles/skeletons/spiders/vampires/wraiths, %dmg when overdrive is full, %dmg when health is above 90%, %dmg when health is below 50%
+	- cards: %crit dmg with swords, +armor pen per equipped Wicked card, %dmg vs enemies below 50%hp, %shotgun damage on split timed attacks, +armor while carrying a hammer, %dmg per stack of Arcane Power, Enraged (100% more dmg on next hit), shockwave deals #% base dmg, %dmg when health is above 90%
+	 - GLOBAL: armor, %dmg when health below 50/above 90/overdrive full, dmg vs monster types, +armor pen per wicked card, %dmg per stack of Arcane Power, Enraged
+ - CARDS/CALCS: calculation for legendary card that applies bonus for each divine/wicked card equipped
+ - UI: change UI of CreateItem to see mods better (and point values); almost like an item/card preview?
+ - CARDS: pictures of missing cards (greed, justice, theacrobat, thedevil, theguardian, theoak, thesaint)
+ - WPNS/CALCS: weapon dps calculations (ie. how to compare lightning gun vs. hammer?)
+ - Update saved build xml if xml is adjusted due to new features/functionality (ie. added Demon Power and its Activated property, added Buffs, etc)
+	- if node not found, create it and set it to a default value
+ - move Save/Load build option into the UI and force a common file location (add note to users to manually move their build xml files into the newly defined directory)
+----------BETA----------
+ - all white weapon image options on createitem popup (ignoring rarity)
+ - weapon/card stat chance compare (ie. swapping in THIS card changes THESE stats by THIS much)
+ - enhance hover text to allow for different color borders/sizes of hover text panel depending on item rarity
+   - OnHover, check slotTags.itemRarity; if rare then lblHoverText.FontColor=orange, if legendary=purple, etc
+ - resize: add button with function to scale up to 1920x1080 and back to 1280x720
+ - programmatically resize pnlAttackHoverText to fit the size of the image within it (it currently creates transparent border on smaller sized images)
+ - reaffirm prefix/suffix values based on newest data(the one in steam bookmark is said to be outdated)
+ - item inventory delete currently wired to the button but it only deletes if you click to select the slot and then press delete (so if you click to select one, hover another, it'll delete the one you clicked which may be misleading)
+ - equip/uneqiup destiny cards doesn't update stat labels (ie. health, card count, etc) if you don't have a weapon equipped
+ - equip Seer card, equip other cards to max points, unequip Seer card (what's the behavoir in-game for this?)
+ - test your try/catches around Enum.TryParse in CreateItem; apparently it wont throw an exception but insteaed returns a boolean if it failed to parse?
+ - autoupdater so .exe download and re-install from GitHub is not necessary
+ - install-less version (may require move of Access db to xml to remove registry dependancies)
+ ----------LAUNCH----------
+ - add bottom legendary border to all demon power hovertext 
+ - add expansion weapons
+ - add expansion cards
+ - add expansion consumables
+ - add expansion outfits (ie. wanderer, etc.)
+ - add expansion demon powers
+ - redo demon power hovertexts using the _.jpgs, the other ones are lesser quality 
+ - cleanup backgrounds --> destiny card overlay should look like vanguard, not highlander 
+ - enable/disable buff icons so they only are clickable if they apply (ie. Might from The Cannon card, only show chkBuffMight if The Cannon is equipped)
